@@ -16,12 +16,12 @@ const HeroSection = () => {
           className="flex-1 text-center lg:text-left"
         >
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-foreground leading-tight mb-4">
-            UGC that feels real
+            British UGC creator. Former lawyer.
             <br />
-            <span className="text-primary italic">– and actually converts</span>
+            <span className="text-primary italic">Content that reads like a recommendation, not an ad.</span>
           </h1>
           <p className="font-body text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-            British creator based in Thailand, making authentic content for travel, lifestyle, tech &amp; wellness brands that want to connect with real audiences.
+            Currently UK-based, returning to Thailand summer 2026. I make short-form video for wellness, tech, and lifestyle brands. Fast turnaround in the UK now, full SE Asia production from summer.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <button
@@ -38,7 +38,7 @@ const HeroSection = () => {
             </button>
           </div>
           <p className="mt-6 font-body text-sm text-muted-foreground">
-            ✦ Open to global collaborations · Trusted by brands worldwide
+            ✦ Open to UK and global collaborations
           </p>
         </motion.div>
 
