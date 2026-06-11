@@ -50,7 +50,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-center lg:text-left"
+          className="text-center lg:text-left flex flex-col justify-center lg:pl-8 xl:pl-16"
         >
           {/* Headline cluster: name + headline + credibility line as one tight top group */}
           <div>
