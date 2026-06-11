@@ -230,7 +230,7 @@ const HeroSection = () => {
           opacity: { duration: 0.6, delay: 0.9 },
           y: { duration: 1.8, repeat: Infinity, ease: "easeInOut" },
         }}
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 text-primary/70 hover:text-primary transition-colors"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-primary/70 hover:text-primary transition-colors"
       >
         <ChevronDown className="w-6 h-6" strokeWidth={2} />
       </motion.button>
