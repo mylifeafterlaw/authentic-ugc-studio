@@ -1,29 +1,35 @@
 ## Goal
+Tie the hero social icons row to the **secondary still photo** specifically, so it always sits centred just under that photo's bottom edge — never drifting toward the phone, the gap, or the section centre. Hero section only; nothing else changes.
 
-Refine the hero section only (no other section, nav, or copy wording changes). All edits live in `src/components/HeroSection.tsx`, plus possibly one small keyframe in `tailwind.config.ts` for the arrow animation.
+## Current situation
+- The secondary photo is an absolutely-positioned, `rotate-6`, `overflow-hidden` div anchored to the inner `.relative` visual container (line 111).
+- The social icons (line 203) are a **separate sibling** absolutely positioned against that same `.relative` container using hand-tuned offsets (`right-0 top-1/2 translate-x-[86%] translate-y-[235px]`). Because they're positioned against the container — not the photo — they read as floating in the gap and are fragile (any size change makes them drift).
 
-## Changes
+## What I'll do
 
-### 1. Vertically centre the phone-and-still group
-- The right column already uses a flex container with `items-center`, but the section's tall padding/min-height pushes the group low. Adjust the right-column wrapper so the phone + still group is balanced vertically within the hero with breathing room above and below (e.g. ensure the visuals column centres its content and isn't bottom-weighted by the grid's padding).
-- Keep the phone and still in their current relative positions, sizes, overlap, layering (phone `z-10` in front, still `z-0` behind), and proportions.
-- If centring still leaves it tight, reduce the phone's height slightly (e.g. trim the `lg:w-[300px]` / aspect-driven height a notch) so the whole group sits comfortably centred. The still scales with it since their relationship stays intact.
+**1. Anchor the icons to the photo, not the container.**
+I'll introduce a thin positioning wrapper that carries the photo's existing placement (`absolute right-0 top-1/2 -translate-y-[58%]`, the responsive `translate-x-*`, and the responsive `w-*`), but is **not** rotated and **not** `overflow-hidden`. Inside it:
+   - the photo div keeps its own `rotate-6`, `rounded-2xl`, `overflow-hidden`, border and shadow (so the photo looks identical);
+   - the social row becomes a **child of this wrapper**, so it inherits the photo's exact width and horizontal position.
 
-### 2. Captioned cue + animated curved arrow pointing at the play button
-- Add a small handwritten-style caption "Watch a sample" using the existing `font-script` (Parisienne) in the accent/primary colour, placed in clear background space near the lower portion of the phone — on whichever side has room and does NOT overlap the left column text or the secondary still (the still sits to the phone's right, so the caption goes to the lower-left of the phone, inside the right column area).
-- Add a small inline SVG curved arrow sweeping from the caption toward the phone's play button, in the accent colour.
-- Animate it subtly: a gentle floating/draw-in motion (using Framer Motion, already imported, or an existing/added lightweight keyframe). Keep it quiet and on-brand — not loud.
-- The whole cue is hidden on small screens if it would crowd (shown from `sm`/`lg` where the layout has room), consistent with the still photo's responsive behaviour.
+This is the key change: the row is now measured from the photo's own box, so it tracks that specific element.
 
-### 3. Subtle bottom-centre scroll cue
-- Add a small, gently bouncing down-chevron (lucide `ChevronDown`) centred at the bottom of the hero section, in the accent/primary colour.
-- Use a subtle continuous bounce (Framer Motion loop or a soft animation), small and low-key — a quiet "scroll for more" hint. It sits above the decorative blobs and below the main grid.
+**2. Centre it under the photo's width.**
+The social row gets `absolute top-full left-1/2 -translate-x-1/2 w-full` with `flex justify-center`, plus a small `mt` gap. `top-full` puts it just beneath the wrapper's bottom edge; `left-1/2 -translate-x-1/2` over `w-full` centres it to the photo's width — not the phone, not the gap.
 
-### 4. Accent part of the headline
-- In the `<h1>` "UGC that feels like a recommendation, not an ad", wrap just the phrase "recommendation, not an ad" in a `<span>` with a subtle accent treatment (existing `text-primary` accent colour, optionally slightly heavier weight). Leave "UGC that feels like a" unchanged. No font or wording change.
+**3. Keep the icons horizontal even though the photo is rotated.**
+The wrapper itself is unrotated, so the row sits horizontally by default (no counter-rotation needed). It centres under the photo's bounding box, which reads as "centred under the photo" while staying level.
 
-## Technical notes
-- Accent colour: `text-primary` (`--primary: 340 45% 40%`, the maroon/pink).
-- Handwritten caption: `font-script` class (Parisienne).
-- Animations: prefer Framer Motion (already imported) for the arrow float and chevron bounce; if a CSS keyframe is cleaner for the arrow draw-in, add a small one to `tailwind.config.ts`.
-- No changes to copy text, the left column content, the phone/video logic, the Watch (30s) button, or the still's styling/overlap.
+**4. Stop it drifting back to centre / under the phone.**
+Because the row is now a child of the photo wrapper (sharing its `right-0 + translate-x-*` anchor and `w-full`), it can only ever sit under the photo. I'll remove the old free-floating offsets (`translate-x-[86%] translate-y-[235px]`, fixed `w-[300px]`) that caused the centre drift.
+
+**5. Preserve appearance.**
+Icons stay unchanged: small (`w-8 h-8` buttons, `w-4 h-4` glyphs), subtle accent colour (`text-primary/60` with hover), evenly spaced (`gap-3`), `hidden lg:flex`. Same icon set and links.
+
+## Technical detail (element anchored to)
+- **Anchor element:** the new unrotated photo-position wrapper (which owns the secondary photo). The icon row is its direct child via `top-full / left-1/2 -translate-x-1/2 / w-full justify-center`.
+- **Files:** `src/components/HeroSection.tsx` only (lines ~111 and ~202–220).
+- No wording, link, nav, left-column, phone, or right-column structural changes beyond this re-parenting.
+
+## Verification
+Screenshot at desktop width to confirm the row sits centred directly under the secondary photo, level, clear of the phone.

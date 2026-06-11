@@ -108,15 +108,37 @@ const HeroSection = () => {
         >
           <div className="relative">
           {/* Secondary still — deliberate second photo sitting BEHIND the phone, peeking out the right side */}
-          <div className="hidden sm:block absolute right-0 top-1/2 -translate-y-[58%] translate-x-[62%] sm:translate-x-[66%] lg:translate-x-[70%] w-[220px] sm:w-[280px] lg:w-[340px] aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background rotate-6 z-0">
-            <img
-              src={sideStill}
-              alt="Jess Cousin – UGC creator portrait"
-              className="w-full h-full object-cover object-top"
-              width={800}
-              height={1000}
-              loading="lazy"
-            />
+          <div className="hidden sm:block absolute right-0 top-1/2 -translate-y-[58%] translate-x-[62%] sm:translate-x-[66%] lg:translate-x-[70%] w-[220px] sm:w-[280px] lg:w-[340px] z-0">
+            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background rotate-6">
+              <img
+                src={sideStill}
+                alt="Jess Cousin – UGC creator portrait"
+                className="w-full h-full object-cover object-top"
+                width={800}
+                height={1000}
+                loading="lazy"
+              />
+            </div>
+
+            {/* Social icons — anchored under the secondary still photo, centred to its width */}
+            <div className="hidden lg:flex items-center justify-center gap-3 absolute top-full left-1/2 -translate-x-1/2 w-full mt-5 z-20">
+              {socials.map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  onClick={(e) => {
+                    if (href.startsWith("#")) {
+                      e.preventDefault();
+                      scrollTo(href);
+                    }
+                  }}
+                  className="w-8 h-8 rounded-full text-primary/60 flex items-center justify-center hover:text-primary hover:bg-blush/40 transition-colors"
+                >
+                  <Icon className="w-4 h-4" strokeWidth={1.75} />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Soft, playful cue: handwritten caption + curved arrow toward the play button */}
