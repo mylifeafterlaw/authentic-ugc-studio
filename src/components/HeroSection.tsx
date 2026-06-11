@@ -11,9 +11,11 @@ const socials = [
 ];
 
 const stats = [
-  { emoji: "🎬", text: "Short-form video for wellness, tech, lifestyle & travel brands" },
-  { emoji: "✦", text: "Fast turnaround" },
-  { emoji: "🌏", text: "UK/Thailand based — open to global collaborations" },
+  { emoji: "✦", text: "Hook-led short-form designed to hold attention early" },
+  { emoji: "✦", text: "Natural delivery, talking-to-camera and voiceover" },
+  { emoji: "✦", text: "Shot in real environments, not staged sets" },
+  { emoji: "✦", text: "Flexible for organic and ad-style content" },
+  { emoji: "✦", text: "UK based, working across UK and Southeast Asia" },
 ];
 
 const HeroSection = () => {
@@ -34,10 +36,14 @@ const HeroSection = () => {
             Jess Cousin
           </p>
           <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-foreground leading-tight mb-3">
-            British UGC creator. Former lawyer.
-            <br />
-            <span className="text-primary italic">Content that reads like a recommendation, not an ad.</span>
+            UGC that feels like a recommendation, not an ad
           </h1>
+          <p className="font-body text-base sm:text-lg text-foreground/80 mb-2">
+            Short-form video for wellness, lifestyle and tech brands that want content people actually trust
+          </p>
+          <p className="font-body text-sm sm:text-base text-foreground/60 mb-3">
+            Former lawyer bringing a structured approach to content that feels natural, not forced
+          </p>
 
           {/* Stat lines */}
           <ul className="space-y-2 mt-5 mb-6 max-w-md mx-auto lg:mx-0 text-left">
@@ -55,13 +61,13 @@ const HeroSection = () => {
               onClick={() => scrollTo("#portfolio")}
               className="gradient-cta text-primary-foreground font-body font-semibold px-8 py-3 rounded-full shadow-soft hover:opacity-90 transition-opacity text-base"
             >
-              View Work
+              View Portfolio
             </button>
             <button
               onClick={() => scrollTo("#contact")}
               className="border-2 border-primary text-primary font-body font-semibold px-8 py-3.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors text-base"
             >
-              Work With Me
+              Get in Touch
             </button>
           </div>
 
