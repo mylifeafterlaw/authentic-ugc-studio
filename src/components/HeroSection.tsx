@@ -122,8 +122,8 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative flex items-center justify-center lg:justify-end"
         >
-          {/* Secondary still — smaller, sits behind/overlapping the phone */}
-          <div className="absolute right-0 lg:right-6 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-6 w-[120px] sm:w-[150px] lg:w-[170px] aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background rotate-6 z-0 opacity-90">
+          {/* Secondary still — supporting element peeking out from BEHIND the phone */}
+          <div className="hidden sm:block absolute right-0 lg:right-4 bottom-6 translate-x-[42%] sm:translate-x-[46%] w-[130px] sm:w-[150px] lg:w-[170px] aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background rotate-6 z-0 opacity-95">
             <img
               src={sideStill}
               alt="Jess Cousin – UGC creator portrait"
