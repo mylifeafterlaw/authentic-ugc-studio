@@ -1,5 +1,20 @@
 import { motion } from "framer-motion";
+import { Mail, Instagram, Linkedin, Play, Music2 } from "lucide-react";
 import heroImg from "@/assets/hero-portrait.jpg";
+
+const socials = [
+  { icon: Mail, label: "Email", href: "#contact" },
+  { icon: Music2, label: "TikTok", href: "#" },
+  { icon: Instagram, label: "Instagram", href: "#" },
+  { icon: Play, label: "YouTube", href: "#" },
+  { icon: Linkedin, label: "LinkedIn", href: "#" },
+];
+
+const stats = [
+  { emoji: "🎬", text: "Short-form video for wellness, tech & lifestyle brands" },
+  { emoji: "✦", text: "Fast turnaround in the UK now" },
+  { emoji: "🌏", text: "Full SE Asia production from summer 2026" },
+];
 
 const HeroSection = () => {
   const scrollTo = (id: string) =>
@@ -7,23 +22,37 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="relative min-h-screen gradient-hero overflow-hidden">
-      <div className="container relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between gap-8 pt-28 pb-16 lg:pt-32 lg:pb-20 min-h-screen">
+      <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-12 lg:gap-8 pt-28 pb-16 lg:pt-32 lg:pb-20 min-h-screen">
         {/* Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="flex-1 text-center lg:text-left"
+          className="text-center lg:text-left"
         >
-          <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-foreground leading-tight mb-4">
+          <p className="font-script text-5xl sm:text-6xl lg:text-7xl text-primary leading-none mb-6">
+            Jess Cousin
+          </p>
+          <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground leading-tight mb-4">
             British UGC creator. Former lawyer.
             <br />
             <span className="text-primary italic">Content that reads like a recommendation, not an ad.</span>
           </h1>
-          <p className="font-body text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-            Currently UK-based, returning to Thailand summer 2026. I make short-form video for wellness, tech, and lifestyle brands. Fast turnaround in the UK now, full SE Asia production from summer.
+          <p className="font-body text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-6 leading-relaxed">
+            Currently UK-based, returning to Thailand summer 2026. I make short-form video for wellness, tech, and lifestyle brands.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+
+          {/* Stat lines */}
+          <ul className="space-y-2.5 mb-8 max-w-md mx-auto lg:mx-0 text-left">
+            {stats.map((s) => (
+              <li key={s.text} className="flex items-start gap-3 font-body text-sm sm:text-base text-foreground/80">
+                <span className="text-lg leading-none mt-0.5">{s.emoji}</span>
+                <span>{s.text}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
             <button
               onClick={() => scrollTo("#portfolio")}
               className="gradient-cta text-primary-foreground font-body font-semibold px-8 py-3.5 rounded-full shadow-soft hover:opacity-90 transition-opacity text-base"
@@ -37,22 +66,65 @@ const HeroSection = () => {
               Work With Me
             </button>
           </div>
+
+          {/* Social icons */}
+          <div className="flex items-center gap-3 justify-center lg:justify-start">
+            {socials.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                onClick={(e) => {
+                  if (href.startsWith("#")) {
+                    e.preventDefault();
+                    scrollTo(href);
+                  }
+                }}
+                className="w-11 h-11 rounded-full bg-blush/50 text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                <Icon className="w-5 h-5" strokeWidth={1.75} />
+              </a>
+            ))}
+          </div>
+
           <p className="mt-6 font-body text-sm text-muted-foreground">
             ✦ Open to UK and global collaborations
           </p>
         </motion.div>
 
-        {/* Image */}
+        {/* Visuals: phone mockup + tilted photo card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="flex-shrink-0"
+          className="relative flex items-center justify-center lg:justify-end gap-4 sm:gap-6"
         >
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px] rounded-full overflow-hidden shadow-elevated border-4 border-background">
+          {/* Phone mockup */}
+          <div className="relative w-[180px] sm:w-[220px] lg:w-[240px] aspect-[9/19] rounded-[2.2rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
+            <div className="relative w-full h-full rounded-[1.7rem] overflow-hidden bg-muted">
+              <img
+                src={heroImg}
+                alt="Jess Cousin – UGC video preview"
+                className="w-full h-full object-cover"
+              />
+              {/* notch */}
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-4 bg-foreground rounded-full" />
+              {/* play button */}
+              <button
+                onClick={() => scrollTo("#portfolio")}
+                aria-label="Play showreel"
+                className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-foreground/55 backdrop-blur-sm flex items-center justify-center hover:bg-foreground/70 transition-colors"
+              >
+                <Play className="w-6 h-6 text-primary-foreground ml-0.5" fill="currentColor" />
+              </button>
+            </div>
+          </div>
+
+          {/* Tilted photo card */}
+          <div className="relative w-[150px] sm:w-[200px] lg:w-[240px] aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background rotate-3 -ml-8 sm:-ml-10 mt-16">
             <img
               src={heroImg}
-              alt="Jess Cousin – UGC Creator"
+              alt="Jess Cousin – UGC Creator portrait"
               className="w-full h-full object-cover"
               width={800}
               height={1000}
