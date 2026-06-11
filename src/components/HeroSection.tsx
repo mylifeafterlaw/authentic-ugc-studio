@@ -48,7 +48,7 @@ const HeroSection = () => {
         >
           {/* Headline cluster: name + headline + credibility line as one tight top group */}
           <div>
-            <p className="font-script text-6xl sm:text-7xl lg:text-8xl text-primary leading-none mb-2">
+            <p className="font-script text-6xl sm:text-7xl lg:text-8xl text-primary leading-none mb-2 lg:-ml-5 xl:-ml-8">
               Jess Cousin
             </p>
             <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-foreground leading-tight mb-2">
