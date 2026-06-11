@@ -120,10 +120,11 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative flex items-center justify-center lg:justify-end"
+          className="relative flex items-center justify-center lg:justify-center"
         >
+          <div className="relative">
           {/* Secondary still — deliberate second photo sitting BEHIND the phone, peeking out the right side */}
-          <div className="hidden sm:block absolute right-0 top-1/2 -translate-y-[58%] translate-x-[20%] sm:translate-x-[24%] lg:translate-x-[28%] w-[150px] sm:w-[180px] lg:w-[210px] aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background rotate-6 z-0">
+          <div className="hidden sm:block absolute right-0 top-1/2 -translate-y-[58%] translate-x-[72%] sm:translate-x-[76%] lg:translate-x-[78%] w-[150px] sm:w-[180px] lg:w-[210px] aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background rotate-6 z-0">
             <img
               src={sideStill}
               alt="Jess Cousin – UGC creator portrait"
@@ -135,7 +136,8 @@ const HeroSection = () => {
           </div>
 
           {/* Phone mockup — dominant, in front */}
-          <div className="relative w-[220px] sm:w-[270px] lg:w-[300px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10 -ml-6 sm:-ml-10">
+          <div className="relative w-[220px] sm:w-[270px] lg:w-[300px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
+
             <div className="relative w-full h-full rounded-[1.9rem] overflow-hidden bg-muted">
               {playing && videoSrc ? (
                 <video
