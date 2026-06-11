@@ -11,9 +11,9 @@ const socials = [
 ];
 
 const stats = [
-  { emoji: "🎬", text: "Short-form video for wellness, tech & lifestyle brands" },
-  { emoji: "✦", text: "Fast turnaround in the UK now" },
-  { emoji: "🌏", text: "Full SE Asia production from summer 2026" },
+  { emoji: "🎬", text: "Short-form video for wellness, tech, lifestyle & travel brands" },
+  { emoji: "✦", text: "Fast turnaround" },
+  { emoji: "🌏", text: "UK/Thailand based — open to global collaborations" },
 ];
 
 const HeroSection = () => {
@@ -38,12 +38,9 @@ const HeroSection = () => {
             <br />
             <span className="text-primary italic">Content that reads like a recommendation, not an ad.</span>
           </h1>
-          <p className="font-body text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-6 leading-relaxed">
-            Currently UK-based, returning to Thailand summer 2026. I make short-form video for wellness, tech, and lifestyle brands.
-          </p>
 
           {/* Stat lines */}
-          <ul className="space-y-2.5 mb-8 max-w-md mx-auto lg:mx-0 text-left">
+          <ul className="space-y-2.5 mt-8 mb-8 max-w-md mx-auto lg:mx-0 text-left">
             {stats.map((s) => (
               <li key={s.text} className="flex items-start gap-3 font-body text-sm sm:text-base text-foreground/80">
                 <span className="text-lg leading-none mt-0.5">{s.emoji}</span>
@@ -87,9 +84,6 @@ const HeroSection = () => {
             ))}
           </div>
 
-          <p className="mt-6 font-body text-sm text-muted-foreground">
-            ✦ Open to UK and global collaborations
-          </p>
         </motion.div>
 
         {/* Visuals: phone mockup + tilted photo card */}

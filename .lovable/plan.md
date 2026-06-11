@@ -1,34 +1,25 @@
-## Overview
-Precise text-only update to the homepage hero section. No layout, styling, image, or CTA changes.
+## Hero & Navbar refinements
 
-## Changes
+### 1. Remove the hero subheading
+Delete the paragraph "Currently UK-based, returning to Thailand summer 2026. I make short-form video for wellness, tech, and lifestyle brands." so the headline flows straight into the stat bullets.
 
-### 1. Headline (`<h1>`)
-Replace current text with:
-```
-British UGC creator. Former lawyer.
-Content that reads like a recommendation, not an ad.
-```
-Preserve the existing two-tone visual structure: first sentence in dark foreground colour, second sentence wrapped in the existing `text-primary italic` span so it sits on its own accent-coloured line.
+### 2. Update the stat bullets
+- Bullet 1: "Short-form video for wellness, tech, lifestyle **& travel** brands"
+- Bullet 2: "Fast turnaround" (remove "in the UK now")
+- Bullet 3: "**UK/Thailand based — open to global collaborations**" (replaces "Full SE Asia production from summer 2026")
 
-### 2. Subhead (`<p>` tag below headline)
-Replace current subhead with:
-```
-Currently UK-based, returning to Thailand summer 2026. I make short-form video for wellness, tech, and lifestyle brands. Fast turnaround in the UK now, full SE Asia production from summer.
-```
+### 3. Remove the bottom micro-line (optional, your call)
+The line "✦ Open to UK and global collaborations" now duplicates the new bullet 3. I'd remove it to avoid repetition — confirm if you'd rather keep it.
 
-### 3. Micro-line (below CTAs)
-Replace current micro-line with:
-```
-✦ Open to UK and global collaborations
-```
+### 4. Remove name from navbar top-left
+Since "Jess Cousin" now appears in the hero, replace the navbar's name button with a small neutral mark (e.g. initials "JC", or just keep it as an invisible scroll-to-top anchor). Recommended: show compact "JC" so the logo slot isn't empty but doesn't duplicate the full name.
 
-## What stays unchanged
-- CTA buttons ("View Work", "Work With Me") — text, styling, scroll behaviour
-- Profile image, circular crop, border, shadow
-- Hero layout (flex-col-reverse lg:flex-row, gap, padding)
-- All colour tokens, gradients, decorative blobs
-- Navigation and all other sections
+### Extra suggestions for the hero
+- **Tighten vertical rhythm**: with the subhead gone, increase spacing above the bullets slightly so the script name → headline → bullets read as three clean tiers.
+- **Stronger primary CTA hierarchy**: "View Work" already uses the gradient; consider making "Work With Me" the primary action since enquiries are the goal — happy to swap emphasis.
+- **Add a tiny trust line** near the CTAs (e.g. niches or "wellness · tech · lifestyle · travel") only if you want — otherwise leave clean.
 
-## Estimated effort
-Single-file edit, < 5 minutes.
+### Technical notes
+- All changes in `src/components/HeroSection.tsx` (`stats` array + removing the subhead `<p>` and optionally the micro-line).
+- Navbar change in `src/components/Navbar.tsx` (lines 36-41).
+- No logic, routing, or color changes.
