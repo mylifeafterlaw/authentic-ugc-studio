@@ -34,10 +34,14 @@ const HeroSection = () => {
             Jess Cousin
           </p>
           <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-foreground leading-tight mb-3">
-            British UGC creator. Former lawyer.
-            <br />
-            <span className="text-primary italic">Content that reads like a recommendation, not an ad.</span>
+            UGC that feels like a recommendation, not an ad
           </h1>
+          <p className="font-body text-base sm:text-lg text-foreground/80 mb-2">
+            Short-form video for wellness, lifestyle and tech brands that want content people actually trust
+          </p>
+          <p className="font-body text-sm sm:text-base text-foreground/60 mb-3">
+            Former lawyer bringing a structured approach to content that feels natural, not forced
+          </p>
 
           {/* Stat lines */}
           <ul className="space-y-2 mt-5 mb-6 max-w-md mx-auto lg:mx-0 text-left">
