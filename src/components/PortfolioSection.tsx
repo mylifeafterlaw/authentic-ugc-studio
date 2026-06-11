@@ -62,15 +62,15 @@ const VideoTile = ({ tile }: { tile: Tile }) => {
 
         {/* Play affordance */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="w-14 h-14 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-soft transition-transform duration-300 group-hover:scale-110">
-            <Play className="w-6 h-6 text-primary ml-0.5" />
+          <span className="w-9 h-9 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-soft transition-transform duration-300 group-hover:scale-110">
+            <Play className="w-4 h-4 text-primary ml-0.5" />
           </span>
         </div>
       </div>
 
       {/* Small caption space below the tile */}
       {tile.label && (
-        <p className="mt-3 text-center font-body text-xs text-muted-foreground">
+        <p className="mt-3 text-center font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
           {tile.label}
         </p>
       )}
@@ -105,9 +105,6 @@ const PortfolioSection = () => (
         <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground mb-3">
           Portfolio
         </h2>
-        <p className="font-body text-muted-foreground text-base max-w-md mx-auto">
-          A selection of short-form video work, organised by category.
-        </p>
       </motion.div>
 
       {/* Subtle category jump-nav (generated from categories) */}
@@ -136,18 +133,20 @@ const PortfolioSection = () => (
             viewport={{ once: true }}
             transition={{ delay: catIdx * 0.05 }}
           >
-            {/* Serif category header + thin rule */}
-            <div className="flex items-center gap-4 mb-8">
-              <h3 className="font-heading text-2xl sm:text-3xl text-foreground whitespace-nowrap">
-                {cat.name}
-              </h3>
-              <span className="flex-1 h-px bg-border" />
-            </div>
+            <div className="max-w-3xl mx-auto">
+              {/* Serif category header + thin rule */}
+              <div className="flex items-center gap-4 mb-8">
+                <h3 className="font-heading text-xl sm:text-2xl text-foreground whitespace-nowrap">
+                  {cat.name}
+                </h3>
+                <span className="flex-1 h-px bg-border" />
+              </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-              {cat.tiles.map((tile, idx) => (
-                <VideoTile key={idx} tile={tile} />
-              ))}
+              <div className="grid grid-cols-3 gap-5 sm:gap-6">
+                {cat.tiles.map((tile, idx) => (
+                  <VideoTile key={idx} tile={tile} />
+                ))}
+              </div>
             </div>
           </motion.div>
         ))}
