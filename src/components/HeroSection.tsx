@@ -114,26 +114,16 @@ const HeroSection = () => {
               />
             </div>
 
-            {/* Social icons — centred under the visible photo slice (phone's right edge → photo right edge) */}
-            <div className="hidden lg:flex items-center justify-center gap-3 absolute top-full right-0 left-[38%] sm:left-[34%] lg:left-[30%] mt-5 z-20">
-
-              {socials.map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  onClick={(e) => {
-                    if (href.startsWith("#")) {
-                      e.preventDefault();
-                      scrollTo(href);
-                    }
-                  }}
-                  className="w-8 h-8 rounded-full text-primary/60 flex items-center justify-center hover:text-primary hover:bg-blush/40 transition-colors"
-                >
-                  <Icon className="w-4 h-4" strokeWidth={1.75} />
-                </a>
-              ))}
+            {/* Quiet handle link — centred under the visible photo slice */}
+            <div className="hidden lg:flex justify-center absolute top-full right-0 left-[38%] sm:left-[34%] lg:left-[30%] mt-4 z-20">
+              <Link
+                to="/links"
+                className="font-body text-xs sm:text-sm text-primary/60 tracking-wide hover:text-primary transition-colors"
+              >
+                @MyLifeAfterLaw
+              </Link>
             </div>
+
           </div>
 
           {/* Soft, playful cue: handwritten caption + curved arrow toward the play button */}
