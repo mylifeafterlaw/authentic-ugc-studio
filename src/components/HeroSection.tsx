@@ -11,9 +11,11 @@ const socials = [
 ];
 
 const stats = [
-  { emoji: "🎬", text: "Short-form video for wellness, tech, lifestyle & travel brands" },
-  { emoji: "✦", text: "Fast turnaround" },
-  { emoji: "🌏", text: "UK/Thailand based — open to global collaborations" },
+  { emoji: "✦", text: "Hook-led short-form designed to hold attention early" },
+  { emoji: "✦", text: "Natural delivery, talking-to-camera and voiceover" },
+  { emoji: "✦", text: "Shot in real environments, not staged sets" },
+  { emoji: "✦", text: "Flexible for organic and ad-style content" },
+  { emoji: "✦", text: "UK based, working across UK and Southeast Asia" },
 ];
 
 const HeroSection = () => {
