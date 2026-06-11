@@ -115,7 +115,7 @@ const HeroSection = () => {
             </div>
 
             {/* Quiet handle link — centred under the visible photo slice */}
-            <div className="hidden lg:flex justify-center absolute top-full left-[25%] -translate-x-1/2 mt-8 z-20">
+            <div className="hidden lg:flex justify-center absolute top-full left-0 right-0 mt-12 z-20">
               <Link
                 to="/links"
                 className="font-body text-xs sm:text-sm text-primary/60 tracking-wide hover:text-primary transition-colors"
