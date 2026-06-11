@@ -10,7 +10,7 @@ const services = [
 ];
 
 const ServicesSection = () => (
-  <section className="py-20 lg:py-28 gradient-soft">
+  <section id="services" className="py-20 lg:py-28 gradient-soft scroll-mt-24">
     <div className="container max-w-4xl">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
