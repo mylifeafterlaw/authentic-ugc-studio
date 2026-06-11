@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Instagram, Linkedin, Play, Music2, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-portrait.jpg";
+import watchArrow from "@/assets/watch-arrow.png.asset.json";
 
 // Swap these with the real assets when ready.
 // videoSrc: the 30s UGC showreel. videoPoster: the poster frame shown before play.
