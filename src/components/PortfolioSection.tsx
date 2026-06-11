@@ -62,15 +62,15 @@ const VideoTile = ({ tile }: { tile: Tile }) => {
 
         {/* Play affordance */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="w-14 h-14 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-soft transition-transform duration-300 group-hover:scale-110">
-            <Play className="w-6 h-6 text-primary ml-0.5" />
+          <span className="w-9 h-9 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-soft transition-transform duration-300 group-hover:scale-110">
+            <Play className="w-4 h-4 text-primary ml-0.5" />
           </span>
         </div>
       </div>
 
       {/* Small caption space below the tile */}
       {tile.label && (
-        <p className="mt-3 text-center font-body text-xs text-muted-foreground">
+        <p className="mt-3 text-center font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
           {tile.label}
         </p>
       )}
