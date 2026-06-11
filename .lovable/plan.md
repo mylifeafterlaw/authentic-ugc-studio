@@ -1,14 +1,21 @@
 ## Goal
-Push the script name "Jess Cousin" a bit further left for a clearer off-aligned signature effect. Keep its size, keep everything else (including the @MyLifeAfterLaw link, which you confirmed stays where it is).
+Re-centre the "@MyLifeAfterLaw" link between:
+- Left boundary = the right side of the phone frame (the video)
+- Right boundary = the rotated secondary photo's right edge (its bottom-right corner)
 
-## Change (only one)
-File: `src/components/HeroSection.tsx`, name `<p>` (~line 51).
-- Current: `... mb-2 lg:-ml-5 xl:-ml-8`
-- New: increase the desktop-only negative left margin to `lg:-ml-8 xl:-ml-12` (≈32px / 48px).
-- Size unchanged (`text-6xl sm:text-7xl lg:text-8xl` stays).
+It currently sits **too far right**, so it needs to move LEFT. Nothing else changes (styling, link target, vertical position all stay).
 
-## Overflow safety
-The left column has a left inset of `lg:pl-8` (32px) and `xl:pl-16` (64px). The new negative margins (32px / 48px) stay within those insets, so the name shifts further left into the inset but never past the column's outer edge. Mobile/tablet are unaffected (offset is gated behind `lg:`).
+## Change (one line)
+File: `src/components/HeroSection.tsx` (~line 118), the link wrapper `<div>`.
+- Current: `... absolute top-full left-[65%] -translate-x-1/2 mt-8 z-20`
+- New: shift the centre point left — `left-[55%]` (keep `-translate-x-1/2`).
+
+```text
+phone right edge ──────── midpoint ──────── secondary photo rotated right edge
+                          ^ link centred here (moved left from current)
+```
+
+Everything else on the line (`-translate-x-1/2`, `mt-8`, `z-20`, hidden/flex classes) stays untouched.
 
 ## Verification
-Screenshot at desktop (1366) and a mobile width to confirm the name reads as a clearer left-shifted signature with no overflow off the left edge, and nothing else moved.
+Screenshot at desktop (1366) to confirm the handle now sits centred between the phone's right edge and the photo's rotated right edge, with no other movement. Adjust the percentage once more if it still reads off-centre.
