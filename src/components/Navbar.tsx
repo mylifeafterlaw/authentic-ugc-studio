@@ -35,9 +35,10 @@ const Navbar = () => {
       <div className="container flex items-center justify-between">
         <button
           onClick={() => handleClick("#hero")}
+          aria-label="Back to top"
           className="font-heading text-xl text-foreground tracking-wide"
         >
-          Jess Cousin
+          JC
         </button>
 
         {/* Desktop */}
