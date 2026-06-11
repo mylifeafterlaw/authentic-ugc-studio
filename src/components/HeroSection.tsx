@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Instagram, Linkedin, Play, Music2 } from "lucide-react";
+import { Mail, Instagram, Linkedin, Play, Music2, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-portrait.jpg";
 
 // Swap these with the real assets when ready.
@@ -44,7 +44,7 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="relative min-h-screen gradient-hero overflow-hidden">
-      <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-10 lg:gap-8 pt-24 pb-12 lg:pt-28 lg:pb-16 min-h-screen">
+      <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-10 lg:gap-8 pt-24 pb-16 lg:py-24 min-h-screen">
         {/* Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -58,7 +58,8 @@ const HeroSection = () => {
               Jess Cousin
             </p>
             <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-foreground leading-tight mb-2">
-              UGC that feels like a recommendation, not an ad
+              UGC that feels like a{" "}
+              <span className="text-primary font-semibold">recommendation, not an ad</span>
             </h1>
             <p className="font-body text-base sm:text-lg text-foreground/80 mb-1.5">
               Short-form video for wellness, lifestyle and tech brands that want content people actually trust
@@ -136,8 +137,48 @@ const HeroSection = () => {
             />
           </div>
 
+          {/* Soft, playful cue: handwritten caption + curved arrow toward the play button */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: [0, -6, 0] }}
+            transition={{
+              opacity: { duration: 0.6, delay: 0.6 },
+              y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.6 },
+            }}
+            className="hidden lg:flex absolute right-full bottom-[28%] mr-3 flex-col items-center z-20 pointer-events-none select-none"
+          >
+            <span className="font-script text-2xl text-primary leading-none whitespace-nowrap">
+              Watch a sample
+            </span>
+            <svg
+              width="84"
+              height="52"
+              viewBox="0 0 84 52"
+              fill="none"
+              className="text-primary mt-1 self-end"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 46 C26 44, 58 40, 78 12"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <path
+                d="M78 12 L68 18 M78 12 L78 24"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                fill="none"
+              />
+            </svg>
+          </motion.div>
+
+
           {/* Phone mockup — dominant, in front */}
-          <div className="relative w-[220px] sm:w-[270px] lg:w-[300px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
+          <div className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
+
 
             <div className="relative w-full h-full rounded-[1.9rem] overflow-hidden bg-muted">
               {playing && videoSrc ? (
@@ -178,6 +219,22 @@ const HeroSection = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Subtle scroll cue */}
+      <motion.button
+        onClick={() => scrollTo("#portfolio")}
+        aria-label="Scroll to portfolio"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 8, 0] }}
+        transition={{
+          opacity: { duration: 0.6, delay: 0.9 },
+          y: { duration: 1.8, repeat: Infinity, ease: "easeInOut" },
+        }}
+        className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 text-primary/70 hover:text-primary transition-colors"
+      >
+        <ChevronDown className="w-6 h-6" strokeWidth={2} />
+      </motion.button>
+
 
       {/* Decorative blobs */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-blush/40 rounded-full blur-3xl" />
