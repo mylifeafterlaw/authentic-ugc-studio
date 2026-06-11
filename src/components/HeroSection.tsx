@@ -200,7 +200,7 @@ const HeroSection = () => {
           </div>
 
           {/* Social icons — low-emphasis, in open background space under the secondary still */}
-          <div className="hidden lg:flex items-center gap-2 absolute -bottom-16 right-0 translate-x-[60%] lg:translate-x-[64%] z-20">
+          <div className="hidden lg:flex items-center justify-center gap-2 absolute right-0 top-1/2 w-[340px] translate-x-[70%] translate-y-[230px] z-20">
             {socials.map(({ icon: Icon, label, href }) => (
               <a
                 key={label}
