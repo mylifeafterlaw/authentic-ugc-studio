@@ -148,21 +148,11 @@ const HeroSection = () => {
             }}
             className="hidden lg:flex absolute right-full bottom-[28%] mr-3 flex-col items-start z-20 pointer-events-none select-none"
           >
-            <div
+            <img
+              src={watchArrow.url}
+              alt=""
               aria-hidden="true"
-              className="mb-1 ml-2 bg-primary"
-              style={{
-                width: "120px",
-                height: "84px",
-                WebkitMaskImage: `url(${watchArrow.url})`,
-                maskImage: `url(${watchArrow.url})`,
-                WebkitMaskRepeat: "no-repeat",
-                maskRepeat: "no-repeat",
-                WebkitMaskSize: "contain",
-                maskSize: "contain",
-                WebkitMaskPosition: "center",
-                maskPosition: "center",
-              }}
+              className="mb-1 ml-2 w-[120px] h-auto"
             />
 
             <span className="font-script text-2xl text-primary leading-none whitespace-nowrap -translate-x-12">
