@@ -1,25 +1,24 @@
 ## Goal
-Centre the social icons under the **visible** part of the secondary photo — the slice that peeks out past the phone's right edge — instead of under the photo's full width (whose left ~third is hidden behind the phone). Hero only; nothing else changes.
+Three hero changes only: (1) offset the script name left as a signature, (2) remove the social icon row, (3) add a quiet "@MyLifeAfterLaw" internal text link centred under the secondary photo. Headline, lawyer line, niches, bullets, CTAs, phone, and photos stay untouched.
 
-## Why it's currently off
-The photo wrapper is `w-[340px]` (lg) anchored `right-0` then pushed out with `translate-x-[70%]`. That means roughly the left **30%** of the photo sits *behind* the phone, and only the right ~70% is actually visible. The icon row uses `left-1/2 -translate-x-1/2 w-full`, so it centres on the **whole** photo box — and that centre point falls behind/near the phone, pulling the icons left of where the visible photo is.
+## 1. Offset the name left (keep size)
+File: `src/components/HeroSection.tsx`, name `<p>` (~line 57).
+- Keep `font-script text-6xl sm:text-7xl lg:text-8xl text-primary leading-none` unchanged (no size change).
+- Add a small **desktop-only negative left margin**: `lg:-ml-5 xl:-ml-8`.
+- **Why it won't break layout / overflow:** the left column already has a left inset (`lg:pl-8 xl:pl-16` = 32–64px). A −20/−32px margin only eats back into that inset, so the name shifts left of the body text but never crosses the column's outer edge. Gated behind `lg:` so the centred mobile/tablet stack is unaffected.
+- No handle under the name (per your note).
 
-## Fix
-Re-reference the icon row to the **visible band only** — from roughly the phone's right edge (where the photo emerges) to the photo's right edge — and centre within that band.
+## 2. Remove the social icon row
+- Delete the entire icon-row `<div>` (lines ~123–142) from inside the secondary-photo wrapper.
+- Also remove the now-unused `socials` array (line 13) and any icon imports that become unused (Mail/Instagram/etc.), so no dead code or lint warnings remain. (Will verify which imports are still used elsewhere before removing.)
 
-Concretely, on the existing icon-row `div` (still a child of the photo wrapper so it keeps tracking the photo's bottom + right edge):
-- Remove `left-1/2 -translate-x-1/2 w-full`.
-- Add `right-0` (lock to the photo's right edge) and a responsive **left offset** equal to the portion hidden behind the phone, so the row spans only the visible overhang:
-  - `left-[38%]` (base/sm-photo) · `sm:left-[34%]` · `lg:left-[30%]`
-  These mirror the photo's hidden fraction (`1 − translate-x%`: 0.62→38%, 0.66→34%, 0.70→30%).
-- Keep `flex items-center justify-center gap-3` so the icons sit centred **within that visible band**, which lines up under the exposed photo with the phone's right edge as the effective starting point.
-- Keep everything else: `top-full mt-5`, `hidden lg:flex`, sizes, accent colour, hover, links.
-
-Result: the row starts at the phone's right edge and centres under the visible photo slice, no longer dragged left behind the phone.
-
-## Technical detail
-- **File:** `src/components/HeroSection.tsx`, the icon-row `div` at ~line 124 only.
-- **Anchor unchanged:** still the photo wrapper (tracks the photo). Only the horizontal span/centre reference changes from full-width to the visible overhang band.
+## 3. Add "@MyLifeAfterLaw" link under the secondary photo
+- In the **same secondary-photo wrapper** (the div that owns the photo), where the icon row used to be, add a single `<Link>` so it tracks that specific photo.
+- Anchoring: reuse the proven positioning from the icon row so it sits centred under the **visible** photo slice (not behind the phone):
+  `absolute top-full right-0 left-[38%] sm:left-[34%] lg:left-[30%] mt-4 flex justify-center`, `hidden lg:flex` (matches the photo, which is desktop-prominent).
+- Styling: small, quiet, on-brand — `font-body text-xs sm:text-sm text-primary/60 tracking-wide hover:text-primary transition-colors`. Reads as a subtle handle, not a CTA.
+- Link target: **internal route `/links`** via React Router `Link` (`import { Link } from "react-router-dom"`). I'll point to `/links` as the placeholder you'll build later.
+  - Note: `/links` isn't defined in `App.tsx` yet, so until you build that page it will hit the catch-all NotFound. If you'd like, I can also drop in a tiny placeholder `/links` route now so the click doesn't 404 — tell me and I'll add it; otherwise I'll just wire the link.
 
 ## Verification
-Screenshot at desktop width to confirm the icons sit centred under the exposed photo, beginning at the phone's right edge, all five visible and clear of the phone.
+Screenshot at desktop (1366) and a mobile width to confirm: name is subtly shifted left without overflow, the icon row is gone, and "@MyLifeAfterLaw" sits centred under the visible photo as a quiet link.

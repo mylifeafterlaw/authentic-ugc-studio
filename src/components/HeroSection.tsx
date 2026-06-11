@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Instagram, Linkedin, Play, Music2, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Play, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-portrait.jpg";
 
 // Swap these with the real assets when ready.
@@ -10,13 +11,6 @@ const videoSrc = ""; // e.g. import showreel from "@/assets/showreel.mp4"
 const videoPoster = heroImg; // replace with a dedicated poster frame
 const sideStill = heroImg; // replace with a distinct second photo
 
-const socials = [
-  { icon: Mail, label: "Email", href: "#contact" },
-  { icon: Music2, label: "TikTok", href: "#" },
-  { icon: Instagram, label: "Instagram", href: "#" },
-  { icon: Play, label: "YouTube", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-];
 
 const stats = [
   { emoji: "✦", text: "Hook-led short-form designed to hold attention early" },
@@ -54,7 +48,7 @@ const HeroSection = () => {
         >
           {/* Headline cluster: name + headline + credibility line as one tight top group */}
           <div>
-            <p className="font-script text-6xl sm:text-7xl lg:text-8xl text-primary leading-none mb-2">
+            <p className="font-script text-6xl sm:text-7xl lg:text-8xl text-primary leading-none mb-2 lg:-ml-5 xl:-ml-8">
               Jess Cousin
             </p>
             <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-foreground leading-tight mb-2">
@@ -120,26 +114,16 @@ const HeroSection = () => {
               />
             </div>
 
-            {/* Social icons — centred under the visible photo slice (phone's right edge → photo right edge) */}
-            <div className="hidden lg:flex items-center justify-center gap-3 absolute top-full right-0 left-[38%] sm:left-[34%] lg:left-[30%] mt-5 z-20">
-
-              {socials.map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  onClick={(e) => {
-                    if (href.startsWith("#")) {
-                      e.preventDefault();
-                      scrollTo(href);
-                    }
-                  }}
-                  className="w-8 h-8 rounded-full text-primary/60 flex items-center justify-center hover:text-primary hover:bg-blush/40 transition-colors"
-                >
-                  <Icon className="w-4 h-4" strokeWidth={1.75} />
-                </a>
-              ))}
+            {/* Quiet handle link — centred under the visible photo slice */}
+            <div className="hidden lg:flex justify-center absolute top-full right-0 left-[38%] sm:left-[34%] lg:left-[30%] mt-4 z-20">
+              <Link
+                to="/links"
+                className="font-body text-xs sm:text-sm text-primary/60 tracking-wide hover:text-primary transition-colors"
+              >
+                @MyLifeAfterLaw
+              </Link>
             </div>
+
           </div>
 
           {/* Soft, playful cue: handwritten caption + curved arrow toward the play button */}
