@@ -133,18 +133,20 @@ const PortfolioSection = () => (
             viewport={{ once: true }}
             transition={{ delay: catIdx * 0.05 }}
           >
-            {/* Serif category header + thin rule */}
-            <div className="flex items-center gap-4 mb-8">
-              <h3 className="font-heading text-2xl sm:text-3xl text-foreground whitespace-nowrap">
-                {cat.name}
-              </h3>
-              <span className="flex-1 h-px bg-border" />
-            </div>
+            <div className="max-w-3xl mx-auto">
+              {/* Serif category header + thin rule */}
+              <div className="flex items-center gap-4 mb-8">
+                <h3 className="font-heading text-xl sm:text-2xl text-foreground whitespace-nowrap">
+                  {cat.name}
+                </h3>
+                <span className="flex-1 h-px bg-border" />
+              </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-              {cat.tiles.map((tile, idx) => (
-                <VideoTile key={idx} tile={tile} />
-              ))}
+              <div className="grid grid-cols-3 gap-5 sm:gap-6">
+                {cat.tiles.map((tile, idx) => (
+                  <VideoTile key={idx} tile={tile} />
+                ))}
+              </div>
             </div>
           </motion.div>
         ))}
