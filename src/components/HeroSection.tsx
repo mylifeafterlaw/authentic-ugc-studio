@@ -145,7 +145,7 @@ const HeroSection = () => {
               opacity: { duration: 0.6, delay: 0.6 },
               y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.6 },
             }}
-            className="hidden lg:flex absolute right-full bottom-[36%] mr-3 flex-col items-start z-20 pointer-events-none select-none"
+            className="hidden lg:flex absolute right-full bottom-[28%] mr-3 flex-col items-start z-20 pointer-events-none select-none"
           >
             <span className="font-script text-2xl text-primary leading-none whitespace-nowrap">
               Watch a sample
@@ -159,14 +159,14 @@ const HeroSection = () => {
               aria-hidden="true"
             >
               <path
-                d="M4 6 C10 34, 40 44, 78 44"
+                d="M4 6 C18 8, 50 18, 76 46"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
               />
               <path
-                d="M78 44 L64 44 M78 44 L74 31"
+                d="M76 46 L65 42 M76 46 L73 35"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
