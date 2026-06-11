@@ -53,7 +53,7 @@ const HeroSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center lg:text-left"
         >
-          {/* Headline cluster: name + headline + subheadline + credibility line as one tight top group */}
+          {/* Headline cluster: name + headline + credibility line as one tight top group */}
           <div>
             <p className="font-script text-6xl sm:text-7xl lg:text-8xl text-primary leading-none mb-2">
               Jess Cousin
@@ -62,9 +62,6 @@ const HeroSection = () => {
               UGC that feels like a{" "}
               <span className="text-primary font-semibold">recommendation, not an ad</span>
             </h1>
-            <p className="font-body text-base sm:text-lg text-foreground/80 mb-1.5">
-              Short-form video for wellness, lifestyle and tech brands that want content people actually trust
-            </p>
             <p className="font-body text-sm sm:text-base text-foreground/70">
               Former lawyer bringing a structured approach to content that feels natural, not forced
             </p>
