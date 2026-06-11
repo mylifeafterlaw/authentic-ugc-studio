@@ -147,31 +147,23 @@ const HeroSection = () => {
             }}
             className="hidden lg:flex absolute right-full bottom-[28%] mr-3 flex-col items-start z-20 pointer-events-none select-none"
           >
-            <svg
-              width="84"
-              height="52"
-              viewBox="0 0 84 52"
-              fill="none"
-              className="text-primary mb-1 ml-2 overflow-visible"
+            <div
               aria-hidden="true"
-            >
-              <path
-                d="M6 46 C40 14, 90 -12, 132 -20"
-                stroke="currentColor"
-                strokeWidth="4"
-                strokeLinecap="round"
-                fill="none"
-              />
-              <path
-                d="M132 -20 C120 -22, 110 -28, 104 -36 M132 -20 C119 -16, 108 -13, 99 -8"
-                stroke="currentColor"
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-              />
+              className="mb-1 ml-2 bg-primary"
+              style={{
+                width: "120px",
+                height: "84px",
+                WebkitMaskImage: `url(${watchArrow.url})`,
+                maskImage: `url(${watchArrow.url})`,
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskSize: "contain",
+                maskSize: "contain",
+                WebkitMaskPosition: "center",
+                maskPosition: "center",
+              }}
+            />
 
-            </svg>
             <span className="font-script text-2xl text-primary leading-none whitespace-nowrap -translate-x-12">
               Watch a sample
             </span>
