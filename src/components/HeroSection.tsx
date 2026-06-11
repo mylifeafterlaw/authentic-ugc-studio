@@ -66,7 +66,7 @@ const HeroSection = () => {
           </p>
 
           {/* Larger gap before lower group (bullets) — anchored with an accent rail */}
-          <ul className="space-y-2.5 mt-5 max-w-md mx-auto lg:mx-0 text-left border-l-2 border-primary/40 pl-4">
+          <ul className="space-y-2.5 mt-5 max-w-xl mx-auto lg:mx-0 text-left border-l-2 border-primary/40 pl-4">
             {stats.map((s) => (
               <li key={s.text} className="flex items-start gap-3 font-body text-sm sm:text-base text-foreground/80">
                 <span className="text-lg leading-none mt-0.5 text-primary">{s.emoji}</span>
