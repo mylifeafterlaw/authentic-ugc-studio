@@ -152,18 +152,18 @@ const HeroSection = () => {
               height="52"
               viewBox="0 0 84 52"
               fill="none"
-              className="text-primary mb-1 ml-2"
+              className="text-primary mb-1 ml-2 overflow-visible"
               aria-hidden="true"
             >
               <path
-                d="M6 46 C20 30, 44 14, 78 8"
+                d="M6 46 C70 4, 190 -48, 297 -43"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
               />
               <path
-                d="M78 8 L67 8 M78 8 L74 18"
+                d="M297 -43 L285 -43 M297 -43 L293 -54"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
