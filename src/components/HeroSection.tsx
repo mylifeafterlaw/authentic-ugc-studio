@@ -38,7 +38,7 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="relative min-h-screen gradient-hero overflow-hidden">
-      <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-10 lg:gap-8 pt-24 pb-16 lg:py-24 min-h-screen">
+      <div className="container relative z-10 grid lg:grid-cols-[1.25fr_0.85fr] items-center gap-10 lg:gap-8 pt-24 pb-16 lg:py-24 min-h-screen">
         {/* Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
