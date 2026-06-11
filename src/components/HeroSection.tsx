@@ -52,24 +52,24 @@ const HeroSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center lg:text-left"
         >
-          {/* Headline cluster: name + headline + subheadline + credibility whisper */}
+          {/* Headline cluster: name + headline + subheadline + credibility line as one tight top group */}
           <div>
-            <p className="font-script text-6xl sm:text-7xl lg:text-8xl text-primary leading-none mb-3">
+            <p className="font-script text-6xl sm:text-7xl lg:text-8xl text-primary leading-none mb-2">
               Jess Cousin
             </p>
             <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-foreground leading-tight mb-2">
               UGC that feels like a recommendation, not an ad
             </h1>
-            <p className="font-body text-base sm:text-lg text-foreground/80">
+            <p className="font-body text-base sm:text-lg text-foreground/80 mb-1.5">
               Short-form video for wellness, lifestyle and tech brands that want content people actually trust
             </p>
-            <p className="font-body text-xs sm:text-sm font-light text-foreground/50 mt-1.5">
+            <p className="font-body text-sm sm:text-base text-foreground/70">
               Former lawyer bringing a structured approach to content that feels natural, not forced
             </p>
           </div>
 
-          {/* Larger gap before bullets */}
-          <ul className="space-y-2.5 mt-9 max-w-md mx-auto lg:mx-0 text-left">
+          {/* Larger gap before lower group (bullets) — anchored with an accent rail */}
+          <ul className="space-y-2.5 mt-12 max-w-md mx-auto lg:mx-0 text-left border-l-2 border-primary/40 pl-4">
             {stats.map((s) => (
               <li key={s.text} className="flex items-start gap-3 font-body text-sm sm:text-base text-foreground/80">
                 <span className="text-lg leading-none mt-0.5 text-primary">{s.emoji}</span>
