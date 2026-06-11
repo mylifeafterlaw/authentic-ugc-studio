@@ -177,7 +177,7 @@ const HeroSection = () => {
 
 
           {/* Phone mockup — dominant, in front */}
-          <div className="relative w-[210px] sm:w-[260px] lg:w-[288px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
+          <div className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
 
 
             <div className="relative w-full h-full rounded-[1.9rem] overflow-hidden bg-muted">
