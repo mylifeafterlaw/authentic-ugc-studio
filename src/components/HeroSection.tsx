@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Instagram, Linkedin, Play, Music2 } from "lucide-react";
+import { Mail, Instagram, Linkedin, Play, Music2, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-portrait.jpg";
 
 // Swap these with the real assets when ready.
