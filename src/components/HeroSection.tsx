@@ -147,32 +147,32 @@ const HeroSection = () => {
             }}
             className="hidden lg:flex absolute right-full bottom-[28%] mr-3 flex-col items-start z-20 pointer-events-none select-none"
           >
-            <span className="font-script text-2xl text-primary leading-none whitespace-nowrap">
-              Watch a sample
-            </span>
             <svg
               width="84"
               height="52"
               viewBox="0 0 84 52"
               fill="none"
-              className="text-primary mt-1"
+              className="text-primary mb-1 ml-2"
               aria-hidden="true"
             >
               <path
-                d="M4 46 C18 44, 50 34, 76 6"
+                d="M6 46 C20 30, 44 14, 78 8"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
               />
               <path
-                d="M76 6 L65 10 M76 6 L73 17"
+                d="M78 8 L67 8 M78 8 L74 18"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
               />
             </svg>
+            <span className="font-script text-2xl text-primary leading-none whitespace-nowrap">
+              Watch a sample
+            </span>
           </motion.div>
 
 
