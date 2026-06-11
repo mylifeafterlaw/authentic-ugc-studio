@@ -82,6 +82,9 @@
 }
 
 @layer utilities {
+  .font-script {
+    font-family: var(--font-script);
+  }
   .gradient-hero {
     background: var(--gradient-hero);
   }
