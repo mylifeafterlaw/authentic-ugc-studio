@@ -1,100 +1,157 @@
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 
-const categories = [
+type Tile = {
+  label?: string; // small caption under the tile (optional)
+  thumbnail?: string; // image URL — swap in later
+  videoUrl?: string; // link/embed — swap in later
+};
+
+type Category = {
+  id: string;
+  name: string;
+  tiles: Tile[];
+};
+
+// Edit this array to add/remove tiles or categories.
+// Fill `thumbnail` and `videoUrl` per tile to go live with real videos.
+const categories: Category[] = [
   {
-    name: "Tech & Apps",
-    videos: [
-      { title: "App Walkthrough", context: "Problem-solution hook for productivity app", placeholder: true },
-      { title: "Tech Review", context: "Authentic first-impression style unboxing", placeholder: true },
+    id: "product",
+    name: "Product",
+    tiles: [
+      { label: "Unboxing" },
+      { label: "Demo" },
+      { label: "First impressions" },
     ],
   },
   {
-    name: "Lifestyle & Travel",
-    videos: [
-      { title: "Chiang Mai Day", context: "Day-in-the-life vlog for travel brand", placeholder: true },
-      { title: "Hotel Experience", context: "Immersive stay content with storytelling", placeholder: true },
+    id: "accommodation-travel",
+    name: "Accommodation & Travel",
+    tiles: [
+      { label: "Hotel stay" },
+      { label: "Destination" },
+      { label: "Day in the life" },
     ],
   },
   {
-    name: "Hospitality & Cafés",
-    videos: [
-      { title: "Café Review", context: "Aesthetic B-roll with voiceover", placeholder: true },
-      { title: "Restaurant Feature", context: "Quick-hook food content", placeholder: true },
-    ],
-  },
-  {
-    name: "Voiceover & Hooks",
-    videos: [
-      { title: "Problem-Solution", context: "Strong hook + CTA format", placeholder: true },
-      { title: "Storytelling Ad", context: "Narrative-driven product placement", placeholder: true },
+    id: "lifestyle-experience",
+    name: "Lifestyle & Experience",
+    tiles: [
+      { label: "Café visit" },
+      { label: "Wellness" },
+      { label: "Storytelling" },
     ],
   },
 ];
 
+const VideoTile = ({ tile }: { tile: Tile }) => {
+  const inner = (
+    <>
+      <div className="group relative aspect-[9/16] rounded-[1.5rem] bg-secondary overflow-hidden shadow-card transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-elevated ring-1 ring-border/60">
+        {tile.thumbnail ? (
+          <img
+            src={tile.thumbnail}
+            alt={tile.label ?? "Portfolio video"}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 gradient-soft" />
+        )}
+
+        {/* Play affordance */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="w-14 h-14 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-soft transition-transform duration-300 group-hover:scale-110">
+            <Play className="w-6 h-6 text-primary ml-0.5" />
+          </span>
+        </div>
+      </div>
+
+      {/* Small caption space below the tile */}
+      {tile.label && (
+        <p className="mt-3 text-center font-body text-xs text-muted-foreground">
+          {tile.label}
+        </p>
+      )}
+    </>
+  );
+
+  if (tile.videoUrl) {
+    return (
+      <a
+        href={tile.videoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block"
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return <div className="group block">{inner}</div>;
+};
+
 const PortfolioSection = () => (
-  <section id="portfolio" className="py-20 lg:py-28 bg-background">
+  <section id="portfolio" className="py-20 lg:py-28 bg-background scroll-smooth">
     <div className="container">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-14"
+        className="text-center mb-10"
       >
         <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground mb-3">
           Portfolio
         </h2>
         <p className="font-body text-muted-foreground text-base max-w-md mx-auto">
-          Scroll-stopping content designed for engagement, watch time, and conversions.
+          A selection of short-form video work, organised by category.
         </p>
       </motion.div>
 
-      <div className="space-y-16">
+      {/* Subtle category jump-nav (generated from categories) */}
+      <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mb-16">
+        {categories.map((cat, i) => (
+          <span key={cat.id} className="flex items-center gap-x-3">
+            {i > 0 && <span className="text-border">·</span>}
+            <a
+              href={`#${cat.id}`}
+              className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              {cat.name}
+            </a>
+          </span>
+        ))}
+      </nav>
+
+      <div className="space-y-20">
         {categories.map((cat, catIdx) => (
           <motion.div
-            key={cat.name}
+            key={cat.id}
+            id={cat.id}
+            className="scroll-mt-24"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: catIdx * 0.1 }}
+            transition={{ delay: catIdx * 0.05 }}
           >
-            <h3 className="font-heading text-xl sm:text-2xl text-foreground mb-6 flex items-center gap-3">
-              <span className="w-8 h-0.5 bg-primary rounded-full" />
-              {cat.name}
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {cat.videos.map((vid, idx) => (
-                <div
-                  key={idx}
-                  className="group relative aspect-[9/16] bg-secondary rounded-lg overflow-hidden shadow-card hover:shadow-elevated transition-shadow cursor-pointer"
-                >
-                  {/* Placeholder state */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-4">
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <Play className="w-6 h-6 text-primary ml-0.5" />
-                    </div>
-                    <span className="font-body text-sm font-semibold text-foreground text-center">
-                      {vid.title}
-                    </span>
-                    <span className="font-body text-xs text-muted-foreground text-center leading-tight">
-                      {vid.context}
-                    </span>
-                  </div>
-                </div>
+            {/* Serif category header + thin rule */}
+            <div className="flex items-center gap-4 mb-8">
+              <h3 className="font-heading text-2xl sm:text-3xl text-foreground whitespace-nowrap">
+                {cat.name}
+              </h3>
+              <span className="flex-1 h-px bg-border" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+              {cat.tiles.map((tile, idx) => (
+                <VideoTile key={idx} tile={tile} />
               ))}
             </div>
           </motion.div>
         ))}
       </div>
-
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="text-center mt-12 font-body text-sm text-muted-foreground"
-      >
-        Replace placeholders with your actual video embeds or upload links.
-      </motion.p>
     </div>
   </section>
 );
