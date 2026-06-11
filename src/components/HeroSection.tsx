@@ -97,26 +97,6 @@ const HeroSection = () => {
               Get in Touch
             </button>
           </div>
-
-          {/* Social icons */}
-          <div className="flex items-center gap-3 justify-center lg:justify-start">
-            {socials.map(({ icon: Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                onClick={(e) => {
-                  if (href.startsWith("#")) {
-                    e.preventDefault();
-                    scrollTo(href);
-                  }
-                }}
-                className="w-11 h-11 rounded-full bg-blush/50 text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-              >
-                <Icon className="w-5 h-5" strokeWidth={1.75} />
-              </a>
-            ))}
-          </div>
         </motion.div>
 
         {/* Visuals: dominant phone (video) in front, smaller still behind */}
