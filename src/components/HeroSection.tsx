@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Instagram, Linkedin, Play, Music2, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Play, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-portrait.jpg";
 
 // Swap these with the real assets when ready.
@@ -10,13 +11,6 @@ const videoSrc = ""; // e.g. import showreel from "@/assets/showreel.mp4"
 const videoPoster = heroImg; // replace with a dedicated poster frame
 const sideStill = heroImg; // replace with a distinct second photo
 
-const socials = [
-  { icon: Mail, label: "Email", href: "#contact" },
-  { icon: Music2, label: "TikTok", href: "#" },
-  { icon: Instagram, label: "Instagram", href: "#" },
-  { icon: Play, label: "YouTube", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-];
 
 const stats = [
   { emoji: "✦", text: "Hook-led short-form designed to hold attention early" },
