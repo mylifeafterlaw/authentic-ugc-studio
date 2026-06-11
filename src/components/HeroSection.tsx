@@ -145,28 +145,28 @@ const HeroSection = () => {
               opacity: { duration: 0.6, delay: 0.6 },
               y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.6 },
             }}
-            className="hidden lg:flex absolute left-0 bottom-[14%] -translate-x-[78%] flex-col items-center z-20 pointer-events-none select-none"
+            className="hidden lg:flex absolute left-0 bottom-[30%] -translate-x-[112%] flex-col items-center z-20 pointer-events-none select-none"
           >
             <span className="font-script text-2xl text-primary leading-none whitespace-nowrap">
               Watch a sample
             </span>
             <svg
-              width="72"
-              height="56"
-              viewBox="0 0 72 56"
+              width="84"
+              height="52"
+              viewBox="0 0 84 52"
               fill="none"
-              className="text-primary mt-1 ml-6"
+              className="text-primary mt-1 self-end"
               aria-hidden="true"
             >
               <path
-                d="M4 6 C10 34, 34 50, 64 44"
+                d="M4 46 C26 44, 58 40, 78 12"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
               />
               <path
-                d="M64 44 L54 44 M64 44 L60 35"
+                d="M78 12 L68 18 M78 12 L78 24"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
@@ -174,6 +174,7 @@ const HeroSection = () => {
               />
             </svg>
           </motion.div>
+
 
           {/* Phone mockup — dominant, in front */}
           <div className="relative w-[210px] sm:w-[260px] lg:w-[288px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
