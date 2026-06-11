@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Instagram, Linkedin, Play, Music2, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-portrait.jpg";
-import watchArrow from "@/assets/watch-arrow-maroon2.png.asset.json";
 
 // Swap these with the real assets when ready.
 // videoSrc: the 30s UGC showreel. videoPoster: the poster frame shown before play.
@@ -148,13 +147,29 @@ const HeroSection = () => {
             }}
             className="hidden lg:flex absolute right-full bottom-[28%] mr-3 flex-col items-start z-20 pointer-events-none select-none"
           >
-            <img
-              src={watchArrow.url}
-              alt=""
+            <svg
+              width="84"
+              height="52"
+              viewBox="0 0 84 52"
+              fill="none"
+              className="text-primary mb-1 ml-2 overflow-visible"
               aria-hidden="true"
-              className="mb-1 ml-2 w-[120px] h-auto"
-            />
-
+            >
+              <path
+                d="M6 46 C40 14, 90 -12, 132 -20"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <path
+                d="M132 -20 L121 -12 M132 -20 L119 -23"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                fill="none"
+              />
+            </svg>
             <span className="font-script text-2xl text-primary leading-none whitespace-nowrap -translate-x-12">
               Watch a sample
             </span>
