@@ -32,7 +32,7 @@ const Navbar = () => {
           : "bg-transparent py-5"
       }`}
     >
-      <div className="container flex items-center justify-between">
+      <div className="container relative flex items-center justify-between">
         <button
           onClick={() => handleClick("#hero")}
           aria-label="Back to top"
@@ -41,8 +41,8 @@ const Navbar = () => {
           JC
         </button>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop — centre links */}
+        <div className="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           {navLinks.map((link) => (
             <button
               key={link.href}
@@ -52,6 +52,10 @@ const Navbar = () => {
               {link.label}
             </button>
           ))}
+        </div>
+
+        {/* Desktop — right CTA */}
+        <div className="hidden md:block">
           <button
             onClick={() => handleClick("#contact")}
             className="gradient-cta text-primary-foreground font-body text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition-opacity"
