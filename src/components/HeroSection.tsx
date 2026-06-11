@@ -219,6 +219,22 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
+      {/* Subtle scroll cue */}
+      <motion.button
+        onClick={() => scrollTo("#portfolio")}
+        aria-label="Scroll to portfolio"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 8, 0] }}
+        transition={{
+          opacity: { duration: 0.6, delay: 0.9 },
+          y: { duration: 1.8, repeat: Infinity, ease: "easeInOut" },
+        }}
+        className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 text-primary/70 hover:text-primary transition-colors"
+      >
+        <ChevronDown className="w-6 h-6" strokeWidth={2} />
+      </motion.button>
+
+
       {/* Decorative blobs */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-blush/40 rounded-full blur-3xl" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-peach/50 rounded-full blur-3xl" />
