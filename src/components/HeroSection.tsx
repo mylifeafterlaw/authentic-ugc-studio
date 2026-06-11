@@ -58,7 +58,8 @@ const HeroSection = () => {
               Jess Cousin
             </p>
             <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-foreground leading-tight mb-2">
-              UGC that feels like a recommendation, not an ad
+              UGC that feels like a{" "}
+              <span className="text-primary font-semibold">recommendation, not an ad</span>
             </h1>
             <p className="font-body text-base sm:text-lg text-foreground/80 mb-1.5">
               Short-form video for wellness, lifestyle and tech brands that want content people actually trust
