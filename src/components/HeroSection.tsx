@@ -61,13 +61,13 @@ const HeroSection = () => {
               onClick={() => scrollTo("#portfolio")}
               className="gradient-cta text-primary-foreground font-body font-semibold px-8 py-3 rounded-full shadow-soft hover:opacity-90 transition-opacity text-base"
             >
-              View Work
+              View Portfolio
             </button>
             <button
               onClick={() => scrollTo("#contact")}
               className="border-2 border-primary text-primary font-body font-semibold px-8 py-3.5 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors text-base"
             >
-              Work With Me
+              Get in Touch
             </button>
           </div>
 
