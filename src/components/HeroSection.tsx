@@ -174,6 +174,7 @@ const HeroSection = () => {
               )}
             </div>
           </div>
+          </div>
         </motion.div>
       </div>
 
