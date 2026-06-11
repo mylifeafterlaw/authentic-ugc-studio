@@ -67,7 +67,7 @@ const HeroSection = () => {
           </div>
 
           {/* Niches row */}
-          <p className="mt-8 mb-2 font-body text-xs sm:text-sm text-primary/60 tracking-[0.2em] uppercase">
+          <p className="mt-4 mb-2 font-body text-xs sm:text-sm text-primary/60 tracking-[0.2em] uppercase">
             Wellness · Lifestyle · Travel · Tech
           </p>
 
