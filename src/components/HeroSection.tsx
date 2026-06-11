@@ -137,8 +137,47 @@ const HeroSection = () => {
             />
           </div>
 
+          {/* Soft, playful cue: handwritten caption + curved arrow toward the play button */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: [0, -6, 0] }}
+            transition={{
+              opacity: { duration: 0.6, delay: 0.6 },
+              y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.6 },
+            }}
+            className="hidden lg:flex absolute left-0 bottom-[14%] -translate-x-[78%] flex-col items-center z-20 pointer-events-none select-none"
+          >
+            <span className="font-script text-2xl text-primary leading-none whitespace-nowrap">
+              Watch a sample
+            </span>
+            <svg
+              width="72"
+              height="56"
+              viewBox="0 0 72 56"
+              fill="none"
+              className="text-primary mt-1 ml-6"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 6 C10 34, 34 50, 64 44"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <path
+                d="M64 44 L54 44 M64 44 L60 35"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                fill="none"
+              />
+            </svg>
+          </motion.div>
+
           {/* Phone mockup — dominant, in front */}
-          <div className="relative w-[220px] sm:w-[270px] lg:w-[300px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
+          <div className="relative w-[210px] sm:w-[260px] lg:w-[288px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
+
 
             <div className="relative w-full h-full rounded-[1.9rem] overflow-hidden bg-muted">
               {playing && videoSrc ? (
