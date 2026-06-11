@@ -22,7 +22,7 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="relative min-h-screen gradient-hero overflow-hidden">
-      <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-12 lg:gap-8 pt-28 pb-16 lg:pt-32 lg:pb-20 min-h-screen">
+      <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-8 lg:gap-8 pt-24 pb-10 lg:pt-28 lg:pb-12 min-h-screen">
         {/* Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -30,17 +30,17 @@ const HeroSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center lg:text-left"
         >
-          <p className="font-script text-5xl sm:text-6xl lg:text-7xl text-primary leading-none mb-6">
+          <p className="font-script text-6xl sm:text-7xl lg:text-8xl text-primary leading-none mb-4">
             Jess Cousin
           </p>
-          <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground leading-tight mb-4">
+          <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-foreground leading-tight mb-3">
             British UGC creator. Former lawyer.
             <br />
             <span className="text-primary italic">Content that reads like a recommendation, not an ad.</span>
           </h1>
 
           {/* Stat lines */}
-          <ul className="space-y-2.5 mt-8 mb-8 max-w-md mx-auto lg:mx-0 text-left">
+          <ul className="space-y-2 mt-5 mb-6 max-w-md mx-auto lg:mx-0 text-left">
             {stats.map((s) => (
               <li key={s.text} className="flex items-start gap-3 font-body text-sm sm:text-base text-foreground/80">
                 <span className="text-lg leading-none mt-0.5">{s.emoji}</span>
@@ -48,6 +48,7 @@ const HeroSection = () => {
               </li>
             ))}
           </ul>
+
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
             <button
