@@ -19,9 +19,10 @@ const socials = [
 ];
 
 const stats = [
+  { emoji: "✦", text: "For wellness, lifestyle and tech brands" },
   { emoji: "✦", text: "Hook-led short-form designed to hold attention early" },
   { emoji: "✦", text: "Natural delivery, talking-to-camera and voiceover" },
-  { emoji: "✦", text: "Shot in real environments, not staged sets" },
+  { emoji: "✦", text: "Shot in real environments" },
 ];
 
 const HeroSection = () => {
