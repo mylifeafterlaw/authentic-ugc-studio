@@ -105,9 +105,6 @@ const PortfolioSection = () => (
         <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground mb-3">
           Portfolio
         </h2>
-        <p className="font-body text-muted-foreground text-base max-w-md mx-auto">
-          A selection of short-form video work, organised by category.
-        </p>
       </motion.div>
 
       {/* Subtle category jump-nav (generated from categories) */}
