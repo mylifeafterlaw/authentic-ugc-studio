@@ -198,6 +198,26 @@ const HeroSection = () => {
               )}
             </div>
           </div>
+
+          {/* Social icons — low-emphasis, in open background space under the secondary still */}
+          <div className="hidden lg:flex items-center gap-2 absolute -bottom-16 right-0 translate-x-[60%] lg:translate-x-[64%] z-20">
+            {socials.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                onClick={(e) => {
+                  if (href.startsWith("#")) {
+                    e.preventDefault();
+                    scrollTo(href);
+                  }
+                }}
+                className="w-8 h-8 rounded-full text-primary/60 flex items-center justify-center hover:text-primary hover:bg-blush/40 transition-colors"
+              >
+                <Icon className="w-4 h-4" strokeWidth={1.75} />
+              </a>
+            ))}
+          </div>
           </div>
         </motion.div>
       </div>
