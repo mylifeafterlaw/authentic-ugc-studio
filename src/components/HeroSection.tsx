@@ -159,14 +159,14 @@ const HeroSection = () => {
               aria-hidden="true"
             >
               <path
-                d="M4 6 C26 8, 58 14, 78 44"
+                d="M4 6 C10 34, 40 44, 78 44"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 fill="none"
               />
               <path
-                d="M78 44 L66 42 M78 44 L72 32"
+                d="M78 44 L64 44 M78 44 L74 31"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
