@@ -50,10 +50,10 @@ const HeroSection = () => {
           </ul>
 
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6">
             <button
               onClick={() => scrollTo("#portfolio")}
-              className="gradient-cta text-primary-foreground font-body font-semibold px-8 py-3.5 rounded-full shadow-soft hover:opacity-90 transition-opacity text-base"
+              className="gradient-cta text-primary-foreground font-body font-semibold px-8 py-3 rounded-full shadow-soft hover:opacity-90 transition-opacity text-base"
             >
               View Work
             </button>
