@@ -120,8 +120,9 @@ const HeroSection = () => {
               />
             </div>
 
-            {/* Social icons — anchored under the secondary still photo, centred to its width */}
-            <div className="hidden lg:flex items-center justify-center gap-3 absolute top-full left-1/2 -translate-x-1/2 w-full mt-5 z-20">
+            {/* Social icons — centred under the visible photo slice (phone's right edge → photo right edge) */}
+            <div className="hidden lg:flex items-center justify-center gap-3 absolute top-full right-0 left-[38%] sm:left-[34%] lg:left-[30%] mt-5 z-20">
+
               {socials.map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
