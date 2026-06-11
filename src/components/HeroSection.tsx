@@ -97,26 +97,6 @@ const HeroSection = () => {
               Get in Touch
             </button>
           </div>
-
-          {/* Social icons */}
-          <div className="flex items-center gap-3 justify-center lg:justify-start">
-            {socials.map(({ icon: Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                onClick={(e) => {
-                  if (href.startsWith("#")) {
-                    e.preventDefault();
-                    scrollTo(href);
-                  }
-                }}
-                className="w-11 h-11 rounded-full bg-blush/50 text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-              >
-                <Icon className="w-5 h-5" strokeWidth={1.75} />
-              </a>
-            ))}
-          </div>
         </motion.div>
 
         {/* Visuals: dominant phone (video) in front, smaller still behind */}
@@ -217,6 +197,26 @@ const HeroSection = () => {
                 </>
               )}
             </div>
+          </div>
+
+          {/* Social icons — low-emphasis, in open background space under the secondary still */}
+          <div className="hidden lg:flex items-center gap-2 absolute -bottom-16 right-0 translate-x-[60%] lg:translate-x-[64%] z-20">
+            {socials.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                onClick={(e) => {
+                  if (href.startsWith("#")) {
+                    e.preventDefault();
+                    scrollTo(href);
+                  }
+                }}
+                className="w-8 h-8 rounded-full text-primary/60 flex items-center justify-center hover:text-primary hover:bg-blush/40 transition-colors"
+              >
+                <Icon className="w-4 h-4" strokeWidth={1.75} />
+              </a>
+            ))}
           </div>
           </div>
         </motion.div>
