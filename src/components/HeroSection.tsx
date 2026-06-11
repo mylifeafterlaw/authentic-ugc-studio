@@ -98,7 +98,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative flex items-center justify-center lg:justify-center lg:-translate-x-16 xl:-translate-x-24"
+          className="relative flex items-center justify-center lg:justify-center lg:-translate-x-24 xl:-translate-x-32"
         >
           <div className="relative">
           {/* Secondary still — deliberate second photo sitting BEHIND the phone, peeking out the right side */}
