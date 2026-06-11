@@ -170,7 +170,7 @@ const HeroSection = () => {
                 fill="none"
               />
             </svg>
-            <span className="font-script text-2xl text-primary leading-none whitespace-nowrap -ml-2">
+            <span className="font-script text-2xl text-primary leading-none whitespace-nowrap -translate-x-12">
               Watch a sample
             </span>
           </motion.div>
