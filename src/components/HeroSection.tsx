@@ -158,17 +158,19 @@ const HeroSection = () => {
               <path
                 d="M6 46 C40 14, 90 -12, 132 -20"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="4"
                 strokeLinecap="round"
                 fill="none"
               />
               <path
-                d="M132 -20 L121 -12 M132 -20 L119 -23"
+                d="M132 -20 C120 -22, 110 -28, 104 -36 M132 -20 C119 -16, 108 -13, 99 -8"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="4"
                 strokeLinecap="round"
+                strokeLinejoin="round"
                 fill="none"
               />
+
             </svg>
             <span className="font-script text-2xl text-primary leading-none whitespace-nowrap -translate-x-12">
               Watch a sample
