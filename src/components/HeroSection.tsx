@@ -78,8 +78,9 @@ const HeroSection = () => {
             ))}
           </ul>
 
-          {/* Larger gap before CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-9 mb-7">
+          {/* CTAs — part of the lower group, kept close to the bullets */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-6 mb-7">
+
             <button
               onClick={() => scrollTo("#portfolio")}
               className="gradient-cta text-primary-foreground font-body font-semibold px-8 py-3 rounded-full shadow-soft hover:opacity-90 transition-opacity text-base"
