@@ -163,7 +163,7 @@ const HeroSection = () => {
                 fill="none"
               />
               <path
-                d="M132 -20 L120 -19 M132 -20 L129 -31"
+                d="M132 -20 L121 -12 M132 -20 L119 -23"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
