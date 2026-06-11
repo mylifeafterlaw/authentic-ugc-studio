@@ -38,7 +38,7 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="relative min-h-screen gradient-hero overflow-hidden">
-      <div className="container relative z-10 grid lg:grid-cols-[1.25fr_0.85fr] items-center gap-10 lg:gap-8 pt-24 pb-16 lg:py-24 min-h-screen">
+      <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-10 lg:gap-8 pt-24 pb-16 lg:py-24 min-h-screen">
         {/* Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -66,7 +66,7 @@ const HeroSection = () => {
           </p>
 
           {/* Larger gap before lower group (bullets) — anchored with an accent rail */}
-          <ul className="space-y-2.5 mt-5 max-w-xl mx-auto lg:mx-0 text-left border-l-2 border-primary/40 pl-4">
+          <ul className="space-y-2.5 mt-5 max-w-md mx-auto lg:mx-0 text-left border-l-2 border-primary/40 pl-4">
             {stats.map((s) => (
               <li key={s.text} className="flex items-start gap-3 font-body text-sm sm:text-base text-foreground/80">
                 <span className="text-lg leading-none mt-0.5 text-primary">{s.emoji}</span>
@@ -98,7 +98,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative flex items-center justify-center lg:justify-center lg:-translate-x-24 xl:-translate-x-32"
+          className="relative flex items-center justify-center lg:justify-center"
         >
           <div className="relative">
           {/* Secondary still — deliberate second photo sitting BEHIND the phone, peeking out the right side */}
@@ -115,7 +115,7 @@ const HeroSection = () => {
             </div>
 
             {/* Quiet handle link — centred under the visible photo slice */}
-            <div className="hidden lg:flex justify-center absolute top-full left-1/2 -translate-x-1/2 mt-12 z-20">
+            <div className="hidden lg:flex justify-center absolute top-full left-[25%] -translate-x-1/2 mt-8 z-20">
               <Link
                 to="/links"
                 className="font-body text-xs sm:text-sm text-primary/60 tracking-wide hover:text-primary transition-colors"
