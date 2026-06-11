@@ -124,7 +124,7 @@ const HeroSection = () => {
         >
           <div className="relative">
           {/* Secondary still — deliberate second photo sitting BEHIND the phone, peeking out the right side */}
-          <div className="hidden sm:block absolute right-0 top-1/2 -translate-y-[58%] translate-x-[56%] sm:translate-x-[60%] lg:translate-x-[62%] w-[220px] sm:w-[280px] lg:w-[340px] aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background rotate-6 z-0">
+          <div className="hidden sm:block absolute right-0 top-1/2 -translate-y-[58%] translate-x-[62%] sm:translate-x-[66%] lg:translate-x-[70%] w-[220px] sm:w-[280px] lg:w-[340px] aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background rotate-6 z-0">
             <img
               src={sideStill}
               alt="Jess Cousin – UGC creator portrait"
