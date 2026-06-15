@@ -1,21 +1,36 @@
-## Portfolio section refinements
+# Portfolio Video Upload Plan
 
-Three scoped changes to `src/components/PortfolioSection.tsx` only. Hero and all other sections untouched.
+## How you send me the videos
+Yes — just drop the files into the chat and tell me the category + caption for each. The cleanest format:
 
-### 1. Remove the subheading
-Delete the `<p>` line "A selection of short-form video work, organised by category." Keep only the "Portfolio" heading + jump-nav.
+- **File:** (attach the MP4/MOV)
+- **Category:** Product / Accommodation & Travel / Lifestyle & Experience
+- **Caption (optional):** e.g. "Unboxing"
 
-### 2. Shrink the tiles (airy gallery, cohesive row)
-Keep 9:16 portrait ratio and 3-across desktop. Make the whole row narrower rather than constraining each tile individually:
-- Wrap each category's 3-tile grid in a centered max-width container (e.g. `max-w-3xl mx-auto`) so the row is narrower than the section width, with clear margin either side.
-- Let tiles size naturally within that narrower container at 3-across, with a consistent gap — a cohesive, evenly-spaced row (tight gallery feel), not tiles floating far apart.
-- Shrink the play-button affordance to match the smaller tiles.
+A few practical notes:
+- Up to **10 files per message**, **20MB max each**. If you have more than 10 or larger files, send across several messages — I'll keep adding them.
+- **MP4 (H.264)** is ideal for web playback. MOV usually works too, but MP4 is safest. I can flag any that won't play in-browser.
+- 9:16 vertical clips fit the existing tile layout perfectly.
 
-### 3. Lighter, more refined typography
-- Category headers ("Product" etc.): smaller serif (e.g. `text-xl sm:text-2xl`), keeping DM Serif Display (`font-heading`).
-- Tile caption/label: small, light, muted, uppercase with generous letter-spacing (`text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground`).
+## What I'll build
 
-### Technical notes
-- No font change — DM Serif Display (`font-heading`) stays for all headings.
-- Only presentational class changes; data arrays, jump-nav logic, and animations remain.
-- No new dependencies, no other files touched.
+**1. Host the videos**
+Each uploaded file gets pushed to the Lovable CDN (fast, global, keeps the repo light) and referenced by URL in the portfolio data — no external accounts needed.
+
+**2. Inline playback**
+Clicking a tile opens the video and plays it on the page (not a redirect to TikTok/YouTube). Implementation:
+- Tiles show a poster frame (first frame / supplied thumbnail) with the existing play button.
+- Clicking opens a lightweight modal/overlay that plays the video with native controls; closing returns to the gallery.
+- Videos use `preload="metadata"` and lazy loading so the page stays fast.
+
+**3. Wire into categories**
+Update the `categories` array in `PortfolioSection.tsx` so each tile carries its `videoUrl` (CDN), optional `thumbnail`, and `label`, slotted under the category you specify.
+
+## Technical details
+- Upload via the Lovable assets CLI → write `.asset.json` pointers → reference `url` in the tile data.
+- Extend the `Tile` type so `videoUrl` drives an inline player instead of an external link.
+- Add a small modal player (reuse existing `Dialog` UI) to keep styling consistent with the editorial/peach theme.
+- Keep the current tile sizing, lighter typography, smaller play button, and centered `max-w-3xl` row layout unchanged.
+
+## Next step
+Send the videos with their category + caption and I'll host them and wire up inline playback.

@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
-  thumbnail?: string; // image URL — swap in later
-  videoUrl?: string; // link/embed — swap in later
+  thumbnail?: string; // poster image URL (optional)
+  videoUrl?: string; // CDN video URL — plays inline in a modal
 };
 
 type Category = {
@@ -45,7 +47,13 @@ const categories: Category[] = [
   },
 ];
 
-const VideoTile = ({ tile }: { tile: Tile }) => {
+const VideoTile = ({
+  tile,
+  onPlay,
+}: {
+  tile: Tile;
+  onPlay: (url: string) => void;
+}) => {
   const inner = (
     <>
       <div className="group relative aspect-[9/16] rounded-[1.5rem] bg-secondary overflow-hidden shadow-card transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-elevated ring-1 ring-border/60">
@@ -54,6 +62,14 @@ const VideoTile = ({ tile }: { tile: Tile }) => {
             src={tile.thumbnail}
             alt={tile.label ?? "Portfolio video"}
             loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : tile.videoUrl ? (
+          <video
+            src={tile.videoUrl}
+            muted
+            playsInline
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
           />
         ) : (
@@ -79,22 +95,24 @@ const VideoTile = ({ tile }: { tile: Tile }) => {
 
   if (tile.videoUrl) {
     return (
-      <a
-        href={tile.videoUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group block"
+      <button
+        type="button"
+        onClick={() => onPlay(tile.videoUrl!)}
+        className="group block w-full text-left"
       >
         {inner}
-      </a>
+      </button>
     );
   }
 
   return <div className="group block">{inner}</div>;
 };
 
-const PortfolioSection = () => (
-  <section id="portfolio" className="py-20 lg:py-28 bg-background scroll-smooth">
+const PortfolioSection = () => {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
+  return (
+    <section id="portfolio" className="py-20 lg:py-28 bg-background scroll-smooth">
     <div className="container">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -144,7 +162,7 @@ const PortfolioSection = () => (
 
               <div className="grid grid-cols-3 gap-5 sm:gap-6">
                 {cat.tiles.map((tile, idx) => (
-                  <VideoTile key={idx} tile={tile} />
+                  <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
                 ))}
               </div>
             </div>
@@ -152,7 +170,22 @@ const PortfolioSection = () => (
         ))}
       </div>
     </div>
+
+    <Dialog open={!!activeVideo} onOpenChange={(open) => !open && setActiveVideo(null)}>
+      <DialogContent className="max-w-[min(92vw,420px)] border-none bg-transparent p-0 shadow-none">
+        {activeVideo && (
+          <video
+            src={activeVideo}
+            controls
+            autoPlay
+            playsInline
+            className="w-full aspect-[9/16] rounded-[1.5rem] bg-black object-contain"
+          />
+        )}
+      </DialogContent>
+    </Dialog>
   </section>
-);
+  );
+};
 
 export default PortfolioSection;
