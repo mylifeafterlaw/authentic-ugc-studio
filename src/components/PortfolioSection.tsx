@@ -8,6 +8,7 @@ import apartmentPoster from "@/assets/apartment-ugc-poster.png.asset.json";
 import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4.asset.json";
 import productUGC from "@/assets/Product_UGC_Natural_talking.MP4.asset.json";
 import skinComparisonVideo from "@/assets/Skin_Comparison_Version_B_Final.mp4.asset.json";
+import singaporeZooVideo from "@/assets/singapore-zoo.mp4.asset.json";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
