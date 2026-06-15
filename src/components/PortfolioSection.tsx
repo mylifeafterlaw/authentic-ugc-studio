@@ -2,6 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import apartmentVideo from "@/assets/apartment-ugc.mp4.asset.json";
+import condoVideo from "@/assets/condo-ugc.mp4.asset.json";
+import apartmentPoster from "@/assets/apartment-ugc-poster.png.asset.json";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
@@ -31,8 +34,15 @@ const categories: Category[] = [
     id: "accommodation-travel",
     name: "Accommodation & Travel",
     tiles: [
-      { label: "Hotel stay" },
-      { label: "Destination" },
+      {
+        label: "Apartment UGC",
+        thumbnail: apartmentPoster.url,
+        videoUrl: apartmentVideo.url,
+      },
+      {
+        label: "Condo UGC",
+        videoUrl: condoVideo.url,
+      },
       { label: "Day in the life" },
     ],
   },
