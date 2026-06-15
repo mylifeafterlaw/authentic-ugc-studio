@@ -193,7 +193,7 @@ const PortfolioSection = () => {
             viewport={{ once: true }}
             transition={{ delay: catIdx * 0.05 }}
           >
-            <div className="max-w-5xl mx-auto">
+            <div>
               {/* Serif category header + thin rule */}
               <div className="flex items-center gap-4 mb-8">
                 <h3 className="font-heading text-xl sm:text-2xl text-foreground whitespace-nowrap">
@@ -202,7 +202,20 @@ const PortfolioSection = () => {
                 <span className="flex-1 h-px bg-border" />
               </div>
 
-              <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+              {/* Mobile/tablet: wrap cleanly */}
+              <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:hidden">
+                {cat.tiles.map((tile, idx) => (
+                  <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
+                ))}
+              </div>
+
+              {/* Desktop: spread evenly across full content width */}
+              <div
+                className="hidden lg:grid gap-8 justify-items-center"
+                style={{
+                  gridTemplateColumns: `repeat(${cat.tiles.length}, 1fr)`,
+                }}
+              >
                 {cat.tiles.map((tile, idx) => (
                   <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
                 ))}
