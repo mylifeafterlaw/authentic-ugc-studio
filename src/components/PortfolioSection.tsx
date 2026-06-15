@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
-  thumbnail?: string; // image URL — swap in later
-  videoUrl?: string; // link/embed — swap in later
+  thumbnail?: string; // poster image URL (optional)
+  videoUrl?: string; // CDN video URL — plays inline in a modal
 };
 
 type Category = {
