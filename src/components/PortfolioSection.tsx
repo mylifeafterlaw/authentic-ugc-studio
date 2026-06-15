@@ -44,7 +44,10 @@ const categories: Category[] = [
         label: "Condo UGC",
         videoUrl: condoVideo.url,
       },
-      { label: "Day in the life" },
+      {
+        label: "Apartment Hook",
+        videoUrl: apartmentHookVideo.url,
+      },
     ],
   },
   {
