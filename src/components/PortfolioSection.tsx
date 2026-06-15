@@ -5,7 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import apartmentVideo from "@/assets/apartment-ugc.mp4.asset.json";
 import condoVideo from "@/assets/condo-ugc.mp4.asset.json";
 import apartmentPoster from "@/assets/apartment-ugc-poster.png.asset.json";
-import apartmentHookVideo from "@/assets/Apartment_UGC_Hook_voiceover_b-roll-2.mp4.asset.json";
+import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4.asset.json";
 import productUGC from "@/assets/Product_UGC_Natural_talking.MP4.asset.json";
 import skinComparisonVideo from "@/assets/Skin_Comparison_Version_B_Final.mp4.asset.json";
 
