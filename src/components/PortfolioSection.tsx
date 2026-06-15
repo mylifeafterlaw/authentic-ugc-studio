@@ -108,8 +108,11 @@ const VideoTile = ({
   return <div className="group block">{inner}</div>;
 };
 
-const PortfolioSection = () => (
-  <section id="portfolio" className="py-20 lg:py-28 bg-background scroll-smooth">
+const PortfolioSection = () => {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
+  return (
+    <section id="portfolio" className="py-20 lg:py-28 bg-background scroll-smooth">
     <div className="container">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
