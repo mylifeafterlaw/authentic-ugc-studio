@@ -27,7 +27,7 @@ const categories: Category[] = [
     id: "product",
     name: "Product",
     tiles: [
-      { label: "Unboxing" },
+      { label: "Product UGC", videoUrl: productUGC.url },
       { label: "Demo" },
       { label: "First impressions" },
     ],
