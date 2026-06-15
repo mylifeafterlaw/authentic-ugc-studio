@@ -5,6 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import apartmentVideo from "@/assets/apartment-ugc.mp4.asset.json";
 import condoVideo from "@/assets/condo-ugc.mp4.asset.json";
 import apartmentPoster from "@/assets/apartment-ugc-poster.png.asset.json";
+import apartmentHookVideo from "@/assets/Apartment_UGC_Hook_voiceover_b-roll-2.mp4.asset.json";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
