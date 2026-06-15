@@ -47,7 +47,13 @@ const categories: Category[] = [
   },
 ];
 
-const VideoTile = ({ tile }: { tile: Tile }) => {
+const VideoTile = ({
+  tile,
+  onPlay,
+}: {
+  tile: Tile;
+  onPlay: (url: string) => void;
+}) => {
   const inner = (
     <>
       <div className="group relative aspect-[9/16] rounded-[1.5rem] bg-secondary overflow-hidden shadow-card transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-elevated ring-1 ring-border/60">
@@ -56,6 +62,14 @@ const VideoTile = ({ tile }: { tile: Tile }) => {
             src={tile.thumbnail}
             alt={tile.label ?? "Portfolio video"}
             loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : tile.videoUrl ? (
+          <video
+            src={tile.videoUrl}
+            muted
+            playsInline
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
           />
         ) : (
@@ -81,14 +95,13 @@ const VideoTile = ({ tile }: { tile: Tile }) => {
 
   if (tile.videoUrl) {
     return (
-      <a
-        href={tile.videoUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group block"
+      <button
+        type="button"
+        onClick={() => onPlay(tile.videoUrl!)}
+        className="group block w-full text-left"
       >
         {inner}
-      </a>
+      </button>
     );
   }
 
