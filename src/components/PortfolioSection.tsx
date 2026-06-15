@@ -170,7 +170,22 @@ const PortfolioSection = () => {
         ))}
       </div>
     </div>
+
+    <Dialog open={!!activeVideo} onOpenChange={(open) => !open && setActiveVideo(null)}>
+      <DialogContent className="max-w-[min(92vw,420px)] border-none bg-transparent p-0 shadow-none">
+        {activeVideo && (
+          <video
+            src={activeVideo}
+            controls
+            autoPlay
+            playsInline
+            className="w-full aspect-[9/16] rounded-[1.5rem] bg-black object-contain"
+          />
+        )}
+      </DialogContent>
+    </Dialog>
   </section>
-);
+  );
+};
 
 export default PortfolioSection;
