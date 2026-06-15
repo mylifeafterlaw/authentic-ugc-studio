@@ -1,24 +1,26 @@
-Scope: `src/components/AboutSection.tsx` only.
+Problem: Multiple sections (About, Portfolio, Services, Why Me, Social Proof, Contact) are squeezed into narrow max-width channels (max-w-2xl, max-w-3xl, max-w-4xl), leaving large empty side margins. The Hero section is not affected and must be left untouched.
 
-1. Row copy + icons
-   - Update the `traits` array with the 5 new text strings exactly as provided.
-   - Keep the existing icon-row card layout (icon inside a soft circular background, text beside it).
-   - Update imports to use sensible on-brand Lucide icons:
-     - Row 1: `Scale`
-     - Row 2: `Globe`
-     - Row 3: `Leaf`
-     - Row 4: `Activity`
-     - Row 5: `Clapperboard`
+Approach: Remove the explicit narrow max-width constraints on the non-hero sections and let the default `container` class provide a consistent, wider content area with built-in padding. No changes to content, fonts, colours, section order, or the Hero.
 
-2. Closing line
-   - Replace the current `<motion.p>` text with:
-     "I hit briefs, hit deadlines, and handle revisions without drama."
-   - Keep the same styling classes (centered, muted, small, italic).
+Files to change:
 
-3. Subtle link
-   - Add a `Link` from `react-router-dom` directly beneath the closing line.
-   - Text: "More about me →"
-   - Style: small, muted text that transitions to primary on hover. Not a button.
-   - Route: `/about-me`
+1. `src/components/AboutSection.tsx`
+   - Change `container max-w-3xl` to `container`
 
-No other sections or files will be touched.
+2. `src/components/PortfolioSection.tsx`
+   - Remove `max-w-3xl mx-auto` from each category inner wrapper (line ~191)
+   - Keep the outer `container` and all existing tile/category logic untouched
+
+3. `src/components/ServicesSection.tsx`
+   - Change `container max-w-4xl` to `container`
+
+4. `src/components/WhyMeSection.tsx`
+   - Remove `max-w-3xl mx-auto` from the grid wrapper (line ~28)
+
+5. `src/components/SocialProofSection.tsx`
+   - Change `container max-w-4xl` to `container`
+
+6. `src/components/ContactSection.tsx`
+   - Change `container max-w-2xl` to `container`
+
+Result: All non-hero sections share the same `container` width (~1200px at 2xl with 1.5rem side padding), giving a consistent, wider layout with comfortable margins. Hero section is completely untouched.
