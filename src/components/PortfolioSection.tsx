@@ -162,7 +162,7 @@ const PortfolioSection = () => {
 
               <div className="grid grid-cols-3 gap-5 sm:gap-6">
                 {cat.tiles.map((tile, idx) => (
-                  <VideoTile key={idx} tile={tile} />
+                  <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
                 ))}
               </div>
             </div>
