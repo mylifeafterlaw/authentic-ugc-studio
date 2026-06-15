@@ -93,31 +93,36 @@ const VideoTile = ({
 }) => {
   const inner = (
     <>
-      <div className="group relative aspect-[9/16] rounded-[1.5rem] bg-secondary overflow-hidden shadow-card transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-elevated ring-1 ring-border/60">
-        {tile.thumbnail ? (
-          <img
-            src={tile.thumbnail}
-            alt={tile.label ?? "Portfolio video"}
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        ) : tile.videoUrl ? (
-          <video
-            src={tile.videoUrl}
-            muted
-            playsInline
-            preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        ) : (
-          <div className="absolute inset-0 gradient-soft" />
-        )}
+      <div className="relative w-full aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
+        <div className="group relative w-full h-full rounded-[1.9rem] bg-muted overflow-hidden">
+          {tile.thumbnail ? (
+            <img
+              src={tile.thumbnail}
+              alt={tile.label ?? "Portfolio video"}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : tile.videoUrl ? (
+            <video
+              src={tile.videoUrl}
+              muted
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 gradient-soft" />
+          )}
 
-        {/* Play affordance */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="w-9 h-9 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-soft transition-transform duration-300 group-hover:scale-110">
-            <Play className="w-4 h-4 text-primary ml-0.5" />
-          </span>
+          {/* notch */}
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-3 bg-foreground rounded-full z-10" />
+
+          {/* Play affordance */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="w-9 h-9 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-soft transition-transform duration-300 group-hover:scale-110">
+              <Play className="w-4 h-4 text-primary ml-0.5" />
+            </span>
+          </div>
         </div>
       </div>
 
@@ -135,14 +140,14 @@ const VideoTile = ({
       <button
         type="button"
         onClick={() => onPlay(tile.videoUrl!)}
-        className="group block w-full text-left"
+        className="group block w-[200px] shrink-0 text-left"
       >
         {inner}
       </button>
     );
   }
 
-  return <div className="group block">{inner}</div>;
+  return <div className="group block w-[200px] shrink-0">{inner}</div>;
 };
 
 const PortfolioSection = () => {
@@ -197,10 +202,7 @@ const PortfolioSection = () => {
                 <span className="flex-1 h-px bg-border" />
               </div>
 
-              <div
-                className="grid gap-5 sm:gap-6"
-                style={{ gridTemplateColumns: `repeat(${cat.tiles.length}, minmax(0, 1fr))` }}
-              >
+              <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
                 {cat.tiles.map((tile, idx) => (
                   <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
                 ))}
