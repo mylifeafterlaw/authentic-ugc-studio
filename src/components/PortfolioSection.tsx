@@ -51,6 +51,10 @@ const categories: Category[] = [
         label: "Vietnam Apartment",
         videoUrl: vietnamApartmentVideo.url,
       },
+      {
+        label: "Singapore Zoo",
+        videoUrl: singaporeZooVideo.url,
+      },
     ],
   },
   {
