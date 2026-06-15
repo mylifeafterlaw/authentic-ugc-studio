@@ -1,36 +1,20 @@
-# Portfolio Video Upload Plan
+## Fix: Accommodation & Travel — 4 videos in one row
 
-## How you send me the videos
-Yes — just drop the files into the chat and tell me the category + caption for each. The cleanest format:
+### Problem
+The Accommodation & Travel section currently uses `grid-cols-3`, so the 4th video wraps to a second line.
 
-- **File:** (attach the MP4/MOV)
-- **Category:** Product / Accommodation & Travel / Lifestyle & Experience
-- **Caption (optional):** e.g. "Unboxing"
+### Fix
+1. Update the tile grid in `PortfolioSection.tsx` to use a flexible layout that fits all tiles in a single row.
+2. Options:
+   - **A)** Switch all category grids to a responsive flex row (`flex flex-nowrap gap-5`) so tiles shrink to fit.
+   - **B)** Keep `grid-cols-3` for categories with 3 tiles, and use `grid-cols-4` for the Accommodation & Travel category (requires conditional grid class per category).
 
-A few practical notes:
-- Up to **10 files per message**, **20MB max each**. If you have more than 10 or larger files, send across several messages — I'll keep adding them.
-- **MP4 (H.264)** is ideal for web playback. MOV usually works too, but MP4 is safest. I can flag any that won't play in-browser.
-- 9:16 vertical clips fit the existing tile layout perfectly.
+### Preferred approach
+Option A — use a single-row flex layout for all categories. This keeps the code simple, avoids per-category logic, and makes the section scalable if more videos are added later. Tiles will proportionally scale down to fit the container width.
 
-## What I'll build
+### Files changed
+- `src/components/PortfolioSection.tsx`
 
-**1. Host the videos**
-Each uploaded file gets pushed to the Lovable CDN (fast, global, keeps the repo light) and referenced by URL in the portfolio data — no external accounts needed.
-
-**2. Inline playback**
-Clicking a tile opens the video and plays it on the page (not a redirect to TikTok/YouTube). Implementation:
-- Tiles show a poster frame (first frame / supplied thumbnail) with the existing play button.
-- Clicking opens a lightweight modal/overlay that plays the video with native controls; closing returns to the gallery.
-- Videos use `preload="metadata"` and lazy loading so the page stays fast.
-
-**3. Wire into categories**
-Update the `categories` array in `PortfolioSection.tsx` so each tile carries its `videoUrl` (CDN), optional `thumbnail`, and `label`, slotted under the category you specify.
-
-## Technical details
-- Upload via the Lovable assets CLI → write `.asset.json` pointers → reference `url` in the tile data.
-- Extend the `Tile` type so `videoUrl` drives an inline player instead of an external link.
-- Add a small modal player (reuse existing `Dialog` UI) to keep styling consistent with the editorial/peach theme.
-- Keep the current tile sizing, lighter typography, smaller play button, and centered `max-w-3xl` row layout unchanged.
-
-## Next step
-Send the videos with their category + caption and I'll host them and wire up inline playback.
+### Verification
+- Visual check in preview: Accommodation & Travel shows 4 tiles on one line.
+- Other categories still display correctly.

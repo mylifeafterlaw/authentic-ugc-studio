@@ -190,7 +190,10 @@ const PortfolioSection = () => {
                 <span className="flex-1 h-px bg-border" />
               </div>
 
-              <div className="grid grid-cols-3 gap-5 sm:gap-6">
+              <div
+                className="grid gap-5 sm:gap-6"
+                style={{ gridTemplateColumns: `repeat(${cat.tiles.length}, minmax(0, 1fr))` }}
+              >
                 {cat.tiles.map((tile, idx) => (
                   <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
                 ))}
