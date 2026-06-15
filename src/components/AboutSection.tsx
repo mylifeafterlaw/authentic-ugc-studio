@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
-import { Scale, Globe, Sparkles, Zap, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Scale, Globe, Leaf, Activity, Clapperboard } from "lucide-react";
 
 const traits = [
-  { icon: Scale, text: "Former lawyer at a top 10 global law firm" },
-  { icon: Globe, text: "Now full-time UGC creator based in Thailand" },
-  { icon: Sparkles, text: "Comfortable across niches: tech, lifestyle, travel, wellness" },
-  { icon: Zap, text: "Known for natural delivery and strong hooks" },
-  { icon: Heart, text: "Fast turnaround, easy to work with" },
+  { icon: Scale, text: "Ex-lawyer, now making content full-time. Briefed, deadline-led, clear communication and fast responses." },
+  { icon: Globe, text: "Working across the UK and South East Asia. Multi-location filming, indoor and outdoor." },
+  { icon: Leaf, text: "Real, lived experience in the wellness and supplement space, for example IBS and ADHD, not borrowed talking points." },
+  { icon: Activity, text: "Data-led where it helps. Sleep and recovery content backed by real tracking, not guesswork." },
+  { icon: Clapperboard, text: "Natural delivery, hook-led short-form. Talking-to-camera and B-roll with voiceover." },
 ];
 
 const AboutSection = () => (
@@ -47,8 +48,22 @@ const AboutSection = () => (
           viewport={{ once: true }}
           className="text-center mt-10 font-body text-muted-foreground text-sm italic"
         >
-          "I create authentic UGC for brands that want to connect with real audiences."
+          "I hit briefs, hit deadlines, and handle revisions without drama."
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mt-3"
+        >
+          <Link
+            to="/about-me"
+            className="font-body text-sm text-muted-foreground transition-colors hover:text-primary"
+          >
+            More about me &rarr;
+          </Link>
+        </motion.div>
       </motion.div>
     </div>
   </section>

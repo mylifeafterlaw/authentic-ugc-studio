@@ -1,20 +1,24 @@
-## Fix: Accommodation & Travel — 4 videos in one row
+Scope: `src/components/AboutSection.tsx` only.
 
-### Problem
-The Accommodation & Travel section currently uses `grid-cols-3`, so the 4th video wraps to a second line.
+1. Row copy + icons
+   - Update the `traits` array with the 5 new text strings exactly as provided.
+   - Keep the existing icon-row card layout (icon inside a soft circular background, text beside it).
+   - Update imports to use sensible on-brand Lucide icons:
+     - Row 1: `Scale`
+     - Row 2: `Globe`
+     - Row 3: `Leaf`
+     - Row 4: `Activity`
+     - Row 5: `Clapperboard`
 
-### Fix
-1. Update the tile grid in `PortfolioSection.tsx` to use a flexible layout that fits all tiles in a single row.
-2. Options:
-   - **A)** Switch all category grids to a responsive flex row (`flex flex-nowrap gap-5`) so tiles shrink to fit.
-   - **B)** Keep `grid-cols-3` for categories with 3 tiles, and use `grid-cols-4` for the Accommodation & Travel category (requires conditional grid class per category).
+2. Closing line
+   - Replace the current `<motion.p>` text with:
+     "I hit briefs, hit deadlines, and handle revisions without drama."
+   - Keep the same styling classes (centered, muted, small, italic).
 
-### Preferred approach
-Option A — use a single-row flex layout for all categories. This keeps the code simple, avoids per-category logic, and makes the section scalable if more videos are added later. Tiles will proportionally scale down to fit the container width.
+3. Subtle link
+   - Add a `Link` from `react-router-dom` directly beneath the closing line.
+   - Text: "More about me →"
+   - Style: small, muted text that transitions to primary on hover. Not a button.
+   - Route: `/about-me`
 
-### Files changed
-- `src/components/PortfolioSection.tsx`
-
-### Verification
-- Visual check in preview: Accommodation & Travel shows 4 tiles on one line.
-- Other categories still display correctly.
+No other sections or files will be touched.
