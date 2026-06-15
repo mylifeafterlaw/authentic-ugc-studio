@@ -9,6 +9,11 @@ import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4.asset.
 import productUGC from "@/assets/Product_UGC_Natural_talking.MP4.asset.json";
 import skinComparisonVideo from "@/assets/Skin_Comparison_Version_B_Final.mp4.asset.json";
 import singaporeZooVideo from "@/assets/singapore-zoo.mp4.asset.json";
+import tattooVideo from "@/assets/tattoo-chiang-mai.mp4.asset.json";
+import huskiesVideo from "@/assets/huskies.mp4.asset.json";
+import rajadamnernVideo from "@/assets/rajadamnern.mp4.asset.json";
+import cinemaVideo from "@/assets/cinema.mp4.asset.json";
+import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4.asset.json";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
@@ -70,9 +75,11 @@ const categories: Category[] = [
     id: "lifestyle-experience",
     name: "Lifestyle & Experience",
     tiles: [
-      { label: "Café visit" },
-      { label: "Wellness" },
-      { label: "Storytelling" },
+      { label: "Tattoo Chiang Mai", videoUrl: tattooVideo.url },
+      { label: "Huskies", videoUrl: huskiesVideo.url },
+      { label: "Rajadamnern", videoUrl: rajadamnernVideo.url },
+      { label: "Cinema", videoUrl: cinemaVideo.url },
+      { label: "Café Wat Bang Nam Phueng Nok", videoUrl: cafeWatVideo.url },
     ],
   },
 ];
