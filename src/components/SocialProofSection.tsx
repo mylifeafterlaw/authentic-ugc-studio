@@ -9,7 +9,7 @@ const stats = [
 
 const SocialProofSection = () => (
   <section className="py-20 lg:py-28 bg-background">
-    <div className="container max-w-4xl">
+    <div className="container max-w-5xl">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

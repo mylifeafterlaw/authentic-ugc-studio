@@ -188,7 +188,7 @@ const PortfolioSection = () => {
             viewport={{ once: true }}
             transition={{ delay: catIdx * 0.05 }}
           >
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-5xl mx-auto">
               {/* Serif category header + thin rule */}
               <div className="flex items-center gap-4 mb-8">
                 <h3 className="font-heading text-xl sm:text-2xl text-foreground whitespace-nowrap">
