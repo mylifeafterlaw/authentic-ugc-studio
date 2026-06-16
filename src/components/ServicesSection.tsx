@@ -22,7 +22,7 @@ const ServicesSection = () => (
         <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground mb-3">
           Services
         </h2>
-        <p className="font-body text-muted-foreground text-base">What I can create for your brand.</p>
+        <p className="font-body text-muted-foreground text-base">The formats I work in. Mix and match to fit your brief.</p>
       </motion.div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
