@@ -140,14 +140,14 @@ const VideoTile = ({
       <button
         type="button"
         onClick={() => onPlay(tile.videoUrl!)}
-        className="group block w-[200px] shrink-0 text-left"
+        className="group block w-[260px] shrink-0 text-left"
       >
         {inner}
       </button>
     );
   }
 
-  return <div className="group block w-[200px] shrink-0">{inner}</div>;
+  return <div className="group block w-[260px] shrink-0">{inner}</div>;
 };
 
 const PortfolioSection = () => {
@@ -202,20 +202,8 @@ const PortfolioSection = () => {
                 <span className="flex-1 h-px bg-border" />
               </div>
 
-              {/* Mobile/tablet: wrap cleanly */}
-              <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:hidden">
-                {cat.tiles.map((tile, idx) => (
-                  <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
-                ))}
-              </div>
-
-              {/* Desktop: spread evenly across full content width */}
-              <div
-                className="hidden lg:grid gap-8 justify-items-center"
-                style={{
-                  gridTemplateColumns: `repeat(${cat.tiles.length}, 1fr)`,
-                }}
-              >
+              {/* Fixed gap, left-aligned, wraps cleanly */}
+              <div className="flex flex-wrap justify-start gap-6">
                 {cat.tiles.map((tile, idx) => (
                   <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
                 ))}

@@ -1,24 +1,23 @@
-Problem: Each category's tile row is constrained by `max-w-5xl mx-auto` and uses `flex flex-wrap justify-center`, so tiles cluster in the middle with large side margins. A 5-tile category wraps to 4 + 1 because the 1024px max-width is too narrow.
+## Goal
+Two layout tweaks to the Portfolio section tile rows — nothing else changes.
 
-Plan for `src/components/PortfolioSection.tsx`:
+## Changes
 
-1. Remove the `max-w-5xl mx-auto` wrapper from each category block so the tile row spans the full `container` width.
+### 1. Fixed gap, left-aligned rows
+Replace the current split mobile/desktop layout with a single flex row that behaves the same at every breakpoint.
 
-2. On desktop (`lg` and up), switch from `flex justify-center` to a CSS grid with exactly as many equal columns as tiles in that category:
-   - Inline style: `gridTemplateColumns: \`repeat(${cat.tiles.length}, 1fr)\``
-   - `justifyItems: 'center'` so each fixed-width tile sits centred in its column
-   - `gap: 1.5rem` between columns
-   This evenly distributes tiles across the full width with consistent gaps — no side margins, no clustering.
+- Remove the `lg:grid` desktop branch and the `lg:hidden` mobile branch.
+- Use one wrapper: `flex flex-wrap justify-start gap-6`.
+- Each `VideoTile` keeps its explicit width, so gaps stay fixed and tiles left-align. Rows that don’t fill the width simply leave empty space on the right instead of stretching.
 
-3. On smaller screens (below `lg`), fall back to `flex flex-wrap justify-center` so tiles wrap cleanly to fewer per row without stretching.
+### 2. Larger phone tiles
+- Bump the tile width from `w-[200px]` to `w-[260px]`.
+- The phone frame (`aspect-[9/19]`, bezel padding, notch, play button, caption) all scale proportionally because they use `w-full` / relative units inside the fixed-width wrapper.
+- At the larger size fewer tiles fit per row on some breakpoints — that is expected and acceptable.
 
-4. Keep every tile at its existing fixed `w-[200px]` and all phone-frame styling, captions, category headers, play affordance, and modal behaviour untouched.
-
-Result: 4–5 tiles sit on one row on desktop, spread evenly across the full content width, with no orphaned single tile. Fewer tiles per row on mobile via natural flex-wrap.
-
----
-
-Technical detail:
-- The `VideoTile` component stays as-is (`w-[200px] shrink-0`). In the grid cells, `shrink-0` is harmless; `w-[200px]` maintains the fixed size.
-- The grid is applied only to the tile row wrapper (`<div>` that currently has `flex flex-wrap justify-center gap-6 sm:gap-8`), not to the category heading or rule.
-- Tailwind responsive classes handle the breakpoint switch: `grid lg:grid` with inline style for desktop, `flex flex-wrap justify-center lg:hidden` (or equivalent logic) for mobile.
+## What stays the same
+- Phone frame styling and 9:16 video ratio inside the bezel.
+- Captions below tiles.
+- Modal video player behaviour.
+- Category headers and nav.
+- No other sections touched.
