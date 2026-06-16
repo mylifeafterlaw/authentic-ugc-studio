@@ -94,13 +94,13 @@ const VideoTile = ({
   const inner = (
     <>
       <div className="relative w-full aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
-        <div className="group relative w-full h-full rounded-[1.9rem] bg-muted overflow-hidden">
+        <div className="group relative w-full h-full rounded-[1.9rem] bg-black overflow-hidden">
           {tile.thumbnail ? (
             <img
               src={tile.thumbnail}
               alt={tile.label ?? "Portfolio video"}
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
             />
           ) : tile.videoUrl ? (
             <video
@@ -108,10 +108,10 @@ const VideoTile = ({
               muted
               playsInline
               preload="metadata"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
             />
           ) : (
-            <div className="absolute inset-0 gradient-soft" />
+            <div className="absolute inset-0 gradient-soft scale-[1.03]" />
           )}
 
           {/* notch */}
