@@ -1,39 +1,24 @@
-## Services Section — Card & Copy Rewrite
-
-### Goal
-Replace all service cards and their copy while keeping the existing card-grid layout, styling, and animations intact. No other sections touched.
+## About Section — Update Plan
 
 ### What changes
-
-**1. Subtitle**
-- Replace "What I can create for your brand." with:
-  "The formats I work in. Mix and match to fit your brief."
-
-**2. Cards — 6 new cards**
-Keep the same structure: soft circular icon background, bold serif title, muted subtitle, hover shadow.
-
-| # | Title | Subtitle | Icon (lucide-react) |
-|---|-------|----------|---------------------|
-| 1 | Talking-to-camera | Natural delivery, scripted or unscripted | Camera |
-| 2 | B-roll and voiceover | Lifestyle footage with narration | Film |
-| 3 | Product demos and unboxings | Showing the thing in real use | Package |
-| 4 | Hook-led short-form | Built for TikTok and Reels | Sparkles |
-| 5 | Based in Thailand | Filming across South East Asia | MapPin |
-| 6 | Add-ons | Extra hooks, raw footage, captions, rush turnaround | Plus |
-
-Old cards (UGC Videos / Voiceover Content / Product Demos / Travel & Hospitality / Custom Packages) removed entirely.
-
-**3. Foot line**
-Add one centered, small, muted line below the card grid:
-"Ex-lawyer, so briefs, deadlines and clear comms come as standard."
+1. **Row layout**: Each trait row currently has `icon + single paragraph`. Update to `icon in soft circle + bold headline + muted sub-line` as requested.
+2. **Content**: Replace the 5 traits with the exact copy provided.
+3. **Closing line**: Replace the italic quote with "Same person on camera as off it."
+4. **Icons**: Pick sensible on-brand Lucide icons for each personal point.
 
 ### What stays the same
-- Card grid layout (`grid sm:grid-cols-2 lg:grid-cols-3 gap-5`)
-- Card styling (rounded-xl, bg-card, shadow-soft, hover:shadow-card)
-- Icon circle styling (w-14 h-14, rounded-full, bg-secondary)
-- Framer Motion entrance animations
-- Section wrapper (py-20 lg:py-28, gradient-soft, container max-w-5xl)
-- No em-dashes used anywhere in copy
+- "About Jess" heading
+- Section wrapper, gradient, container, padding, spacing
+- Framer Motion animations (`initial`, `whileInView`, `viewport`, `transition`)
+- Card styling (`bg-card`, `rounded-lg`, `shadow-soft`, `p-4`)
+- Icon circle styling (`rounded-full bg-secondary`, `w-10 h-10`)
+- "More about me →" link below the closing line, pointing to `/about-me`
 
-### File to edit
-- `src/components/ServicesSection.tsx`
+### Technical details
+- File: `src/components/AboutSection.tsx`
+- Data structure changes from `{ icon, text }` to `{ icon, headline, sub }`
+- JSX map updates to render headline as bold text and sub as muted smaller text
+- No em-dashes in copy
+- Lucide icons (tentative): `Scale` / `Gavel` for law, `Bike` for motorbike, `Brain` for ADHD, `Heart` for wellness, `Dumbbell` for training
+
+### No other sections touched
