@@ -14,6 +14,9 @@ import huskiesVideo from "@/assets/huskies.mp4.asset.json";
 import rajadamnernVideo from "@/assets/rajadamnern.mp4.asset.json";
 import cinemaVideo from "@/assets/cinema.mp4.asset.json";
 import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4.asset.json";
+import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook.mp4.asset.json";
+import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4.asset.json";
+import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4.asset.json";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
@@ -35,8 +38,9 @@ const categories: Category[] = [
     name: "Product",
     tiles: [
       { label: "Product UGC", videoUrl: productUGC.url },
-      { label: "Demo" },
-      { label: "First impressions" },
+      { label: "Triple Hook UGC", videoUrl: productTripleHookVideo.url },
+      { label: "Hair Product", videoUrl: hairProductVideo.url },
+      { label: "Living Somewhere Beautiful", videoUrl: livingBeautifulVideo.url },
     ],
   },
   {
