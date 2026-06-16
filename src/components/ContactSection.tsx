@@ -36,15 +36,6 @@ const ContactSection = () => (
             <MessageCircle className="w-5 h-5" />
             WhatsApp
           </a>
-          <a
-            href="https://linktr.ee/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-card text-foreground border border-border font-body font-semibold px-8 py-3.5 rounded-full shadow-soft hover:shadow-card transition-shadow inline-flex items-center justify-center gap-2 text-base"
-          >
-            <ExternalLink className="w-5 h-5" />
-            Linktree
-          </a>
         </div>
       </motion.div>
     </div>
