@@ -43,6 +43,10 @@ const ServicesSection = () => (
           </motion.div>
         ))}
       </div>
+
+      <p className="font-body text-xs text-muted-foreground text-center mt-10">
+        Ex-lawyer, so briefs, deadlines and clear comms come as standard.
+      </p>
     </div>
   </section>
 );
