@@ -259,12 +259,9 @@ const PortfolioSection = () => {
                 <span className="flex-1 h-px bg-border" />
               </div>
 
-              {/* Fixed gap, centred, wraps cleanly */}
-              <div className="flex flex-wrap justify-center gap-6">
-                {cat.tiles.map((tile, idx) => (
-                  <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
-                ))}
-              </div>
+              {/* Row: centred when ≤4 tiles, horizontally scrollable when >4 */}
+              <CategoryRow tiles={cat.tiles} onPlay={setActiveVideo} />
+
             </div>
           </motion.div>
         ))}
