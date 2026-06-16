@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -154,6 +154,59 @@ const VideoTile = ({
   return <div className="group block w-[260px] shrink-0">{inner}</div>;
 };
 
+const CategoryRow = ({
+  tiles,
+  onPlay,
+}: {
+  tiles: Tile[];
+  onPlay: (url: string) => void;
+}) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [atEnd, setAtEnd] = useState(false);
+
+  // 4 or fewer: keep the original centred, wrapping row.
+  if (tiles.length <= 4) {
+    return (
+      <div className="flex flex-wrap justify-center gap-6">
+        {tiles.map((tile, idx) => (
+          <VideoTile key={idx} tile={tile} onPlay={onPlay} />
+        ))}
+      </div>
+    );
+  }
+
+  // More than 4: single horizontal scrollable strip with a right-edge fade cue.
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 8);
+  };
+
+  return (
+    <div className="relative mx-auto w-full max-w-[1200px]">
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {tiles.map((tile, idx) => (
+          <div key={idx} className="snap-start">
+            <VideoTile tile={tile} onPlay={onPlay} />
+          </div>
+        ))}
+      </div>
+
+      {/* Scroll cue: soft right-edge fade, hidden once fully scrolled */}
+      <div
+        aria-hidden
+        className={`pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent transition-opacity duration-300 ${
+          atEnd ? "opacity-0" : "opacity-100"
+        }`}
+      />
+    </div>
+  );
+};
+
 const PortfolioSection = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
@@ -206,12 +259,9 @@ const PortfolioSection = () => {
                 <span className="flex-1 h-px bg-border" />
               </div>
 
-              {/* Fixed gap, centred, wraps cleanly */}
-              <div className="flex flex-wrap justify-center gap-6">
-                {cat.tiles.map((tile, idx) => (
-                  <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
-                ))}
-              </div>
+              {/* Row: centred when ≤4 tiles, horizontally scrollable when >4 */}
+              <CategoryRow tiles={cat.tiles} onPlay={setActiveVideo} />
+
             </div>
           </motion.div>
         ))}
