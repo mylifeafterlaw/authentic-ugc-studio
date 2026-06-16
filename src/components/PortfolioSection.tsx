@@ -202,8 +202,8 @@ const PortfolioSection = () => {
                 <span className="flex-1 h-px bg-border" />
               </div>
 
-              {/* Fixed gap, left-aligned, wraps cleanly */}
-              <div className="flex flex-wrap justify-start gap-6">
+              {/* Fixed gap, centred, wraps cleanly */}
+              <div className="flex flex-wrap justify-center gap-6">
                 {cat.tiles.map((tile, idx) => (
                   <VideoTile key={idx} tile={tile} onPlay={setActiveVideo} />
                 ))}

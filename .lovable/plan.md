@@ -1,23 +1,19 @@
-## Goal
-Two layout tweaks to the Portfolio section tile rows — nothing else changes.
+## Plan: Centre-align each row of phone tiles
 
-## Changes
+### What to change
+In `src/components/PortfolioSection.tsx`, change one Tailwind class on the tile row wrapper (line 206).
 
-### 1. Fixed gap, left-aligned rows
-Replace the current split mobile/desktop layout with a single flex row that behaves the same at every breakpoint.
+- **Before:** `className="flex flex-wrap justify-start gap-6"`
+- **After:**  `className="flex flex-wrap justify-center gap-6"`
 
-- Remove the `lg:grid` desktop branch and the `lg:hidden` mobile branch.
-- Use one wrapper: `flex flex-wrap justify-start gap-6`.
-- Each `VideoTile` keeps its explicit width, so gaps stay fixed and tiles left-align. Rows that don’t fill the width simply leave empty space on the right instead of stretching.
+### Effect
+- Full rows (e.g. 4-5 tiles across desktop) remain visually full — no visible change.
+- Partial rows (e.g. 3 tiles when 5 fit across) sit centred in the available width, with equal empty space on left and right.
 
-### 2. Larger phone tiles
-- Bump the tile width from `w-[200px]` to `w-[260px]`.
-- The phone frame (`aspect-[9/19]`, bezel padding, notch, play button, caption) all scale proportionally because they use `w-full` / relative units inside the fixed-width wrapper.
-- At the larger size fewer tiles fit per row on some breakpoints — that is expected and acceptable.
+### What stays exactly the same
+- Tile width (`w-[260px]`)
+- Gap between tiles (`gap-6` = fixed 1.5rem)
+- Phone frame proportions, bezel, notch, play button, captions
+- All other sections of the site
 
-## What stays the same
-- Phone frame styling and 9:16 video ratio inside the bezel.
-- Captions below tiles.
-- Modal video player behaviour.
-- Category headers and nav.
-- No other sections touched.
+### No other files touched.
