@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Scale, Globe, Leaf, Activity, Clapperboard } from "lucide-react";
+import { Scale, Bike, Brain, Heart, Dumbbell } from "lucide-react";
 
 const traits = [
-  { icon: Scale, text: "Ex-lawyer, now making content full-time. Briefed, deadline-led, clear communication and fast responses." },
-  { icon: Globe, text: "Working across the UK and South East Asia. Multi-location filming, indoor and outdoor." },
-  { icon: Leaf, text: "Real, lived experience in the wellness and supplement space, for example IBS and ADHD, not borrowed talking points." },
-  { icon: Activity, text: "Data-led where it helps. Sleep and recovery content backed by real tracking, not guesswork." },
-  { icon: Clapperboard, text: "Natural delivery, hook-led short-form. Talking-to-camera and B-roll with voiceover." },
+  { icon: Scale, headline: "Left law to build something slower", sub: "Corporate lawyer turned content creator" },
+  { icon: Bike, headline: "Happiest on two wheels", sub: "Motorbike rider, usually somewhere warm" },
+  { icon: Brain, headline: "ADHD, and open about it", sub: "It shapes how I work and what I make" },
+  { icon: Heart, headline: "Genuine wellness obsessive", sub: "Real lived experience, not borrowed talking points" },
+  { icon: Dumbbell, headline: "Always training something", sub: "Gym regular, currently learning Muay Thai" },
 ];
 
 const AboutSection = () => (
