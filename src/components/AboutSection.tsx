@@ -53,7 +53,7 @@ const AboutSection = () => (
           viewport={{ once: true }}
           className="text-center mt-10 font-body text-muted-foreground text-sm italic"
         >
-          "I hit briefs, hit deadlines, and handle revisions without drama."
+          "Same person on camera as off it."
         </motion.p>
 
         <motion.div
