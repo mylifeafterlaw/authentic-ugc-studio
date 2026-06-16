@@ -1,19 +1,24 @@
-## Plan: Centre-align each row of phone tiles
+## Plan: Remove two sections
 
-### What to change
-In `src/components/PortfolioSection.tsx`, change one Tailwind class on the tile row wrapper (line 206).
+### Sections to delete
+1. **"Built for Results"** (`SocialProofSection` — cards + testimonial placeholder)
+2. **"Why Work With Me"** (`WhyMeSection` — four-card block)
 
-- **Before:** `className="flex flex-wrap justify-start gap-6"`
-- **After:**  `className="flex flex-wrap justify-center gap-6"`
+### Changes
 
-### Effect
-- Full rows (e.g. 4-5 tiles across desktop) remain visually full — no visible change.
-- Partial rows (e.g. 3 tiles when 5 fit across) sit centred in the available width, with equal empty space on left and right.
+**File: `src/pages/Index.tsx`**
+- Remove import lines for `WhyMeSection` and `SocialProofSection`
+- Remove `<WhyMeSection />` and `<SocialProofSection />` from the JSX order
+- Keep all other sections (Hero, Portfolio, About, Services, Contact) untouched
 
-### What stays exactly the same
-- Tile width (`w-[260px]`)
-- Gap between tiles (`gap-6` = fixed 1.5rem)
-- Phone frame proportions, bezel, notch, play button, captions
-- All other sections of the site
+**Delete files:**
+- `src/components/SocialProofSection.tsx`
+- `src/components/WhyMeSection.tsx`
 
-### No other files touched.
+**Nav / anchors check:**
+- The Navbar only links to `#hero`, `#portfolio`, `#services`, `#about`, and `#contact`. No nav links or anchors reference the deleted sections, so no cleanup needed there.
+
+### Unchanged
+- Hero, Portfolio, Services, About, Contact sections
+- Navbar, Footer, FloatingCTA
+- Tile sizing, gaps, or alignment in Portfolio
