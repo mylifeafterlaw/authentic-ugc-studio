@@ -35,9 +35,14 @@ const AboutSection = () => (
               <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
                 <trait.icon className="w-5 h-5 text-primary" />
               </div>
-              <p className="font-body text-foreground text-base leading-relaxed pt-1.5">
-                {trait.text}
-              </p>
+              <div className="pt-0.5">
+                <p className="font-body text-foreground text-base font-semibold leading-snug">
+                  {trait.headline}
+                </p>
+                <p className="font-body text-muted-foreground text-sm leading-relaxed mt-0.5">
+                  {trait.sub}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
