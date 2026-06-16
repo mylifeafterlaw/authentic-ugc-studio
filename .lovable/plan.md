@@ -1,33 +1,16 @@
 ## Goal
-Change the Portfolio section so categories with more than 4 video tiles display as a single horizontal scrollable strip, while categories with 4 or fewer tiles keep their current centred row layout.
+Two small contact changes. (Full audit reported separately in chat.)
 
-## Current state
-- Product: 4 tiles
-- Accommodation & Travel: 4 tiles
-- Talking to Camera: 3 tiles
-- Lifestyle & Experience: 5 tiles ← only category affected
+## Change 1 — Contact section: remove Linktree button
+File: `src/components/ContactSection.tsx`
+- Remove the third `<a>` button (the "Linktree" one, lines ~39-47), leaving only "Email Me" and "WhatsApp".
+- Remove the now-unused `ExternalLink` import.
 
-Each tile is fixed at 260px wide with a 24px gap. The current layout uses `flex flex-wrap justify-center gap-6` for all categories.
+## Change 2 — Footer: add a subtle Linktree link
+File: `src/components/Footer.tsx`
+- Add a low-emphasis text link "Linktree" alongside the existing Email / Instagram / YouTube icons in the same flex row.
+- Match the quiet styling of the existing "Email" text link (`text-primary-foreground/60 hover:text-primary-foreground ... font-body text-sm`) — not a button.
+- Point it to `https://linktr.ee/` as a placeholder (carry over the existing Linktree URL). Flagged in the audit as needing your real Linktree handle.
 
-## Changes
-
-### 1. Conditional layout per category count
-- Categories with ≤ 4 tiles: keep `flex flex-wrap justify-center gap-6` exactly as-is.
-- Categories with > 4 tiles: switch the tile container to a horizontally scrollable strip.
-
-### 2. Scrollable strip behaviour (5+ tile categories only)
-- Remove `flex-wrap` and `justify-center`; add `flex overflow-x-auto` with hidden scrollbar.
-- Add scroll-snapping (`snap-x snap-mandatory` on the track, `snap-start` on each tile) so swiping lands cleanly on tile boundaries.
-- Wrap the strip in a centred container with `max-w-[1200px]` so roughly 4 tiles are visible at once and the 5th peeks at the right edge on desktop.
-- Keep tile width at 260px and gap at 24px — no change to tile size, phone frames, captions, or play affordance.
-
-### 3. Scroll cue (5+ tile categories only)
-- Add a subtle right-edge gradient fade overlay (`bg-gradient-to-l from-background to-transparent`) on the scrollable row to reinforce that content continues off-screen.
-- Use a small React state hook to track scroll position and hide the fade when the user has scrolled to the far right (all tiles visible), so the cue only appears when there is more to see.
-
-### 4. Unchanged
-- All tile content: labels, thumbnails, videos, placeholder gradients, phone notch, play icon, hover lift effect.
-- Category headers (serif heading + thin rule).
-- Category jump-nav order and styling.
-- Dialog/modal video player.
-- Section padding, background, Framer Motion entrance animations.
+## Note
+Both the removed Contact Linktree button and the new Footer link currently use the placeholder `https://linktr.ee/`. Provide your real Linktree URL and I'll wire it in. No other files change.
