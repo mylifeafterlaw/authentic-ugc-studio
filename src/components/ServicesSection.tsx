@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
-import { Video, Mic, Smartphone, MapPin, Package } from "lucide-react";
+import { Camera, Film, Package, Sparkles, MapPin, Plus } from "lucide-react";
 
 const services = [
-  { icon: Video, label: "UGC Videos", desc: "TikTok, Reels, and paid ad content" },
-  { icon: Mic, label: "Voiceover Content", desc: "Engaging narration and storytelling" },
-  { icon: Smartphone, label: "Product Demos", desc: "Walkthroughs and tutorials" },
-  { icon: MapPin, label: "Travel & Hospitality", desc: "Location-based experiential content" },
-  { icon: Package, label: "Custom Packages", desc: "Tailored bundles to fit your needs" },
+  { icon: Camera, label: "Talking-to-camera", desc: "Natural delivery, scripted or unscripted" },
+  { icon: Film, label: "B-roll and voiceover", desc: "Lifestyle footage with narration" },
+  { icon: Package, label: "Product demos and unboxings", desc: "Showing the thing in real use" },
+  { icon: Sparkles, label: "Hook-led short-form", desc: "Built for TikTok and Reels" },
+  { icon: MapPin, label: "Based in Thailand", desc: "Filming across South East Asia" },
+  { icon: Plus, label: "Add-ons", desc: "Extra hooks, raw footage, captions, rush turnaround" },
 ];
 
 const ServicesSection = () => (
