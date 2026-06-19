@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Play, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-portrait.jpg";
-import heroVideo from "@/assets/My_hair_wasn_t_just_dry_Final-2.mp4.asset.json";
-import heroPoster from "@/assets/hero-video-poster.jpg.asset.json";
+import heroVideo from "@/assets/Product_UGC_Triple_hook_voiceover_b-roll-2.mp4.asset.json";
+import heroPoster from "@/assets/new-hero-poster.jpg.asset.json";
 
 // Swap these with the real assets when ready.
 // videoSrc: the 30s UGC showreel. videoPoster: the poster frame shown before play.
