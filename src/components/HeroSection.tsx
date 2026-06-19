@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { Play, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-portrait.jpg";
 import heroVideo from "@/assets/My_hair_wasn_t_just_dry_Final-2.mp4.asset.json";
+import heroPoster from "@/assets/hero-video-poster.jpg.asset.json";
 
 // Swap these with the real assets when ready.
 // videoSrc: the 30s UGC showreel. videoPoster: the poster frame shown before play.
 // sideStill: a DIFFERENT shot/crop from the video poster.
 const videoSrc = heroVideo.url;
-const videoPoster = heroImg; // replace with a dedicated poster frame
+const videoPoster = heroPoster.url; // a frame captured from the showreel itself
 const sideStill = heroImg; // replace with a distinct second photo
 
 
