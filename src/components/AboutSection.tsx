@@ -30,7 +30,7 @@ const AboutSection = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className={`flex items-start gap-4 bg-card rounded-xl py-3 px-4 border border-border/50 shadow-[0_1px_4px_-2px_hsl(340_45%_40%/0.12)] ${
+              className={`flex items-start gap-4 bg-card rounded-xl py-3 px-3.5 border border-border/50 shadow-[0_1px_4px_-2px_hsl(340_45%_40%/0.12)] ${
                 i === traits.length - 1
                   ? "sm:col-span-2 sm:max-w-[calc(50%-0.375rem)] sm:mx-auto"
                   : ""
