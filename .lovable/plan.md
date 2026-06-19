@@ -1,16 +1,11 @@
-## Goal
-Two small contact changes. (Full audit reported separately in chat.)
+## Plan
 
-## Change 1 — Contact section: remove Linktree button
-File: `src/components/ContactSection.tsx`
-- Remove the third `<a>` button (the "Linktree" one, lines ~39-47), leaving only "Email Me" and "WhatsApp".
-- Remove the now-unused `ExternalLink` import.
+1. **Upload the uploaded video to Lovable Assets**
+   - Run `lovable-assets create --file /mnt/user-uploads/My_hair_wasn_t_just_dry_-_Final-2.mp4 --filename My_hair_wasn_t_just_dry_Final-2.mp4 > src/assets/My_hair_wasn_t_just_dry_Final-2.mp4.asset.json`
 
-## Change 2 — Footer: add a subtle Linktree link
-File: `src/components/Footer.tsx`
-- Add a low-emphasis text link "Linktree" alongside the existing Email / Instagram / YouTube icons in the same flex row.
-- Match the quiet styling of the existing "Email" text link (`text-primary-foreground/60 hover:text-primary-foreground ... font-body text-sm`) — not a button.
-- Point it to `https://linktr.ee/` as a placeholder (carry over the existing Linktree URL). Flagged in the audit as needing your real Linktree handle.
+2. **Wire the asset into HeroSection**
+   - Import the new `.asset.json` in `src/components/HeroSection.tsx`
+   - Replace `const videoSrc = "";` with the imported asset URL
+   - The phone mockup already handles playback via `handlePlay` and `<video>` — no other changes needed.
 
-## Note
-Both the removed Contact Linktree button and the new Footer link currently use the placeholder `https://linktr.ee/`. Provide your real Linktree URL and I'll wire it in. No other files change.
+The existing `videoPoster` (hero portrait) stays as-is until a dedicated poster frame is provided.
