@@ -1,11 +1,21 @@
-## Plan
+# Hero poster from video frame
 
-1. **Upload the uploaded video to Lovable Assets**
-   - Run `lovable-assets create --file /mnt/user-uploads/My_hair_wasn_t_just_dry_-_Final-2.mp4 --filename My_hair_wasn_t_just_dry_Final-2.mp4 > src/assets/My_hair_wasn_t_just_dry_Final-2.mp4.asset.json`
+Keep the click-to-play behaviour exactly as it is. Only swap the static image shown before play (currently the hero portrait photo) for a real frame captured from the showreel video itself.
 
-2. **Wire the asset into HeroSection**
-   - Import the new `.asset.json` in `src/components/HeroSection.tsx`
-   - Replace `const videoSrc = "";` with the imported asset URL
-   - The phone mockup already handles playback via `handlePlay` and `<video>` — no other changes needed.
+## What changes
 
-The existing `videoPoster` (hero portrait) stays as-is until a dedicated poster frame is provided.
+1. **Extract a frame** from `My_hair_wasn_t_just_dry_-_Final-2.mp4` using ffmpeg (a frame ~1–2s in, where the subject is clearly visible), save as a JPG.
+2. **Upload the frame** to the Lovable Assets CDN and write its `.asset.json` pointer into `src/assets/` (e.g. `hero-video-poster.jpg.asset.json`).
+3. **Wire it into `HeroSection.tsx`:**
+   - Import the new poster asset.
+   - Change `const videoPoster = heroImg;` to use the new frame's URL.
+   - This automatically updates both the `<img>` shown before play and the `<video poster=...>`.
+
+## Untouched
+
+- Click-to-play flow (`handlePlay`, play button, "Watch (30s)" label).
+- The secondary side still (`sideStill`) keeps using the portrait photo, so the layout still has two distinct visuals.
+
+## Technical notes
+
+ffmpeg command (build mode): `ffmpeg -ss 00:00:01.5 -i <video> -frames:v 1 -q:v 2 /tmp/hero-video-poster.jpg`, then `lovable-assets create`. If the chosen timestamp lands on an unflattering frame, I'll grab a couple of candidates and pick the best.
