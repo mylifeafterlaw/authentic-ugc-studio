@@ -1,31 +1,26 @@
-## About Section Redesign Plan
+## About Section – Widen Card Grid
 
-### Scope
-Only `src/components/AboutSection.tsx`. No other sections touched.
+### Problem
+The card grid is constrained to `max-w-2xl` on the grid and `max-w-3xl` on the section container. This leaves large empty margins on desktop and makes each card so narrow that headlines and subtext wrap across 3–4 lines, looking cramped.
 
-### Changes
+### Fix
 
-1. **Two-column grid (desktop)**
-   - Replace the single `space-y-3` stack with a CSS Grid (`grid-cols-2`) on desktop.
-   - Cards sit in pairs across two rows.
-   - The 5th card keeps the **same single-column width** as the other four cards and is centred horizontally beneath the two columns (e.g. via `mx-auto` or `justify-self-center`), so it does not stretch across the full grid width.
-   - Collapse to single column on mobile (`grid-cols-1`).
-   - Constrain the whole grid to a centred `max-w-3xl` (already present on the container) so it doesn't stretch edge to edge.
+1. **Widen the section and grid containers**
+   - Change section container `max-w-3xl` → `max-w-5xl`.
+   - Change inner grid `max-w-2xl mx-auto` → `max-w-5xl mx-auto` (or remove its own max-width so it fills the section container).
+   - Keep page margins via `px-6`.
 
-2. **Tidier, lighter cards**
-   - Keep `bg-card` and rounded corners, but reduce shadow class from `shadow-soft` to a flatter custom utility (or inline lighter shadow).
-   - Remove fixed padding that creates large internal empty space; let cards size to their content with modest padding (`py-3 px-4` or similar).
-   - Ensure cards align neatly within their grid cell without stretching vertically across the row.
+2. **Reduce internal card padding slightly**
+   - Change card horizontal padding from `px-4` to `px-3.5` (or `px-3`) to give text a little more room inside each wider card.
+   - Keep `py-3` vertical padding unchanged.
 
-3. **Larger, warmer icons**
-   - Increase the icon container circle from `w-10 h-10` to `w-12 h-12`.
-   - Increase the icon itself from `w-5 h-5` to `w-6 h-6`.
-   - Keep the `bg-secondary` soft circle background.
+3. **Preserve all existing design decisions**
+   - Two-column `sm:grid-cols-2` layout.
+   - 5th card centred on its own row at single-column width.
+   - Lighter custom shadow, `bg-card`, rounded corners.
+   - `w-12 h-12` icon containers, `w-6 h-6` icons, `bg-secondary` circles.
+   - `mt-7` gap above the closing quote, `mt-3` above the link.
+   - All copy, headings, links and icons untouched.
 
-4. **Tighter spacing**
-   - Reduce the gap between the bottom of the card grid and the `"Same person on camera as off it"` line from `mt-10` to `mt-6` or `mt-8`.
-   - Keep the small gap (`mt-3`) between that line and the `More about me` link.
-
-5. **Copy & assets preserved**
-   - Exact same headings, subtext, icons, and links retained.
-   - On-brand colour tokens (`bg-secondary`, `text-primary`, etc.) kept throughout.
+### Result
+Cards use far more horizontal space, text sits on 1–2 lines instead of 3–4, and the section feels balanced instead of floating in a narrow column.
