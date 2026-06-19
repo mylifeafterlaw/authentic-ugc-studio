@@ -22,18 +22,22 @@ const AboutSection = () => (
           About Jess
         </h2>
 
-        <div className="space-y-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
           {traits.map((trait, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="flex items-start gap-4 bg-card rounded-lg py-2.5 px-4 shadow-soft"
+              transition={{ delay: i * 0.08 }}
+              className={`flex items-start gap-4 bg-card rounded-xl py-3 px-4 border border-border/50 shadow-[0_1px_4px_-2px_hsl(340_45%_40%/0.12)] ${
+                i === traits.length - 1
+                  ? "sm:col-span-2 sm:max-w-[calc(50%-0.375rem)] sm:mx-auto"
+                  : ""
+              }`}
             >
-              <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                <trait.icon className="w-5 h-5 text-primary" />
+              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                <trait.icon className="w-6 h-6 text-primary" />
               </div>
               <div className="pt-0.5">
                 <p className="font-body text-foreground text-base font-semibold leading-snug">
@@ -51,7 +55,7 @@ const AboutSection = () => (
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mt-10 font-body text-muted-foreground text-sm italic"
+          className="text-center mt-7 font-body text-muted-foreground text-sm italic"
         >
           "Same person on camera as off it."
         </motion.p>
