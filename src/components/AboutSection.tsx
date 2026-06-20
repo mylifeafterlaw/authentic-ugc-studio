@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Scale, Bike, Brain, Heart, Dumbbell } from "lucide-react";
+import { Scale, Bike, Brain, Heart, Dumbbell, Mic } from "lucide-react";
 
 const traits = [
   { icon: Scale, headline: "Left law to build something slower", sub: "Corporate lawyer turned content creator" },
@@ -8,6 +8,7 @@ const traits = [
   { icon: Brain, headline: "ADHD, and open about it", sub: "It shapes how I work and what I make" },
   { icon: Heart, headline: "Genuine wellness obsessive", sub: "Real lived experience, not borrowed talking points" },
   { icon: Dumbbell, headline: "Always training something", sub: "Gym regular, currently learning Muay Thai" },
+  { icon: Mic, headline: "Performer before I was a creator", sub: "Trained singer, plenty of stage and gig experience" },
 ];
 
 const AboutSection = () => (
@@ -30,11 +31,7 @@ const AboutSection = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className={`flex items-start gap-4 bg-card rounded-xl py-3 px-3.5 border border-border/50 shadow-[0_1px_4px_-2px_hsl(340_45%_40%/0.12)] ${
-                i === traits.length - 1
-                  ? "sm:col-span-2 sm:max-w-[calc(50%-0.375rem)] sm:mx-auto"
-                  : ""
-              }`}
+              className="flex items-start gap-4 bg-card rounded-xl py-3 px-3.5 border border-border/50 shadow-[0_1px_4px_-2px_hsl(340_45%_40%/0.12)]"
             >
               <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
                 <trait.icon className="w-6 h-6 text-primary" />

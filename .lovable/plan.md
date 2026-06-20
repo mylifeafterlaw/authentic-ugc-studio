@@ -1,26 +1,12 @@
-## About Section – Widen Card Grid
+About section — add a sixth card for a clean 3×2 grid.
 
-### Problem
-The card grid is constrained to `max-w-2xl` on the grid and `max-w-3xl` on the section container. This leaves large empty margins on desktop and makes each card so narrow that headlines and subtext wrap across 3–4 lines, looking cramped.
+1. Add sixth trait to the `traits` array:
+   - Icon: `Mic` from lucide-react (on-brand music/performance icon)
+   - Headline: "Performer before I was a creator" (verbatim)
+   - Sub: "Trained singer, plenty of stage and gig experience" (verbatim)
 
-### Fix
+2. Remove the 5th-card centred-on-its-own-row behaviour. Currently the last card has `sm:col-span-2 sm:max-w-[calc(50%-0.375rem)] sm:mx-auto` — this will be deleted so all six cards render as identical two-column cells.
 
-1. **Widen the section and grid containers**
-   - Change section container `max-w-3xl` → `max-w-5xl`.
-   - Change inner grid `max-w-2xl mx-auto` → `max-w-5xl mx-auto` (or remove its own max-width so it fills the section container).
-   - Keep page margins via `px-6`.
+3. Keep everything else unchanged: wider `max-w-5xl` grid container, lighter custom shadow, `rounded-xl`, `py-3 px-3.5`, `w-12 h-12` icon circles with `w-6 h-6` icons, `bg-card`, `bg-secondary` circles, `mt-7` above quote, `mt-3` above link, all five existing cards' copy untouched. Mobile stays single-column.
 
-2. **Reduce internal card padding slightly**
-   - Change card horizontal padding from `px-4` to `px-3.5` (or `px-3`) to give text a little more room inside each wider card.
-   - Keep `py-3` vertical padding unchanged.
-
-3. **Preserve all existing design decisions**
-   - Two-column `sm:grid-cols-2` layout.
-   - 5th card centred on its own row at single-column width.
-   - Lighter custom shadow, `bg-card`, rounded corners.
-   - `w-12 h-12` icon containers, `w-6 h-6` icons, `bg-secondary` circles.
-   - `mt-7` gap above the closing quote, `mt-3` above the link.
-   - All copy, headings, links and icons untouched.
-
-### Result
-Cards use far more horizontal space, text sits on 1–2 lines instead of 3–4, and the section feels balanced instead of floating in a narrow column.
+Result: a balanced 3-row × 2-column grid with six equal cards.
