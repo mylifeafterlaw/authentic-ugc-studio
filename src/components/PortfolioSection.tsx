@@ -194,7 +194,7 @@ const CategoryRow = ({
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-6 overflow-x-auto px-1 snap-x snap-mandatory pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:px-0"
       >
         {tiles.map((tile, idx) => (
           <div key={idx} className="snap-start">
@@ -203,20 +203,20 @@ const CategoryRow = ({
         ))}
       </div>
 
-      {/* Scroll cue: soft right-edge fade, hidden once fully scrolled */}
+      {/* Scroll cue: soft right-edge fade, hidden once fully scrolled (desktop only) */}
       <div
         aria-hidden
-        className={`pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent transition-opacity duration-300 ${
+        className={`pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent transition-opacity duration-300 hidden md:block ${
           atEnd ? "opacity-0" : "opacity-100"
         }`}
       />
 
-      {/* Right scroll arrow */}
+      {/* Right scroll arrow (desktop only) */}
       <button
         type="button"
         onClick={scrollNext}
         aria-label="Scroll right"
-        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-soft flex items-center justify-center text-muted-foreground hover:text-foreground transition-opacity duration-300 ${
+        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-soft hidden md:flex items-center justify-center text-muted-foreground hover:text-foreground transition-opacity duration-300 ${
           atEnd ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
