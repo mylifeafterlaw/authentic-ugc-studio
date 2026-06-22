@@ -190,17 +190,8 @@ const VideoTile = ({
     <>
       <div className="relative w-full aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
         <div className="group relative w-full h-full rounded-[1.9rem] bg-black overflow-hidden">
-          {tile.videoUrl ? (
-            <video
-              // Poster always shows a real frame; src is only set when in view.
-              src={inView ? tile.videoUrl : undefined}
-              poster={tile.poster}
-              muted
-              playsInline
-              preload="none"
-              className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
-            />
-          ) : tile.poster ? (
+          {/* Real poster still — always painted, so the tile shows content instantly */}
+          {tile.poster ? (
             <img
               src={tile.poster}
               alt={tile.subject ?? tile.label ?? "Portfolio video"}
@@ -209,6 +200,18 @@ const VideoTile = ({
             />
           ) : (
             <div className="absolute inset-0 gradient-soft scale-[1.03]" />
+          )}
+
+          {/* Lazy video: no bytes download until in view + play (preload none). */}
+          {tile.videoUrl && inView && (
+            <video
+              src={tile.videoUrl}
+              poster={tile.poster}
+              muted
+              playsInline
+              preload="none"
+              className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
+            />
           )}
 
           {/* notch */}
