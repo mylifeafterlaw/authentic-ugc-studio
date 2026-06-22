@@ -50,8 +50,8 @@ const HeroSection = () => {
           className="text-center lg:text-left flex flex-col justify-center lg:pl-8 xl:pl-16"
         >
           {/* Mobile-only portrait above the name — straight, no tilt */}
-          <div className="lg:hidden mx-auto mb-6 w-[180px] sm:w-[220px]">
-            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background">
+          <div className="lg:hidden mx-auto mb-2 w-[140px] sm:w-[170px]">
+            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-soft border border-background/40">
               <img
                 src={sideStill}
                 alt="Jess Cousin – UGC creator portrait"
