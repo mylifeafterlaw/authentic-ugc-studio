@@ -89,6 +89,18 @@ const categories: Category[] = [
   },
 ];
 
+// Mobile-only swipe cue: soft fade + subtle muted-maroon chevron at the right edge.
+const SwipeCue = () => (
+  <div aria-hidden className="md:hidden">
+    <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent" />
+    <div className="pointer-events-none absolute right-1 top-[36%] -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-background/80 backdrop-blur-sm border border-primary/20 shadow-soft flex items-center justify-center text-primary/70 animate-pulse">
+      <ChevronRight className="w-4 h-4" />
+    </div>
+  </div>
+);
+
+
+
 const VideoTile = ({
   tile,
   onPlay,
