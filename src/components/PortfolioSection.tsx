@@ -14,6 +14,7 @@ import huskiesVideo from "@/assets/huskies.mp4.asset.json";
 import rajadamnernVideo from "@/assets/rajadamnern.mp4.asset.json";
 import cinemaVideo from "@/assets/cinema.mp4.asset.json";
 import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4.asset.json";
+import rajaStadiumPoster from "@/assets/raja-stadium-poster.png.asset.json";
 import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook.mp4.asset.json";
 import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4.asset.json";
 import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4.asset.json";
@@ -81,7 +82,7 @@ const categories: Category[] = [
     tiles: [
       { label: "Tattoo Chiang Mai", videoUrl: tattooVideo.url },
       { label: "Huskies", videoUrl: huskiesVideo.url },
-      { label: "Rajadamnern", videoUrl: rajadamnernVideo.url },
+      { label: "Rajadamnern", thumbnail: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
       { label: "Cinema", videoUrl: cinemaVideo.url },
       { label: "Café Wat Bang Nam Phueng Nok", videoUrl: cafeWatVideo.url },
     ],
