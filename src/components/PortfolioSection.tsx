@@ -33,6 +33,7 @@ import tattooPoster from "@/assets/tattoo-poster.jpg.asset.json";
 import huskiesPoster from "@/assets/huskies-poster.jpg.asset.json";
 import cinemaPoster from "@/assets/cinema-poster.jpg.asset.json";
 import cafeWatPoster from "@/assets/cafe-wat-poster.jpg.asset.json";
+import neverlandPoster from "@/assets/neverland.png.asset.json";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
@@ -136,7 +137,7 @@ const categories: Category[] = [
     name: "Lifestyle & Experience",
     tiles: [
       { label: "Tattoo Chiang Mai", poster: tattooPoster.url, videoUrl: tattooVideo.url },
-      { label: "Huskies", poster: huskiesPoster.url, videoUrl: huskiesVideo.url },
+      { label: "Huskies", poster: neverlandPoster.url, videoUrl: huskiesVideo.url },
       { label: "Rajadamnern", poster: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
       { label: "Cinema", poster: cinemaPoster.url, videoUrl: cinemaVideo.url },
       { label: "Café Wat Bang Nam Phueng Nok", poster: cafeWatPoster.url, videoUrl: cafeWatVideo.url },
