@@ -16,6 +16,7 @@ import cinemaVideo from "@/assets/cinema.mp4.asset.json";
 import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4.asset.json";
 import humeHealthVideo from "@/assets/hume-health-no-edits.mp4.asset.json";
 import rajaStadiumPoster from "@/assets/raja-stadium-poster.png.asset.json";
+import humeHealthThumbnail from "@/assets/hume-health-thumbnail.jpg.asset.json";
 import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook.mp4.asset.json";
 import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4.asset.json";
 import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4.asset.json";
