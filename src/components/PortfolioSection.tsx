@@ -211,6 +211,7 @@ const CategoryRow = ({
   onPlay: (url: string) => void;
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
 
   // 4 or fewer: horizontal swipe strip on mobile, centred wrapping row on desktop.
