@@ -137,7 +137,7 @@ const categories: Category[] = [
     name: "Lifestyle & Experience",
     tiles: [
       { label: "Tattoo Chiang Mai", poster: tattooPoster.url, videoUrl: tattooVideo.url },
-      { label: "Huskies", poster: huskiesPoster.url, videoUrl: huskiesVideo.url },
+      { label: "Huskies", poster: neverlandPoster.url, videoUrl: huskiesVideo.url },
       { label: "Rajadamnern", poster: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
       { label: "Cinema", poster: cinemaPoster.url, videoUrl: cinemaVideo.url },
       { label: "Café Wat Bang Nam Phueng Nok", poster: cafeWatPoster.url, videoUrl: cafeWatVideo.url },
