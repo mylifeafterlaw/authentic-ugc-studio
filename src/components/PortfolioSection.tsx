@@ -31,7 +31,7 @@ import skinComparisonPoster from "@/assets/skin-comparison-poster.jpg.asset.json
 import productUGCPoster from "@/assets/product-ugc-poster.jpg.asset.json";
 import tattooPoster from "@/assets/tattoo-poster.jpg.asset.json";
 import huskiesPoster from "@/assets/huskies-poster.jpg.asset.json";
-import cinemaPoster from "@/assets/cinema-poster.jpg.asset.json";
+import cinemaPoster from "@/assets/cinema-face-poster.jpg.asset.json";
 import cafeWatPoster from "@/assets/cafe-wat-poster.jpg.asset.json";
 import neverlandPoster from "@/assets/neverland.png.asset.json";
 
