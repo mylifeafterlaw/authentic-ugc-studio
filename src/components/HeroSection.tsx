@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import { Play, ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-portrait.jpg";
 import heroVideo from "@/assets/Product_UGC_Triple_hook_voiceover_b-roll-2.mp4.asset.json";
@@ -118,12 +118,14 @@ const HeroSection = () => {
 
             {/* Quiet handle link — centred under the visible photo slice */}
             <div className="hidden lg:flex justify-center absolute top-full left-[55%] -translate-x-1/2 mt-8 z-20">
-              <Link
-                to="/links"
+              <a
+                href="https://linktr.ee/MyLifeAfterLaw"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="font-body text-xs sm:text-sm text-primary/60 tracking-wide hover:text-primary transition-colors"
               >
                 @MyLifeAfterLaw
-              </Link>
+              </a>
             </div>
 
           </div>
