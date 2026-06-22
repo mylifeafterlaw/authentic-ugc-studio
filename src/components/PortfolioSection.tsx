@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import apartmentVideo from "@/assets/apartment-ugc.mp4.asset.json";
 import condoVideo from "@/assets/condo-ugc.mp4.asset.json";
