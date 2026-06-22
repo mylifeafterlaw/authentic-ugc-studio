@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -20,12 +20,25 @@ import humeHealthThumbnail from "@/assets/hume-health-thumbnail.jpg.asset.json";
 import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook.mp4.asset.json";
 import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4.asset.json";
 import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4.asset.json";
+// Poster stills (real video frames) for fast, lazy loading
+import hairProductPoster from "@/assets/hair-product-poster.jpg.asset.json";
+import livingBeautifulPoster from "@/assets/living-beautiful-poster.jpg.asset.json";
+import productTripleHookPoster from "@/assets/product-triple-hook-poster.jpg.asset.json";
+import condoPoster from "@/assets/condo-poster.jpg.asset.json";
+import vietnamApartmentPoster from "@/assets/vietnam-apartment-poster.jpg.asset.json";
+import singaporeZooPoster from "@/assets/singapore-zoo-poster.jpg.asset.json";
+import skinComparisonPoster from "@/assets/skin-comparison-poster.jpg.asset.json";
+import productUGCPoster from "@/assets/product-ugc-poster.jpg.asset.json";
+import tattooPoster from "@/assets/tattoo-poster.jpg.asset.json";
+import huskiesPoster from "@/assets/huskies-poster.jpg.asset.json";
+import cinemaPoster from "@/assets/cinema-poster.jpg.asset.json";
+import cafeWatPoster from "@/assets/cafe-wat-poster.jpg.asset.json";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
   subject?: string; // primary caption line (uppercase, letter-spaced)
   format?: string; // secondary caption line (smaller, more muted)
-  thumbnail?: string; // poster image URL (optional)
+  poster?: string; // real video-frame still shown before/while the video loads
   videoUrl?: string; // CDN video URL — plays inline in a modal
 };
 
@@ -36,7 +49,7 @@ type Category = {
 };
 
 // Edit this array to add/remove tiles or categories.
-// Fill `thumbnail` and `videoUrl` per tile to go live with real videos.
+// Each tile has a real poster still + lazy-loaded video for fast mobile loading.
 const categories: Category[] = [
   {
     id: "product",
@@ -45,17 +58,20 @@ const categories: Category[] = [
       {
         subject: "Haircare",
         format: "Before and after · B-roll and voiceover · hook-led",
+        poster: hairProductPoster.url,
         videoUrl: hairProductVideo.url,
       },
       {
         subject: "Skincare",
         format:
           "Talking-to-camera with B-roll · natural product integration · hook-led",
+        poster: livingBeautifulPoster.url,
         videoUrl: livingBeautifulVideo.url,
       },
       {
         subject: "Water bottle",
         format: "Hook-led · talking-to-camera and B-roll",
+        poster: productTripleHookPoster.url,
         videoUrl: productTripleHookVideo.url,
       },
     ],
@@ -67,22 +83,25 @@ const categories: Category[] = [
       {
         subject: "Apartment tour · Vietnam",
         format: "B-roll and voiceover",
-        thumbnail: apartmentPoster.url,
+        poster: apartmentPoster.url,
         videoUrl: apartmentVideo.url,
       },
       {
         subject: "Condo tour · Chiang Mai",
         format: "Hook-led · talking-to-camera and B-roll with voiceover",
+        poster: condoPoster.url,
         videoUrl: condoVideo.url,
       },
       {
         subject: "Apartment tour · Vietnam",
         format: "Aesthetic B-roll and voiceover",
+        poster: vietnamApartmentPoster.url,
         videoUrl: vietnamApartmentVideo.url,
       },
       {
         subject: "Travel · Singapore",
         format: "B-roll and voiceover · natural travel style",
+        poster: singaporeZooPoster.url,
         videoUrl: singaporeZooVideo.url,
       },
     ],
@@ -94,18 +113,20 @@ const categories: Category[] = [
       {
         subject: "Hume Health",
         format: "Talking-to-camera · hook and CTA · ad-style",
-        thumbnail: humeHealthThumbnail.url,
+        poster: humeHealthThumbnail.url,
         videoUrl: humeHealthVideo.url,
       },
       {
         subject: "Skincare",
         format:
           "Talking-to-camera · before and after with overlays · series-style",
+        poster: skinComparisonPoster.url,
         videoUrl: skinComparisonVideo.url,
       },
       {
         subject: "Food and drink",
         format: "Talking-to-camera · natural and authentic",
+        poster: productUGCPoster.url,
         videoUrl: productUGC.url,
       },
     ],
@@ -114,11 +135,11 @@ const categories: Category[] = [
     id: "lifestyle-experience",
     name: "Lifestyle & Experience",
     tiles: [
-      { label: "Tattoo Chiang Mai", videoUrl: tattooVideo.url },
-      { label: "Huskies", videoUrl: huskiesVideo.url },
-      { label: "Rajadamnern", thumbnail: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
-      { label: "Cinema", videoUrl: cinemaVideo.url },
-      { label: "Café Wat Bang Nam Phueng Nok", videoUrl: cafeWatVideo.url },
+      { label: "Tattoo Chiang Mai", poster: tattooPoster.url, videoUrl: tattooVideo.url },
+      { label: "Huskies", poster: huskiesPoster.url, videoUrl: huskiesVideo.url },
+      { label: "Rajadamnern", poster: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
+      { label: "Cinema", poster: cinemaPoster.url, videoUrl: cinemaVideo.url },
+      { label: "Café Wat Bang Nam Phueng Nok", poster: cafeWatPoster.url, videoUrl: cafeWatVideo.url },
     ],
   },
 ];
@@ -145,23 +166,37 @@ const VideoTile = ({
   tile: Tile;
   onPlay: (url: string) => void;
 }) => {
+  const wrapperRef = useRef<any>(null);
+  // Lazy-load: only attach the video src once the tile nears the viewport.
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el || inView) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [inView]);
+
   const inner = (
     <>
       <div className="relative w-full aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
         <div className="group relative w-full h-full rounded-[1.9rem] bg-black overflow-hidden">
-          {tile.thumbnail ? (
+          {/* Real poster still, lazy-loaded via IntersectionObserver (in view → load).
+              No video bytes download until the user opens the modal to play. */}
+          {tile.poster ? (
             <img
-              src={tile.thumbnail}
+              src={inView ? tile.poster : undefined}
               alt={tile.subject ?? tile.label ?? "Portfolio video"}
               loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
-            />
-          ) : tile.videoUrl ? (
-            <video
-              src={tile.videoUrl}
-              muted
-              playsInline
-              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
             />
           ) : (
@@ -205,6 +240,7 @@ const VideoTile = ({
   if (tile.videoUrl) {
     return (
       <button
+        ref={wrapperRef}
         type="button"
         onClick={() => onPlay(tile.videoUrl!)}
         className="group block w-[52vw] max-w-[210px] md:w-[260px] md:max-w-none shrink-0 text-left"
@@ -214,7 +250,14 @@ const VideoTile = ({
     );
   }
 
-  return <div className="group block w-[52vw] max-w-[210px] md:w-[260px] md:max-w-none shrink-0">{inner}</div>;
+  return (
+    <div
+      ref={wrapperRef}
+      className="group block w-[52vw] max-w-[210px] md:w-[260px] md:max-w-none shrink-0"
+    >
+      {inner}
+    </div>
+  );
 };
 
 const CategoryRow = ({
