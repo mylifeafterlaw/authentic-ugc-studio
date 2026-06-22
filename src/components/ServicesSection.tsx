@@ -17,7 +17,7 @@ const ServicesSection = () => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-14"
+        className="text-center mb-10 md:mb-14"
       >
         <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground mb-3">
           Services
@@ -25,7 +25,7 @@ const ServicesSection = () => (
         <p className="font-body text-muted-foreground text-base">The formats I work in. Mix and match to fit your brief.</p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
         {services.map((s, i) => (
           <motion.div
             key={i}
@@ -33,9 +33,9 @@ const ServicesSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08 }}
-            className="bg-card rounded-xl p-6 text-center shadow-soft hover:shadow-card transition-shadow"
+            className="bg-card rounded-xl py-4 px-5 md:p-6 text-center shadow-soft hover:shadow-card transition-shadow"
           >
-            <div className="w-14 h-14 mx-auto rounded-full bg-secondary flex items-center justify-center mb-4">
+            <div className="w-12 h-12 md:w-14 md:h-14 mx-auto rounded-full bg-secondary flex items-center justify-center mb-2 md:mb-4">
               <s.icon className="w-6 h-6 text-primary" />
             </div>
             <h3 className="font-heading text-lg text-foreground mb-1">{s.label}</h3>
