@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { trackClick } from "@/lib/analytics";
 
 const navLinks = [
   { label: "Home", href: "#hero" },
@@ -58,7 +59,10 @@ const Navbar = () => {
         {/* Desktop — right CTA */}
         <div className="hidden md:block">
           <button
-            onClick={() => handleClick("#contact")}
+            onClick={() => {
+              trackClick("Work With Me", "navbar");
+              handleClick("#contact");
+            }}
             className="gradient-cta text-primary-foreground font-body text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition-opacity"
           >
             Work With Me
@@ -93,7 +97,10 @@ const Navbar = () => {
               </button>
             ))}
             <button
-              onClick={() => handleClick("#contact")}
+              onClick={() => {
+                trackClick("Work With Me", "navbar-mobile");
+                handleClick("#contact");
+              }}
               className="mt-2 w-full gradient-cta text-primary-foreground font-body font-semibold py-3 rounded-full"
             >
               Work With Me
