@@ -41,7 +41,6 @@ const categories: Category[] = [
       { label: "Triple Hook UGC", videoUrl: productTripleHookVideo.url },
       { label: "Hair Product", videoUrl: hairProductVideo.url },
       { label: "Living Somewhere Beautiful", videoUrl: livingBeautifulVideo.url },
-      { label: "Product UGC", videoUrl: productUGC.url },
     ],
   },
   {
@@ -72,6 +71,7 @@ const categories: Category[] = [
     name: "Talking to Camera",
     tiles: [
       { label: "Skin Comparison", videoUrl: skinComparisonVideo.url },
+      { label: "Product UGC", videoUrl: productUGC.url },
       { label: "Piece to camera" },
       { label: "Voiceover" },
     ],
