@@ -38,7 +38,7 @@ type Tile = {
   label?: string; // small caption under the tile (optional)
   subject?: string; // primary caption line (uppercase, letter-spaced)
   format?: string; // secondary caption line (smaller, more muted)
-  thumbnail?: string; // poster image URL (optional)
+  poster?: string; // real video-frame still shown before/while the video loads
   videoUrl?: string; // CDN video URL — plays inline in a modal
 };
 
@@ -49,7 +49,7 @@ type Category = {
 };
 
 // Edit this array to add/remove tiles or categories.
-// Fill `thumbnail` and `videoUrl` per tile to go live with real videos.
+// Each tile has a real poster still + lazy-loaded video for fast mobile loading.
 const categories: Category[] = [
   {
     id: "product",
@@ -58,17 +58,20 @@ const categories: Category[] = [
       {
         subject: "Haircare",
         format: "Before and after · B-roll and voiceover · hook-led",
+        poster: hairProductPoster.url,
         videoUrl: hairProductVideo.url,
       },
       {
         subject: "Skincare",
         format:
           "Talking-to-camera with B-roll · natural product integration · hook-led",
+        poster: livingBeautifulPoster.url,
         videoUrl: livingBeautifulVideo.url,
       },
       {
         subject: "Water bottle",
         format: "Hook-led · talking-to-camera and B-roll",
+        poster: productTripleHookPoster.url,
         videoUrl: productTripleHookVideo.url,
       },
     ],
@@ -80,22 +83,25 @@ const categories: Category[] = [
       {
         subject: "Apartment tour · Vietnam",
         format: "B-roll and voiceover",
-        thumbnail: apartmentPoster.url,
+        poster: apartmentPoster.url,
         videoUrl: apartmentVideo.url,
       },
       {
         subject: "Condo tour · Chiang Mai",
         format: "Hook-led · talking-to-camera and B-roll with voiceover",
+        poster: condoPoster.url,
         videoUrl: condoVideo.url,
       },
       {
         subject: "Apartment tour · Vietnam",
         format: "Aesthetic B-roll and voiceover",
+        poster: vietnamApartmentPoster.url,
         videoUrl: vietnamApartmentVideo.url,
       },
       {
         subject: "Travel · Singapore",
         format: "B-roll and voiceover · natural travel style",
+        poster: singaporeZooPoster.url,
         videoUrl: singaporeZooVideo.url,
       },
     ],
@@ -107,18 +113,20 @@ const categories: Category[] = [
       {
         subject: "Hume Health",
         format: "Talking-to-camera · hook and CTA · ad-style",
-        thumbnail: humeHealthThumbnail.url,
+        poster: humeHealthThumbnail.url,
         videoUrl: humeHealthVideo.url,
       },
       {
         subject: "Skincare",
         format:
           "Talking-to-camera · before and after with overlays · series-style",
+        poster: skinComparisonPoster.url,
         videoUrl: skinComparisonVideo.url,
       },
       {
         subject: "Food and drink",
         format: "Talking-to-camera · natural and authentic",
+        poster: productUGCPoster.url,
         videoUrl: productUGC.url,
       },
     ],
@@ -127,11 +135,11 @@ const categories: Category[] = [
     id: "lifestyle-experience",
     name: "Lifestyle & Experience",
     tiles: [
-      { label: "Tattoo Chiang Mai", videoUrl: tattooVideo.url },
-      { label: "Huskies", videoUrl: huskiesVideo.url },
-      { label: "Rajadamnern", thumbnail: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
-      { label: "Cinema", videoUrl: cinemaVideo.url },
-      { label: "Café Wat Bang Nam Phueng Nok", videoUrl: cafeWatVideo.url },
+      { label: "Tattoo Chiang Mai", poster: tattooPoster.url, videoUrl: tattooVideo.url },
+      { label: "Huskies", poster: huskiesPoster.url, videoUrl: huskiesVideo.url },
+      { label: "Rajadamnern", poster: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
+      { label: "Cinema", poster: cinemaPoster.url, videoUrl: cinemaVideo.url },
+      { label: "Café Wat Bang Nam Phueng Nok", poster: cafeWatPoster.url, videoUrl: cafeWatVideo.url },
     ],
   },
 ];
