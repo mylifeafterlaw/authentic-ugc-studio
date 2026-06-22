@@ -168,12 +168,15 @@ const CategoryRow = ({
   // 4 or fewer: horizontal swipe strip on mobile, centred wrapping row on desktop.
   if (tiles.length <= 4) {
     return (
-      <div className="flex gap-6 overflow-x-auto px-1 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:overflow-x-visible md:flex-wrap md:justify-center md:px-0">
-        {tiles.map((tile, idx) => (
-          <div key={idx} className="snap-start">
-            <VideoTile tile={tile} onPlay={onPlay} />
-          </div>
-        ))}
+      <div className="relative">
+        <div className="flex gap-4 md:gap-6 overflow-x-auto px-1 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:overflow-x-visible md:flex-wrap md:justify-center md:px-0">
+          {tiles.map((tile, idx) => (
+            <div key={idx} className="snap-start">
+              <VideoTile tile={tile} onPlay={onPlay} />
+            </div>
+          ))}
+        </div>
+        <SwipeCue />
       </div>
     );
   }
