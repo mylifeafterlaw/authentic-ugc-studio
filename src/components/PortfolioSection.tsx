@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Play } from "lucide-react";
+import { ChevronRight, Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import apartmentVideo from "@/assets/apartment-ugc.mp4.asset.json";
 import condoVideo from "@/assets/condo-ugc.mp4.asset.json";
@@ -183,6 +183,12 @@ const CategoryRow = ({
     setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 8);
   };
 
+  const scrollNext = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: 284, behavior: "smooth" });
+  };
+
   return (
     <div className="relative mx-auto w-full max-w-[1200px]">
       <div
@@ -204,6 +210,18 @@ const CategoryRow = ({
           atEnd ? "opacity-0" : "opacity-100"
         }`}
       />
+
+      {/* Right scroll arrow */}
+      <button
+        type="button"
+        onClick={scrollNext}
+        aria-label="Scroll right"
+        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-soft flex items-center justify-center text-muted-foreground hover:text-foreground transition-opacity duration-300 ${
+          atEnd ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <ChevronRight className="w-5 h-5" />
+      </button>
     </div>
   );
 };
