@@ -1,12 +1,28 @@
-About section — add a sixth card for a clean 3×2 grid.
+# Final Pre-Publish Wiring & Cleanup
 
-1. Add sixth trait to the `traits` array:
-   - Icon: `Mic` from lucide-react (on-brand music/performance icon)
-   - Headline: "Performer before I was a creator" (verbatim)
-   - Sub: "Trained singer, plenty of stage and gig experience" (verbatim)
+## 1. Wire real URLs (external links open in new tab)
+**`src/components/HeroSection.tsx`**
+- "@MyLifeAfterLaw": change `<Link to="/links">` → `<a href="https://linktr.ee/MyLifeAfterLaw" target="_blank" rel="noopener noreferrer">` (keep existing classes/text). Remove now-unused `Link` import if no longer used elsewhere in the file.
 
-2. Remove the 5th-card centred-on-its-own-row behaviour. Currently the last card has `sm:col-span-2 sm:max-w-[calc(50%-0.375rem)] sm:mx-auto` — this will be deleted so all six cards render as identical two-column cells.
+**`src/components/Footer.tsx`** (these are already `<a target="_blank">`, just swap the href):
+- Instagram → `https://www.instagram.com/mylifeafterlaw/`
+- YouTube → `https://www.youtube.com/@MyLifeAfterLaw`
+- Linktree → `https://linktr.ee/MyLifeAfterLaw`
 
-3. Keep everything else unchanged: wider `max-w-5xl` grid container, lighter custom shadow, `rounded-xl`, `py-3 px-3.5`, `w-12 h-12` icon circles with `w-6 h-6` icons, `bg-card`, `bg-secondary` circles, `mt-7` above quote, `mt-3` above link, all five existing cards' copy untouched. Mobile stays single-column.
+## 2. Remove empty portfolio tiles
+**`src/components/PortfolioSection.tsx`** — in the `talking-head` ("Talking to Camera") category, delete the two tiles with no `videoUrl`/`thumbnail`:
+- `{ label: "Piece to camera" }`
+- `{ label: "Voiceover" }`
 
-Result: a balanced 3-row × 2-column grid with six equal cards.
+Category will then show only: Skin Comparison, Product UGC (both have real videos). No other empty tiles exist elsewhere — confirmed every other tile has a `videoUrl`.
+
+## 3. "More about me (coming soon)"
+**`src/components/AboutSection.tsx`** — this was NOT yet applied (still a clickable `<Link to="/about-me">`). I will replace it with a non-clickable, muted `<span>` reading "More about me (coming soon)", same position. Remove unused `Link` import.
+
+## 4. Verification after changes
+- Confirm no `to="/links"` or `to="/about-me"` clickable routes remain (grep).
+- Confirm no reachable 404 routes from any link.
+- Confirm no tile lacks both `videoUrl` and `thumbnail`.
+- Run typecheck/build to confirm no broken imports.
+
+No copy, layout, or styling changes beyond the items above.

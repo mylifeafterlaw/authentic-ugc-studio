@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import { Scale, Bike, Brain, Heart, Dumbbell, Mic } from "lucide-react";
 
 const traits = [
@@ -63,12 +63,9 @@ const AboutSection = () => (
           viewport={{ once: true }}
           className="text-center mt-3"
         >
-          <Link
-            to="/about-me"
-            className="font-body text-sm text-muted-foreground transition-colors hover:text-primary"
-          >
-            More about me &rarr;
-          </Link>
+          <span className="font-body text-sm text-muted-foreground/60">
+            More about me (coming soon)
+          </span>
         </motion.div>
       </motion.div>
     </div>
