@@ -20,6 +20,19 @@ import humeHealthThumbnail from "@/assets/hume-health-thumbnail.jpg.asset.json";
 import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook.mp4.asset.json";
 import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4.asset.json";
 import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4.asset.json";
+// Poster stills (real video frames) for fast, lazy loading
+import hairProductPoster from "@/assets/hair-product-poster.jpg.asset.json";
+import livingBeautifulPoster from "@/assets/living-beautiful-poster.jpg.asset.json";
+import productTripleHookPoster from "@/assets/product-triple-hook-poster.jpg.asset.json";
+import condoPoster from "@/assets/condo-poster.jpg.asset.json";
+import vietnamApartmentPoster from "@/assets/vietnam-apartment-poster.jpg.asset.json";
+import singaporeZooPoster from "@/assets/singapore-zoo-poster.jpg.asset.json";
+import skinComparisonPoster from "@/assets/skin-comparison-poster.jpg.asset.json";
+import productUGCPoster from "@/assets/product-ugc-poster.jpg.asset.json";
+import tattooPoster from "@/assets/tattoo-poster.jpg.asset.json";
+import huskiesPoster from "@/assets/huskies-poster.jpg.asset.json";
+import cinemaPoster from "@/assets/cinema-poster.jpg.asset.json";
+import cafeWatPoster from "@/assets/cafe-wat-poster.jpg.asset.json";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
