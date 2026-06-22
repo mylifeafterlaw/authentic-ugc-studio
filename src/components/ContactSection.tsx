@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail } from "lucide-react";
 
 const ContactSection = () => (
   <section id="contact" className="py-20 lg:py-28 gradient-hero relative overflow-hidden">
