@@ -23,6 +23,8 @@ import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4.
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
+  subject?: string; // primary caption line (uppercase, letter-spaced)
+  format?: string; // secondary caption line (smaller, more muted)
   thumbnail?: string; // poster image URL (optional)
   videoUrl?: string; // CDN video URL — plays inline in a modal
 };
@@ -40,9 +42,22 @@ const categories: Category[] = [
     id: "product",
     name: "Product",
     tiles: [
-      { label: "Hair Product", videoUrl: hairProductVideo.url },
-      { label: "Living Somewhere Beautiful", videoUrl: livingBeautifulVideo.url },
-      { label: "Triple Hook UGC", videoUrl: productTripleHookVideo.url },
+      {
+        subject: "Haircare",
+        format: "Before and after · B-roll and voiceover · hook-led",
+        videoUrl: hairProductVideo.url,
+      },
+      {
+        subject: "Skincare",
+        format:
+          "Talking-to-camera with B-roll · natural product integration · hook-led",
+        videoUrl: livingBeautifulVideo.url,
+      },
+      {
+        subject: "Water bottle",
+        format: "Hook-led · talking-to-camera and B-roll",
+        videoUrl: productTripleHookVideo.url,
+      },
     ],
   },
   {
@@ -119,7 +134,7 @@ const VideoTile = ({
           {tile.thumbnail ? (
             <img
               src={tile.thumbnail}
-              alt={tile.label ?? "Portfolio video"}
+              alt={tile.subject ?? tile.label ?? "Portfolio video"}
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
             />
@@ -148,10 +163,23 @@ const VideoTile = ({
       </div>
 
       {/* Small caption space below the tile */}
-      {tile.label && (
-        <p className="mt-3 text-center font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
-          {tile.label}
-        </p>
+      {tile.subject ? (
+        <div className="mt-3 text-center">
+          <p className="font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
+            {tile.subject}
+          </p>
+          {tile.format && (
+            <p className="mt-1 font-body text-[0.55rem] tracking-[0.08em] font-light text-muted-foreground/60">
+              {tile.format}
+            </p>
+          )}
+        </div>
+      ) : (
+        tile.label && (
+          <p className="mt-3 text-center font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
+            {tile.label}
+          </p>
+        )
       )}
     </>
   );
