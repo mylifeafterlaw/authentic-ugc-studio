@@ -166,23 +166,45 @@ const VideoTile = ({
   tile: Tile;
   onPlay: (url: string) => void;
 }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  // Lazy-load: only attach the video src once the tile nears the viewport.
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el || inView) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [inView]);
+
   const inner = (
     <>
       <div className="relative w-full aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
         <div className="group relative w-full h-full rounded-[1.9rem] bg-black overflow-hidden">
-          {tile.thumbnail ? (
-            <img
-              src={tile.thumbnail}
-              alt={tile.subject ?? tile.label ?? "Portfolio video"}
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
-            />
-          ) : tile.videoUrl ? (
+          {tile.videoUrl ? (
             <video
-              src={tile.videoUrl}
+              // Poster always shows a real frame; src is only set when in view.
+              src={inView ? tile.videoUrl : undefined}
+              poster={tile.poster}
               muted
               playsInline
-              preload="metadata"
+              preload="none"
+              className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
+            />
+          ) : tile.poster ? (
+            <img
+              src={tile.poster}
+              alt={tile.subject ?? tile.label ?? "Portfolio video"}
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
             />
           ) : (
@@ -226,6 +248,7 @@ const VideoTile = ({
   if (tile.videoUrl) {
     return (
       <button
+        ref={wrapperRef}
         type="button"
         onClick={() => onPlay(tile.videoUrl!)}
         className="group block w-[52vw] max-w-[210px] md:w-[260px] md:max-w-none shrink-0 text-left"
@@ -235,7 +258,14 @@ const VideoTile = ({
     );
   }
 
-  return <div className="group block w-[52vw] max-w-[210px] md:w-[260px] md:max-w-none shrink-0">{inner}</div>;
+  return (
+    <div
+      ref={wrapperRef}
+      className="group block w-[52vw] max-w-[210px] md:w-[260px] md:max-w-none shrink-0"
+    >
+      {inner}
+    </div>
+  );
 };
 
 const CategoryRow = ({
