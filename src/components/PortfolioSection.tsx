@@ -234,7 +234,14 @@ const CategoryRow = ({
   const handleScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
+    setAtStart(el.scrollLeft <= 8);
     setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 8);
+  };
+
+  const scrollPrev = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: -284, behavior: "smooth" });
   };
 
   const scrollNext = () => {
