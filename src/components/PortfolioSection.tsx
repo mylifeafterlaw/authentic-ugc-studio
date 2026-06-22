@@ -276,6 +276,18 @@ const CategoryRow = ({
       />
 
 
+      {/* Left scroll arrow (desktop only) */}
+      <button
+        type="button"
+        onClick={scrollPrev}
+        aria-label="Scroll left"
+        className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-soft hidden md:flex items-center justify-center text-muted-foreground hover:text-foreground transition-opacity duration-300 ${
+          atStart ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+
       {/* Right scroll arrow (desktop only) */}
       <button
         type="button"
