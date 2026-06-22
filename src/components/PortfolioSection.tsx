@@ -14,6 +14,7 @@ import huskiesVideo from "@/assets/huskies.mp4.asset.json";
 import rajadamnernVideo from "@/assets/rajadamnern.mp4.asset.json";
 import cinemaVideo from "@/assets/cinema.mp4.asset.json";
 import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4.asset.json";
+import humeHealthVideo from "@/assets/hume-health-no-edits.mp4.asset.json";
 import rajaStadiumPoster from "@/assets/raja-stadium-poster.png.asset.json";
 import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook.mp4.asset.json";
 import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4.asset.json";
@@ -38,9 +39,9 @@ const categories: Category[] = [
     id: "product",
     name: "Product",
     tiles: [
-      { label: "Triple Hook UGC", videoUrl: productTripleHookVideo.url },
       { label: "Hair Product", videoUrl: hairProductVideo.url },
       { label: "Living Somewhere Beautiful", videoUrl: livingBeautifulVideo.url },
+      { label: "Triple Hook UGC", videoUrl: productTripleHookVideo.url },
     ],
   },
   {
@@ -70,6 +71,7 @@ const categories: Category[] = [
     id: "talking-head",
     name: "Talking to Camera",
     tiles: [
+      { label: "Hume Health", videoUrl: humeHealthVideo.url },
       { label: "Skin Comparison", videoUrl: skinComparisonVideo.url },
       { label: "Product UGC", videoUrl: productUGC.url },
     ],
