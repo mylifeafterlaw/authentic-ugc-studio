@@ -15,6 +15,7 @@ const Footer = () => (
         <a href="https://linktr.ee/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors font-body text-sm">Linktree</a>
       </div>
       <p className="font-body text-xs text-primary-foreground/40">© {new Date().getFullYear()} Jess Cousin. All rights reserved.</p>
+      <p className="font-body text-xs text-primary-foreground/40 mt-1">Portfolio includes personal and non-commissioned content created independently.</p>
     </div>
   </footer>
 );
