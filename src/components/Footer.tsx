@@ -1,7 +1,7 @@
 import { Instagram, Youtube } from "lucide-react";
 
 const Footer = () => (
-  <footer className="bg-foreground py-10">
+  <footer className="bg-foreground py-10 pb-24 md:pb-10">
     <div className="container text-center">
       <p className="font-heading text-xl text-primary-foreground mb-4">Jess Cousin</p>
       <div className="flex justify-center gap-5 mb-4">
