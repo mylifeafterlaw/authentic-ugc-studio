@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import { Play, ChevronDown } from "lucide-react";
+import { trackClick } from "@/lib/analytics";
 import heroImg from "@/assets/hero-portrait.jpg";
 import heroVideo from "@/assets/Product_UGC_Triple_hook_voiceover_b-roll-2.mp4.asset.json";
 import heroPoster from "@/assets/hero-thumbnail.png.asset.json";
@@ -81,7 +82,10 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-6 mb-7">
 
             <button
-              onClick={() => scrollTo("#portfolio")}
+              onClick={() => {
+                trackClick("View Work", "hero");
+                scrollTo("#portfolio");
+              }}
               className="gradient-cta text-primary-foreground font-body font-semibold px-8 py-3 rounded-full shadow-soft hover:opacity-90 transition-opacity text-base"
             >
               View Portfolio
