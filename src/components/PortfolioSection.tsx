@@ -33,6 +33,7 @@ import tattooPoster from "@/assets/tattoo-poster.jpg.asset.json";
 import huskiesPoster from "@/assets/huskies-poster.jpg.asset.json";
 import cinemaPoster from "@/assets/cinema-poster.jpg.asset.json";
 import cafeWatPoster from "@/assets/cafe-wat-poster.jpg.asset.json";
+import neverlandPoster from "@/assets/neverland.png.asset.json";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
