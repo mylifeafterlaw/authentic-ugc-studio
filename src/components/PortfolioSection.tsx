@@ -91,9 +91,23 @@ const categories: Category[] = [
     id: "talking-head",
     name: "Talking to Camera",
     tiles: [
-      { label: "Hume Health", thumbnail: humeHealthThumbnail.url, videoUrl: humeHealthVideo.url },
-      { label: "Skin Comparison", videoUrl: skinComparisonVideo.url },
-      { label: "Product UGC", videoUrl: productUGC.url },
+      {
+        subject: "Hume Health",
+        format: "Talking-to-camera · hook and CTA · ad-style",
+        thumbnail: humeHealthThumbnail.url,
+        videoUrl: humeHealthVideo.url,
+      },
+      {
+        subject: "Skincare",
+        format:
+          "Talking-to-camera · before and after with overlays · series-style",
+        videoUrl: skinComparisonVideo.url,
+      },
+      {
+        subject: "Food and drink",
+        format: "Talking-to-camera · natural and authentic",
+        videoUrl: productUGC.url,
+      },
     ],
   },
   {
