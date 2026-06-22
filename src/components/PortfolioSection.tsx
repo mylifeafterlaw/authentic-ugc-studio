@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import apartmentVideo from "@/assets/apartment-ugc.mp4.asset.json";
 import condoVideo from "@/assets/condo-ugc.mp4.asset.json";
@@ -211,6 +211,7 @@ const CategoryRow = ({
   onPlay: (url: string) => void;
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
 
   // 4 or fewer: horizontal swipe strip on mobile, centred wrapping row on desktop.
@@ -233,7 +234,14 @@ const CategoryRow = ({
   const handleScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
+    setAtStart(el.scrollLeft <= 8);
     setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 8);
+  };
+
+  const scrollPrev = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: -284, behavior: "smooth" });
   };
 
   const scrollNext = () => {
@@ -267,6 +275,18 @@ const CategoryRow = ({
         }`}
       />
 
+
+      {/* Left scroll arrow (desktop only) */}
+      <button
+        type="button"
+        onClick={scrollPrev}
+        aria-label="Scroll left"
+        className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-soft hidden md:flex items-center justify-center text-muted-foreground hover:text-foreground transition-opacity duration-300 ${
+          atStart ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
 
       {/* Right scroll arrow (desktop only) */}
       <button
