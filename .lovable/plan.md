@@ -1,21 +1,27 @@
-Plan: Refine Hero Section Portrait on Mobile Only
+# Portfolio Tile Captions — Two-Line Structure
 
-Scope: `src/components/HeroSection.tsx`. Only the `lg:hidden` mobile portrait block is affected. Desktop layout, phone mockup, and all other hero elements remain untouched.
+Scope: `src/components/PortfolioSection.tsx` only. No changes to layout, tile size, videos, swipe cue, or any other category copy.
 
-Changes:
+## 1. Update the `Tile` type
+Add two optional caption fields alongside the existing `label`:
+```text
+subject?: string  // primary line (uppercase, letter-spaced)
+format?: string   // secondary line (smaller, more muted)
+```
+Keep `label` so existing tiles in other categories keep working unchanged.
 
-1. Reduce photo size/height
-   - Current: `w-[180px] sm:w-[220px]` with `aspect-[4/5]`
-   - New: `w-[140px] sm:w-[170px]` with `aspect-[3/4]` (tighter portrait crop, smaller footprint)
-   - Effect: headline and "View Portfolio" button shift up, more visible without scrolling.
+## 2. Update Product category data
+Replace the three Product tiles' `label` with `subject` + `format`:
+- Tile 1: subject "Haircare", format "Before and after · B-roll and voiceover · hook-led"
+- Tile 2: subject "Skincare", format "Talking-to-camera with B-roll · natural product integration · hook-led"
+- Tile 3: subject "Water bottle", format "Hook-led · talking-to-camera and B-roll"
 
-2. Soften the frame
-   - Current: `border-4 border-background` + `shadow-card` (thick bright white card look)
-   - New: `border border-background/40` + `shadow-soft` (thin, translucent border + gentle shadow so it blends into the pink gradient)
+Copy used verbatim, middle dots `·` preserved, no em-dashes. All other categories keep their current single `label`.
 
-3. Tighten photo-to-name gap
-   - Current: `mb-6` on the photo wrapper
-   - New: `mb-2` on the photo wrapper
-   - Effect: photo and "Jess Cousin" name read as one compact unit.
+## 3. Update caption rendering in `VideoTile`
+Current caption block renders only `tile.label`. Change it to:
+- If `subject` exists: render `subject` as the primary line (same current style: `text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground`), and render `format` directly beneath as a quieter second line (smaller, e.g. `text-[0.55rem]` and lighter/more muted, normal case so the dotted format text reads cleanly, tighter top margin).
+- Else fall back to the existing `label` rendering unchanged (so other categories are untouched).
+- Also update the `img alt` fallback to use `subject ?? label`.
 
-No changes to desktop, the phone mockup, CTAs, stats, scroll cue, or decorative blobs.
+No other code changes.
