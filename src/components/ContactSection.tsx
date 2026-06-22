@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail } from "lucide-react";
 
 const ContactSection = () => (
   <section id="contact" className="py-20 lg:py-28 gradient-hero relative overflow-hidden">
@@ -26,15 +26,6 @@ const ContactSection = () => (
           >
             <Mail className="w-5 h-5" />
             Email Me
-          </a>
-          <a
-            href="https://wa.me/message"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-card text-foreground border border-border font-body font-semibold px-8 py-3.5 rounded-full shadow-soft hover:shadow-card transition-shadow inline-flex items-center justify-center gap-2 text-base"
-          >
-            <MessageCircle className="w-5 h-5" />
-            WhatsApp
           </a>
         </div>
       </motion.div>
