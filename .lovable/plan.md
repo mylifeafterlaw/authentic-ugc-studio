@@ -1,24 +1,22 @@
-## Services Section — Mobile Compactness Fix
+## Hero — Mobile Portrait Photo
 
-### Current State
-The Services section renders 6 cards in a 3-column grid on desktop. On mobile (< md), cards stack in a single column with `p-6` internal padding, `gap-5` between cards, and a `w-14 h-14` icon circle. This creates excessive vertical whitespace and a long scroll.
+### What
+On mobile (below `lg`), display the same portrait photo used in the desktop hero (`heroImg` / `sideStill`) above the name text, straight (no rotation), while keeping the desktop layout unchanged.
 
-### Goal
-Tighten only the mobile layout (`< md` breakpoint). Desktop (`md` and up) must remain exactly as-is. Copy, card colours, border-radius, and two-line layout stay unchanged.
+### Why
+Currently the mobile hero is text-only above the fold; adding the portrait makes the hero more personal and visually engaging before the user scrolls.
 
-### Changes
-In `src/components/ServicesSection.tsx`:
+### How
+In `src/components/HeroSection.tsx`:
 
-1. **Card internal padding** — change `p-6` to `py-4 px-5 md:p-6` so mobile cards hug their content.
-2. **Grid gap** — change `gap-5` to `gap-3 md:gap-5` so mobile cards sit closer together.
-3. **Icon circle** — change `w-14 h-14` to `w-12 h-12 md:w-14 md:h-14` to save a little vertical space on small screens while keeping it clearly visible.
-4. **Icon circle bottom margin** — change `mb-4` to `mb-2 md:mb-4` on mobile.
-5. **Section heading bottom margin** — change `mb-14` to `mb-10 md:mb-14` to reduce dead space above the cards on mobile.
+1. Add a mobile-only image block (`lg:hidden`) at the top of the text column, before the name.
+2. Use `sideStill` (`heroImg`) as the source — same asset as the desktop tilted photo behind the phone.
+3. Render it straight: `rounded-2xl`, `shadow-card`, `border-4 border-background`, no `rotate-6`.
+4. Size it appropriately for mobile (approx. `w-[180px] sm:w-[220px]` `aspect-[4/5]`), centred above the name with a small bottom margin (`mb-4` or `mb-6`).
+5. Leave all desktop code untouched — the tilted photo behind the phone mockup and the phone itself remain exactly as they are.
 
 ### Verification
-- Visual check at 375 px, 390 px, and 414 px widths to confirm cards are compact and not cut off.
-- Visual check at 1280 px desktop to confirm zero change.
+- Mobile viewport (375–414 px): portrait appears straight and centred above "Jess Cousin", phone mockup still visible below the text as before.
+- Desktop viewport (1280 px+): no change; tilted photo behind phone remains.
 
-### Technical Details
-- Tailwind responsive prefixes (`md:`) reset values at the `md` breakpoint (768 px).
-- No new dependencies, no JavaScript logic changes.
+No new dependencies. No JavaScript logic changes. Purely presentational Tailwind class adjustments in one component.

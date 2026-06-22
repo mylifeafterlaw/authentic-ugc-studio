@@ -49,6 +49,19 @@ const HeroSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center lg:text-left flex flex-col justify-center lg:pl-8 xl:pl-16"
         >
+          {/* Mobile-only portrait above the name — straight, no tilt */}
+          <div className="lg:hidden mx-auto mb-6 w-[180px] sm:w-[220px]">
+            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background">
+              <img
+                src={sideStill}
+                alt="Jess Cousin – UGC creator portrait"
+                className="w-full h-full object-cover object-top"
+                width={800}
+                height={1000}
+              />
+            </div>
+          </div>
+
           {/* Headline cluster: name + headline + credibility line as one tight top group */}
           <div>
             <p className="font-script text-6xl sm:text-7xl lg:text-8xl text-[hsl(340_50%_28%)] leading-none mb-2 lg:-ml-8 xl:-ml-12">
