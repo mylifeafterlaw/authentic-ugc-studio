@@ -71,6 +71,7 @@ const categories: Category[] = [
     id: "talking-head",
     name: "Talking to Camera",
     tiles: [
+      { label: "Hume Health", videoUrl: humeHealthVideo.url },
       { label: "Skin Comparison", videoUrl: skinComparisonVideo.url },
       { label: "Product UGC", videoUrl: productUGC.url },
     ],
