@@ -190,28 +190,17 @@ const VideoTile = ({
     <>
       <div className="relative w-full aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
         <div className="group relative w-full h-full rounded-[1.9rem] bg-black overflow-hidden">
-          {/* Real poster still — always painted, so the tile shows content instantly */}
+          {/* Real poster still, lazy-loaded via IntersectionObserver (in view → load).
+              No video bytes download until the user opens the modal to play. */}
           {tile.poster ? (
             <img
-              src={tile.poster}
+              src={inView ? tile.poster : undefined}
               alt={tile.subject ?? tile.label ?? "Portfolio video"}
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
             />
           ) : (
             <div className="absolute inset-0 gradient-soft scale-[1.03]" />
-          )}
-
-          {/* Lazy video: no bytes download until in view + play (preload none). */}
-          {tile.videoUrl && inView && (
-            <video
-              src={tile.videoUrl}
-              poster={tile.poster}
-              muted
-              playsInline
-              preload="none"
-              className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
-            />
           )}
 
           {/* notch */}
