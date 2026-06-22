@@ -166,7 +166,7 @@ const VideoTile = ({
   tile: Tile;
   onPlay: (url: string) => void;
 }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLElement>(null);
   // Lazy-load: only attach the video src once the tile nears the viewport.
   const [inView, setInView] = useState(false);
 
