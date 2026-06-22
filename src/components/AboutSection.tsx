@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+
 import { Scale, Bike, Brain, Heart, Dumbbell, Mic } from "lucide-react";
 
 const traits = [
