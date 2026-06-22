@@ -1,24 +1,21 @@
-## Portfolio — Replace Mobile Scroll Cue
+Plan: Refine Hero Section Portrait on Mobile Only
 
-### Problem
-The current mobile swipe cue is a muted-maroon circle with a chevron inside. It looks too much like the play button on each video tile and causes confusion.
+Scope: `src/components/HeroSection.tsx`. Only the `lg:hidden` mobile portrait block is affected. Desktop layout, phone mockup, and all other hero elements remain untouched.
 
-### Solution
-Replace the mobile-only `SwipeCue` in `src/components/PortfolioSection.tsx` with a cleaner, understated indicator.
+Changes:
 
-#### Changes
-1. **Redesign `SwipeCue` component**
-   - Remove the circular background, border, shadow, and backdrop blur.
-   - Replace with a thin white `ChevronRight` (no container) plus a small "swipe" label underneath or beside it.
-   - Keep `md:hidden` so it only appears on mobile.
-   - Position at the right edge of each scrollable category row, vertically centred over the phone frames.
-   - Add a gentle `animate-pulse` or subtle motion so it reads as a hint, not a button.
+1. Reduce photo size/height
+   - Current: `w-[180px] sm:w-[220px]` with `aspect-[4/5]`
+   - New: `w-[140px] sm:w-[170px]` with `aspect-[3/4]` (tighter portrait crop, smaller footprint)
+   - Effect: headline and "View Portfolio" button shift up, more visible without scrolling.
 
-2. **Preserve desktop**
-   - The desktop right-edge fade gradient (`hidden md:block`) and the desktop circular scroll arrow remain untouched.
+2. Soften the frame
+   - Current: `border-4 border-background` + `shadow-card` (thick bright white card look)
+   - New: `border border-background/40` + `shadow-soft` (thin, translucent border + gentle shadow so it blends into the pink gradient)
 
-3. **No other changes**
-   - Tile sizes, horizontal scroll behaviour, snap, captions, phone frames, and category structure all stay exactly as they are.
+3. Tighten photo-to-name gap
+   - Current: `mb-6` on the photo wrapper
+   - New: `mb-2` on the photo wrapper
+   - Effect: photo and "Jess Cousin" name read as one compact unit.
 
-### Files changed
-- `src/components/PortfolioSection.tsx` — update `SwipeCue` JSX only.
+No changes to desktop, the phone mockup, CTAs, stats, scroll cue, or decorative blobs.
