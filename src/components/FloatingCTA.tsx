@@ -23,7 +23,7 @@ const FloatingCTA = () => {
             e.preventDefault();
             document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="fixed bottom-6 right-6 z-50 gradient-cta text-primary-foreground font-body font-semibold px-6 py-3 rounded-full shadow-elevated hover:opacity-90 transition-opacity flex items-center gap-2 text-sm md:hidden"
+          className="fixed bottom-4 right-4 z-50 gradient-cta text-primary-foreground font-body font-semibold px-4 py-2.5 rounded-full shadow-elevated hover:opacity-90 transition-opacity flex items-center gap-1.5 text-xs md:hidden"
         >
           <MessageCircle className="w-4 h-4" />
           Work With Me
