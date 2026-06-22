@@ -39,9 +39,9 @@ const categories: Category[] = [
     id: "product",
     name: "Product",
     tiles: [
-      { label: "Triple Hook UGC", videoUrl: productTripleHookVideo.url },
       { label: "Hair Product", videoUrl: hairProductVideo.url },
       { label: "Living Somewhere Beautiful", videoUrl: livingBeautifulVideo.url },
+      { label: "Triple Hook UGC", videoUrl: productTripleHookVideo.url },
     ],
   },
   {
