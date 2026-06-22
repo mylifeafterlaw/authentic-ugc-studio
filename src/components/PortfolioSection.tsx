@@ -143,14 +143,14 @@ const VideoTile = ({
       <button
         type="button"
         onClick={() => onPlay(tile.videoUrl!)}
-        className="group block w-[260px] shrink-0 text-left"
+        className="group block w-[75vw] max-w-[280px] md:w-[260px] md:max-w-none shrink-0 text-left"
       >
         {inner}
       </button>
     );
   }
 
-  return <div className="group block w-[260px] shrink-0">{inner}</div>;
+  return <div className="group block w-[75vw] max-w-[280px] md:w-[260px] md:max-w-none shrink-0">{inner}</div>;
 };
 
 const CategoryRow = ({
