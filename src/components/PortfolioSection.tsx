@@ -136,11 +136,11 @@ const categories: Category[] = [
     id: "lifestyle-experience",
     name: "Lifestyle & Experience",
     tiles: [
-      { label: "Tattoo Chiang Mai", poster: tattooPoster.url, videoUrl: tattooVideo.url },
-      { label: "Huskies", poster: neverlandPoster.url, videoUrl: huskiesVideo.url },
-      { label: "Rajadamnern", poster: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
-      { label: "Cinema", poster: cinemaPoster.url, videoUrl: cinemaVideo.url },
-      { label: "Café Wat Bang Nam Phueng Nok", poster: cafeWatPoster.url, videoUrl: cafeWatVideo.url },
+      { subject: "Tattoo experience · Chiang Mai", format: "Hook-led · B-roll and voiceover", poster: tattooPoster.url, videoUrl: tattooVideo.url },
+      { subject: "Husky experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: neverlandPoster.url, videoUrl: huskiesVideo.url },
+      { subject: "Muay Thai · Bangkok", format: "Hook-led · B-roll and voiceover", poster: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
+      { subject: "Cinema experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cinemaPoster.url, videoUrl: cinemaVideo.url },
+      { subject: "Café · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cafeWatPoster.url, videoUrl: cafeWatVideo.url },
     ],
   },
 ];
