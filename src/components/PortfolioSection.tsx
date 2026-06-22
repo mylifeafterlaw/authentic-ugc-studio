@@ -89,6 +89,18 @@ const categories: Category[] = [
   },
 ];
 
+// Mobile-only swipe cue: soft fade + subtle muted-maroon chevron at the right edge.
+const SwipeCue = () => (
+  <div aria-hidden className="md:hidden">
+    <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent" />
+    <div className="pointer-events-none absolute right-1 top-[36%] -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-background/80 backdrop-blur-sm border border-primary/20 shadow-soft flex items-center justify-center text-primary/70 animate-pulse">
+      <ChevronRight className="w-4 h-4" />
+    </div>
+  </div>
+);
+
+
+
 const VideoTile = ({
   tile,
   onPlay,
@@ -145,14 +157,14 @@ const VideoTile = ({
       <button
         type="button"
         onClick={() => onPlay(tile.videoUrl!)}
-        className="group block w-[75vw] max-w-[280px] md:w-[260px] md:max-w-none shrink-0 text-left"
+        className="group block w-[52vw] max-w-[210px] md:w-[260px] md:max-w-none shrink-0 text-left"
       >
         {inner}
       </button>
     );
   }
 
-  return <div className="group block w-[75vw] max-w-[280px] md:w-[260px] md:max-w-none shrink-0">{inner}</div>;
+  return <div className="group block w-[52vw] max-w-[210px] md:w-[260px] md:max-w-none shrink-0">{inner}</div>;
 };
 
 const CategoryRow = ({
@@ -168,12 +180,15 @@ const CategoryRow = ({
   // 4 or fewer: horizontal swipe strip on mobile, centred wrapping row on desktop.
   if (tiles.length <= 4) {
     return (
-      <div className="flex gap-6 overflow-x-auto px-1 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:overflow-x-visible md:flex-wrap md:justify-center md:px-0">
-        {tiles.map((tile, idx) => (
-          <div key={idx} className="snap-start">
-            <VideoTile tile={tile} onPlay={onPlay} />
-          </div>
-        ))}
+      <div className="relative">
+        <div className="flex gap-4 md:gap-6 overflow-x-auto px-1 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:overflow-x-visible md:flex-wrap md:justify-center md:px-0">
+          {tiles.map((tile, idx) => (
+            <div key={idx} className="snap-start">
+              <VideoTile tile={tile} onPlay={onPlay} />
+            </div>
+          ))}
+        </div>
+        <SwipeCue />
       </div>
     );
   }
@@ -196,7 +211,7 @@ const CategoryRow = ({
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex gap-6 overflow-x-auto px-1 snap-x snap-mandatory pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:px-0"
+        className="flex gap-4 md:gap-6 overflow-x-auto px-1 snap-x snap-mandatory pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:px-0"
       >
         {tiles.map((tile, idx) => (
           <div key={idx} className="snap-start">
@@ -205,6 +220,9 @@ const CategoryRow = ({
         ))}
       </div>
 
+      {/* Mobile-only swipe cue */}
+      <SwipeCue />
+
       {/* Scroll cue: soft right-edge fade, hidden once fully scrolled (desktop only) */}
       <div
         aria-hidden
@@ -212,6 +230,7 @@ const CategoryRow = ({
           atEnd ? "opacity-0" : "opacity-100"
         }`}
       />
+
 
       {/* Right scroll arrow (desktop only) */}
       <button
