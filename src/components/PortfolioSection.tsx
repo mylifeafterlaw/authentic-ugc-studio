@@ -211,7 +211,7 @@ const CategoryRow = ({
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex gap-6 overflow-x-auto px-1 snap-x snap-mandatory pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:px-0"
+        className="flex gap-4 md:gap-6 overflow-x-auto px-1 snap-x snap-mandatory pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:px-0"
       >
         {tiles.map((tile, idx) => (
           <div key={idx} className="snap-start">
@@ -220,6 +220,9 @@ const CategoryRow = ({
         ))}
       </div>
 
+      {/* Mobile-only swipe cue */}
+      <SwipeCue />
+
       {/* Scroll cue: soft right-edge fade, hidden once fully scrolled (desktop only) */}
       <div
         aria-hidden
@@ -227,6 +230,7 @@ const CategoryRow = ({
           atEnd ? "opacity-0" : "opacity-100"
         }`}
       />
+
 
       {/* Right scroll arrow (desktop only) */}
       <button
