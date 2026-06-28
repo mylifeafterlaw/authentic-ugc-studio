@@ -1,27 +1,50 @@
-## Goal
-Make the Portfolio section's videos load fast (especially on mobile) by lazy-loading them and showing real poster stills until they're needed. This is a pure performance change in `src/components/PortfolioSection.tsx` (plus generated poster assets). Layout, tile sizes, captions, and phone-frame styling stay identical.
+# Save enquiries to a database + email notifications
 
-## Problem today
-Every tile renders `<video preload="metadata">` on mount, so all ~13 videos start fetching metadata immediately. Most tiles have no poster, so before load they show the raw `<video>` first frame or nothing solid.
+Turn the Contact section's "Email Me" link into a real enquiry form. Submissions are stored in Lovable Cloud and a notification email is sent to you for each new enquiry.
 
-## Approach
+## What you'll get
+- A branded enquiry form (Name, Email, Brand / company, Message) in the Contact section
+- Every submission saved securely to the database
+- An email to you on each new enquiry
+- Friendly success / error states and validation
 
-### 1. Generate real poster stills for every video
-- Use ffmpeg to extract a representative frame (~1s in) from each source video and save as compressed `.jpg` CDN assets in `src/assets/`.
-- Reuse existing stills where present (`apartment-ugc-poster`, `raja-stadium-poster`, `hume-health-thumbnail`).
-- Each tile gets a `poster` field pointing at its still.
+## Steps
 
-### 2. Lazy-load with IntersectionObserver
-- Inside `VideoTile`, attach an `IntersectionObserver` (generous `rootMargin` ~200px) to the tile wrapper.
-- The `<video>` always renders with `poster={...}` and `preload="none"`, so the poster shows immediately and no video bytes download on mount.
-- Only assign the video `src` once the tile nears the viewport; disconnect the observer after first intersection.
+### 1. Enable Lovable Cloud
+Provision the backend (database, storage, functions) — no external account needed.
 
-### 3. Always real content
-- Every tile shows a true frame of its own video at all times — no grey boxes, no spinners. The `poster` attribute covers the gap until the first frame decodes.
+### 2. Database table
+Create `enquiries` table:
 
-## Files
-- `src/components/PortfolioSection.tsx`: add `poster` to each `Tile`, IntersectionObserver-based lazy `src`, `preload="none"`, `poster` on `<video>`.
-- New `src/assets/*-poster.jpg.asset.json` for videos lacking stills.
+```text
+id            uuid (pk, default gen_random_uuid())
+name          text
+email         text
+brand         text (nullable)
+message       text
+created_at    timestamptz default now()
+```
 
-## Unchanged
-- All caption text/structure, tile sizing, scroll arrows, phone-frame styling, modal playback, and every other aspect of the section.
+Row-Level Security:
+- Allow `anon` + `authenticated` to INSERT (public form, anyone can submit)
+- No public SELECT — enquiries are only readable via the dashboard / service role
+- Grants set accordingly
+
+### 3. Enquiry form UI
+Rewrite `src/components/ContactSection.tsx`:
+- Keep the existing heading, gradient, and editorial styling
+- Add form fields: Name, Email, Brand / company (optional), Message
+- Client-side validation with `zod` (required fields, valid email, length limits)
+- On submit: insert row into `enquiries`, then trigger the notification email
+- Show toast success ("Thanks — I'll be in touch") and error handling
+- Keep an "Email Me" mailto fallback link
+
+### 4. Email notification
+Set up Lovable's built-in email (requires a sender domain — you'll get a one-click setup prompt). An edge function sends you an email with the enquiry details on each submission.
+- Recipient: `my.lifeafterlaw@gmail.com` (the address currently in the contact section) — confirm if you'd prefer another
+- Input validated server-side before sending
+
+## Technical notes
+- Form input validated both client-side (zad) and server-side (edge function)
+- Notification uses an app/transactional email triggered by the submission; the sender domain must be verified before emails actually deliver (you'll be guided through DNS). Until verified, enquiries still save to the database.
+- No business logic beyond the form + persistence + notification is changed.
