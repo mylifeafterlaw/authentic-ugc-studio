@@ -18,7 +18,7 @@ const Index = () => (
     <ContactSection />
     <Footer />
     <FloatingCTA />
-    <ConnectionTest />
+
   </>
 );
 
