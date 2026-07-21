@@ -6,7 +6,7 @@ import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import FloatingCTA from "@/components/FloatingCTA";
 import Footer from "@/components/Footer";
-import ConnectionTest from "@/components/ConnectionTest";
+
 
 const Index = () => (
   <>
