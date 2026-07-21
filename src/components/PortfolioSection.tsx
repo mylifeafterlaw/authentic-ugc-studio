@@ -78,6 +78,41 @@ const categories: Category[] = [
     ],
   },
   {
+    id: "talking-head",
+    name: "Talking to Camera",
+    tiles: [
+      {
+        subject: "Hume Health",
+        format: "Talking-to-camera · hook and CTA · ad-style",
+        poster: humeHealthThumbnail.url,
+        videoUrl: humeHealthVideo.url,
+      },
+      {
+        subject: "Skincare",
+        format:
+          "Talking-to-camera · before and after with overlays · series-style",
+        poster: skinComparisonPoster.url,
+        videoUrl: skinComparisonVideo.url,
+      },
+      {
+        subject: "Food and drink",
+        format: "Talking-to-camera · natural and authentic",
+        poster: productUGCPoster.url,
+        videoUrl: productUGC.url,
+      },
+    ],
+  },
+  {
+    id: "tech-apps",
+    name: "Tech and Apps",
+    tiles: [
+      {
+        subject: "Tech review",
+        format: "Coming soon",
+      },
+    ],
+  },
+  {
     id: "accommodation-travel",
     name: "Accommodation & Travel",
     tiles: [
@@ -104,31 +139,6 @@ const categories: Category[] = [
         format: "B-roll and voiceover · natural travel style",
         poster: singaporeZooPoster.url,
         videoUrl: singaporeZooVideo.url,
-      },
-    ],
-  },
-  {
-    id: "talking-head",
-    name: "Talking to Camera",
-    tiles: [
-      {
-        subject: "Hume Health",
-        format: "Talking-to-camera · hook and CTA · ad-style",
-        poster: humeHealthThumbnail.url,
-        videoUrl: humeHealthVideo.url,
-      },
-      {
-        subject: "Skincare",
-        format:
-          "Talking-to-camera · before and after with overlays · series-style",
-        poster: skinComparisonPoster.url,
-        videoUrl: skinComparisonVideo.url,
-      },
-      {
-        subject: "Food and drink",
-        format: "Talking-to-camera · natural and authentic",
-        poster: productUGCPoster.url,
-        videoUrl: productUGC.url,
       },
     ],
   },
