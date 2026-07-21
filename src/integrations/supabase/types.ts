@@ -14,24 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      connection_test: {
-        Row: {
-          created_at: string
-          id: string
-          note: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          note?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          note?: string | null
-        }
-        Relationships: []
-      }
       email_send_log: {
         Row: {
           created_at: string
