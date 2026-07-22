@@ -89,6 +89,8 @@ const categories: Category[] = [
       {
         subject: "Aesthetic pour · full process",
         format: "Quick-cut B-roll · text overlays · no voiceover",
+        poster: productVideo5Poster.url,
+        videoUrl: productVideo5.url,
       },
     ],
   },
