@@ -120,6 +120,8 @@ const categories: Category[] = [
       {
         subject: "Playful · Hatch app",
         format: "Hook-led · talking-to-camera throughout · app demo",
+        poster: techAppsVideo1Poster.url,
+        videoUrl: techAppsVideo1.url,
       },
       {
         subject: "Playful · Hatch app",
