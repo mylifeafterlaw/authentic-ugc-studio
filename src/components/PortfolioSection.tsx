@@ -75,6 +75,14 @@ const categories: Category[] = [
         poster: productTripleHookPoster.url,
         videoUrl: productTripleHookVideo.url,
       },
+      {
+        subject: "Aesthetic pour · trend-led",
+        format: "Single-cut B-roll · text overlays · no voiceover",
+      },
+      {
+        subject: "Aesthetic pour · full process",
+        format: "Quick-cut B-roll · text overlays · no voiceover",
+      },
     ],
   },
   {
@@ -102,20 +110,7 @@ const categories: Category[] = [
       },
     ],
   },
-  {
-    id: "product-aesthetic",
-    name: "Product & Aesthetic",
-    tiles: [
-      {
-        subject: "Aesthetic pour · trend-led",
-        format: "Single-cut B-roll · text overlays · no voiceover",
-      },
-      {
-        subject: "Aesthetic pour · full process",
-        format: "Quick-cut B-roll · text overlays · no voiceover",
-      },
-    ],
-  },
+
   {
     id: "tech-apps",
     name: "Tech and Apps",
