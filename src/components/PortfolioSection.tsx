@@ -18,6 +18,8 @@ import humeHealthVideo from "@/assets/hume-health-no-edits.mp4.asset.json";
 import rajaStadiumPoster from "@/assets/raja-stadium-poster.png.asset.json";
 import humeHealthThumbnail from "@/assets/hume-health-thumbnail.jpg.asset.json";
 import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook.mp4.asset.json";
+import productVideo5 from "@/assets/product-video-5.mp4.asset.json";
+import productVideo5Poster from "@/assets/product-video-5-poster.jpg.asset.json";
 import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4.asset.json";
 import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4.asset.json";
 // Poster stills (real video frames) for fast, lazy loading
@@ -87,6 +89,8 @@ const categories: Category[] = [
       {
         subject: "Aesthetic pour · full process",
         format: "Quick-cut B-roll · text overlays · no voiceover",
+        poster: productVideo5Poster.url,
+        videoUrl: productVideo5.url,
       },
     ],
   },
