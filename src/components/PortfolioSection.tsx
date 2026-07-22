@@ -83,10 +83,6 @@ const categories: Category[] = [
         videoUrl: productTripleHookVideo.url,
       },
       {
-        subject: "Aesthetic pour · trend-led",
-        format: "Single-cut B-roll · text overlays · no voiceover",
-      },
-      {
         subject: "Aesthetic pour · full process",
         format: "Quick-cut B-roll · text overlays · no voiceover",
         poster: productVideo5Poster.url,
