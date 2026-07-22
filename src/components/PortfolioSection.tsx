@@ -34,6 +34,8 @@ import huskiesPoster from "@/assets/huskies-poster.jpg.asset.json";
 import cinemaPoster from "@/assets/cinema-face-poster.jpg.asset.json";
 import cafeWatPoster from "@/assets/cafe-wat-poster.jpg.asset.json";
 import neverlandPoster from "@/assets/neverland.png.asset.json";
+import techAppsVideo1 from "@/assets/tech-apps-video-1.mp4.asset.json";
+import techAppsVideo1Poster from "@/assets/tech-apps-video-1-poster.jpg.asset.json";
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
