@@ -36,6 +36,9 @@ import cafeWatPoster from "@/assets/cafe-wat-poster.jpg.asset.json";
 import neverlandPoster from "@/assets/neverland.png.asset.json";
 import techAppsVideo1 from "@/assets/tech-apps-video-1.mp4.asset.json";
 import techAppsVideo1Poster from "@/assets/tech-apps-video-1-poster.jpg.asset.json";
+import techAppsVideo2 from "@/assets/Playful_Video_2_-_FINAL-2.mp4.asset.json";
+import techAppsVideo2Poster from "@/assets/tech-apps-video-2-poster.jpg.asset.json";
+
 
 type Tile = {
   label?: string; // small caption under the tile (optional)
@@ -126,7 +129,10 @@ const categories: Category[] = [
       {
         subject: "Playful · Hatch app",
         format: "Hook-led · talking-to-camera with aesthetic B-roll · screen recording",
+        poster: techAppsVideo2Poster.url,
+        videoUrl: techAppsVideo2.url,
       },
+
     ],
   },
   {
