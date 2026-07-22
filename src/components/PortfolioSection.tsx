@@ -103,12 +103,30 @@ const categories: Category[] = [
     ],
   },
   {
+    id: "product-aesthetic",
+    name: "Product & Aesthetic",
+    tiles: [
+      {
+        subject: "Aesthetic pour · trend-led",
+        format: "Single-cut B-roll · text overlays · no voiceover",
+      },
+      {
+        subject: "Aesthetic pour · full process",
+        format: "Quick-cut B-roll · text overlays · no voiceover",
+      },
+    ],
+  },
+  {
     id: "tech-apps",
     name: "Tech and Apps",
     tiles: [
       {
-        subject: "Tech review",
-        format: "Coming soon",
+        subject: "Playful · Hatch app",
+        format: "Hook-led · talking-to-camera throughout · app demo",
+      },
+      {
+        subject: "Playful · Hatch app",
+        format: "Hook-led · talking-to-camera with aesthetic B-roll · screen recording",
       },
     ],
   },
