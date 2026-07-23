@@ -112,7 +112,7 @@ const categories: Category[] = [
       {
         subject: "Skincare",
         format:
-          "Talking-to-camera · before and after with overlays · series-style",
+          "Talking-to-camera · authentic personal delivery · series-style",
         poster: skinComparisonPoster.url,
         videoUrl: skinComparisonVideo.url,
       },
