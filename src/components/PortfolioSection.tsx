@@ -40,6 +40,8 @@ import techAppsVideo1 from "@/assets/tech-apps-video-1.mp4.asset.json";
 import techAppsVideo1Poster from "@/assets/tech-apps-video-1-poster.jpg.asset.json";
 import techAppsVideo2 from "@/assets/Playful_Video_2_-_FINAL-2.mp4.asset.json";
 import techAppsVideo2Poster from "@/assets/tech-apps-video-2-poster.jpg.asset.json";
+import skinUsedVideo from "@/assets/skin-used-to-look-like-this.mp4.asset.json";
+import skinUsedPoster from "@/assets/skin-used-to-look-like-this-poster.jpg.asset.json";
 
 
 type Tile = {
@@ -99,6 +101,13 @@ const categories: Category[] = [
         format: "Talking-to-camera · hook and CTA · ad-style",
         poster: humeHealthThumbnail.url,
         videoUrl: humeHealthVideo.url,
+      },
+      {
+        subject: "Skincare",
+        format:
+          "Talking-to-camera · before and after with overlays · series-style",
+        poster: skinUsedPoster.url,
+        videoUrl: skinUsedVideo.url,
       },
       {
         subject: "Skincare",
