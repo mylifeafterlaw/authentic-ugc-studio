@@ -1,14 +1,16 @@
-Add a new "Tech and Apps" category to the existing portfolio section, following the same structure and behaviour as the current categories.
+Fix: Re-encode the fourth Product video from HEVC/H.265 to H.264/AVC
 
-What will be built:
-- Insert a new `tech-apps` entry into the `categories` array in `src/components/PortfolioSection.tsx`.
-- Use the same tile structure as other categories: `subject`, `format`, `poster`, and `videoUrl`.
-- Apply the existing two-line caption styling (uppercase subject + muted format).
-- Inherit the same responsive behaviour: horizontal scroll on mobile, up to 5 tiles on one row on desktop, lazy-loaded poster stills, and click-to-play modal.
-- Position the new category after the "Product" category unless you request a different order.
+Root cause confirmed
+- The fourth Product tile (`src/assets/product-video-5.mp4.asset.json`) points to a 1440×2560 60fps HEVC (`hvc1`) video.
+- HEVC is not supported by many browsers in HTML5 `<video>`; playback shows a black screen.
+- The other three Product tiles are H.264 (`avc1`) and play correctly.
+- The poster frame extracted from the video is fine — only the video stream needs replacing.
 
-What I need from you before building:
-- The video files for each tile in this category.
-- The exact `subject` and `format` captions for each tile (e.g., subject: "Tech review", format: "Hook-led · B-roll and voiceover").
+Plan
+1. Re-encode `/tmp/product-video-5-check.mp4` to H.264 (AVC) at 1080×1920, preserving 9:16 aspect ratio and quality.
+2. Upload the re-encoded file via `lovable-assets create` to replace the CDN asset pointer.
+3. Update `src/assets/product-video-5.mp4.asset.json` with the new asset URL/ID.
+4. Leave the existing poster asset unchanged; it already shows a real frame.
+5. Verify the video plays in the preview by clicking the fourth Product tile.
 
-No other sections, styles, or layout rules will be changed.
+No other files or sections will be changed.
