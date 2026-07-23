@@ -149,16 +149,10 @@ const categories: Category[] = [
     name: "Accommodation & Travel",
     tiles: [
       {
-        subject: "Travel · Singapore",
-        format: "B-roll and voiceover · natural travel style",
-        poster: singaporeZooPoster.url,
-        videoUrl: singaporeZooVideo.url,
-      },
-      {
         subject: "Apartment tour · Vietnam",
-        format: "Aesthetic B-roll and voiceover",
-        poster: vietnamApartmentPoster.url,
-        videoUrl: vietnamApartmentVideo.url,
+        format: "B-roll and voiceover",
+        poster: apartmentPoster.url,
+        videoUrl: apartmentVideo.url,
       },
       {
         subject: "Condo tour · Chiang Mai",
@@ -168,9 +162,15 @@ const categories: Category[] = [
       },
       {
         subject: "Apartment tour · Vietnam",
-        format: "B-roll and voiceover",
-        poster: apartmentPoster.url,
-        videoUrl: apartmentVideo.url,
+        format: "Aesthetic B-roll and voiceover",
+        poster: vietnamApartmentPoster.url,
+        videoUrl: vietnamApartmentVideo.url,
+      },
+      {
+        subject: "Travel · Singapore",
+        format: "B-roll and voiceover · natural travel style",
+        poster: singaporeZooPoster.url,
+        videoUrl: singaporeZooVideo.url,
       },
     ],
   },
