@@ -119,6 +119,12 @@ const categories: Category[] = [
         videoUrl: skinComparisonVideo.url,
       },
       {
+        subject: "Supplements",
+        format: "Talking-to-camera · natural product explanation · longer-form",
+        poster: lGlutaminePoster.url,
+        videoUrl: lGlutamineVideo.url,
+      },
+      {
         subject: "Food and drink",
         format: "Talking-to-camera · natural and authentic",
         poster: productUGCPoster.url,
