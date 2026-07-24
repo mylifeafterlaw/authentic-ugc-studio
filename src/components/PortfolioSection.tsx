@@ -294,7 +294,7 @@ const VideoTile = ({
         ref={wrapperRef}
         type="button"
         onClick={() => onPlay(tile.videoUrl!)}
-        className="group block w-[52vw] max-w-[210px] md:w-[260px] md:max-w-none shrink-0 text-left"
+        className="group block w-[44vw] max-w-[178px] md:w-[220px] md:max-w-none shrink-0 text-left"
       >
         {inner}
       </button>
@@ -304,7 +304,7 @@ const VideoTile = ({
   return (
     <div
       ref={wrapperRef}
-      className="group block w-[52vw] max-w-[210px] md:w-[260px] md:max-w-none shrink-0"
+      className="group block w-[44vw] max-w-[178px] md:w-[220px] md:max-w-none shrink-0"
     >
       {inner}
     </div>
