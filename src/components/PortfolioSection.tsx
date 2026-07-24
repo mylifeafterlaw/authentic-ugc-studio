@@ -42,6 +42,8 @@ import techAppsVideo2 from "@/assets/Playful_Video_2_-_FINAL-2.mp4.asset.json";
 import techAppsVideo2Poster from "@/assets/tech-apps-video-2-poster.jpg.asset.json";
 import skinUsedVideo from "@/assets/skin-used-to-look-like-this.mp4.asset.json";
 import skinUsedPoster from "@/assets/skin-used-to-look-like-this-poster.jpg.asset.json";
+import lGlutamineVideo from "@/assets/70-second-example-l-glutamine.mp4.asset.json";
+import lGlutaminePoster from "@/assets/70-second-example-l-glutamine-poster.jpg.asset.json";
 
 
 type Tile = {
@@ -115,6 +117,12 @@ const categories: Category[] = [
           "Talking-to-camera · authentic personal delivery · series-style",
         poster: skinComparisonPoster.url,
         videoUrl: skinComparisonVideo.url,
+      },
+      {
+        subject: "Supplements",
+        format: "Talking-to-camera · natural product explanation · longer-form",
+        poster: lGlutaminePoster.url,
+        videoUrl: lGlutamineVideo.url,
       },
       {
         subject: "Food and drink",
