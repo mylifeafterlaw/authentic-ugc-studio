@@ -413,6 +413,42 @@ const CategoryRow = ({
 
 const PortfolioSection = () => {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeCat, setActiveCat] = useState<number>(0);
+  const [indicatorVisible, setIndicatorVisible] = useState(false);
+  const catRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  useEffect(() => {
+    const visibility = new Map<number, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          const idx = Number((e.target as HTMLElement).dataset.catIdx);
+          visibility.set(idx, e.isIntersecting ? e.intersectionRatio : 0);
+        });
+        let bestIdx = 0;
+        let bestRatio = 0;
+        visibility.forEach((ratio, idx) => {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestIdx = idx;
+          }
+        });
+        setIndicatorVisible(bestRatio > 0);
+        if (bestRatio > 0) setActiveCat(bestIdx);
+      },
+      { threshold: [0, 0.15, 0.35, 0.6, 0.85, 1] }
+    );
+    catRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const jumpTo = (idx: number) => {
+    const el = catRefs.current[idx];
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const prevCat = activeCat > 0 ? categories[activeCat - 1] : null;
+  const nextCat = activeCat < categories.length - 1 ? categories[activeCat + 1] : null;
 
   return (
     <section id="portfolio" className="py-20 lg:py-28 bg-background scroll-smooth">
@@ -448,6 +484,8 @@ const PortfolioSection = () => {
           <motion.div
             key={cat.id}
             id={cat.id}
+            data-cat-idx={catIdx}
+            ref={(el) => (catRefs.current[catIdx] = el)}
             className="scroll-mt-24"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -471,6 +509,61 @@ const PortfolioSection = () => {
         ))}
       </div>
     </div>
+
+    {/* Side category indicator — desktop only, visible while a category is in view */}
+    <div
+      aria-hidden={!indicatorVisible}
+      className={`hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col items-end gap-3 transition-opacity duration-300 ${
+        indicatorVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
+    >
+      {prevCat ? (
+        <button
+          type="button"
+          onClick={() => jumpTo(activeCat - 1)}
+          className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <span className="font-body text-[0.6rem] uppercase tracking-[0.2em] font-light">
+            {prevCat.name}
+          </span>
+          <ChevronUp className="w-3.5 h-3.5" strokeWidth={1.5} />
+        </button>
+      ) : (
+        <span className="h-4" />
+      )}
+
+      <div className="flex flex-col items-end gap-1.5 border-r border-foreground/30 pr-3 py-1">
+        <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] font-medium text-foreground">
+          {categories[activeCat]?.name}
+        </span>
+        <div className="flex flex-col gap-1">
+          {categories.map((_, i) => (
+            <span
+              key={i}
+              className={`h-1 w-1 rounded-full transition-colors ${
+                i === activeCat ? "bg-primary" : "bg-foreground/20"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {nextCat ? (
+        <button
+          type="button"
+          onClick={() => jumpTo(activeCat + 1)}
+          className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <span className="font-body text-[0.6rem] uppercase tracking-[0.2em] font-light">
+            {nextCat.name}
+          </span>
+          <ChevronDown className="w-3.5 h-3.5" strokeWidth={1.5} />
+        </button>
+      ) : (
+        <span className="h-4" />
+      )}
+    </div>
+
 
     <Dialog open={!!activeVideo} onOpenChange={(open) => !open && setActiveVideo(null)}>
       <DialogContent className="max-w-[min(92vw,420px)] border-none bg-transparent p-0 shadow-none">
