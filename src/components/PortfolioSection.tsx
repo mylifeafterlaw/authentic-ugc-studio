@@ -81,16 +81,16 @@ const categories: Category[] = [
         videoUrl: livingBeautifulVideo.url,
       },
       {
-        subject: "Water bottle",
-        format: "Hook-led · talking-to-camera and B-roll",
-        poster: productTripleHookPoster.url,
-        videoUrl: productTripleHookVideo.url,
-      },
-      {
         subject: "Aesthetic pour · full process",
         format: "Quick-cut B-roll · text overlays · no voiceover",
         poster: productVideo5Poster.url,
         videoUrl: productVideo5.url,
+      },
+      {
+        subject: "Water bottle",
+        format: "Hook-led · talking-to-camera and B-roll",
+        poster: productTripleHookPoster.url,
+        videoUrl: productTripleHookVideo.url,
       },
     ],
   },
