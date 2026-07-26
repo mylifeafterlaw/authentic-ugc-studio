@@ -46,6 +46,8 @@ import lGlutamineVideo from "@/assets/70-second-example-l-glutamine.mp4.asset.js
 import lGlutaminePoster from "@/assets/70-second-example-l-glutamine-poster.jpg.asset.json";
 import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4.asset.json";
 import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg.asset.json";
+import playfulArrivalVideo1 from "@/assets/playful-arrival-video-1.mp4.asset.json";
+import playfulArrivalVideo1Poster from "@/assets/playful-arrival-video-1-poster.jpg.asset.json";
 
 
 type Tile = {
