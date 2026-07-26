@@ -140,6 +140,12 @@ const categories: Category[] = [
     name: "Tech and Apps",
     tiles: [
       {
+        subject: "Playful App",
+        format: "Hook-led · full-screen screen recording · greenscreen talking-head overlay",
+        poster: playfulArrivalPoster.url,
+        videoUrl: playfulArrivalVideo.url,
+      },
+      {
         subject: "Playful · Hatch app",
         format: "Hook-led · talking-to-camera throughout · app demo",
         poster: techAppsVideo1Poster.url,
