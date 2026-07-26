@@ -44,6 +44,8 @@ import skinUsedVideo from "@/assets/skin-used-to-look-like-this.mp4.asset.json";
 import skinUsedPoster from "@/assets/skin-used-to-look-like-this-poster.jpg.asset.json";
 import lGlutamineVideo from "@/assets/70-second-example-l-glutamine.mp4.asset.json";
 import lGlutaminePoster from "@/assets/70-second-example-l-glutamine-poster.jpg.asset.json";
+import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4.asset.json";
+import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg.asset.json";
 
 
 type Tile = {
