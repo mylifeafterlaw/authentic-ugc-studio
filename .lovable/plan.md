@@ -1,19 +1,19 @@
-Three small copy/order changes only — no structural or styling changes.
+## Add new Playful App video as first tile in Tech and Apps
 
-1. Revert Accommodation & Travel tile order
-   - File: `src/components/PortfolioSection.tsx`
-   - Swap positions 2 and 3 back to the original order:
-     1. Apartment tour · Vietnam (B-roll and voiceover)
-     2. Condo tour · Chiang Mai
-     3. Apartment tour · Vietnam (Aesthetic B-roll and voiceover)
-     4. Travel · Singapore
+**Asset**
+- Upload `Playful_Arrival_App_-_Video_2_FINAL.mp4` via `lovable-assets` to `src/assets/playful-arrival-app.mp4.asset.json`.
+- Scan the opening seconds with ffmpeg and pick a frame where both the on-screen title text and the small corner cutout of you speaking are clearly visible; save it as `playful-arrival-app-poster.jpg` and upload as an asset pointer.
 
-2. Update the Performer card subline
-   - File: `src/components/AboutSection.tsx`
-   - Change the last card's subline from "Trained singer, plenty of stage and gig experience" to "Trained singer, stage experience and former streamer".
+**Portfolio edit (`src/components/PortfolioSection.tsx`)**
+- Import the new video + poster pointers.
+- Insert as the FIRST tile in the `tech-apps` category; the two existing Hatch tiles shift to 2nd and 3rd.
+- Caption:
+  - subject: `Playful App`
+  - format (suggested): `Hook-led · full-screen screen recording · greenscreen talking-head overlay`
 
-3. Swap two About cards
-   - File: `src/components/AboutSection.tsx`
-   - Move the "Performer before I was a creator" card to position 5.
-   - Move the "Always training something" card to position 6 (the last position).
-   - Icons remain attached to their respective cards.
+Alternative sublines if you prefer: `Hook-led · screen recording with greenscreen talking-head corner overlay` or `Hook-led · app walkthrough · greenscreen presenter overlay`.
+
+**Verify**
+- Run the build, confirm the tile renders and plays.
+
+Nothing else in the portfolio or other sections changes.
