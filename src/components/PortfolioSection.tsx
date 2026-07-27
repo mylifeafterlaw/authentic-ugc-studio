@@ -167,6 +167,12 @@ const categories: Category[] = [
         poster: techAppsVideo2Poster.url,
         videoUrl: techAppsVideo2.url,
       },
+      {
+        subject: "Playful App",
+        format: "Hook-led · talking-to-camera · in-app walkthrough",
+        poster: playfulArrivalVideo3Poster.url,
+        videoUrl: playfulArrivalVideo3.url,
+      },
 
     ],
   },
