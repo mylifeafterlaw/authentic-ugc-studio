@@ -48,6 +48,8 @@ import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4.asset.json";
 import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg.asset.json";
 import playfulArrivalVideo1 from "@/assets/playful-arrival-video-1.mp4.asset.json";
 import playfulArrivalVideo1Poster from "@/assets/playful-arrival-video-1-poster.jpg.asset.json";
+import playfulArrivalVideo3 from "@/assets/playful-arrival-video-3.mp4.asset.json";
+import playfulArrivalVideo3Poster from "@/assets/playful-arrival-video-3-poster.jpg.asset.json";
 
 
 type Tile = {
