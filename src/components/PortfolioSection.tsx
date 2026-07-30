@@ -6,16 +6,16 @@ import apartmentVideo from "@/assets/apartment-ugc.mp4.asset.json";
 import condoVideo from "@/assets/condo-ugc.mp4";
 import apartmentPoster from "@/assets/apartment-ugc-poster.png.asset.json";
 import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4";
-import productUGC from "@/assets/Product_UGC_Natural_talking.MP4.asset.json";
-import skinComparisonVideo from "@/assets/Skin_Comparison_Version_B_Final.mp4.asset.json";
-import singaporeZooVideo from "@/assets/singapore-zoo.mp4.asset.json";
+import productUGC from "@/assets/Product_UGC_Natural_talking.mp4";
+import skinComparisonVideo from "@/assets/Skin_Comparison_Version_B_Final.mp4";
+import singaporeZooVideo from "@/assets/singapore-zoo.mp4";
 import tattooVideo from "@/assets/tattoo-chiang-mai.mp4";
-import huskiesVideo from "@/assets/huskies.mp4.asset.json";
-import rajadamnernVideo from "@/assets/rajadamnern.mp4.asset.json";
-import cinemaVideo from "@/assets/cinema.mp4.asset.json";
-import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4.asset.json";
+import huskiesVideo from "@/assets/huskies.mp4";
+import rajadamnernVideo from "@/assets/rajadamnern.mp4";
+import cinemaVideo from "@/assets/cinema.mp4";
+import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4";
 import humeHealthVideo from "@/assets/hume-health-no-edits.mp4";
-import rajaStadiumPoster from "@/assets/raja-stadium-poster.png.asset.json";
+import rajaStadiumPoster from "@/assets/raja-stadium-poster.jpg";
 import humeHealthThumbnail from "@/assets/hume-health-thumbnail.jpg";
 import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook.mp4.asset.json";
 import productVideo5 from "@/assets/product-video-5.mp4.asset.json";
@@ -28,20 +28,19 @@ import livingBeautifulPoster from "@/assets/living-beautiful-poster.jpg";
 import productTripleHookPoster from "@/assets/product-triple-hook-poster.jpg.asset.json";
 import condoPoster from "@/assets/condo-poster.jpg";
 import vietnamApartmentPoster from "@/assets/vietnam-apartment-poster.jpg";
-import singaporeZooPoster from "@/assets/singapore-zoo-poster.jpg.asset.json";
-import skinComparisonPoster from "@/assets/skin-comparison-poster.jpg.asset.json";
-import productUGCPoster from "@/assets/product-ugc-poster.jpg.asset.json";
+import singaporeZooPoster from "@/assets/singapore-zoo-poster.jpg";
+import skinComparisonPoster from "@/assets/skin-comparison-poster.jpg";
+import productUGCPoster from "@/assets/product-ugc-poster.jpg";
 import tattooPoster from "@/assets/tattoo-poster.jpg";
-import huskiesPoster from "@/assets/huskies-poster.jpg.asset.json";
-import cinemaPoster from "@/assets/cinema-face-poster.jpg.asset.json";
-import cafeWatPoster from "@/assets/cafe-wat-poster.jpg.asset.json";
-import neverlandPoster from "@/assets/neverland.png.asset.json";
+import huskiesPoster from "@/assets/huskies-poster.jpg";
+import cinemaPoster from "@/assets/cinema-face-poster.jpg";
+import cafeWatPoster from "@/assets/cafe-wat-poster.jpg";
 import techAppsVideo1 from "@/assets/tech-apps-video-1.mp4.asset.json";
 import techAppsVideo1Poster from "@/assets/tech-apps-video-1-poster.jpg.asset.json";
 import techAppsVideo2 from "@/assets/Playful_Video_2_-_FINAL-2.mp4.asset.json";
 import techAppsVideo2Poster from "@/assets/tech-apps-video-2-poster.jpg.asset.json";
-import skinUsedVideo from "@/assets/skin-used-to-look-like-this.mp4.asset.json";
-import skinUsedPoster from "@/assets/skin-used-to-look-like-this-poster.jpg.asset.json";
+import skinUsedVideo from "@/assets/skin-used-to-look-like-this.mp4";
+import skinUsedPoster from "@/assets/skin-used-to-look-like-this-poster.jpg";
 import lGlutamineVideo from "@/assets/70-second-example-l-glutamine.mp4.asset.json";
 import lGlutaminePoster from "@/assets/70-second-example-l-glutamine-poster.jpg.asset.json";
 import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4.asset.json";
@@ -114,15 +113,15 @@ const categories: Category[] = [
         subject: "Skincare",
         format:
           "Talking-to-camera · before and after with overlays · series-style",
-        poster: skinUsedPoster.url,
-        videoUrl: skinUsedVideo.url,
+        poster: skinUsedPoster,
+        videoUrl: skinUsedVideo,
       },
       {
         subject: "Skincare",
         format:
           "Talking-to-camera · authentic personal delivery · series-style",
-        poster: skinComparisonPoster.url,
-        videoUrl: skinComparisonVideo.url,
+        poster: skinComparisonPoster,
+        videoUrl: skinComparisonVideo,
       },
       {
         subject: "Supplements",
@@ -133,8 +132,8 @@ const categories: Category[] = [
       {
         subject: "Food and drink",
         format: "Talking-to-camera · natural and authentic",
-        poster: productUGCPoster.url,
-        videoUrl: productUGC.url,
+        poster: productUGCPoster,
+        videoUrl: productUGC,
       },
     ],
   },
@@ -201,8 +200,8 @@ const categories: Category[] = [
       {
         subject: "Travel · Singapore",
         format: "B-roll and voiceover · natural travel style",
-        poster: singaporeZooPoster.url,
-        videoUrl: singaporeZooVideo.url,
+        poster: singaporeZooPoster,
+        videoUrl: singaporeZooVideo,
       },
     ],
   },
@@ -211,10 +210,10 @@ const categories: Category[] = [
     name: "Lifestyle & Experience",
     tiles: [
       { subject: "Tattoo experience · Chiang Mai", format: "Hook-led · B-roll and voiceover", poster: tattooPoster, videoUrl: tattooVideo },
-      { subject: "Husky experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: neverlandPoster.url, videoUrl: huskiesVideo.url },
-      { subject: "Muay Thai · Bangkok", format: "Hook-led · B-roll and voiceover", poster: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
-      { subject: "Cinema experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cinemaPoster.url, videoUrl: cinemaVideo.url },
-      { subject: "Café · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cafeWatPoster.url, videoUrl: cafeWatVideo.url },
+      { subject: "Husky experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: huskiesPoster, videoUrl: huskiesVideo },
+      { subject: "Muay Thai · Bangkok", format: "Hook-led · B-roll and voiceover", poster: rajaStadiumPoster, videoUrl: rajadamnernVideo },
+      { subject: "Cinema experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cinemaPoster, videoUrl: cinemaVideo },
+      { subject: "Café · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cafeWatPoster, videoUrl: cafeWatVideo },
     ],
   },
 ];
