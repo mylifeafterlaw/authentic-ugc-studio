@@ -3,35 +3,35 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import apartmentVideo from "@/assets/apartment-ugc.mp4.asset.json";
-import condoVideo from "@/assets/condo-ugc.mp4.asset.json";
+import condoVideo from "@/assets/condo-ugc.mp4";
 import apartmentPoster from "@/assets/apartment-ugc-poster.png.asset.json";
-import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4.asset.json";
+import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4";
 import productUGC from "@/assets/Product_UGC_Natural_talking.MP4.asset.json";
 import skinComparisonVideo from "@/assets/Skin_Comparison_Version_B_Final.mp4.asset.json";
 import singaporeZooVideo from "@/assets/singapore-zoo.mp4.asset.json";
-import tattooVideo from "@/assets/tattoo-chiang-mai.mp4.asset.json";
+import tattooVideo from "@/assets/tattoo-chiang-mai.mp4";
 import huskiesVideo from "@/assets/huskies.mp4.asset.json";
 import rajadamnernVideo from "@/assets/rajadamnern.mp4.asset.json";
 import cinemaVideo from "@/assets/cinema.mp4.asset.json";
 import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4.asset.json";
-import humeHealthVideo from "@/assets/hume-health-no-edits.mp4.asset.json";
+import humeHealthVideo from "@/assets/hume-health-no-edits.mp4";
 import rajaStadiumPoster from "@/assets/raja-stadium-poster.png.asset.json";
-import humeHealthThumbnail from "@/assets/hume-health-thumbnail.jpg.asset.json";
+import humeHealthThumbnail from "@/assets/hume-health-thumbnail.jpg";
 import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook.mp4.asset.json";
 import productVideo5 from "@/assets/product-video-5.mp4.asset.json";
 import productVideo5Poster from "@/assets/product-video-5-poster.jpg.asset.json";
-import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4.asset.json";
-import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4.asset.json";
+import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4";
+import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4";
 // Poster stills (real video frames) for fast, lazy loading
-import hairProductPoster from "@/assets/hair-product-poster.jpg.asset.json";
-import livingBeautifulPoster from "@/assets/living-beautiful-poster.jpg.asset.json";
+import hairProductPoster from "@/assets/hair-product-poster.jpg";
+import livingBeautifulPoster from "@/assets/living-beautiful-poster.jpg";
 import productTripleHookPoster from "@/assets/product-triple-hook-poster.jpg.asset.json";
-import condoPoster from "@/assets/condo-poster.jpg.asset.json";
-import vietnamApartmentPoster from "@/assets/vietnam-apartment-poster.jpg.asset.json";
+import condoPoster from "@/assets/condo-poster.jpg";
+import vietnamApartmentPoster from "@/assets/vietnam-apartment-poster.jpg";
 import singaporeZooPoster from "@/assets/singapore-zoo-poster.jpg.asset.json";
 import skinComparisonPoster from "@/assets/skin-comparison-poster.jpg.asset.json";
 import productUGCPoster from "@/assets/product-ugc-poster.jpg.asset.json";
-import tattooPoster from "@/assets/tattoo-poster.jpg.asset.json";
+import tattooPoster from "@/assets/tattoo-poster.jpg";
 import huskiesPoster from "@/assets/huskies-poster.jpg.asset.json";
 import cinemaPoster from "@/assets/cinema-face-poster.jpg.asset.json";
 import cafeWatPoster from "@/assets/cafe-wat-poster.jpg.asset.json";
@@ -76,15 +76,15 @@ const categories: Category[] = [
       {
         subject: "Haircare",
         format: "Before and after · B-roll and voiceover · hook-led",
-        poster: hairProductPoster.url,
-        videoUrl: hairProductVideo.url,
+        poster: hairProductPoster,
+        videoUrl: hairProductVideo,
       },
       {
         subject: "Skincare",
         format:
           "Talking-to-camera with B-roll · natural product integration · hook-led",
-        poster: livingBeautifulPoster.url,
-        videoUrl: livingBeautifulVideo.url,
+        poster: livingBeautifulPoster,
+        videoUrl: livingBeautifulVideo,
       },
       {
         subject: "Aesthetic pour · full process",
@@ -107,8 +107,8 @@ const categories: Category[] = [
       {
         subject: "Hume Health",
         format: "Talking-to-camera · hook and CTA · ad-style",
-        poster: humeHealthThumbnail.url,
-        videoUrl: humeHealthVideo.url,
+        poster: humeHealthThumbnail,
+        videoUrl: humeHealthVideo,
       },
       {
         subject: "Skincare",
@@ -189,14 +189,14 @@ const categories: Category[] = [
       {
         subject: "Condo tour · Chiang Mai",
         format: "Hook-led · talking-to-camera and B-roll with voiceover",
-        poster: condoPoster.url,
-        videoUrl: condoVideo.url,
+        poster: condoPoster,
+        videoUrl: condoVideo,
       },
       {
         subject: "Apartment tour · Vietnam",
         format: "Aesthetic B-roll and voiceover",
-        poster: vietnamApartmentPoster.url,
-        videoUrl: vietnamApartmentVideo.url,
+        poster: vietnamApartmentPoster,
+        videoUrl: vietnamApartmentVideo,
       },
       {
         subject: "Travel · Singapore",
@@ -210,7 +210,7 @@ const categories: Category[] = [
     id: "lifestyle-experience",
     name: "Lifestyle & Experience",
     tiles: [
-      { subject: "Tattoo experience · Chiang Mai", format: "Hook-led · B-roll and voiceover", poster: tattooPoster.url, videoUrl: tattooVideo.url },
+      { subject: "Tattoo experience · Chiang Mai", format: "Hook-led · B-roll and voiceover", poster: tattooPoster, videoUrl: tattooVideo },
       { subject: "Husky experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: neverlandPoster.url, videoUrl: huskiesVideo.url },
       { subject: "Muay Thai · Bangkok", format: "Hook-led · B-roll and voiceover", poster: rajaStadiumPoster.url, videoUrl: rajadamnernVideo.url },
       { subject: "Cinema experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cinemaPoster.url, videoUrl: cinemaVideo.url },

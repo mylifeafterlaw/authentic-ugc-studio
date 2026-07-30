@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import { Play, ChevronDown } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
 import heroImg from "@/assets/hero-portrait.jpg";
-import heroVideo from "@/assets/Product_UGC_Triple_hook_voiceover_b-roll-2.mp4.asset.json";
-import heroPoster from "@/assets/hero-thumbnail.png.asset.json";
+import heroVideo from "@/assets/Product_UGC_Triple_hook_voiceover_b-roll-2.mp4";
+import heroPoster from "@/assets/hero-thumbnail.jpg";
 
 // Swap these with the real assets when ready.
 // videoSrc: the 30s UGC showreel. videoPoster: the poster frame shown before play.
 // sideStill: a DIFFERENT shot/crop from the video poster.
-const videoSrc = heroVideo.url;
-const videoPoster = heroPoster.url; // uploaded thumbnail image shown before play
+const videoSrc = heroVideo;
+const videoPoster = heroPoster; // uploaded thumbnail image shown before play
 const sideStill = heroImg; // replace with a distinct second photo
 
 
