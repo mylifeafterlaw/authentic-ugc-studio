@@ -2,9 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import apartmentVideo from "@/assets/apartment-ugc.mp4.asset.json";
 import condoVideo from "@/assets/condo-ugc.mp4";
-import apartmentPoster from "@/assets/apartment-ugc-poster.png.asset.json";
 import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4";
 import productUGC from "@/assets/Product_UGC_Natural_talking.mp4";
 import skinComparisonVideo from "@/assets/Skin_Comparison_Version_B_Final.mp4";
@@ -35,20 +33,22 @@ import tattooPoster from "@/assets/tattoo-poster.jpg";
 import huskiesPoster from "@/assets/huskies-poster.jpg";
 import cinemaPoster from "@/assets/cinema-face-poster.jpg";
 import cafeWatPoster from "@/assets/cafe-wat-poster.jpg";
-import techAppsVideo1 from "@/assets/tech-apps-video-1.mp4.asset.json";
-import techAppsVideo1Poster from "@/assets/tech-apps-video-1-poster.jpg.asset.json";
-import techAppsVideo2 from "@/assets/Playful_Video_2_-_FINAL-2.mp4.asset.json";
-import techAppsVideo2Poster from "@/assets/tech-apps-video-2-poster.jpg.asset.json";
+import techAppsVideo1 from "@/assets/tech-apps-video-1.mp4";
+import techAppsVideo1Poster from "@/assets/tech-apps-video-1-poster.jpg";
+import techAppsVideo2 from "@/assets/Playful_Video_2_-_FINAL-2.mp4";
+import techAppsVideo2Poster from "@/assets/tech-apps-video-2-poster.jpg";
 import skinUsedVideo from "@/assets/skin-used-to-look-like-this.mp4";
 import skinUsedPoster from "@/assets/skin-used-to-look-like-this-poster.jpg";
 import lGlutamineVideo from "@/assets/70-second-example-l-glutamine.mp4";
 import lGlutaminePoster from "@/assets/70-second-example-l-glutamine-poster.jpg";
-import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4.asset.json";
-import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg.asset.json";
-import playfulArrivalVideo1 from "@/assets/playful-arrival-video-1.mp4.asset.json";
-import playfulArrivalVideo1Poster from "@/assets/playful-arrival-video-1-poster.jpg.asset.json";
-import playfulArrivalVideo3 from "@/assets/playful-arrival-video-3.mp4.asset.json";
-import playfulArrivalVideo3Poster from "@/assets/playful-arrival-video-3-poster.jpg.asset.json";
+import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4";
+import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg";
+import playfulArrivalVideo1 from "@/assets/playful-arrival-video-1.mp4";
+import playfulArrivalVideo1Poster from "@/assets/playful-arrival-video-1-poster.jpg";
+import playfulArrivalVideo3 from "@/assets/playful-arrival-video-3.mp4";
+import playfulArrivalVideo3Poster from "@/assets/playful-arrival-video-3-poster.jpg";
+import playfulVideo3 from "@/assets/playful-video-3.mp4";
+import playfulVideo3Poster from "@/assets/playful-video-3-poster.jpg";
 
 
 type Tile = {
@@ -145,32 +145,38 @@ const categories: Category[] = [
       {
         subject: "Playful App",
         format: "Hook-led · full-screen screen recording · greenscreen talking-head overlay",
-        poster: playfulArrivalPoster.url,
-        videoUrl: playfulArrivalVideo.url,
+        poster: playfulArrivalPoster,
+        videoUrl: playfulArrivalVideo,
       },
       {
-        subject: "Playful · Hatch app",
+        subject: "Playful App",
         format: "Hook-led · talking-to-camera throughout · app demo",
-        poster: techAppsVideo1Poster.url,
-        videoUrl: techAppsVideo1.url,
+        poster: techAppsVideo1Poster,
+        videoUrl: techAppsVideo1,
       },
       {
         subject: "Playful App",
         format: "Hook-led · talking-to-camera · screen recording overlay",
-        poster: playfulArrivalVideo1Poster.url,
-        videoUrl: playfulArrivalVideo1.url,
+        poster: playfulArrivalVideo1Poster,
+        videoUrl: playfulArrivalVideo1,
       },
       {
-        subject: "Playful · Hatch app",
+        subject: "Playful App",
         format: "Hook-led · talking-to-camera with aesthetic B-roll · screen recording",
-        poster: techAppsVideo2Poster.url,
-        videoUrl: techAppsVideo2.url,
+        poster: techAppsVideo2Poster,
+        videoUrl: techAppsVideo2,
       },
       {
         subject: "Playful App",
         format: "Hook-led · talking-to-camera · in-app walkthrough",
-        poster: playfulArrivalVideo3Poster.url,
-        videoUrl: playfulArrivalVideo3.url,
+        poster: playfulArrivalVideo3Poster,
+        videoUrl: playfulArrivalVideo3,
+      },
+      {
+        subject: "Playful App",
+        format: "Hook-led · talking-to-camera",
+        poster: playfulVideo3Poster,
+        videoUrl: playfulVideo3,
       },
 
     ],
@@ -179,12 +185,6 @@ const categories: Category[] = [
     id: "accommodation-travel",
     name: "Accommodation & Travel",
     tiles: [
-      {
-        subject: "Apartment tour · Vietnam",
-        format: "B-roll and voiceover",
-        poster: apartmentPoster.url,
-        videoUrl: apartmentVideo.url,
-      },
       {
         subject: "Condo tour · Chiang Mai",
         format: "Hook-led · talking-to-camera and B-roll with voiceover",
