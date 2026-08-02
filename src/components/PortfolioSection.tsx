@@ -66,8 +66,8 @@ type Category = {
 // Each tile has a real poster still + lazy-loaded video for fast mobile loading.
 const categories: Category[] = [
   {
-    id: "product",
-    name: "Product",
+    id: "beauty-skincare",
+    name: "Beauty & Skincare",
     tiles: [
       {
         subject: "Haircare",
@@ -82,26 +82,6 @@ const categories: Category[] = [
         poster: livingBeautifulPoster,
         videoUrl: livingBeautifulVideo,
       },
-      // HIDDEN until source clip is supplied — see productVideo5 import above.
-      // To restore: uncomment and change `.url` to plain refs (poster: productVideo5Poster, videoUrl: productVideo5).
-      // {
-      //   subject: "Aesthetic pour · full process",
-      //   format: "Quick-cut B-roll · text overlays · no voiceover",
-      //   poster: productVideo5Poster,
-      //   videoUrl: productVideo5,
-      // },
-      {
-        subject: "Water bottle",
-        format: "Hook-led · talking-to-camera and B-roll",
-        poster: productTripleHookPoster,
-        videoUrl: productTripleHookVideo,
-      },
-    ],
-  },
-  {
-    id: "talking-head",
-    name: "Talking to Camera",
-    tiles: [
       {
         subject: "Skincare",
         format:
@@ -116,24 +96,32 @@ const categories: Category[] = [
         poster: skinComparisonPoster,
         videoUrl: skinComparisonVideo,
       },
+      // HIDDEN until the "Aesthetic pour" source clip is supplied (productVideo5
+      // import above). Final section TBC with Jess. To restore: uncomment.
+      // {
+      //   subject: "Aesthetic pour · full process",
+      //   format: "Quick-cut B-roll · text overlays · no voiceover",
+      //   poster: productVideo5Poster,
+      //   videoUrl: productVideo5,
+      // },
+    ],
+  },
+  {
+    id: "health-supplements",
+    name: "Health & Supplements",
+    tiles: [
       {
         subject: "Supplements",
         format: "Talking-to-camera · natural product explanation · longer-form",
         poster: lGlutaminePoster,
         videoUrl: lGlutamineVideo,
       },
-      {
-        subject: "Food and drink",
-        format: "Talking-to-camera · natural and authentic",
-        poster: productUGCPoster,
-        videoUrl: productUGC,
-      },
     ],
   },
 
   {
     id: "tech-apps",
-    name: "Tech and Apps",
+    name: "Tech & Apps",
     tiles: [
       {
         subject: "Playful App",
@@ -175,8 +163,8 @@ const categories: Category[] = [
     ],
   },
   {
-    id: "accommodation-travel",
-    name: "Accommodation & Travel",
+    id: "accommodation",
+    name: "Accommodation",
     tiles: [
       {
         subject: "Condo tour · Chiang Mai",
@@ -207,6 +195,18 @@ const categories: Category[] = [
       { subject: "Muay Thai · Bangkok", format: "Hook-led · B-roll and voiceover", poster: rajaStadiumPoster, videoUrl: rajadamnernVideo },
       { subject: "Cinema experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cinemaPoster, videoUrl: cinemaVideo },
       { subject: "Café · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cafeWatPoster, videoUrl: cafeWatVideo },
+      {
+        subject: "Water bottle",
+        format: "Hook-led · talking-to-camera and B-roll",
+        poster: productTripleHookPoster,
+        videoUrl: productTripleHookVideo,
+      },
+      {
+        subject: "Food and drink",
+        format: "Talking-to-camera · natural and authentic",
+        poster: productUGCPoster,
+        videoUrl: productUGC,
+      },
     ],
   },
 ];
