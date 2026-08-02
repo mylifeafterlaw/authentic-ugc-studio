@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Play, ChevronDown } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
 import heroImg from "@/assets/hero-portrait.jpg";
-import heroVideo from "@/assets/Product_UGC_Triple_hook_voiceover_b-roll-2.mp4";
+import heroVideo from "@/assets/hume-band2-hero.mp4";
 import heroPoster from "@/assets/hero-thumbnail.jpg";
 
 // Swap these with the real assets when ready.
