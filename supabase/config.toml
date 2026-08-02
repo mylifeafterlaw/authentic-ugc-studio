@@ -2,3 +2,7 @@ project_id = "ygzstaovfvpevhieinwm"
 
 [functions.process-email-queue]
 verify_jwt = true
+
+# Public contact form calls this with the anon key, so JWT verification is off.
+[functions.notify-enquiry]
+verify_jwt = false
