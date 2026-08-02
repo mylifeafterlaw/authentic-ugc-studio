@@ -85,12 +85,14 @@ const categories: Category[] = [
         poster: livingBeautifulPoster,
         videoUrl: livingBeautifulVideo,
       },
-      {
-        subject: "Aesthetic pour · full process",
-        format: "Quick-cut B-roll · text overlays · no voiceover",
-        poster: productVideo5Poster.url,
-        videoUrl: productVideo5.url,
-      },
+      // HIDDEN until source clip is supplied — see productVideo5 import above.
+      // To restore: uncomment and change `.url` to plain refs (poster: productVideo5Poster, videoUrl: productVideo5).
+      // {
+      //   subject: "Aesthetic pour · full process",
+      //   format: "Quick-cut B-roll · text overlays · no voiceover",
+      //   poster: productVideo5Poster,
+      //   videoUrl: productVideo5,
+      // },
       {
         subject: "Water bottle",
         format: "Hook-led · talking-to-camera and B-roll",
