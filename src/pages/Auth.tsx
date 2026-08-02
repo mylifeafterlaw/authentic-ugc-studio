@@ -16,7 +16,6 @@ const credsSchema = z.object({
 
 const AuthPage = () => {
   const navigate = useNavigate();
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -30,23 +29,14 @@ const AuthPage = () => {
     }
     setLoading(true);
     try {
-      if (mode === "signup") {
-        const { error } = await supabase.auth.signUp({
-          email: parsed.data.email,
-          password: parsed.data.password,
-          options: { emailRedirectTo: `${window.location.origin}/admin` },
-        });
-        if (error) throw error;
-        toast.success("Account created. Check your email to confirm, then sign in.");
-        setMode("signin");
-      } else {
-        const { error } = await supabase.auth.signInWithPassword({
-          email: parsed.data.email,
-          password: parsed.data.password,
-        });
-        if (error) throw error;
-        navigate("/admin");
-      }
+      // Sign-in only. New account creation is disabled here and, authoritatively,
+      // at the Supabase Auth level (Allow new users to sign up = off).
+      const { error } = await supabase.auth.signInWithPassword({
+        email: parsed.data.email,
+        password: parsed.data.password,
+      });
+      if (error) throw error;
+      navigate("/admin");
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Something went wrong");
     } finally {
@@ -108,26 +98,15 @@ const AuthPage = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              autoComplete={mode === "signup" ? "new-password" : "current-password"}
+              autoComplete="current-password"
               required
             />
           </div>
           <Button type="submit" className="w-full gradient-cta text-primary-foreground" disabled={loading}>
             {loading && <Loader2 className="animate-spin" />}
-            {mode === "signin" ? "Sign in" : "Create account"}
+            Sign in
           </Button>
         </form>
-
-        <p className="text-sm text-muted-foreground text-center mt-6">
-          {mode === "signin" ? "Need an account?" : "Already have an account?"}{" "}
-          <button
-            type="button"
-            className="text-primary font-medium hover:underline"
-            onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-          >
-            {mode === "signin" ? "Sign up" : "Sign in"}
-          </button>
-        </p>
       </div>
     </main>
   );
