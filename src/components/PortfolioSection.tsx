@@ -38,6 +38,8 @@ import skinUsedVideo from "@/assets/skin-used-to-look-like-this.mp4";
 import skinUsedPoster from "@/assets/skin-used-to-look-like-this-poster.jpg";
 import lGlutamineVideo from "@/assets/70-second-example-l-glutamine.mp4";
 import lGlutaminePoster from "@/assets/70-second-example-l-glutamine-poster.jpg";
+import humeBand2Hook3 from "@/assets/hume-band2-hook3.mp4";
+import humeBand2Hook3Poster from "@/assets/hume-band2-hook3-poster.jpg";
 import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4";
 import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg";
 import playfulArrivalVideo1 from "@/assets/playful-arrival-video-1.mp4";
@@ -115,6 +117,18 @@ const categories: Category[] = [
         format: "Talking-to-camera · natural product explanation · longer-form",
         poster: lGlutaminePoster,
         videoUrl: lGlutamineVideo,
+      },
+      {
+        subject: "Water bottle",
+        format: "Hook-led · talking-to-camera and B-roll",
+        poster: productTripleHookPoster,
+        videoUrl: productTripleHookVideo,
+      },
+      {
+        subject: "Hume Health",
+        format: "Talking-to-camera · hook and CTA · ad-style",
+        poster: humeBand2Hook3Poster,
+        videoUrl: humeBand2Hook3,
       },
     ],
   },
@@ -195,12 +209,6 @@ const categories: Category[] = [
       { subject: "Muay Thai · Bangkok", format: "Hook-led · B-roll and voiceover", poster: rajaStadiumPoster, videoUrl: rajadamnernVideo },
       { subject: "Cinema experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cinemaPoster, videoUrl: cinemaVideo },
       { subject: "Café · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cafeWatPoster, videoUrl: cafeWatVideo },
-      {
-        subject: "Water bottle",
-        format: "Hook-led · talking-to-camera and B-roll",
-        poster: productTripleHookPoster,
-        videoUrl: productTripleHookVideo,
-      },
       {
         subject: "Food and drink",
         format: "Talking-to-camera · natural and authentic",
