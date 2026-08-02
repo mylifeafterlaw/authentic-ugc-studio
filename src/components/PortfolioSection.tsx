@@ -23,6 +23,8 @@ import livingBeautifulPoster from "@/assets/living-beautiful-poster.jpg";
 import productTripleHookPoster from "@/assets/product-triple-hook-poster.jpg";
 import condoPoster from "@/assets/condo-poster.jpg";
 import vietnamApartmentPoster from "@/assets/vietnam-apartment-poster.jpg";
+import vietnamApartment2Video from "@/assets/vietnam-apartment-2.mp4";
+import vietnamApartment2Poster from "@/assets/vietnam-apartment-2-poster.jpg";
 import singaporeZooPoster from "@/assets/singapore-zoo-poster.jpg";
 import skinComparisonPoster from "@/assets/skin-comparison-poster.jpg";
 import productUGCPoster from "@/assets/product-ugc-poster.jpg";
@@ -191,6 +193,12 @@ const categories: Category[] = [
         format: "Aesthetic B-roll and voiceover",
         poster: vietnamApartmentPoster,
         videoUrl: vietnamApartmentVideo,
+      },
+      {
+        subject: "Apartment tour · Vietnam",
+        format: "Hook-led · B-roll and voiceover",
+        poster: vietnamApartment2Poster,
+        videoUrl: vietnamApartment2Video,
       },
       {
         subject: "Travel · Singapore",
