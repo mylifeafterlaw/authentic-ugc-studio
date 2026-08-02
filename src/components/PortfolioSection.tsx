@@ -17,7 +17,7 @@ import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4";
 import humeHealthVideo from "@/assets/hume-health-no-edits.mp4";
 import rajaStadiumPoster from "@/assets/raja-stadium-poster.jpg";
 import humeHealthThumbnail from "@/assets/hume-health-thumbnail.jpg";
-import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook.mp4.asset.json";
+import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook_voiceover_b-roll-2.mp4";
 import productVideo5 from "@/assets/product-video-5.mp4.asset.json";
 import productVideo5Poster from "@/assets/product-video-5-poster.jpg.asset.json";
 import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4";
@@ -25,7 +25,7 @@ import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4"
 // Poster stills (real video frames) for fast, lazy loading
 import hairProductPoster from "@/assets/hair-product-poster.jpg";
 import livingBeautifulPoster from "@/assets/living-beautiful-poster.jpg";
-import productTripleHookPoster from "@/assets/product-triple-hook-poster.jpg.asset.json";
+import productTripleHookPoster from "@/assets/product-triple-hook-poster.jpg";
 import condoPoster from "@/assets/condo-poster.jpg";
 import vietnamApartmentPoster from "@/assets/vietnam-apartment-poster.jpg";
 import singaporeZooPoster from "@/assets/singapore-zoo-poster.jpg";
@@ -41,8 +41,8 @@ import techAppsVideo2 from "@/assets/Playful_Video_2_-_FINAL-2.mp4.asset.json";
 import techAppsVideo2Poster from "@/assets/tech-apps-video-2-poster.jpg.asset.json";
 import skinUsedVideo from "@/assets/skin-used-to-look-like-this.mp4";
 import skinUsedPoster from "@/assets/skin-used-to-look-like-this-poster.jpg";
-import lGlutamineVideo from "@/assets/70-second-example-l-glutamine.mp4.asset.json";
-import lGlutaminePoster from "@/assets/70-second-example-l-glutamine-poster.jpg.asset.json";
+import lGlutamineVideo from "@/assets/70-second-example-l-glutamine.mp4";
+import lGlutaminePoster from "@/assets/70-second-example-l-glutamine-poster.jpg";
 import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4.asset.json";
 import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg.asset.json";
 import playfulArrivalVideo1 from "@/assets/playful-arrival-video-1.mp4.asset.json";
@@ -94,8 +94,8 @@ const categories: Category[] = [
       {
         subject: "Water bottle",
         format: "Hook-led · talking-to-camera and B-roll",
-        poster: productTripleHookPoster.url,
-        videoUrl: productTripleHookVideo.url,
+        poster: productTripleHookPoster,
+        videoUrl: productTripleHookVideo,
       },
     ],
   },
@@ -126,8 +126,8 @@ const categories: Category[] = [
       {
         subject: "Supplements",
         format: "Talking-to-camera · natural product explanation · longer-form",
-        poster: lGlutaminePoster.url,
-        videoUrl: lGlutamineVideo.url,
+        poster: lGlutaminePoster,
+        videoUrl: lGlutamineVideo,
       },
       {
         subject: "Food and drink",
