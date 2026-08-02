@@ -12,9 +12,7 @@ import huskiesVideo from "@/assets/huskies.mp4";
 import rajadamnernVideo from "@/assets/rajadamnern.mp4";
 import cinemaVideo from "@/assets/cinema.mp4";
 import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4";
-import humeHealthVideo from "@/assets/hume-health-no-edits.mp4";
 import rajaStadiumPoster from "@/assets/raja-stadium-poster.jpg";
-import humeHealthThumbnail from "@/assets/hume-health-thumbnail.jpg";
 import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook_voiceover_b-roll-2.mp4";
 import productVideo5 from "@/assets/product-video-5.mp4.asset.json";
 import productVideo5Poster from "@/assets/product-video-5-poster.jpg.asset.json";
@@ -105,12 +103,6 @@ const categories: Category[] = [
     id: "talking-head",
     name: "Talking to Camera",
     tiles: [
-      {
-        subject: "Hume Health",
-        format: "Talking-to-camera · hook and CTA · ad-style",
-        poster: humeHealthThumbnail,
-        videoUrl: humeHealthVideo,
-      },
       {
         subject: "Skincare",
         format:
