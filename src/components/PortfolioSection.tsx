@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Play } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 import condoVideo from "@/assets/condo-ugc.mp4";
 import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4";
 import productUGC from "@/assets/Product_UGC_Natural_talking.mp4";
@@ -229,14 +228,22 @@ const SwipeCue = () => (
 
 const VideoTile = ({
   tile,
+  tileId,
+  activeId,
   onPlay,
 }: {
   tile: Tile;
-  onPlay: (url: string) => void;
+  tileId: string;
+  activeId: string | null;
+  onPlay: (id: string) => void;
 }) => {
   const wrapperRef = useRef<any>(null);
-  // Lazy-load: only attach the video src once the tile nears the viewport.
+  const videoRef = useRef<HTMLVideoElement>(null);
+  // Lazy-load the poster image once the tile nears the viewport. The video
+  // itself uses preload="none" and only mounts on click, so no video bytes
+  // download on page load.
   const [inView, setInView] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const el = wrapperRef.current;
@@ -254,86 +261,108 @@ const VideoTile = ({
     return () => observer.disconnect();
   }, [inView]);
 
-  const inner = (
-    <>
-      <div className="relative w-full aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
-        <div className="group relative w-full h-full rounded-[1.9rem] bg-black overflow-hidden">
-          {/* Real poster still, lazy-loaded via IntersectionObserver (in view → load).
-              No video bytes download until the user opens the modal to play. */}
-          {tile.poster ? (
-            <img
-              src={inView ? tile.poster : undefined}
-              alt={tile.subject ?? tile.label ?? "Portfolio video"}
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
-            />
-          ) : (
-            <div className="absolute inset-0 gradient-soft scale-[1.03]" />
-          )}
+  // Only one tile plays at a time: pause this one when another becomes active.
+  useEffect(() => {
+    if (playing && activeId !== tileId) {
+      videoRef.current?.pause();
+    }
+  }, [activeId, tileId, playing]);
 
-          {/* notch */}
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-3 bg-foreground rounded-full z-10" />
+  const start = () => {
+    setPlaying(true);
+    // Let the <video> mount, then start playback. Its onPlay fires → this tile
+    // becomes the active one and every other playing tile pauses.
+    requestAnimationFrame(() => videoRef.current?.play().catch(() => {}));
+  };
 
-          {/* Play affordance */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="w-9 h-9 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-soft transition-transform duration-300 group-hover:scale-110">
-              <Play className="w-4 h-4 text-primary ml-0.5" />
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Small caption space below the tile */}
-      {tile.subject ? (
-        <div className="mt-3 text-center">
-          <p className="font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
-            {tile.subject}
-          </p>
-          {tile.format && (
-            <p className="mt-1 font-body text-[0.55rem] tracking-[0.08em] font-light text-muted-foreground/60">
-              {tile.format}
-            </p>
-          )}
-        </div>
-      ) : (
-        tile.label && (
-          <p className="mt-3 text-center font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
-            {tile.label}
-          </p>
-        )
+  const caption = tile.subject ? (
+    <div className="mt-3 text-center">
+      <p className="font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
+        {tile.subject}
+      </p>
+      {tile.format && (
+        <p className="mt-1 font-body text-[0.55rem] tracking-[0.08em] font-light text-muted-foreground/60">
+          {tile.format}
+        </p>
       )}
-    </>
+    </div>
+  ) : (
+    tile.label && (
+      <p className="mt-3 text-center font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
+        {tile.label}
+      </p>
+    )
   );
-
-  if (tile.videoUrl) {
-    return (
-      <button
-        ref={wrapperRef}
-        type="button"
-        onClick={() => onPlay(tile.videoUrl!)}
-        className="group block w-[44vw] max-w-[178px] md:w-[220px] md:max-w-none shrink-0 text-left"
-      >
-        {inner}
-      </button>
-    );
-  }
 
   return (
     <div
       ref={wrapperRef}
-      className="group block w-[44vw] max-w-[178px] md:w-[220px] md:max-w-none shrink-0"
+      className="group block w-[44vw] max-w-[178px] md:w-[220px] md:max-w-none shrink-0 text-left"
     >
-      {inner}
+      <div className="relative w-full aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
+        <div className="relative w-full h-full rounded-[1.9rem] bg-black overflow-hidden">
+          {tile.videoUrl && playing ? (
+            // Plays inline inside the phone mockup — same as the hero.
+            <video
+              ref={videoRef}
+              src={tile.videoUrl}
+              poster={tile.poster}
+              controls
+              playsInline
+              preload="none"
+              onPlay={() => onPlay(tileId)}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <>
+              {/* Real poster still, lazy-loaded via IntersectionObserver. */}
+              {tile.poster ? (
+                <img
+                  src={inView ? tile.poster : undefined}
+                  alt={tile.subject ?? tile.label ?? "Portfolio video"}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
+                />
+              ) : (
+                <div className="absolute inset-0 gradient-soft scale-[1.03]" />
+              )}
+
+              {/* notch */}
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-3 bg-foreground rounded-full z-10" />
+
+              {/* Play affordance */}
+              {tile.videoUrl && (
+                <button
+                  type="button"
+                  onClick={start}
+                  aria-label={`Play ${tile.subject ?? tile.label ?? "video"}`}
+                  className="group/play absolute inset-0 flex items-center justify-center"
+                >
+                  <span className="w-9 h-9 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center shadow-soft transition-transform duration-300 group-hover/play:scale-110">
+                    <Play className="w-4 h-4 text-primary ml-0.5" />
+                  </span>
+                </button>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+
+      {caption}
     </div>
   );
 };
 
 const CategoryRow = ({
   tiles,
+  idPrefix,
+  activeId,
   onPlay,
 }: {
   tiles: Tile[];
-  onPlay: (url: string) => void;
+  idPrefix: string;
+  activeId: string | null;
+  onPlay: (id: string) => void;
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
@@ -346,7 +375,7 @@ const CategoryRow = ({
         <div className="flex gap-4 md:gap-6 overflow-x-auto px-1 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:overflow-x-visible md:flex-wrap md:justify-center md:px-0">
           {tiles.map((tile, idx) => (
             <div key={idx} className="snap-start">
-              <VideoTile tile={tile} onPlay={onPlay} />
+              <VideoTile tile={tile} tileId={`${idPrefix}-${idx}`} activeId={activeId} onPlay={onPlay} />
             </div>
           ))}
         </div>
@@ -384,7 +413,7 @@ const CategoryRow = ({
       >
         {tiles.map((tile, idx) => (
           <div key={idx} className="snap-start">
-            <VideoTile tile={tile} onPlay={onPlay} />
+            <VideoTile tile={tile} tileId={`${idPrefix}-${idx}`} activeId={activeId} onPlay={onPlay} />
           </div>
         ))}
       </div>
@@ -429,7 +458,7 @@ const CategoryRow = ({
 };
 
 const PortfolioSection = () => {
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(null);
   const [activeCat, setActiveCat] = useState<number>(0);
   const [indicatorVisible, setIndicatorVisible] = useState(false);
   const catRefs = useRef<Array<HTMLDivElement | null>>([]);
@@ -519,7 +548,7 @@ const PortfolioSection = () => {
               </div>
 
               {/* Row: centred when ≤4 tiles, horizontally scrollable when >4 */}
-              <CategoryRow tiles={cat.tiles} onPlay={setActiveVideo} />
+              <CategoryRow tiles={cat.tiles} idPrefix={cat.id} activeId={activeId} onPlay={setActiveId} />
 
             </div>
           </motion.div>
@@ -581,20 +610,6 @@ const PortfolioSection = () => {
       )}
     </div>
 
-
-    <Dialog open={!!activeVideo} onOpenChange={(open) => !open && setActiveVideo(null)}>
-      <DialogContent className="max-w-[min(92vw,420px)] border-none bg-transparent p-0 shadow-none">
-        {activeVideo && (
-          <video
-            src={activeVideo}
-            controls
-            autoPlay
-            playsInline
-            className="w-full aspect-[9/16] rounded-[1.5rem] bg-black object-contain"
-          />
-        )}
-      </DialogContent>
-    </Dialog>
   </section>
   );
 };
