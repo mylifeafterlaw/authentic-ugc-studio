@@ -42,6 +42,10 @@ import lGlutamineVideo from "@/assets/70-second-example-l-glutamine.mp4";
 import lGlutaminePoster from "@/assets/70-second-example-l-glutamine-poster.jpg";
 import humeBand2Hook3 from "@/assets/hume-band2-hook3.mp4";
 import humeBand2Hook3Poster from "@/assets/hume-band2-hook3-poster.jpg";
+import creatineAsmr from "@/assets/creatine-asmr.mp4";
+import creatineAsmrPoster from "@/assets/creatine-asmr-poster.jpg";
+import creatineTtc from "@/assets/creatine-ttc.mp4";
+import creatineTtcPoster from "@/assets/creatine-ttc-poster.jpg";
 import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4";
 import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg";
 import playfulArrivalVideo1 from "@/assets/playful-arrival-video-1.mp4";
@@ -131,6 +135,18 @@ const categories: Category[] = [
         format: "Talking-to-camera · hook and CTA · ad-style",
         poster: humeBand2Hook3Poster,
         videoUrl: humeBand2Hook3,
+      },
+      {
+        subject: "Collagen",
+        format: "ASMR · wide frame · sound on, no voiceover",
+        poster: creatineAsmrPoster,
+        videoUrl: creatineAsmr,
+      },
+      {
+        subject: "Collagen",
+        format: "Talking-to-camera with B-roll · unflavoured powder, mixed on camera",
+        poster: creatineTtcPoster,
+        videoUrl: creatineTtc,
       },
     ],
   },
