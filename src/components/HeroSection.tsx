@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-import { Play, ChevronDown } from "lucide-react";
+import { Play, ChevronDown, Quote } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
 import heroImg from "@/assets/hero-portrait.jpg";
 import heroVideo from "@/assets/hume-band2-hero.mp4";
@@ -35,7 +35,7 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="relative min-h-screen gradient-hero overflow-hidden">
-      <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-10 lg:gap-8 pt-24 pb-16 lg:py-24 min-h-screen">
+      <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-10 lg:gap-8 pt-20 pb-16 lg:py-24 min-h-screen">
         {/* Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -76,7 +76,7 @@ const HeroSection = () => {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-6 mb-7">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-5 mb-5">
 
             <button
               onClick={() => {
@@ -94,6 +94,21 @@ const HeroSection = () => {
               Get in Touch
             </button>
           </div>
+
+          {/* Third-party proof — the site's only testimonial, kept above the fold */}
+          <figure className="max-w-md mx-auto lg:mx-0 bg-card/85 backdrop-blur-sm border border-border/60 rounded-2xl px-5 py-4 shadow-soft text-left">
+            <div className="flex items-start gap-3">
+              <Quote className="w-5 h-5 text-primary/70 shrink-0 mt-0.5" fill="currentColor" aria-hidden="true" />
+              <div>
+                <blockquote className="font-body text-sm text-foreground/90 leading-relaxed">
+                  “…a fast turnaround… highly professional and detail-oriented throughout — we'd be happy to work with her again.”
+                </blockquote>
+                <figcaption className="mt-2 font-body text-xs text-muted-foreground">
+                  <span className="font-semibold text-foreground/80">Ef Barte</span> · Marketing Coordinator, Hume Health
+                </figcaption>
+              </div>
+            </div>
+          </figure>
         </motion.div>
 
         {/* Visuals: dominant phone (video) in front, smaller still behind */}
