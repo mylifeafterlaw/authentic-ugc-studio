@@ -446,6 +446,26 @@ const CategoryRow = ({
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
 
+  // Measure actual overflow on mount and on resize. Without this, atEnd stays
+  // false until the first scroll, so a row whose tiles already fit still shows
+  // a right-arrow / edge-fade that scrolls nowhere. When there's no overflow,
+  // this sets atEnd (and atStart) true, hiding both cues.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const update = () => {
+      setAtStart(el.scrollLeft <= 8);
+      setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 8);
+    };
+    update();
+    const raf = requestAnimationFrame(update);
+    window.addEventListener("resize", update);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", update);
+    };
+  }, [tiles.length]);
+
   // 4 or fewer: horizontal swipe strip on mobile, centred wrapping row on desktop.
   if (tiles.length <= 4) {
     return (
