@@ -100,8 +100,13 @@ const HeroSection = () => {
             <div className="flex items-start gap-3">
               <Quote className="w-5 h-5 text-primary/70 shrink-0 mt-0.5" fill="currentColor" aria-hidden="true" />
               <div>
-                <blockquote className="font-body text-sm text-foreground/90 leading-relaxed">
-                  “…a fast turnaround… highly professional and detail-oriented throughout — we'd be happy to work with her again.”
+                <blockquote className="font-body text-xs text-foreground/90 leading-relaxed">
+                  “Jess was a pleasure to work with on our Band 2.0 campaign. She
+                  had a fast turnaround, delivered everything promptly, and was
+                  highly professional and detail-oriented throughout the process.
+                  She followed the creative brief closely, making the review
+                  process smooth and efficient. We'd be happy to work with her
+                  again.”
                 </blockquote>
                 <figcaption className="mt-2 font-body text-xs text-muted-foreground">
                   <span className="font-semibold text-foreground/80">Ef Barte</span> · Marketing Coordinator, Hume Health
