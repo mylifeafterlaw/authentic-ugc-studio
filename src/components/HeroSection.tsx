@@ -15,12 +15,6 @@ const videoPoster = heroPoster; // uploaded thumbnail image shown before play
 const sideStill = heroImg; // replace with a distinct second photo
 
 
-const stats = [
-  { emoji: "✦", text: "Hook-led short-form designed to hold attention early" },
-  { emoji: "✦", text: "Natural delivery, talking-to-camera and voiceover" },
-  { emoji: "✦", text: "Shot in real environments" },
-];
-
 const HeroSection = () => {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -68,30 +62,20 @@ const HeroSection = () => {
               Jess Cousin
             </p>
             <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-foreground leading-tight mb-2">
-              UGC that feels like a{" "}
-              <span className="text-primary font-semibold">recommendation, not an ad</span>
+              Eight years in law.
+              <br />
+              <span className="text-primary font-semibold">
+                Now I make UGC that lands on brief and on time.
+              </span>
             </h1>
-            <p className="font-body text-sm sm:text-base text-foreground/70">
-              Former lawyer bringing a structured approach to content that feels natural, not forced
-            </p>
           </div>
 
           {/* Niches row */}
           <p className="mt-4 mb-2 font-body text-xs sm:text-sm text-primary/60 tracking-[0.2em] uppercase">
-            Wellness · Lifestyle · Travel · Tech
+            Beauty · Wellness · Tech · Travel · Lifestyle
           </p>
 
-          {/* Larger gap before lower group (bullets) — anchored with an accent rail */}
-          <ul className="space-y-2.5 mt-5 max-w-md mx-auto lg:mx-0 text-left border-l-2 border-primary/40 pl-4">
-            {stats.map((s) => (
-              <li key={s.text} className="flex items-start gap-3 font-body text-sm sm:text-base text-foreground/80">
-                <span className="text-lg leading-none mt-0.5 text-primary">{s.emoji}</span>
-                <span>{s.text}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* CTAs — part of the lower group, kept close to the bullets */}
+          {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-6 mb-7">
 
             <button
