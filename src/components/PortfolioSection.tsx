@@ -46,6 +46,8 @@ import creatineAsmr from "@/assets/creatine-asmr.mp4";
 import creatineAsmrPoster from "@/assets/creatine-asmr-poster.jpg";
 import creatineTtc from "@/assets/creatine-ttc.mp4";
 import creatineTtcPoster from "@/assets/creatine-ttc-poster.jpg";
+import laserHairRemoval from "@/assets/laser-hair-removal.mp4";
+import laserHairRemovalPoster from "@/assets/laser-hair-removal-poster.jpg";
 import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4";
 import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg";
 import playfulArrivalVideo1 from "@/assets/playful-arrival-video-1.mp4";
@@ -103,6 +105,12 @@ const categories: Category[] = [
           "Talking-to-camera · authentic personal delivery · series-style",
         poster: skinComparisonPoster,
         videoUrl: skinComparisonVideo,
+      },
+      {
+        subject: "Laser hair removal · Chiang Mai",
+        format: "Hook-led · talking-to-camera and B-roll · clinic treatment",
+        poster: laserHairRemovalPoster,
+        videoUrl: laserHairRemoval,
       },
       // HIDDEN until the "Aesthetic pour" source clip is supplied (productVideo5
       // import above). Final section TBC with Jess. To restore: uncomment.
