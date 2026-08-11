@@ -591,8 +591,16 @@ const PortfolioSection = () => {
   const prevCat = activeCat > 0 ? categories[activeCat - 1] : null;
   const nextCat = activeCat < categories.length - 1 ? categories[activeCat + 1] : null;
 
+  // The fixed side indicator sits over whichever band is active, so its
+  // colours flip with that band's tone (cream on oxblood, ink on cream).
+  const activeTone = activeCat % 2 === 0 ? "light" : "dark";
+  const indInk = activeTone === "dark" ? "#F4ECDC" : "#2e1f24";
+  const indMuted = activeTone === "dark" ? "rgba(244,236,220,0.6)" : "rgba(46,20,25,0.55)";
+  const indAccent = activeTone === "dark" ? "#F4ECDC" : "#5C1220";
+  const indBorder = activeTone === "dark" ? "rgba(244,236,220,0.35)" : "rgba(46,20,25,0.3)";
+
   return (
-    <section id="portfolio" className="py-20 lg:py-28 bg-background scroll-smooth overflow-x-clip">
+    <section id="portfolio" className="py-20 lg:py-28 scroll-smooth overflow-x-clip bg-[#F4ECDC]">
     <div className="mx-auto w-full max-w-[1500px] px-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -609,10 +617,10 @@ const PortfolioSection = () => {
       <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mb-16">
         {categories.map((cat, i) => (
           <span key={cat.id} className="flex items-center gap-x-3">
-            {i > 0 && <span className="text-border">·</span>}
+            {i > 0 && <span className="text-foreground/25">·</span>}
             <a
               href={`#${cat.id}`}
-              className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="font-body text-sm text-foreground/70 hover:text-[#5C1220] transition-colors"
             >
               {cat.name}
             </a>
@@ -620,38 +628,33 @@ const PortfolioSection = () => {
         ))}
       </nav>
 
-      <div className="space-y-20">
+      <div>
         {categories.map((cat, catIdx) => {
-          // Direction A preview: the first two sections become full-bleed
-          // alternating bands (cream → oxblood). The rest stay as they were.
-          const tone: Tone = catIdx === 0 ? "light" : catIdx === 1 ? "dark" : undefined;
-          const toned = !!tone;
+          // Every section is a full-bleed band, alternating cream ↔ oxblood.
+          // Even index = cream (matches the section base), odd = oxblood.
+          const tone: Tone = catIdx % 2 === 0 ? "light" : "dark";
           const blockBg =
             tone === "dark"
               ? "linear-gradient(176deg, #5C1220 0%, #520f1b 100%)"
-              : tone === "light"
-                ? "#F4ECDC"
-                : undefined;
+              : "#F4ECDC";
           const ruleStyle =
             tone === "dark"
               ? { background: "rgba(244,236,220,0.28)" }
-              : tone === "light"
-                ? { background: "rgba(46,20,25,0.14)" }
-                : undefined;
+              : { background: "rgba(46,20,25,0.14)" };
           return (
             <motion.div
               key={cat.id}
               id={cat.id}
               data-cat-idx={catIdx}
               ref={(el) => (catRefs.current[catIdx] = el)}
-              className={`scroll-mt-24 ${toned ? "w-screen ml-[calc(50%-50vw)]" : ""} ${catIdx === 1 ? "!mt-0" : ""}`}
-              style={toned ? { background: blockBg } : undefined}
+              className="scroll-mt-24 w-screen ml-[calc(50%-50vw)]"
+              style={{ background: blockBg }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: catIdx * 0.05 }}
             >
-              <div className={toned ? "mx-auto w-full max-w-[1500px] px-6 py-16 lg:py-20" : ""}>
+              <div className="mx-auto w-full max-w-[1500px] px-6 py-16 lg:py-20">
                 {/* Serif category header + thin rule */}
                 <div className="flex items-center gap-4 mb-8">
                   <h3
@@ -660,7 +663,7 @@ const PortfolioSection = () => {
                   >
                     {cat.name}
                   </h3>
-                  <span className={`flex-1 h-px ${toned ? "" : "bg-border"}`} style={ruleStyle} />
+                  <span className="flex-1 h-px" style={ruleStyle} />
                 </div>
 
                 {/* Row: centred when ≤4 tiles, horizontally scrollable when >4 */}
@@ -683,7 +686,8 @@ const PortfolioSection = () => {
         <button
           type="button"
           onClick={() => jumpTo(activeCat - 1)}
-          className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          className="group flex items-center gap-2 transition-colors"
+          style={{ color: indMuted }}
         >
           <span className="font-body text-[0.6rem] uppercase tracking-[0.2em] font-light">
             {prevCat.name}
@@ -694,17 +698,16 @@ const PortfolioSection = () => {
         <span className="h-4" />
       )}
 
-      <div className="flex flex-col items-end gap-1.5 border-r border-foreground/30 pr-3 py-1">
-        <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] font-medium text-foreground">
+      <div className="flex flex-col items-end gap-1.5 border-r pr-3 py-1" style={{ borderColor: indBorder }}>
+        <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] font-medium" style={{ color: indInk }}>
           {categories[activeCat]?.name}
         </span>
         <div className="flex flex-col gap-1">
           {categories.map((_, i) => (
             <span
               key={i}
-              className={`h-1 w-1 rounded-full transition-colors ${
-                i === activeCat ? "bg-primary" : "bg-foreground/20"
-              }`}
+              className="h-1 w-1 rounded-full transition-colors"
+              style={{ background: i === activeCat ? indAccent : indBorder }}
             />
           ))}
         </div>
@@ -714,7 +717,8 @@ const PortfolioSection = () => {
         <button
           type="button"
           onClick={() => jumpTo(activeCat + 1)}
-          className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          className="group flex items-center gap-2 transition-colors"
+          style={{ color: indMuted }}
         >
           <span className="font-body text-[0.6rem] uppercase tracking-[0.2em] font-light">
             {nextCat.name}

@@ -63,7 +63,11 @@ const Navbar = () => {
               trackClick("Work With Me", "navbar");
               handleClick("#contact");
             }}
-            className="gradient-cta text-primary-foreground font-body text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition-opacity"
+            className={`font-body text-sm font-semibold px-5 py-2.5 rounded-full transition-colors ${
+              scrolled
+                ? "bg-[#5C1220] text-[#F4ECDC] hover:bg-[#470c17]"
+                : "bg-[#F4ECDC] text-[#5C1220] hover:bg-white"
+            }`}
           >
             Work With Me
           </button>
@@ -91,7 +95,7 @@ const Navbar = () => {
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
-                className="block w-full text-left py-3 font-body text-foreground hover:text-primary transition-colors"
+                className="block w-full text-left py-3 font-body text-foreground hover:text-[#5C1220] transition-colors"
               >
                 {link.label}
               </button>
@@ -101,7 +105,7 @@ const Navbar = () => {
                 trackClick("Work With Me", "navbar-mobile");
                 handleClick("#contact");
               }}
-              className="mt-2 w-full gradient-cta text-primary-foreground font-body font-semibold py-3 rounded-full"
+              className="mt-2 w-full bg-[#5C1220] text-[#F4ECDC] font-body font-semibold py-3 rounded-full hover:bg-[#470c17] transition-colors"
             >
               Work With Me
             </button>

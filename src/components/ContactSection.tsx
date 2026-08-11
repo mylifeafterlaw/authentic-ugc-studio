@@ -62,10 +62,14 @@ const ContactSection = () => {
   };
 
   const inputClass =
-    "w-full rounded-2xl border border-border bg-background/70 backdrop-blur px-5 py-3.5 font-body text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow";
+    "w-full rounded-2xl border border-[#F4ECDC]/25 bg-black/15 backdrop-blur px-5 py-3.5 font-body text-[#F4ECDC] placeholder:text-[#F4ECDC]/50 focus:outline-none focus:ring-2 focus:ring-[#F4ECDC]/50 transition-shadow";
 
   return (
-    <section id="contact" className="py-20 lg:py-28 gradient-hero relative overflow-hidden">
+    <section
+      id="contact"
+      className="py-20 lg:py-28 relative overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #5C1220 0%, #470c17 100%)" }}
+    >
       <div className="container max-w-2xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,12 +77,12 @@ const ContactSection = () => {
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground mb-4">
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: "#F4ECDC" }}>
             Let's create content
             <br />
-            <span className="text-primary italic">that actually works</span>
+            <span className="italic" style={{ color: "#f8ddc7" }}>that actually works</span>
           </h2>
-          <p className="font-body text-muted-foreground text-base max-w-md mx-auto">
+          <p className="font-body text-base max-w-md mx-auto" style={{ color: "rgba(244,236,220,0.62)" }}>
             Ready to get started? Tell me about your brand and I'll be in touch.
           </p>
         </motion.div>
@@ -130,7 +134,7 @@ const ContactSection = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="gradient-cta text-primary-foreground font-body font-semibold px-8 py-3.5 rounded-full shadow-soft hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2 text-base disabled:opacity-60 disabled:cursor-not-allowed"
+            className="bg-[#F4ECDC] text-[#5C1220] font-body font-semibold px-8 py-3.5 rounded-full shadow-[0_16px_34px_-14px_rgba(0,0,0,0.55)] hover:bg-white transition-colors inline-flex items-center justify-center gap-2 text-base disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {submitting ? (
               <>
@@ -142,11 +146,12 @@ const ContactSection = () => {
             )}
           </button>
 
-          <p className="text-center font-body text-sm text-muted-foreground mt-2">
+          <p className="text-center font-body text-sm mt-2" style={{ color: "rgba(244,236,220,0.6)" }}>
             Prefer email?{" "}
             <a
               href="mailto:my.lifeafterlaw@gmail.com"
-              className="text-primary hover:underline inline-flex items-center gap-1"
+              className="hover:underline inline-flex items-center gap-1"
+              style={{ color: "#F4ECDC" }}
             >
               <Mail className="w-4 h-4" />
               my.lifeafterlaw@gmail.com
@@ -155,8 +160,8 @@ const ContactSection = () => {
         </motion.form>
       </div>
 
-      <div className="absolute top-10 right-10 w-80 h-80 bg-blush/30 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 left-10 w-64 h-64 bg-peach/40 rounded-full blur-3xl" />
+      <div className="absolute top-10 right-10 w-80 h-80 rounded-full blur-3xl" style={{ background: "rgba(150,40,55,0.35)" }} />
+      <div className="absolute bottom-10 left-10 w-64 h-64 rounded-full blur-3xl" style={{ background: "rgba(244,236,220,0.08)" }} />
     </section>
   );
 };

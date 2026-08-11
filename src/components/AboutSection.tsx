@@ -12,7 +12,7 @@ const traits = [
 ];
 
 const AboutSection = () => (
-  <section id="about" className="py-20 lg:py-28 gradient-soft">
+  <section id="about" className="py-20 lg:py-28" style={{ background: "#F4ECDC" }}>
     <div className="mx-auto w-full max-w-5xl px-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -31,10 +31,14 @@ const AboutSection = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="flex items-start gap-4 bg-card rounded-xl py-3 px-3.5 border border-border/50 shadow-[0_1px_4px_-2px_hsl(340_45%_40%/0.12)]"
+              className="flex items-start gap-4 rounded-xl py-3 px-3.5 border shadow-[0_2px_10px_-4px_rgba(46,20,25,0.18)]"
+              style={{ background: "#FFFDF9", borderColor: "rgba(46,20,25,0.10)" }}
             >
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                <trait.icon className="w-6 h-6 text-primary" />
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ background: "rgba(92,18,32,0.07)" }}
+              >
+                <trait.icon className="w-6 h-6" style={{ color: "#5C1220" }} />
               </div>
               <div className="pt-0.5">
                 <p className="font-body text-foreground text-base font-semibold leading-snug">
