@@ -38,7 +38,7 @@ const Navbar = () => {
         <button
           onClick={() => handleClick("#hero")}
           aria-label="Back to top"
-          className="font-heading text-xl text-foreground tracking-wide"
+          className={`font-heading text-xl tracking-wide transition-colors ${scrolled ? "text-foreground" : "text-[#F4ECDC]"}`}
         >
           JC
         </button>
@@ -49,7 +49,7 @@ const Navbar = () => {
             <button
               key={link.href}
               onClick={() => handleClick(link.href)}
-              className="font-body text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className={`font-body text-sm font-medium transition-colors ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-[#F4ECDC]/85 hover:text-[#F4ECDC]"}`}
             >
               {link.label}
             </button>
@@ -71,7 +71,7 @@ const Navbar = () => {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-foreground"
+          className={`md:hidden transition-colors ${scrolled ? "text-foreground" : "text-[#F4ECDC]"}`}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}

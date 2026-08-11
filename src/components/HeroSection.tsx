@@ -37,7 +37,7 @@ const HeroSection = () => {
     <section
       id="hero"
       className="relative min-h-screen overflow-hidden"
-      style={{ background: "radial-gradient(120% 90% at 78% -5%, #f9f3ec 0%, #f0e6d8 55%, #e6d9c7 100%)" }}
+      style={{ background: "radial-gradient(125% 95% at 76% -8%, #6f1727 0%, #5C1220 50%, #470c17 100%)" }}
     >
       <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-10 lg:gap-8 pt-20 pb-16 lg:py-24 min-h-screen">
         {/* Text */}
@@ -49,7 +49,7 @@ const HeroSection = () => {
         >
           {/* Mobile-only portrait above the name — straight, no tilt */}
           <div className="lg:hidden mx-auto mb-2 w-[140px] sm:w-[170px]">
-            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-soft border border-background/40">
+            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-soft border border-[#f4ecdc]/25">
               <img
                 src={sideStill}
                 alt="Jess Cousin – UGC creator portrait"
@@ -62,21 +62,21 @@ const HeroSection = () => {
 
           {/* Headline cluster — serif headline dominant, script name demoted to a signature kicker */}
           <div>
-            <p className="font-script text-2xl sm:text-3xl text-[hsl(340_45%_34%)] leading-none mb-1">
+            <p className="font-script text-2xl sm:text-3xl leading-none mb-1" style={{ color: "#f0d9c4" }}>
               Jess Cousin
             </p>
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.12] mb-2">
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl leading-[1.12] mb-2" style={{ color: "#F4ECDC" }}>
               Eight years in law.
               <br />
-              <span className="text-primary font-semibold">
+              <span className="font-semibold" style={{ color: "#f8ddc7" }}>
                 Now I make UGC that lands on brief and on time.
               </span>
             </h1>
-            <div className="w-12 h-[3px] rounded-full gradient-cta mt-3 mx-auto lg:mx-0" />
+            <div className="w-12 h-[3px] rounded-full mt-3 mx-auto lg:mx-0" style={{ background: "#F4ECDC" }} />
           </div>
 
           {/* Niches row */}
-          <p className="mt-4 mb-2 font-body text-xs sm:text-sm text-primary/60 tracking-[0.2em] uppercase">
+          <p className="mt-4 mb-2 font-body text-xs sm:text-sm tracking-[0.2em] uppercase" style={{ color: "rgba(240,205,190,0.7)" }}>
             Beauty · Wellness · Tech · Travel · Lifestyle
           </p>
 
@@ -88,13 +88,13 @@ const HeroSection = () => {
                 trackClick("View Work", "hero");
                 scrollTo("#portfolio");
               }}
-              className="gradient-cta text-primary-foreground font-body font-semibold px-8 py-3 rounded-full shadow-soft hover:opacity-90 transition-opacity text-base"
+              className="bg-[#F4ECDC] text-[#5C1220] font-body font-semibold px-8 py-3 rounded-full shadow-[0_14px_30px_-12px_rgba(0,0,0,0.5)] hover:bg-white transition-colors text-base"
             >
               View Portfolio
             </button>
             <button
               onClick={() => scrollTo("#contact")}
-              className="border-2 border-primary text-primary font-body font-semibold px-8 py-3 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors text-base"
+              className="border-2 border-[#F4ECDC] text-[#F4ECDC] font-body font-semibold px-8 py-3 rounded-full hover:bg-[#F4ECDC] hover:text-[#5C1220] transition-colors text-base"
             >
               Get in Touch
             </button>
@@ -104,23 +104,25 @@ const HeroSection = () => {
           <figure className="relative max-w-md mx-auto lg:mx-0 mt-1 pl-6 text-left">
             <span
               aria-hidden="true"
-              className="absolute left-0 -top-3 font-heading text-5xl leading-none text-primary/60 select-none"
+              className="absolute left-0 -top-3 font-heading text-5xl leading-none select-none"
+              style={{ color: "rgba(244,236,220,0.55)" }}
             >
               &ldquo;
             </span>
             <span
               aria-hidden="true"
-              className="absolute left-1 top-3 bottom-3 w-px bg-gradient-to-b from-primary/50 to-transparent"
+              className="absolute left-1 top-3 bottom-3 w-px"
+              style={{ background: "linear-gradient(to bottom, rgba(244,236,220,0.5), transparent)" }}
             />
-            <blockquote className="font-body italic text-xs text-foreground/85 leading-relaxed">
+            <blockquote className="font-body italic text-xs leading-relaxed" style={{ color: "rgba(244,236,220,0.85)" }}>
               Jess was a pleasure to work with on our Band 2.0 campaign. She had a
               fast turnaround, delivered everything promptly, and was highly
               professional and detail-oriented throughout the process. She followed
               the creative brief closely, making the review process smooth and
               efficient. We&rsquo;d be happy to work with her again.
             </blockquote>
-            <figcaption className="mt-2 font-body text-xs not-italic text-muted-foreground">
-              <span className="font-semibold text-foreground/80">Ef Barte</span> · Marketing Coordinator, Hume Health
+            <figcaption className="mt-2 font-body text-xs not-italic" style={{ color: "rgba(244,236,220,0.6)" }}>
+              <span className="font-semibold" style={{ color: "rgba(244,236,220,0.9)" }}>Ef Barte</span> · Marketing Coordinator, Hume Health
             </figcaption>
           </figure>
         </motion.div>
@@ -135,7 +137,7 @@ const HeroSection = () => {
           <div className="relative">
           {/* Secondary still — deliberate second photo sitting BEHIND the phone, peeking out the right side */}
           <div className="hidden sm:block absolute right-0 top-1/2 -translate-y-[58%] translate-x-[62%] sm:translate-x-[66%] lg:translate-x-[70%] w-[220px] sm:w-[280px] lg:w-[340px] z-0">
-            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-background rotate-6">
+            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-[#F4ECDC] rotate-6">
               <img
                 src={sideStill}
                 alt="Jess Cousin – UGC creator portrait"
@@ -152,7 +154,7 @@ const HeroSection = () => {
                 href="https://linktr.ee/MyLifeAfterLaw"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-body text-xs sm:text-sm text-primary/60 tracking-wide hover:text-primary transition-colors"
+                className="font-body text-xs sm:text-sm text-[#F4ECDC]/55 tracking-wide hover:text-[#F4ECDC] transition-colors"
               >
                 @MyLifeAfterLaw
               </a>
@@ -161,7 +163,7 @@ const HeroSection = () => {
           </div>
 
           {/* Frameless video — no heavy bezel; soft shadow grounds it */}
-          <div className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2rem] overflow-hidden shadow-[0_34px_64px_-20px_rgba(120,55,80,0.55)] ring-1 ring-[#2e1f24]/[0.06] shrink-0 z-10 bg-muted">
+          <div className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2rem] overflow-hidden shadow-[0_42px_72px_-24px_rgba(0,0,0,0.62)] ring-1 ring-[#F4ECDC]/15 shrink-0 z-10 bg-muted">
             <div className="relative w-full h-full">
               {playing && videoSrc ? (
                 <video
@@ -185,10 +187,10 @@ const HeroSection = () => {
                     aria-label="Watch 30 second showreel"
                     className="absolute inset-0 flex flex-col items-center justify-center gap-3 group"
                   >
-                    <span className="w-16 h-16 rounded-full gradient-cta shadow-elevated flex items-center justify-center transition-transform group-hover:scale-110">
-                      <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
+                    <span className="w-16 h-16 rounded-full bg-[#F4ECDC] shadow-elevated flex items-center justify-center transition-transform group-hover:scale-110">
+                      <Play className="w-7 h-7 text-[#5C1220] ml-1" fill="currentColor" />
                     </span>
-                    <span className="font-body text-sm font-semibold text-primary-foreground bg-foreground/60 backdrop-blur-sm px-3 py-1 rounded-full">
+                    <span className="font-body text-sm font-semibold text-[#F4ECDC] bg-[#5C1220]/70 backdrop-blur-sm px-3 py-1 rounded-full">
                       Watch (30s)
                     </span>
                   </button>
@@ -211,16 +213,16 @@ const HeroSection = () => {
           opacity: { duration: 0.6, delay: 0.9 },
           y: { duration: 1.8, repeat: Infinity, ease: "easeInOut" },
         }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-primary/70 hover:text-primary transition-colors"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-[#F4ECDC]/70 hover:text-[#F4ECDC] transition-colors"
       >
         <ChevronDown className="w-6 h-6" strokeWidth={2} />
       </motion.button>
 
 
-      {/* Minimal pink accent glow (pink is an accent here, not the field) */}
-      <div className="pointer-events-none absolute top-1/4 right-[12%] w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-      {/* Warm grounding at the base anchors the composition */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#d9c3a8]/50 to-transparent" />
+      {/* Soft warm glow, upper right, keeps the dark field from going flat */}
+      <div className="pointer-events-none absolute -top-10 right-[6%] w-80 h-80 rounded-full blur-3xl" style={{ background: "rgba(150,40,55,0.35)" }} />
+      {/* Deeper grounding at the base anchors the composition */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#3d0a14] to-transparent" />
     </section>
   );
 };

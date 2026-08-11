@@ -266,16 +266,20 @@ const SwipeCue = () => (
 
 
 
+type Tone = "light" | "dark" | undefined;
+
 const VideoTile = ({
   tile,
   tileId,
   activeId,
   onPlay,
+  tone,
 }: {
   tile: Tile;
   tileId: string;
   activeId: string | null;
   onPlay: (id: string) => void;
+  tone?: Tone;
 }) => {
   const wrapperRef = useRef<any>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -315,31 +319,61 @@ const VideoTile = ({
     requestAnimationFrame(() => videoRef.current?.play().catch(() => {}));
   };
 
+  // Caption colours adapt to the block behind the tile.
+  const capMain =
+    tone === "dark" ? "rgba(244,236,220,0.92)" : tone === "light" ? "rgba(46,20,25,0.78)" : undefined;
+  const capSub =
+    tone === "dark" ? "rgba(244,236,220,0.6)" : tone === "light" ? "rgba(46,20,25,0.5)" : undefined;
+
   const caption = tile.subject ? (
     <div className="mt-3 text-center">
-      <p className="font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
+      <p
+        className={`font-body text-[0.65rem] uppercase tracking-[0.2em] font-light ${tone ? "" : "text-muted-foreground"}`}
+        style={capMain ? { color: capMain } : undefined}
+      >
         {tile.subject}
       </p>
       {tile.format && (
-        <p className="mt-1 font-body text-[0.55rem] tracking-[0.08em] font-light text-muted-foreground/60">
+        <p
+          className={`mt-1 font-body text-[0.55rem] tracking-[0.08em] font-light ${tone ? "" : "text-muted-foreground/60"}`}
+          style={capSub ? { color: capSub } : undefined}
+        >
           {tile.format}
         </p>
       )}
     </div>
   ) : (
     tile.label && (
-      <p className="mt-3 text-center font-body text-[0.65rem] uppercase tracking-[0.2em] font-light text-muted-foreground">
+      <p
+        className={`mt-3 text-center font-body text-[0.65rem] uppercase tracking-[0.2em] font-light ${tone ? "" : "text-muted-foreground"}`}
+        style={capMain ? { color: capMain } : undefined}
+      >
         {tile.label}
       </p>
     )
   );
+
+  // Framed = default phone mockup (dark bezel + notch). On the alternating
+  // colour blocks the tiles go frameless so the video lifts off the field.
+  const framed = !tone;
+  const shellClass = framed
+    ? "rounded-[2.4rem] bg-foreground p-2 shadow-elevated"
+    : "rounded-[1.9rem] overflow-hidden";
+  const shellStyle = framed
+    ? undefined
+    : tone === "dark"
+      ? { boxShadow: "0 30px 55px -20px rgba(0,0,0,0.62), inset 0 0 0 1px rgba(244,236,220,0.16)" }
+      : { boxShadow: "0 26px 48px -20px rgba(46,20,25,0.35), inset 0 0 0 1px rgba(46,20,25,0.08)" };
 
   return (
     <div
       ref={wrapperRef}
       className="group block w-[44vw] max-w-[178px] md:w-[220px] md:max-w-none shrink-0 text-left"
     >
-      <div className="relative w-full aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
+      <div
+        className={`relative w-full aspect-[9/19] transition-all duration-300 group-hover:-translate-y-1 ${shellClass}`}
+        style={shellStyle}
+      >
         <div className="relative w-full h-full rounded-[1.9rem] bg-black overflow-hidden">
           {tile.videoUrl && playing ? (
             // Plays inline inside the phone mockup — same as the hero.
@@ -367,8 +401,10 @@ const VideoTile = ({
                 <div className="absolute inset-0 gradient-soft scale-[1.03]" />
               )}
 
-              {/* notch */}
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-3 bg-foreground rounded-full z-10" />
+              {/* notch — only on the framed phone mockup */}
+              {framed && (
+                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-3 bg-foreground rounded-full z-10" />
+              )}
 
               {/* Play affordance */}
               {tile.videoUrl && (
@@ -398,11 +434,13 @@ const CategoryRow = ({
   idPrefix,
   activeId,
   onPlay,
+  tone,
 }: {
   tiles: Tile[];
   idPrefix: string;
   activeId: string | null;
   onPlay: (id: string) => void;
+  tone?: Tone;
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
@@ -415,7 +453,7 @@ const CategoryRow = ({
         <div className="flex gap-4 md:gap-6 overflow-x-auto px-1 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:overflow-x-visible md:flex-wrap md:justify-center md:px-0">
           {tiles.map((tile, idx) => (
             <div key={idx} className="snap-start">
-              <VideoTile tile={tile} tileId={`${idPrefix}-${idx}`} activeId={activeId} onPlay={onPlay} />
+              <VideoTile tile={tile} tileId={`${idPrefix}-${idx}`} activeId={activeId} onPlay={onPlay} tone={tone} />
             </div>
           ))}
         </div>
@@ -444,6 +482,20 @@ const CategoryRow = ({
     el.scrollBy({ left: 284, behavior: "smooth" });
   };
 
+  // On the alternating colour blocks, the edge fade + arrows match the field.
+  const fadeStyle =
+    tone === "dark"
+      ? { background: "linear-gradient(to left, #5C1220, transparent)" }
+      : tone === "light"
+        ? { background: "linear-gradient(to left, #F4ECDC, transparent)" }
+        : undefined;
+  const arrowStyle =
+    tone === "dark"
+      ? { background: "rgba(244,236,220,0.92)", color: "#5C1220", borderColor: "rgba(244,236,220,0.35)" }
+      : tone === "light"
+        ? { background: "rgba(255,255,255,0.9)", color: "#2e1419", borderColor: "rgba(46,20,25,0.12)" }
+        : undefined;
+
   return (
     <div className="relative mx-auto w-full max-w-[1200px]">
       <div
@@ -453,7 +505,7 @@ const CategoryRow = ({
       >
         {tiles.map((tile, idx) => (
           <div key={idx} className="snap-start">
-            <VideoTile tile={tile} tileId={`${idPrefix}-${idx}`} activeId={activeId} onPlay={onPlay} />
+            <VideoTile tile={tile} tileId={`${idPrefix}-${idx}`} activeId={activeId} onPlay={onPlay} tone={tone} />
           </div>
         ))}
       </div>
@@ -464,9 +516,10 @@ const CategoryRow = ({
       {/* Scroll cue: soft right-edge fade, hidden once fully scrolled (desktop only) */}
       <div
         aria-hidden
-        className={`pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent transition-opacity duration-300 hidden md:block ${
-          atEnd ? "opacity-0" : "opacity-100"
-        }`}
+        style={fadeStyle}
+        className={`pointer-events-none absolute inset-y-0 right-0 w-20 transition-opacity duration-300 hidden md:block ${
+          tone ? "" : "bg-gradient-to-l from-background to-transparent"
+        } ${atEnd ? "opacity-0" : "opacity-100"}`}
       />
 
 
@@ -475,9 +528,10 @@ const CategoryRow = ({
         type="button"
         onClick={scrollPrev}
         aria-label="Scroll left"
-        className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-soft hidden md:flex items-center justify-center text-muted-foreground hover:text-foreground transition-opacity duration-300 ${
-          atStart ? "opacity-0 pointer-events-none" : "opacity-100"
-        }`}
+        style={arrowStyle}
+        className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full backdrop-blur-sm border shadow-soft hidden md:flex items-center justify-center transition-opacity duration-300 ${
+          tone ? "" : "bg-background/80 border-border text-muted-foreground hover:text-foreground"
+        } ${atStart ? "opacity-0 pointer-events-none" : "opacity-100"}`}
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
@@ -487,9 +541,10 @@ const CategoryRow = ({
         type="button"
         onClick={scrollNext}
         aria-label="Scroll right"
-        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-soft hidden md:flex items-center justify-center text-muted-foreground hover:text-foreground transition-opacity duration-300 ${
-          atEnd ? "opacity-0 pointer-events-none" : "opacity-100"
-        }`}
+        style={arrowStyle}
+        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full backdrop-blur-sm border shadow-soft hidden md:flex items-center justify-center transition-opacity duration-300 ${
+          tone ? "" : "bg-background/80 border-border text-muted-foreground hover:text-foreground"
+        } ${atEnd ? "opacity-0 pointer-events-none" : "opacity-100"}`}
       >
         <ChevronRight className="w-5 h-5" />
       </button>
@@ -537,7 +592,7 @@ const PortfolioSection = () => {
   const nextCat = activeCat < categories.length - 1 ? categories[activeCat + 1] : null;
 
   return (
-    <section id="portfolio" className="py-20 lg:py-28 bg-background scroll-smooth">
+    <section id="portfolio" className="py-20 lg:py-28 bg-background scroll-smooth overflow-x-clip">
     <div className="mx-auto w-full max-w-[1500px] px-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -566,33 +621,54 @@ const PortfolioSection = () => {
       </nav>
 
       <div className="space-y-20">
-        {categories.map((cat, catIdx) => (
-          <motion.div
-            key={cat.id}
-            id={cat.id}
-            data-cat-idx={catIdx}
-            ref={(el) => (catRefs.current[catIdx] = el)}
-            className="scroll-mt-24"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: catIdx * 0.05 }}
-          >
-            <div>
-              {/* Serif category header + thin rule */}
-              <div className="flex items-center gap-4 mb-8">
-                <h3 className="font-heading text-xl sm:text-2xl text-foreground whitespace-nowrap">
-                  {cat.name}
-                </h3>
-                <span className="flex-1 h-px bg-border" />
+        {categories.map((cat, catIdx) => {
+          // Direction A preview: the first two sections become full-bleed
+          // alternating bands (cream → oxblood). The rest stay as they were.
+          const tone: Tone = catIdx === 0 ? "light" : catIdx === 1 ? "dark" : undefined;
+          const toned = !!tone;
+          const blockBg =
+            tone === "dark"
+              ? "linear-gradient(176deg, #5C1220 0%, #520f1b 100%)"
+              : tone === "light"
+                ? "#F4ECDC"
+                : undefined;
+          const ruleStyle =
+            tone === "dark"
+              ? { background: "rgba(244,236,220,0.28)" }
+              : tone === "light"
+                ? { background: "rgba(46,20,25,0.14)" }
+                : undefined;
+          return (
+            <motion.div
+              key={cat.id}
+              id={cat.id}
+              data-cat-idx={catIdx}
+              ref={(el) => (catRefs.current[catIdx] = el)}
+              className={`scroll-mt-24 ${toned ? "w-screen ml-[calc(50%-50vw)]" : ""} ${catIdx === 1 ? "!mt-0" : ""}`}
+              style={toned ? { background: blockBg } : undefined}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: catIdx * 0.05 }}
+            >
+              <div className={toned ? "mx-auto w-full max-w-[1500px] px-6 py-16 lg:py-20" : ""}>
+                {/* Serif category header + thin rule */}
+                <div className="flex items-center gap-4 mb-8">
+                  <h3
+                    className={`font-heading text-xl sm:text-2xl whitespace-nowrap ${tone === "dark" ? "" : "text-foreground"}`}
+                    style={tone === "dark" ? { color: "#F4ECDC" } : undefined}
+                  >
+                    {cat.name}
+                  </h3>
+                  <span className={`flex-1 h-px ${toned ? "" : "bg-border"}`} style={ruleStyle} />
+                </div>
+
+                {/* Row: centred when ≤4 tiles, horizontally scrollable when >4 */}
+                <CategoryRow tiles={cat.tiles} idPrefix={cat.id} activeId={activeId} onPlay={setActiveId} tone={tone} />
               </div>
-
-              {/* Row: centred when ≤4 tiles, horizontally scrollable when >4 */}
-              <CategoryRow tiles={cat.tiles} idPrefix={cat.id} activeId={activeId} onPlay={setActiveId} />
-
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
     </div>
 
