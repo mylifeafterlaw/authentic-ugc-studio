@@ -127,16 +127,10 @@ const categories: Category[] = [
     name: "Health & Supplements",
     tiles: [
       {
-        subject: "Supplements",
-        format: "Talking-to-camera · natural product explanation · longer-form",
-        poster: lGlutaminePoster,
-        videoUrl: lGlutamineVideo,
-      },
-      {
-        subject: "Water bottle",
-        format: "Hook-led · talking-to-camera and B-roll",
-        poster: productTripleHookPoster,
-        videoUrl: productTripleHookVideo,
+        subject: "Collagen",
+        format: "Talking-to-camera with B-roll · unflavoured powder, mixed on camera",
+        poster: creatineTtcPoster,
+        videoUrl: creatineTtc,
       },
       {
         subject: "Hume Health",
@@ -151,10 +145,16 @@ const categories: Category[] = [
         videoUrl: creatineAsmr,
       },
       {
-        subject: "Collagen",
-        format: "Talking-to-camera with B-roll · unflavoured powder, mixed on camera",
-        poster: creatineTtcPoster,
-        videoUrl: creatineTtc,
+        subject: "Water bottle",
+        format: "Hook-led · talking-to-camera and B-roll",
+        poster: productTripleHookPoster,
+        videoUrl: productTripleHookVideo,
+      },
+      {
+        subject: "Supplements",
+        format: "Talking-to-camera · natural product explanation · longer-form",
+        poster: lGlutaminePoster,
+        videoUrl: lGlutamineVideo,
       },
     ],
   },
