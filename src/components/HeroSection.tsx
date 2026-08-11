@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-import { Play, ChevronDown, Quote } from "lucide-react";
+import { Play, ChevronDown } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
 import heroImg from "@/assets/hero-portrait.jpg";
 import heroVideo from "@/assets/hume-band2-hero.mp4";
@@ -95,24 +95,28 @@ const HeroSection = () => {
             </button>
           </div>
 
-          {/* Third-party proof — the site's only testimonial, kept above the fold */}
-          <figure className="max-w-md mx-auto lg:mx-0 bg-card/85 backdrop-blur-sm border border-border/60 rounded-2xl px-5 py-4 shadow-soft text-left">
-            <div className="flex items-start gap-3">
-              <Quote className="w-5 h-5 text-primary/70 shrink-0 mt-0.5" fill="currentColor" aria-hidden="true" />
-              <div>
-                <blockquote className="font-body text-xs text-foreground/90 leading-relaxed">
-                  “Jess was a pleasure to work with on our Band 2.0 campaign. She
-                  had a fast turnaround, delivered everything promptly, and was
-                  highly professional and detail-oriented throughout the process.
-                  She followed the creative brief closely, making the review
-                  process smooth and efficient. We'd be happy to work with her
-                  again.”
-                </blockquote>
-                <figcaption className="mt-2 font-body text-xs text-muted-foreground">
-                  <span className="font-semibold text-foreground/80">Ef Barte</span> · Marketing Coordinator, Hume Health
-                </figcaption>
-              </div>
-            </div>
+          {/* Third-party proof — editorial pull-quote, above the fold */}
+          <figure className="relative max-w-md mx-auto lg:mx-0 mt-1 pl-6 text-left">
+            <span
+              aria-hidden="true"
+              className="absolute left-0 -top-3 font-heading text-5xl leading-none text-primary/60 select-none"
+            >
+              &ldquo;
+            </span>
+            <span
+              aria-hidden="true"
+              className="absolute left-1 top-3 bottom-3 w-px bg-gradient-to-b from-primary/50 to-transparent"
+            />
+            <blockquote className="font-body italic text-xs text-foreground/85 leading-relaxed">
+              Jess was a pleasure to work with on our Band 2.0 campaign. She had a
+              fast turnaround, delivered everything promptly, and was highly
+              professional and detail-oriented throughout the process. She followed
+              the creative brief closely, making the review process smooth and
+              efficient. We&rsquo;d be happy to work with her again.
+            </blockquote>
+            <figcaption className="mt-2 font-body text-xs not-italic text-muted-foreground">
+              <span className="font-semibold text-foreground/80">Ef Barte</span> · Marketing Coordinator, Hume Health
+            </figcaption>
           </figure>
         </motion.div>
 
@@ -150,45 +154,6 @@ const HeroSection = () => {
             </div>
 
           </div>
-
-          {/* Soft, playful cue: handwritten caption + curved arrow toward the play button */}
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: [0, -6, 0] }}
-            transition={{
-              opacity: { duration: 0.6, delay: 0.6 },
-              y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.6 },
-            }}
-            className="hidden lg:flex absolute right-full bottom-[28%] mr-3 flex-col items-start z-20 pointer-events-none select-none"
-          >
-            <svg
-              width="84"
-              height="52"
-              viewBox="0 0 84 52"
-              fill="none"
-              className="text-primary mb-1 ml-2 overflow-visible"
-              aria-hidden="true"
-            >
-              <path
-                d="M6 46 C40 14, 90 -12, 132 -20"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                fill="none"
-              />
-              <path
-                d="M132 -20 L121 -12 M132 -20 L119 -23"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                fill="none"
-              />
-            </svg>
-            <span className="font-script text-2xl text-primary leading-none whitespace-nowrap -translate-x-12">
-              Watch a sample
-            </span>
-          </motion.div>
-
 
           {/* Phone mockup — dominant, in front */}
           <div className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
