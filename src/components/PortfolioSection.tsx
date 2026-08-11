@@ -80,6 +80,12 @@ const categories: Category[] = [
     name: "Beauty & Skincare",
     tiles: [
       {
+        subject: "Laser hair removal · Chiang Mai",
+        format: "Hook-led · talking-to-camera and B-roll · clinic treatment",
+        poster: laserHairRemovalPoster,
+        videoUrl: laserHairRemoval,
+      },
+      {
         subject: "Haircare",
         format: "Before and after · B-roll and voiceover · hook-led",
         poster: hairProductPoster,
@@ -105,12 +111,6 @@ const categories: Category[] = [
           "Talking-to-camera · authentic personal delivery · series-style",
         poster: skinComparisonPoster,
         videoUrl: skinComparisonVideo,
-      },
-      {
-        subject: "Laser hair removal · Chiang Mai",
-        format: "Hook-led · talking-to-camera and B-roll · clinic treatment",
-        poster: laserHairRemovalPoster,
-        videoUrl: laserHairRemoval,
       },
       // HIDDEN until the "Aesthetic pour" source clip is supplied (productVideo5
       // import above). Final section TBC with Jess. To restore: uncomment.

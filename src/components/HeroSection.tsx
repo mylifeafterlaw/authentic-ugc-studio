@@ -34,7 +34,11 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen gradient-hero overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen overflow-hidden"
+      style={{ background: "radial-gradient(120% 90% at 78% -5%, #f9f3ec 0%, #f0e6d8 55%, #e6d9c7 100%)" }}
+    >
       <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-10 lg:gap-8 pt-20 pb-16 lg:py-24 min-h-screen">
         {/* Text */}
         <motion.div
@@ -56,18 +60,19 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Headline cluster: name + headline + credibility line as one tight top group */}
+          {/* Headline cluster — serif headline dominant, script name demoted to a signature kicker */}
           <div>
-            <p className="font-script text-6xl sm:text-7xl lg:text-8xl text-[hsl(340_50%_28%)] leading-none mb-2 lg:-ml-8 xl:-ml-12">
+            <p className="font-script text-2xl sm:text-3xl text-[hsl(340_45%_34%)] leading-none mb-1">
               Jess Cousin
             </p>
-            <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-foreground leading-tight mb-2">
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.12] mb-2">
               Eight years in law.
               <br />
               <span className="text-primary font-semibold">
                 Now I make UGC that lands on brief and on time.
               </span>
             </h1>
+            <div className="w-12 h-[3px] rounded-full gradient-cta mt-3 mx-auto lg:mx-0" />
           </div>
 
           {/* Niches row */}
@@ -155,11 +160,9 @@ const HeroSection = () => {
 
           </div>
 
-          {/* Phone mockup — dominant, in front */}
-          <div className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2.4rem] bg-foreground p-2 shadow-elevated shrink-0 z-10">
-
-
-            <div className="relative w-full h-full rounded-[1.9rem] overflow-hidden bg-muted">
+          {/* Frameless video — no heavy bezel; soft shadow grounds it */}
+          <div className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2rem] overflow-hidden shadow-[0_34px_64px_-20px_rgba(120,55,80,0.55)] ring-1 ring-[#2e1f24]/[0.06] shrink-0 z-10 bg-muted">
+            <div className="relative w-full h-full">
               {playing && videoSrc ? (
                 <video
                   ref={videoRef}
@@ -176,8 +179,6 @@ const HeroSection = () => {
                     alt="Jess Cousin – UGC video preview"
                     className="w-full h-full object-cover"
                   />
-                  {/* notch */}
-                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-4 bg-foreground rounded-full" />
                   {/* play affordance */}
                   <button
                     onClick={handlePlay}
@@ -216,9 +217,10 @@ const HeroSection = () => {
       </motion.button>
 
 
-      {/* Decorative blobs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blush/40 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-peach/50 rounded-full blur-3xl" />
+      {/* Minimal pink accent glow (pink is an accent here, not the field) */}
+      <div className="pointer-events-none absolute top-1/4 right-[12%] w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+      {/* Warm grounding at the base anchors the composition */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#d9c3a8]/50 to-transparent" />
     </section>
   );
 };
