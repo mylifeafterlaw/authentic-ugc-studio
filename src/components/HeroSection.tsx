@@ -77,7 +77,7 @@ const HeroSection = () => {
 
           {/* Niches row */}
           <p className="mt-4 mb-2 font-body text-xs sm:text-sm tracking-[0.2em] uppercase" style={{ color: "rgba(240,205,190,0.7)" }}>
-            Beauty · Wellness · Tech · Travel · Lifestyle
+            British · Beauty · Wellness ·<br className="sm:hidden" /> Tech · Travel · Lifestyle
           </p>
 
           {/* CTAs */}
