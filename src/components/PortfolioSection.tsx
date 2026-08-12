@@ -204,7 +204,7 @@ const categories: Category[] = [
   },
   {
     id: "accommodation",
-    name: "Accommodation",
+    name: "Travel & Stays",
     tiles: [
       {
         subject: "Condo tour · Chiang Mai",
