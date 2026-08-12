@@ -1,0 +1,10 @@
+{
+  "name": "Jess Cousin – UGC Creator",
+  "short_name": "Jess Cousin",
+  "icons": [
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#5C1220",
+  "background_color": "#5C1220",
+  "display": "browser"
+}

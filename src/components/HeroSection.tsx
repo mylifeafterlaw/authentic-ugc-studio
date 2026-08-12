@@ -60,17 +60,21 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Headline cluster — serif headline dominant, script name demoted to a signature kicker */}
+          {/* Headline cluster — script name, small-caps credential kicker with
+              lead-rule, then the single full-size serif headline. Hierarchy
+              comes from size/treatment; palette stays cream on oxblood. */}
           <div>
-            <p className="font-script text-2xl sm:text-3xl leading-none mb-1" style={{ color: "#f0d9c4" }}>
+            <p className="font-script text-2xl sm:text-3xl leading-none mb-3" style={{ color: "#f0d9c4" }}>
               Jess Cousin
             </p>
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl leading-[1.12] mb-2" style={{ color: "#F4ECDC" }}>
-              Eight years in law.
-              <br />
-              <span className="font-semibold" style={{ color: "#f8ddc7" }}>
-                Now I make UGC that lands on brief and on time.
+            <p className="flex items-center gap-2.5 justify-center lg:justify-start mb-3">
+              <span aria-hidden="true" className="inline-block w-6 h-[2px]" style={{ background: "#F4ECDC" }} />
+              <span className="font-body text-xs sm:text-sm font-bold uppercase tracking-[0.28em]" style={{ color: "#F4ECDC" }}>
+                Eight years in law
               </span>
+            </p>
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl leading-[1.09] mb-2 font-semibold" style={{ color: "#F4ECDC" }}>
+              Now I make UGC that lands on brief and on time.
             </h1>
             <div className="w-12 h-[3px] rounded-full mt-3 mx-auto lg:mx-0" style={{ background: "#F4ECDC" }} />
           </div>
