@@ -64,6 +64,7 @@ type Tile = {
   format?: string; // secondary caption line (smaller, more muted)
   poster?: string; // real video-frame still shown before/while the video loads
   videoUrl?: string; // CDN video URL — plays inline in a modal
+  tags?: string[]; // FORMAT tags for cross-section filtering (see FORMAT_TAGS)
 };
 
 type Category = {
@@ -84,12 +85,14 @@ const categories: Category[] = [
         format: "Hook-led · talking-to-camera and B-roll · clinic treatment",
         poster: laserHairRemovalPoster,
         videoUrl: laserHairRemoval,
+        tags: ["Hook-led", "Talking-to-camera", "B-roll"],
       },
       {
         subject: "Haircare",
         format: "Before and after · B-roll and voiceover · hook-led",
         poster: hairProductPoster,
         videoUrl: hairProductVideo,
+        tags: ["Before and after", "B-roll and voiceover", "Hook-led"],
       },
       {
         subject: "Skincare",
@@ -97,6 +100,7 @@ const categories: Category[] = [
           "Talking-to-camera with B-roll · natural product integration · hook-led",
         poster: livingBeautifulPoster,
         videoUrl: livingBeautifulVideo,
+        tags: ["Talking-to-camera", "B-roll", "Hook-led"],
       },
       {
         subject: "Skincare",
@@ -104,6 +108,7 @@ const categories: Category[] = [
           "Talking-to-camera · before and after with overlays · series-style",
         poster: skinUsedPoster,
         videoUrl: skinUsedVideo,
+        tags: ["Talking-to-camera", "Before and after"],
       },
       {
         subject: "Skincare",
@@ -111,6 +116,7 @@ const categories: Category[] = [
           "Talking-to-camera · authentic personal delivery · series-style",
         poster: skinComparisonPoster,
         videoUrl: skinComparisonVideo,
+        tags: ["Talking-to-camera"],
       },
       // HIDDEN until the "Aesthetic pour" source clip is supplied (productVideo5
       // import above). Final section TBC with Jess. To restore: uncomment.
@@ -131,30 +137,35 @@ const categories: Category[] = [
         format: "Talking-to-camera with B-roll · unflavoured powder, mixed on camera",
         poster: creatineTtcPoster,
         videoUrl: creatineTtc,
+        tags: ["Talking-to-camera", "B-roll"],
       },
       {
         subject: "Hume Health",
         format: "Talking-to-camera · hook and CTA · ad-style",
         poster: humeBand2Hook3Poster,
         videoUrl: humeBand2Hook3,
+        tags: ["Talking-to-camera", "Hook-led"],
       },
       {
         subject: "Collagen",
         format: "ASMR · wide frame · sound on, no voiceover",
         poster: creatineAsmrPoster,
         videoUrl: creatineAsmr,
+        tags: ["ASMR"],
       },
       {
         subject: "Water bottle",
         format: "Hook-led · talking-to-camera and B-roll",
         poster: productTripleHookPoster,
         videoUrl: productTripleHookVideo,
+        tags: ["Hook-led", "Talking-to-camera", "B-roll"],
       },
       {
         subject: "Supplements",
         format: "Talking-to-camera · natural product explanation · longer-form",
         poster: lGlutaminePoster,
         videoUrl: lGlutamineVideo,
+        tags: ["Talking-to-camera"],
       },
     ],
   },
@@ -168,36 +179,42 @@ const categories: Category[] = [
         format: "Hook-led · full-screen screen recording · greenscreen talking-head overlay",
         poster: playfulArrivalPoster,
         videoUrl: playfulArrivalVideo,
+        tags: ["Hook-led", "Screen recording", "Talking-to-camera"],
       },
       {
         subject: "Playful App",
         format: "Hook-led · talking-to-camera throughout · app demo",
         poster: techAppsVideo1Poster,
         videoUrl: techAppsVideo1,
+        tags: ["Hook-led", "Talking-to-camera"],
       },
       {
         subject: "Playful App",
         format: "Hook-led · talking-to-camera · screen recording overlay",
         poster: playfulArrivalVideo1Poster,
         videoUrl: playfulArrivalVideo1,
+        tags: ["Hook-led", "Talking-to-camera", "Screen recording"],
       },
       {
         subject: "Playful App",
         format: "Hook-led · talking-to-camera with aesthetic B-roll · screen recording",
         poster: techAppsVideo2Poster,
         videoUrl: techAppsVideo2,
+        tags: ["Hook-led", "Talking-to-camera", "Screen recording", "B-roll"],
       },
       {
         subject: "Playful App",
         format: "Hook-led · talking-to-camera · in-app walkthrough",
         poster: playfulArrivalVideo3Poster,
         videoUrl: playfulArrivalVideo3,
+        tags: ["Hook-led", "Talking-to-camera", "Screen recording"],
       },
       {
         subject: "Playful App",
         format: "Hook-led · talking-to-camera",
         poster: playfulVideo3Poster,
         videoUrl: playfulVideo3,
+        tags: ["Hook-led", "Talking-to-camera"],
       },
 
     ],
@@ -211,24 +228,28 @@ const categories: Category[] = [
         format: "Hook-led · talking-to-camera and B-roll with voiceover",
         poster: condoPoster,
         videoUrl: condoVideo,
+        tags: ["Hook-led", "Talking-to-camera", "B-roll and voiceover"],
       },
       {
         subject: "Apartment tour · Vietnam",
         format: "Aesthetic B-roll and voiceover",
         poster: vietnamApartmentPoster,
         videoUrl: vietnamApartmentVideo,
+        tags: ["B-roll and voiceover"],
       },
       {
         subject: "Apartment tour · Vietnam",
         format: "Hook-led · B-roll and voiceover",
         poster: vietnamApartment2Poster,
         videoUrl: vietnamApartment2Video,
+        tags: ["Hook-led", "B-roll and voiceover"],
       },
       {
         subject: "Travel · Singapore",
         format: "B-roll and voiceover · natural travel style",
         poster: singaporeZooPoster,
         videoUrl: singaporeZooVideo,
+        tags: ["B-roll and voiceover"],
       },
     ],
   },
@@ -236,20 +257,45 @@ const categories: Category[] = [
     id: "lifestyle-experience",
     name: "Lifestyle & Experience",
     tiles: [
-      { subject: "Tattoo experience · Chiang Mai", format: "Hook-led · B-roll and voiceover", poster: tattooPoster, videoUrl: tattooVideo },
-      { subject: "Husky experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: huskiesPoster, videoUrl: huskiesVideo },
-      { subject: "Muay Thai · Bangkok", format: "Hook-led · B-roll and voiceover", poster: rajaStadiumPoster, videoUrl: rajadamnernVideo },
-      { subject: "Cinema experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cinemaPoster, videoUrl: cinemaVideo },
-      { subject: "Café · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cafeWatPoster, videoUrl: cafeWatVideo },
+      { subject: "Tattoo experience · Chiang Mai", format: "Hook-led · B-roll and voiceover", poster: tattooPoster, videoUrl: tattooVideo, tags: ["Hook-led", "B-roll and voiceover"] },
+      { subject: "Husky experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: huskiesPoster, videoUrl: huskiesVideo, tags: ["Hook-led", "B-roll and voiceover"] },
+      { subject: "Muay Thai · Bangkok", format: "Hook-led · B-roll and voiceover", poster: rajaStadiumPoster, videoUrl: rajadamnernVideo, tags: ["Hook-led", "B-roll and voiceover"] },
+      { subject: "Cinema experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cinemaPoster, videoUrl: cinemaVideo, tags: ["Hook-led", "B-roll and voiceover"] },
+      { subject: "Café · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cafeWatPoster, videoUrl: cafeWatVideo, tags: ["Hook-led", "B-roll and voiceover"] },
       {
         subject: "Food and drink",
         format: "Talking-to-camera · natural and authentic",
         poster: productUGCPoster,
         videoUrl: productUGC,
+        tags: ["Talking-to-camera"],
       },
     ],
   },
 ];
+
+// Ordered FORMAT tag vocabulary for the cross-section filter bar. These cut
+// across categories (not a duplicate of the section headings) on a single
+// FORMAT axis. A tile can carry more than one.
+const FORMAT_TAGS = [
+  "Hook-led",
+  "Talking-to-camera",
+  "B-roll and voiceover",
+  "B-roll",
+  "Screen recording",
+  "Before and after",
+  "ASMR",
+] as const;
+
+// How many tiles carry each tag (shown on the chips).
+const TAG_COUNTS: Record<string, number> = FORMAT_TAGS.reduce((acc, tag) => {
+  acc[tag] = categories.reduce(
+    (n, cat) => n + cat.tiles.filter((t) => t.tags?.includes(tag)).length,
+    0
+  );
+  return acc;
+}, {} as Record<string, number>);
+
+const TOTAL_TILES = categories.reduce((n, cat) => n + cat.tiles.length, 0);
 
 // Mobile-only swipe cue: minimal white chevron + "swipe" label, no circle/border.
 const SwipeCue = () => (
@@ -576,9 +622,30 @@ const PortfolioSection = () => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [activeCat, setActiveCat] = useState<number>(0);
   const [indicatorVisible, setIndicatorVisible] = useState(false);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const catRefs = useRef<Array<HTMLDivElement | null>>([]);
 
+  const toggleTag = (tag: string) =>
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  const clearTags = () => setSelectedTags([]);
+
+  // A tile matches when nothing is selected, or it carries ANY selected tag (OR).
+  const tileMatches = (tile: Tile) =>
+    selectedTags.length === 0 || !!tile.tags?.some((t) => selectedTags.includes(t));
+
+  // Categories with tiles filtered to the current selection; empty ones collapse.
+  const visibleCategories = categories
+    .map((cat) => ({ ...cat, tiles: cat.tiles.filter(tileMatches) }))
+    .filter((cat) => cat.tiles.length > 0);
+
+  const shownCount = visibleCategories.reduce((n, c) => n + c.tiles.length, 0);
+  const visibleKey = visibleCategories.map((c) => c.id).join("|");
+
+  // Re-observe whenever the visible set changes (filtering adds/removes bands).
   useEffect(() => {
+    catRefs.current.length = visibleCategories.length;
     const visibility = new Map<number, number>();
     const observer = new IntersectionObserver(
       (entries) => {
@@ -601,19 +668,23 @@ const PortfolioSection = () => {
     );
     catRefs.current.forEach((el) => el && observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleKey]);
 
   const jumpTo = (idx: number) => {
     const el = catRefs.current[idx];
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const prevCat = activeCat > 0 ? categories[activeCat - 1] : null;
-  const nextCat = activeCat < categories.length - 1 ? categories[activeCat + 1] : null;
+  // activeCat indexes into visibleCategories; clamp when the set shrinks.
+  const safeActive = Math.min(activeCat, Math.max(0, visibleCategories.length - 1));
+  const prevCat = safeActive > 0 ? visibleCategories[safeActive - 1] : null;
+  const nextCat =
+    safeActive < visibleCategories.length - 1 ? visibleCategories[safeActive + 1] : null;
 
   // The fixed side indicator sits over whichever band is active, so its
   // colours flip with that band's tone (cream on oxblood, ink on cream).
-  const activeTone = activeCat % 2 === 0 ? "light" : "dark";
+  const activeTone = safeActive % 2 === 0 ? "light" : "dark";
   const indInk = activeTone === "dark" ? "#F4ECDC" : "#2e1f24";
   const indMuted = activeTone === "dark" ? "rgba(244,236,220,0.6)" : "rgba(46,20,25,0.55)";
   const indAccent = activeTone === "dark" ? "#F4ECDC" : "#5C1220";
@@ -633,9 +704,52 @@ const PortfolioSection = () => {
         </h2>
       </motion.div>
 
-      {/* Subtle category jump-nav (generated from categories) */}
+      {/* FORMAT filter bar — cross-section, multi-select. Selecting tags shows
+          tiles carrying any selected format and collapses emptied sections. */}
+      <div className="mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          {FORMAT_TAGS.map((tag) => {
+            const active = selectedTags.includes(tag);
+            return (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => toggleTag(tag)}
+                aria-pressed={active}
+                className="font-body text-xs sm:text-sm rounded-full border px-3.5 py-1.5 transition-colors"
+                style={
+                  active
+                    ? { background: "#5C1220", color: "#F4ECDC", borderColor: "#5C1220" }
+                    : { background: "rgba(255,255,255,0.5)", color: "rgba(46,20,25,0.82)", borderColor: "rgba(46,20,25,0.22)" }
+                }
+              >
+                {tag}
+                <span className="ml-1.5 opacity-60 tabular-nums">{TAG_COUNTS[tag]}</span>
+              </button>
+            );
+          })}
+        </div>
+        <div className="mt-3 flex items-center justify-center gap-3 min-h-[1.25rem]">
+          <span className="font-body text-xs text-foreground/60" aria-live="polite">
+            {selectedTags.length === 0
+              ? `Showing all ${TOTAL_TILES} videos`
+              : `Showing ${shownCount} of ${TOTAL_TILES}`}
+          </span>
+          {selectedTags.length > 0 && (
+            <button
+              type="button"
+              onClick={clearTags}
+              className="font-body text-xs underline underline-offset-2 text-[#5C1220] hover:opacity-70 transition-opacity"
+            >
+              Clear all
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Subtle category jump-nav (only sections with matching tiles) */}
       <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mb-16">
-        {categories.map((cat, i) => (
+        {visibleCategories.map((cat, i) => (
           <span key={cat.id} className="flex items-center gap-x-3">
             {i > 0 && <span className="text-foreground/25">·</span>}
             <a
@@ -649,9 +763,10 @@ const PortfolioSection = () => {
       </nav>
 
       <div>
-        {categories.map((cat, catIdx) => {
+        {visibleCategories.map((cat, catIdx) => {
           // Every section is a full-bleed band, alternating cream ↔ oxblood.
-          // Even index = cream (matches the section base), odd = oxblood.
+          // Tone follows the VISIBLE index so bands keep alternating even when
+          // filtering collapses one out.
           const tone: Tone = catIdx % 2 === 0 ? "light" : "dark";
           const blockBg =
             tone === "dark"
@@ -705,7 +820,7 @@ const PortfolioSection = () => {
       {prevCat ? (
         <button
           type="button"
-          onClick={() => jumpTo(activeCat - 1)}
+          onClick={() => jumpTo(safeActive - 1)}
           className="group flex items-center gap-2 transition-colors"
           style={{ color: indMuted }}
         >
@@ -720,14 +835,14 @@ const PortfolioSection = () => {
 
       <div className="flex flex-col items-end gap-1.5 border-r pr-3 py-1" style={{ borderColor: indBorder }}>
         <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] font-medium" style={{ color: indInk }}>
-          {categories[activeCat]?.name}
+          {visibleCategories[safeActive]?.name}
         </span>
         <div className="flex flex-col gap-1">
-          {categories.map((_, i) => (
+          {visibleCategories.map((_, i) => (
             <span
               key={i}
               className="h-1 w-1 rounded-full transition-colors"
-              style={{ background: i === activeCat ? indAccent : indBorder }}
+              style={{ background: i === safeActive ? indAccent : indBorder }}
             />
           ))}
         </div>
@@ -736,7 +851,7 @@ const PortfolioSection = () => {
       {nextCat ? (
         <button
           type="button"
-          onClick={() => jumpTo(activeCat + 1)}
+          onClick={() => jumpTo(safeActive + 1)}
           className="group flex items-center gap-2 transition-colors"
           style={{ color: indMuted }}
         >
