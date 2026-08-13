@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import condoVideo from "@/assets/condo-ugc.mp4";
 import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4";
 import productUGC from "@/assets/Product_UGC_Natural_talking.mp4";
@@ -620,10 +620,7 @@ const CategoryRow = ({
 
 const PortfolioSection = () => {
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [activeCat, setActiveCat] = useState<number>(0);
-  const [indicatorVisible, setIndicatorVisible] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const catRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const toggleTag = (tag: string) =>
     setSelectedTags((prev) =>
@@ -641,54 +638,6 @@ const PortfolioSection = () => {
     .filter((cat) => cat.tiles.length > 0);
 
   const shownCount = visibleCategories.reduce((n, c) => n + c.tiles.length, 0);
-  const visibleKey = visibleCategories.map((c) => c.id).join("|");
-
-  // Re-observe whenever the visible set changes (filtering adds/removes bands).
-  useEffect(() => {
-    catRefs.current.length = visibleCategories.length;
-    const visibility = new Map<number, number>();
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          const idx = Number((e.target as HTMLElement).dataset.catIdx);
-          visibility.set(idx, e.isIntersecting ? e.intersectionRatio : 0);
-        });
-        let bestIdx = 0;
-        let bestRatio = 0;
-        visibility.forEach((ratio, idx) => {
-          if (ratio > bestRatio) {
-            bestRatio = ratio;
-            bestIdx = idx;
-          }
-        });
-        setIndicatorVisible(bestRatio > 0);
-        if (bestRatio > 0) setActiveCat(bestIdx);
-      },
-      { threshold: [0, 0.15, 0.35, 0.6, 0.85, 1] }
-    );
-    catRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visibleKey]);
-
-  const jumpTo = (idx: number) => {
-    const el = catRefs.current[idx];
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  // activeCat indexes into visibleCategories; clamp when the set shrinks.
-  const safeActive = Math.min(activeCat, Math.max(0, visibleCategories.length - 1));
-  const prevCat = safeActive > 0 ? visibleCategories[safeActive - 1] : null;
-  const nextCat =
-    safeActive < visibleCategories.length - 1 ? visibleCategories[safeActive + 1] : null;
-
-  // The fixed side indicator sits over whichever band is active, so its
-  // colours flip with that band's tone (cream on oxblood, ink on cream).
-  const activeTone = safeActive % 2 === 0 ? "light" : "dark";
-  const indInk = activeTone === "dark" ? "#F4ECDC" : "#2e1f24";
-  const indMuted = activeTone === "dark" ? "rgba(244,236,220,0.6)" : "rgba(46,20,25,0.55)";
-  const indAccent = activeTone === "dark" ? "#F4ECDC" : "#5C1220";
-  const indBorder = activeTone === "dark" ? "rgba(244,236,220,0.35)" : "rgba(46,20,25,0.3)";
 
   return (
     <section id="portfolio" className="py-20 lg:py-28 scroll-smooth overflow-x-clip bg-[#F4ECDC]">
@@ -704,10 +653,29 @@ const PortfolioSection = () => {
         </h2>
       </motion.div>
 
-      {/* FORMAT filter bar — cross-section, multi-select. Selecting tags shows
-          tiles carrying any selected format and collapses emptied sections. */}
-      <div className="mb-10">
-        <div className="flex flex-wrap items-center justify-center gap-2">
+      {/* PRIMARY: category navigation — serif, prominent, first */}
+      <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-6">
+        {visibleCategories.map((cat, i) => (
+          <span key={cat.id} className="flex items-center gap-x-4">
+            {i > 0 && <span className="text-foreground/25 text-lg" aria-hidden="true">·</span>}
+            <a
+              href={`#${cat.id}`}
+              className="font-heading text-lg sm:text-xl text-foreground/85 hover:text-[#5C1220] underline-offset-8 hover:underline decoration-[#5C1220]/40 transition-colors"
+            >
+              {cat.name}
+            </a>
+          </span>
+        ))}
+      </nav>
+
+      {/* SECONDARY: format tags — smaller refinement row beneath the nav.
+          Multi-select; selecting shows tiles carrying any selected format
+          and collapses emptied sections. */}
+      <div className="mb-12">
+        <p className="font-body text-[0.6rem] uppercase tracking-[0.18em] text-foreground/45 text-center mb-2">
+          Filter by format
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-1.5">
           {FORMAT_TAGS.map((tag) => {
             const active = selectedTags.includes(tag);
             return (
@@ -716,20 +684,20 @@ const PortfolioSection = () => {
                 type="button"
                 onClick={() => toggleTag(tag)}
                 aria-pressed={active}
-                className="font-body text-xs sm:text-sm rounded-full border px-3.5 py-1.5 transition-colors"
+                className="font-body text-[0.7rem] sm:text-xs rounded-full border px-2.5 py-1 transition-colors"
                 style={
                   active
                     ? { background: "#5C1220", color: "#F4ECDC", borderColor: "#5C1220" }
-                    : { background: "rgba(255,255,255,0.5)", color: "rgba(46,20,25,0.82)", borderColor: "rgba(46,20,25,0.22)" }
+                    : { background: "rgba(255,255,255,0.5)", color: "rgba(46,20,25,0.72)", borderColor: "rgba(46,20,25,0.18)" }
                 }
               >
                 {tag}
-                <span className="ml-1.5 opacity-60 tabular-nums">{TAG_COUNTS[tag]}</span>
+                <span className="ml-1 opacity-60 tabular-nums">{TAG_COUNTS[tag]}</span>
               </button>
             );
           })}
         </div>
-        <div className="mt-3 flex items-center justify-center gap-3 min-h-[1.25rem]">
+        <div className="mt-2.5 flex items-center justify-center gap-3 min-h-[1.25rem]">
           <span className="font-body text-xs text-foreground/60" aria-live="polite">
             {selectedTags.length === 0
               ? `Showing all ${TOTAL_TILES} videos`
@@ -746,21 +714,6 @@ const PortfolioSection = () => {
           )}
         </div>
       </div>
-
-      {/* Subtle category jump-nav (only sections with matching tiles) */}
-      <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mb-16">
-        {visibleCategories.map((cat, i) => (
-          <span key={cat.id} className="flex items-center gap-x-3">
-            {i > 0 && <span className="text-foreground/25">·</span>}
-            <a
-              href={`#${cat.id}`}
-              className="font-body text-sm text-foreground/70 hover:text-[#5C1220] transition-colors"
-            >
-              {cat.name}
-            </a>
-          </span>
-        ))}
-      </nav>
 
       <div>
         {visibleCategories.map((cat, catIdx) => {
@@ -781,7 +734,6 @@ const PortfolioSection = () => {
               key={cat.id}
               id={cat.id}
               data-cat-idx={catIdx}
-              ref={(el) => (catRefs.current[catIdx] = el)}
               className="scroll-mt-24 w-screen ml-[calc(50%-50vw)]"
               style={{ background: blockBg }}
               initial={{ opacity: 0, y: 20 }}
@@ -809,62 +761,6 @@ const PortfolioSection = () => {
         })}
       </div>
     </div>
-
-    {/* Side category indicator — desktop only, visible while a category is in view */}
-    <div
-      aria-hidden={!indicatorVisible}
-      className={`hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col items-end gap-3 transition-opacity duration-300 ${
-        indicatorVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
-    >
-      {prevCat ? (
-        <button
-          type="button"
-          onClick={() => jumpTo(safeActive - 1)}
-          className="group flex items-center gap-2 transition-colors"
-          style={{ color: indMuted }}
-        >
-          <span className="font-body text-[0.6rem] uppercase tracking-[0.2em] font-light">
-            {prevCat.name}
-          </span>
-          <ChevronUp className="w-3.5 h-3.5" strokeWidth={1.5} />
-        </button>
-      ) : (
-        <span className="h-4" />
-      )}
-
-      <div className="flex flex-col items-end gap-1.5 border-r pr-3 py-1" style={{ borderColor: indBorder }}>
-        <span className="font-body text-[0.65rem] uppercase tracking-[0.25em] font-medium" style={{ color: indInk }}>
-          {visibleCategories[safeActive]?.name}
-        </span>
-        <div className="flex flex-col gap-1">
-          {visibleCategories.map((_, i) => (
-            <span
-              key={i}
-              className="h-1 w-1 rounded-full transition-colors"
-              style={{ background: i === safeActive ? indAccent : indBorder }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {nextCat ? (
-        <button
-          type="button"
-          onClick={() => jumpTo(safeActive + 1)}
-          className="group flex items-center gap-2 transition-colors"
-          style={{ color: indMuted }}
-        >
-          <span className="font-body text-[0.6rem] uppercase tracking-[0.2em] font-light">
-            {nextCat.name}
-          </span>
-          <ChevronDown className="w-3.5 h-3.5" strokeWidth={1.5} />
-        </button>
-      ) : (
-        <span className="h-4" />
-      )}
-    </div>
-
   </section>
   );
 };
