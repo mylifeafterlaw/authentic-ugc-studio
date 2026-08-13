@@ -47,21 +47,8 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-center lg:text-left flex flex-col justify-center lg:pl-8 xl:pl-16"
+          className="order-2 lg:order-1 text-center lg:text-left flex flex-col justify-center lg:pl-8 xl:pl-16"
         >
-          {/* Mobile-only portrait above the name — straight, no tilt */}
-          <div className="lg:hidden mx-auto mb-2 w-[140px] sm:w-[170px]">
-            <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-soft border border-[#f4ecdc]/25">
-              <img
-                src={sideStill}
-                alt="Jess Cousin – UGC creator portrait"
-                className="w-full h-full object-cover object-top"
-                width={800}
-                height={1000}
-              />
-            </div>
-          </div>
-
           {/* Headline cluster — script name, small-caps credential kicker with
               lead-rule, then the single full-size serif headline. Hierarchy
               comes from size/treatment; palette stays cream on oxblood. */}
@@ -138,7 +125,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative flex items-center justify-center lg:justify-center"
+          className="order-1 lg:order-2 relative flex items-center justify-center lg:justify-center"
         >
           <div className="relative">
           {/* Secondary still — deliberate second photo sitting BEHIND the phone, peeking out the right side */}
@@ -206,6 +193,36 @@ const HeroSection = () => {
           </div>
           </div>
 
+        </motion.div>
+
+        {/* Mobile-only portrait, below the text — on mobile the video takes the
+            top slot and the photo sits here, swapping their old positions. */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="order-3 lg:hidden mx-auto w-[150px] sm:w-[180px]"
+        >
+          <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-card border-4 border-[#F4ECDC]">
+            <img
+              src={sideStill}
+              alt="Jess Cousin – UGC creator portrait"
+              className="w-full h-full object-cover object-top"
+              width={800}
+              height={1000}
+              loading="lazy"
+            />
+          </div>
+          <div className="flex justify-center mt-3">
+            <a
+              href="https://linktr.ee/MyLifeAfterLaw"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-body text-xs text-[#F4ECDC]/55 tracking-wide hover:text-[#F4ECDC] transition-colors"
+            >
+              @MyLifeAfterLaw
+            </a>
+          </div>
         </motion.div>
       </div>
 
