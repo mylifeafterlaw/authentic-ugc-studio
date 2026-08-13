@@ -41,32 +41,44 @@ const HeroSection = () => {
       style={{ background: "radial-gradient(125% 95% at 76% -8%, #6f1727 0%, #5C1220 50%, #470c17 100%)" }}
     >
       <BrandWatermark />
-      <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-10 lg:gap-8 pt-20 pb-16 lg:py-24 min-h-screen">
-        {/* Text */}
+      {/* Explicit grid placement (rather than source order) so mobile can slot
+          the video between the headline and the rest of the copy, while desktop
+          keeps all the text stacked in column 1 with the video beside it. */}
+      <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[auto_auto] items-center gap-y-6 gap-x-10 lg:gap-x-8 lg:gap-y-3 pt-20 pb-16 lg:py-24 min-h-screen">
+        {/* Headline cluster — script name, small-caps credential kicker with
+            lead-rule, then the single full-size serif headline. Above the video
+            on mobile; top of column 1 on desktop. */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="order-2 lg:order-1 text-center lg:text-left flex flex-col justify-center lg:pl-8 xl:pl-16"
+          className="order-1 lg:col-start-1 lg:row-start-1 lg:self-end text-center lg:text-left lg:pl-8 xl:pl-16"
         >
-          {/* Headline cluster — script name, small-caps credential kicker with
-              lead-rule, then the single full-size serif headline. Hierarchy
-              comes from size/treatment; palette stays cream on oxblood. */}
-          <div>
-            <p className="font-script text-2xl sm:text-3xl leading-none mb-3" style={{ color: "#f0d9c4" }}>
-              Jess Cousin
-            </p>
-            <p className="flex items-center gap-2.5 justify-center lg:justify-start mb-3">
-              <span aria-hidden="true" className="inline-block w-6 h-[2px]" style={{ background: "#F4ECDC" }} />
-              <span className="font-body text-xs sm:text-sm font-bold uppercase tracking-[0.28em]" style={{ color: "#F4ECDC" }}>
-                Eight years in law
-              </span>
-            </p>
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl leading-[1.09] mb-2 font-semibold" style={{ color: "#F4ECDC" }}>
-              Now I make UGC that lands on brief and on time.
-            </h1>
-            <div className="w-12 h-[3px] rounded-full mt-3 mx-auto lg:mx-0" style={{ background: "#F4ECDC" }} />
-          </div>
+          <p className="font-script text-2xl sm:text-3xl leading-none mb-3" style={{ color: "#f0d9c4" }}>
+            Jess Cousin
+          </p>
+          <p className="flex items-center gap-2.5 justify-center lg:justify-start mb-3">
+            <span aria-hidden="true" className="inline-block w-6 h-[2px]" style={{ background: "#F4ECDC" }} />
+            <span className="font-body text-xs sm:text-sm font-bold uppercase tracking-[0.28em]" style={{ color: "#F4ECDC" }}>
+              Eight years in law
+            </span>
+            {/* Trailing rule balances the centred kicker on mobile; desktop is
+                left-aligned so it keeps the single leading rule only. */}
+            <span aria-hidden="true" className="inline-block w-6 h-[2px] lg:hidden" style={{ background: "#F4ECDC" }} />
+          </p>
+          <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl leading-[1.09] mb-2 font-semibold" style={{ color: "#F4ECDC" }}>
+            Now I make UGC that lands on brief and on time.
+          </h1>
+        </motion.div>
+
+        {/* Rest of the copy — below the video on mobile, continues column 1 on desktop */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="order-3 lg:col-start-1 lg:row-start-2 lg:self-start text-center lg:text-left flex flex-col lg:pl-8 xl:pl-16"
+        >
+          <div className="w-12 h-[3px] rounded-full mx-auto lg:mx-0" style={{ background: "#F4ECDC" }} />
 
           {/* Niches row */}
           <p className="mt-4 mb-2 font-body text-xs sm:text-sm tracking-[0.2em] uppercase" style={{ color: "rgba(240,205,190,0.7)" }}>
@@ -125,7 +137,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="order-1 lg:order-2 relative flex items-center justify-center lg:justify-center"
+          className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center relative flex items-center justify-center lg:justify-center"
         >
           <div className="relative">
           {/* Secondary still — deliberate second photo sitting BEHIND the phone, peeking out the right side */}
@@ -201,7 +213,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="order-3 lg:hidden mx-auto w-[150px] sm:w-[180px]"
+          className="order-4 lg:hidden mx-auto w-[150px] sm:w-[180px]"
         >
           <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-card border-4 border-[#F4ECDC]">
             <img
