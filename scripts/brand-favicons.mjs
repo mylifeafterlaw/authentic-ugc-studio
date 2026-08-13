@@ -15,15 +15,21 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const [rawPath, W, H] = [process.argv[2], +process.argv[3], +process.argv[4]];
+// Optional search window as fractions: x0 x1 y0 y1 (defaults match the first
+// brand sheet: right half, upper ~62%).
+const [wx0, wx1, wy0, wy1] = [
+  +(process.argv[5] ?? 0.45), +(process.argv[6] ?? 1),
+  +(process.argv[7] ?? 0), +(process.argv[8] ?? 0.62),
+];
 const raw = readFileSync(rawPath);
 if (raw.length !== W * H * 4) throw new Error("raw size mismatch");
 const px = (x, y) => raw.subarray((y * W + x) * 4, (y * W + x) * 4 + 4);
 const isDark = (p) => p[0] < 170 && p[1] < 90 && p[2] < 100;
 
-// Bounding box of the large mark: right half, upper ~62% (avoids the wordmark).
+// Bounding box of the dark tile inside the search window.
 let minX = Infinity, maxX = -1, minY = Infinity, maxY = -1;
-for (let y = 0; y < Math.floor(H * 0.62); y++)
-  for (let x = Math.floor(W * 0.45); x < W; x++)
+for (let y = Math.floor(H * wy0); y < Math.floor(H * wy1); y++)
+  for (let x = Math.floor(W * wx0); x < Math.floor(W * wx1); x++)
     if (isDark(px(x, y))) {
       if (x < minX) minX = x; if (x > maxX) maxX = x;
       if (y < minY) minY = y; if (y > maxY) maxY = y;
@@ -39,6 +45,30 @@ const sq = Buffer.alloc(side * side * 4);
 for (let y = 0; y < side; y++) for (let x = 0; x < side; x++)
   px(offX + x, offY + y).copy(sq, (y * side + x) * 4);
 console.log(`mark bbox: ${bw}x${bh} at (${minX},${minY}) -> square ${side}`);
+
+// Bolder variant for tiny sizes: dilate the cream strokes so they survive a
+// 15x downscale (8px lines are ~0.5px at 16px and vanish otherwise).
+function dilateCream(src, S, radius) {
+  const out = Buffer.from(src);
+  const isCream = (o) => src[o] > 190 && src[o + 1] > 160 && src[o + 2] > 140;
+  const offs = [];
+  for (let dy = -radius; dy <= radius; dy++)
+    for (let dx = -radius; dx <= radius; dx++)
+      if (dx * dx + dy * dy <= radius * radius) offs.push([dx, dy]);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const o = (y * S + x) * 4;
+    if (isCream(o)) continue;
+    for (const [dx, dy] of offs) {
+      const nx = x + dx, ny = y + dy;
+      if (nx < 0 || ny < 0 || nx >= S || ny >= S) continue;
+      if (isCream((ny * S + nx) * 4)) {
+        out[o] = 245; out[o + 1] = 233; out[o + 2] = 220; // brand cream
+        break;
+      }
+    }
+  }
+  return out;
+}
 
 // box-average downscale (high quality for large ratios)
 function resize(src, S, D) {
@@ -118,12 +148,15 @@ function ico(list) {
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const RAD = 0.24; // slightly rounder than the art so no cream slivers survive
-const make = (D, masked) => {
-  const b = resize(sq, side, D);
+// Pre-boldened sources for the tiny sizes (scaled to the tile's resolution).
+const boldStrong = dilateCream(sq, side, Math.max(2, Math.round(side / 60)));
+const boldLight = dilateCream(sq, side, Math.max(1, Math.round(side / 120)));
+const make = (D, masked, src = sq) => {
+  const b = resize(src, side, D);
   return masked ? roundMask(b, D, RAD) : b;
 };
-const p16 = png(make(16, true), 16);
-const p32 = png(make(32, true), 32);
+const p16 = png(make(16, true, boldStrong), 16);
+const p32 = png(make(32, true, boldLight), 32);
 writeFileSync(join(root, "public", "favicon-16x16.png"), p16);
 writeFileSync(join(root, "public", "favicon-32x32.png"), p32);
 writeFileSync(join(root, "public", "icon-512.png"), png(make(512, true), 512));
