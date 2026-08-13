@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import BrandWatermark from "@/components/BrandWatermark";
 import condoVideo from "@/assets/condo-ugc.mp4";
 import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4";
 import productUGC from "@/assets/Product_UGC_Natural_talking.mp4";
@@ -734,14 +735,15 @@ const PortfolioSection = () => {
               key={cat.id}
               id={cat.id}
               data-cat-idx={catIdx}
-              className="scroll-mt-24 w-screen ml-[calc(50%-50vw)]"
+              className="scroll-mt-24 w-screen ml-[calc(50%-50vw)] relative overflow-hidden"
               style={{ background: blockBg }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: catIdx * 0.05 }}
             >
-              <div className="mx-auto w-full max-w-[1500px] px-6 py-16 lg:py-20">
+              {tone === "dark" && <BrandWatermark />}
+              <div className="relative z-10 mx-auto w-full max-w-[1500px] px-6 py-16 lg:py-20">
                 {/* Serif category header + thin rule */}
                 <div className="flex items-center gap-4 mb-8">
                   <h3

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 import { Play, ChevronDown } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
+import BrandWatermark from "@/components/BrandWatermark";
 import heroImg from "@/assets/hero-portrait.jpg";
 import heroVideo from "@/assets/hume-band2-hero.mp4";
 import heroPoster from "@/assets/hero-thumbnail.jpg";
@@ -39,6 +40,7 @@ const HeroSection = () => {
       className="relative min-h-screen overflow-hidden"
       style={{ background: "radial-gradient(125% 95% at 76% -8%, #6f1727 0%, #5C1220 50%, #470c17 100%)" }}
     >
+      <BrandWatermark />
       <div className="container relative z-10 grid lg:grid-cols-2 items-center gap-10 lg:gap-8 pt-20 pb-16 lg:py-24 min-h-screen">
         {/* Text */}
         <motion.div

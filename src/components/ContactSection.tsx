@@ -4,6 +4,7 @@ import { Mail, Loader2 } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import BrandWatermark from "@/components/BrandWatermark";
 
 const enquirySchema = z.object({
   name: z.string().trim().min(1, "Please enter your name").max(100, "Name is too long"),
@@ -70,6 +71,7 @@ const ContactSection = () => {
       className="py-20 lg:py-28 relative overflow-hidden"
       style={{ background: "linear-gradient(180deg, #5C1220 0%, #470c17 100%)" }}
     >
+      <BrandWatermark />
       <div className="container max-w-2xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

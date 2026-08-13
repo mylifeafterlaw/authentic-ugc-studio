@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Camera, Film, Package, Sparkles, MapPin, Plus } from "lucide-react";
+import BrandWatermark from "@/components/BrandWatermark";
 
 const services = [
   { icon: Camera, label: "Talking-to-camera", desc: "Natural delivery, scripted or unscripted" },
@@ -13,10 +14,11 @@ const services = [
 const ServicesSection = () => (
   <section
     id="services"
-    className="py-20 lg:py-28 scroll-mt-24"
+    className="py-20 lg:py-28 scroll-mt-24 relative overflow-hidden"
     style={{ background: "linear-gradient(180deg, #5C1220 0%, #520f1b 100%)" }}
   >
-    <div className="container max-w-5xl">
+    <BrandWatermark />
+    <div className="container max-w-5xl relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
