@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
+import jcMark from "@/assets/jc-mark.png";
 
 const navLinks = [
   { label: "Home", href: "#hero" },
@@ -38,9 +39,15 @@ const Navbar = () => {
         <button
           onClick={() => handleClick("#hero")}
           aria-label="Back to top"
-          className={`font-heading text-xl tracking-wide transition-colors ${scrolled ? "text-foreground" : "text-[#F4ECDC]"}`}
+          className="flex items-center"
         >
-          JC
+          <img
+            src={jcMark}
+            alt="JC — Jess Cousin monogram"
+            width={36}
+            height={36}
+            className="w-9 h-9"
+          />
         </button>
 
         {/* Desktop — centre links */}
