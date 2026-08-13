@@ -141,7 +141,7 @@ const categories: Category[] = [
       },
       {
         subject: "Hume Health",
-        format: "Talking-to-camera · hook and CTA · ad-style",
+        format: "Hook-led · talking-to-camera · ad-style CTA",
         poster: humeBand2Hook3Poster,
         videoUrl: humeBand2Hook3,
         tags: ["Talking-to-camera", "Hook-led"],
@@ -176,7 +176,7 @@ const categories: Category[] = [
     tiles: [
       {
         subject: "Playful App",
-        format: "Hook-led · full-screen screen recording · greenscreen talking-head overlay",
+        format: "Hook-led · screen recording · talking-to-camera greenscreen overlay",
         poster: playfulArrivalPoster,
         videoUrl: playfulArrivalVideo,
         tags: ["Hook-led", "Screen recording", "Talking-to-camera"],
@@ -204,7 +204,7 @@ const categories: Category[] = [
       },
       {
         subject: "Playful App",
-        format: "Hook-led · talking-to-camera · in-app walkthrough",
+        format: "Hook-led · talking-to-camera · screen-recorded walkthrough",
         poster: playfulArrivalVideo3Poster,
         videoUrl: playfulArrivalVideo3,
         tags: ["Hook-led", "Talking-to-camera", "Screen recording"],
@@ -225,14 +225,14 @@ const categories: Category[] = [
     tiles: [
       {
         subject: "Condo tour · Chiang Mai",
-        format: "Hook-led · talking-to-camera and B-roll with voiceover",
+        format: "Hook-led · talking-to-camera · B-roll and voiceover",
         poster: condoPoster,
         videoUrl: condoVideo,
         tags: ["Hook-led", "Talking-to-camera", "B-roll and voiceover"],
       },
       {
         subject: "Apartment tour · Vietnam",
-        format: "Aesthetic B-roll and voiceover",
+        format: "B-roll and voiceover · aesthetic edit",
         poster: vietnamApartmentPoster,
         videoUrl: vietnamApartmentVideo,
         tags: ["B-roll and voiceover"],
