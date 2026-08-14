@@ -80,8 +80,22 @@ const HeroSection = () => {
         >
           <div className="w-12 h-[3px] rounded-full mx-auto lg:mx-0" style={{ background: "#F4ECDC" }} />
 
-          {/* Niches row */}
+          {/* Niches row — led by a small Union Jack (inline SVG, not the emoji:
+              Windows renders the flag emoji as the letters "GB"). The flag
+              replaces the word BRITISH as the nationality signal. */}
           <p className="mt-4 mb-2 font-body text-xs sm:text-sm tracking-[0.2em] uppercase" style={{ color: "rgba(240,205,190,0.7)" }}>
+            <svg
+              viewBox="0 0 60 30"
+              className="inline-block w-5 sm:w-6 h-auto shrink-0 rounded-[2px] align-[-2px] mr-2"
+              role="img"
+              aria-label="British creator"
+            >
+              <rect width="60" height="30" fill="#012169" />
+              <path d="M0,0 60,30 M60,0 0,30" stroke="#ffffff" strokeWidth="6" />
+              <path d="M0,0 60,30 M60,0 0,30" stroke="#C8102E" strokeWidth="2.6" />
+              <path d="M30,0 V30 M0,15 H60" stroke="#ffffff" strokeWidth="10" />
+              <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6" />
+            </svg>
             Beauty · Wellness · Tech ·<br className="sm:hidden" /> Travel · Lifestyle
           </p>
 
