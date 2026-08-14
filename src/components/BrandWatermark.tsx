@@ -12,12 +12,14 @@ import watermark from "@/assets/jc-line-cream.png";
 // Placements are fixed (not random at runtime) so the layout is stable across
 // renders and matches what was signed off.
 const MARKS: Array<{ l: number; t: number; s: number; r: number; o: number }> = [
-  // "Editorial" treatment (approved from the reduction test): three marks at
-  // deliberately different sizes, placed asymmetrically, at low opacity —
-  // background detailing rather than a repeated pattern.
-  { l: 10, t: 8, s: 200, r: -12, o: 0.05 },
-  { l: 56, t: 38, s: 95, r: 18, o: 0.04 },
-  { l: 78, t: 74, s: 150, r: -22, o: 0.05 },
+  // "Editorial" treatment (approved option B): three marks, asymmetric, low
+  // opacity. Sizes are in vw, not px — the approved mockup's panel was ~840px
+  // wide, so its 200px lead mark covered ~a quarter of the hero; fixed pixels
+  // shrank to a tenth on real wide screens. vw keeps the mockup's proportions
+  // at any viewport. The lead mark sits large behind the text column.
+  { l: 6, t: 10, s: 24, r: -12, o: 0.05 },
+  { l: 56, t: 38, s: 11, r: 18, o: 0.04 },
+  { l: 76, t: 70, s: 17, r: -22, o: 0.05 },
 ];
 
 /**
@@ -42,7 +44,7 @@ const BrandWatermark = ({ className = "" }: { className?: string }) => (
         style={{
           left: `${m.l}%`,
           top: `${m.t}%`,
-          width: `${m.s}px`,
+          width: `${m.s}vw`,
           transform: `rotate(${m.r}deg)`,
           opacity: m.o,
         }}
