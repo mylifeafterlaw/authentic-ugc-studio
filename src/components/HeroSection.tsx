@@ -66,8 +66,20 @@ const HeroSection = () => {
                 left-aligned so it keeps the single leading rule only. */}
             <span aria-hidden="true" className="inline-block w-6 h-[2px] lg:hidden" style={{ background: "#F4ECDC" }} />
           </p>
-          <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl leading-[1.09] mb-2 font-semibold" style={{ color: "#F4ECDC" }}>
-            Now I make UGC that lands on brief and on time.
+          {/* Headline lifts off the field: a near-black soft drop shadow plus a
+              nudge from the shared cream to near-white ivory. The two payoff
+              phrases take a blush pink — the oxblood family lightened — so the
+              promise a brand cares about carries the emphasis. */}
+          <h1
+            className="font-heading text-3xl sm:text-4xl lg:text-5xl leading-[1.09] mb-2 font-semibold"
+            style={{
+              color: "#FFFAF0",
+              textShadow: "0 3px 14px rgba(20,4,8,0.75), 0 1px 3px rgba(20,4,8,0.6)",
+            }}
+          >
+            Now I make UGC that lands{" "}
+            <span style={{ color: "#F2B8B5" }}>on brief</span> and{" "}
+            <span style={{ color: "#F2B8B5" }}>on time</span>.
           </h1>
         </motion.div>
 
