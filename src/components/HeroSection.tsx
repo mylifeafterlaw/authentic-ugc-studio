@@ -54,7 +54,7 @@ const HeroSection = () => {
           transition={{ duration: 0.7 }}
           className="order-1 lg:col-start-1 lg:row-start-1 lg:self-end text-center lg:text-left lg:pl-8 xl:pl-16"
         >
-          <p className="font-script text-2xl sm:text-3xl leading-none mb-3" style={{ color: "#f0d9c4" }}>
+          <p className="font-script text-3xl sm:text-4xl leading-none mb-3" style={{ color: "#f0d9c4" }}>
             Jess Cousin
           </p>
           <p className="flex items-center gap-2.5 justify-center lg:justify-start mb-3">
