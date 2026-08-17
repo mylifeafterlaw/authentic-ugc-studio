@@ -215,14 +215,14 @@ const HeroSection = () => {
                   {/* play affordance */}
                   <button
                     onClick={handlePlay}
-                    aria-label="Watch 30 second showreel"
+                    aria-label="Watch showreel"
                     className="absolute inset-0 flex flex-col items-center justify-center gap-3 group"
                   >
                     <span className="w-16 h-16 rounded-full bg-[#F4ECDC] shadow-elevated flex items-center justify-center transition-transform group-hover:scale-110">
                       <Play className="w-7 h-7 text-[#5C1220] ml-1" fill="currentColor" />
                     </span>
                     <span className="font-body text-sm font-semibold text-[#F4ECDC] bg-[#5C1220]/70 backdrop-blur-sm px-3 py-1 rounded-full">
-                      Watch (30s)
+                      Watch
                     </span>
                   </button>
                 </>
