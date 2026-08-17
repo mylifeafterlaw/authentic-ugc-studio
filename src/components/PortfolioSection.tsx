@@ -82,7 +82,7 @@ const categories: Category[] = [
     name: "Beauty & Skincare",
     tiles: [
       {
-        subject: "Laser hair removal · Chiang Mai",
+        subject: "Laser hair removal",
         format: "Hook-led · talking-to-camera and B-roll · clinic treatment",
         poster: laserHairRemovalPoster,
         videoUrl: laserHairRemoval,
