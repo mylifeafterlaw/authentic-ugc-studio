@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 
-import { Scale, Bike, Brain, Heart, Dumbbell, Mic } from "lucide-react";
+import { Bike, Brain, Heart, Dumbbell, Mic, Twitch } from "lucide-react";
 
 const traits = [
-  { icon: Scale, headline: "Left law to build something slower", sub: "Corporate lawyer turned content creator" },
   { icon: Bike, headline: "Happiest on two wheels", sub: "Motorbike rider, usually somewhere warm" },
   { icon: Brain, headline: "ADHD, and open about it", sub: "It shapes how I work and what I make" },
   { icon: Heart, headline: "Genuine wellness obsessive", sub: "Real lived experience, not borrowed talking points" },
-  { icon: Mic, headline: "Performer before I was a creator", sub: "Trained singer, stage experience and former streamer" },
+  { icon: Mic, headline: "Performer before I was a creator", sub: "Trained singer with stage experience" },
+  { icon: Twitch, headline: "Former Twitch streamer", sub: "Twitch Affiliate, comfortable live and unscripted, used to holding an audience" },
   { icon: Dumbbell, headline: "Always training something", sub: "Gym regular, currently learning Muay Thai" },
 ];
 
