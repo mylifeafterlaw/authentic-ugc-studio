@@ -40,9 +40,6 @@ const ContactSection = () => {
             <br />
             <span className="italic" style={{ color: "#f8ddc7" }}>that actually works</span>
           </h2>
-          <p className="font-body text-base max-w-md mx-auto" style={{ color: "rgba(244,236,220,0.62)" }}>
-            Ready to get started? Tell me about your brand and I&rsquo;ll be in touch.
-          </p>
         </motion.div>
 
         <motion.div
