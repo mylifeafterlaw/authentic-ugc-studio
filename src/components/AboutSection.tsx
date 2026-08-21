@@ -8,7 +8,7 @@ const traits = [
   { icon: Bike, headline: "Happiest on two wheels", sub: "Motorbike rider, usually somewhere warm" },
   { icon: Brain, headline: "ADHD, and open about it", sub: "Hyperfixation and obsession, aimed at your product" },
   { icon: Heart, headline: "Genuine wellness obsessive", sub: "Real lived experience, not borrowed talking points" },
-  { icon: Dumbbell, headline: "Always training something", sub: "Gym regular, currently learning Muay Thai" },
+  { icon: Dumbbell, headline: "Gym, Running, Pilates, Muay Thai", sub: "Whatever your sport, there's a phase coming" },
 ];
 
 const AboutSection = () => (
