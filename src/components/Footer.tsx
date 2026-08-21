@@ -1,22 +1,24 @@
-import { Instagram, Youtube } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 
+// Slim footer: name + legal only. The social links moved up into the Contact
+// section so the page ending reads as one composed block.
 const Footer = () => (
-  <footer className="py-10 pb-24 md:pb-10" style={{ background: "#470c17" }}>
+  <footer className="py-8 pb-24 md:pb-8 relative" style={{ background: "#470c17", borderTop: "1px solid rgba(244,236,220,0.08)" }}>
     <div className="container text-center">
-      <p className="font-heading text-xl text-primary-foreground mb-4">Jess Cousin</p>
-      <div className="flex justify-center gap-5 mb-4">
-        <a href="mailto:my.lifeafterlaw@gmail.com" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors font-body text-sm">Email</a>
-        <a href="https://www.instagram.com/mylifeafterlaw/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-          <Instagram className="w-5 h-5" />
-        </a>
-        <a href="https://www.youtube.com/@MyLifeAfterLaw" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-          <Youtube className="w-5 h-5" />
-        </a>
-        <a href="https://linktr.ee/MyLifeAfterLaw" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors font-body text-sm">Linktree</a>
-      </div>
-      <p className="font-body text-xs text-primary-foreground/40">© {new Date().getFullYear()} Jess Cousin. All rights reserved.</p>
-      <p className="font-body text-xs text-primary-foreground/40 mt-1">Portfolio includes personal and non-commissioned content created independently.</p>
+      <p className="font-heading text-xl mb-2" style={{ color: "#F4ECDC" }}>Jess Cousin</p>
+      <p className="font-body text-xs" style={{ color: "rgba(244,236,220,0.4)" }}>© {new Date().getFullYear()} Jess Cousin. All rights reserved.</p>
+      <p className="font-body text-xs mt-1" style={{ color: "rgba(244,236,220,0.4)" }}>Portfolio includes personal and non-commissioned content created independently.</p>
     </div>
+
+    <button
+      type="button"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Back to top"
+      className="absolute right-5 top-5 w-9 h-9 rounded-full flex items-center justify-center transition-colors hover:bg-[#F4ECDC]/10"
+      style={{ border: "1px solid rgba(244,236,220,0.25)", color: "rgba(244,236,220,0.6)" }}
+    >
+      <ChevronUp className="w-4 h-4" />
+    </button>
   </footer>
 );
 
