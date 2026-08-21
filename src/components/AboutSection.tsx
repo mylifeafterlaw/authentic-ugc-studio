@@ -60,17 +60,6 @@ const AboutSection = () => (
         >
           "Same person on camera as off it."
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-3"
-        >
-          <span className="font-body text-sm text-muted-foreground/60">
-            More about me (coming soon)
-          </span>
-        </motion.div>
       </motion.div>
     </div>
   </section>
