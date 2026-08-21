@@ -1,69 +1,26 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Loader2 } from "lucide-react";
-import { z } from "zod";
-import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { Mail, Check, Copy } from "lucide-react";
+import { trackClick } from "@/lib/analytics";
 import BrandWatermark from "@/components/BrandWatermark";
 
-const enquirySchema = z.object({
-  name: z.string().trim().min(1, "Please enter your name").max(100, "Name is too long"),
-  email: z.string().trim().email("Please enter a valid email").max(255, "Email is too long"),
-  brand: z.string().trim().max(150, "Brand name is too long").optional(),
-  message: z
-    .string()
-    .trim()
-    .min(1, "Please tell me a little about your project")
-    .max(2000, "Message is too long"),
-});
+// Email-only contact: the enquiry form was removed (its backend was being
+// retired) in favour of a straight mailto CTA plus a copyable address.
+const EMAIL = "my.lifeafterlaw@gmail.com";
 
 const ContactSection = () => {
-  const [form, setForm] = useState({ name: "", email: "", brand: "", message: "" });
-  const [submitting, setSubmitting] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const parsed = enquirySchema.safeParse(form);
-    if (!parsed.success) {
-      toast.error(parsed.error.issues[0].message);
-      return;
-    }
-
-    setSubmitting(true);
+  const copyEmail = async () => {
     try {
-      const { error: insertError } = await supabase.from("enquiries").insert({
-        name: parsed.data.name,
-        email: parsed.data.email,
-        brand: parsed.data.brand || null,
-        message: parsed.data.message,
-      });
-
-      if (insertError) throw insertError;
-
-      // Fire off the notification email (don't block success on it)
-      supabase.functions
-        .invoke("notify-enquiry", { body: parsed.data })
-        .catch((err) => console.error("Notification email failed:", err));
-
-      toast.success("Thanks — I'll be in touch soon!");
-      setForm({ name: "", email: "", brand: "", message: "" });
-    } catch (err) {
-      console.error("Enquiry submission failed:", err);
-      toast.error("Something went wrong. Please try again or email me directly.");
-    } finally {
-      setSubmitting(false);
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable (e.g. non-secure context) — the address is
+      // visible and selectable, so there is still a path.
     }
   };
-
-  const inputClass =
-    "w-full rounded-2xl border border-[#F4ECDC]/25 bg-black/15 backdrop-blur px-5 py-3.5 font-body text-[#F4ECDC] placeholder:text-[#F4ECDC]/50 focus:outline-none focus:ring-2 focus:ring-[#F4ECDC]/50 transition-shadow";
 
   return (
     <section
@@ -72,94 +29,58 @@ const ContactSection = () => {
       style={{ background: "linear-gradient(180deg, #5C1220 0%, #470c17 100%)" }}
     >
       <BrandWatermark />
-      <div className="container max-w-2xl relative z-10">
+      <div className="container max-w-2xl relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
         >
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: "#F4ECDC" }}>
-            Let's create content
+            Let&rsquo;s create content
             <br />
             <span className="italic" style={{ color: "#f8ddc7" }}>that actually works</span>
           </h2>
           <p className="font-body text-base max-w-md mx-auto" style={{ color: "rgba(244,236,220,0.62)" }}>
-            Ready to get started? Tell me about your brand and I'll be in touch.
+            Ready to get started? Tell me about your brand and I&rsquo;ll be in touch.
           </p>
         </motion.div>
 
-        <motion.form
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-4 text-left"
+          className="mt-10 flex flex-col items-center gap-5"
         >
-          <div className="grid sm:grid-cols-2 gap-4">
-            <input
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Your name"
-              className={inputClass}
-              autoComplete="name"
-            />
-            <input
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="Email address"
-              className={inputClass}
-              autoComplete="email"
-            />
-          </div>
-          <input
-            name="brand"
-            value={form.brand}
-            onChange={handleChange}
-            placeholder="Brand / company (optional)"
-            className={inputClass}
-            autoComplete="organization"
-          />
-          <textarea
-            name="message"
-            value={form.message}
-            onChange={handleChange}
-            placeholder="Tell me about your project..."
-            rows={5}
-            className={`${inputClass} resize-none`}
-          />
-
-          <button
-            type="submit"
-            disabled={submitting}
-            className="bg-[#F4ECDC] text-[#5C1220] font-body font-semibold px-8 py-3.5 rounded-full shadow-[0_16px_34px_-14px_rgba(0,0,0,0.55)] hover:bg-white transition-colors inline-flex items-center justify-center gap-2 text-base disabled:opacity-60 disabled:cursor-not-allowed"
+          <a
+            href={`mailto:${EMAIL}?subject=${encodeURIComponent("UGC enquiry")}`}
+            onClick={() => trackClick("Email Me", "contact")}
+            className="inline-flex items-center gap-2.5 bg-[#F4ECDC] text-[#5C1220] font-body font-semibold px-9 py-3.5 rounded-full shadow-[0_16px_34px_-14px_rgba(0,0,0,0.55)] hover:bg-white transition-colors text-base"
           >
-            {submitting ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Sending...
-              </>
-            ) : (
-              "Send enquiry"
-            )}
-          </button>
+            <Mail className="w-5 h-5" />
+            Email me
+          </a>
 
-          <p className="text-center font-body text-sm mt-2" style={{ color: "rgba(244,236,220,0.6)" }}>
-            Prefer email?{" "}
-            <a
-              href="mailto:my.lifeafterlaw@gmail.com"
-              className="hover:underline inline-flex items-center gap-1"
-              style={{ color: "#F4ECDC" }}
+          <div className="flex items-center gap-2.5">
+            <span className="font-body text-sm sm:text-base select-all" style={{ color: "rgba(244,236,220,0.85)" }}>
+              {EMAIL}
+            </span>
+            <button
+              type="button"
+              onClick={copyEmail}
+              aria-label="Copy email address"
+              className="p-1.5 rounded-md transition-colors hover:bg-[#F4ECDC]/10"
+              style={{ color: "rgba(244,236,220,0.6)" }}
             >
-              <Mail className="w-4 h-4" />
-              my.lifeafterlaw@gmail.com
-            </a>
-          </p>
-        </motion.form>
+              {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+            </button>
+            {copied && (
+              <span className="font-body text-xs" style={{ color: "rgba(244,236,220,0.6)" }}>
+                Copied
+              </span>
+            )}
+          </div>
+        </motion.div>
       </div>
 
       <div className="absolute top-10 right-10 w-80 h-80 rounded-full blur-3xl" style={{ background: "rgba(150,40,55,0.35)" }} />
