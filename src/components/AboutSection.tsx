@@ -6,7 +6,7 @@ const traits = [
   { icon: Twitch, headline: "Former Twitch streamer", sub: "Twitch Affiliate, comfortable live and unscripted" },
   { icon: Mic, headline: "Performer before I was a creator", sub: "Trained singer with stage experience" },
   { icon: Bike, headline: "Happiest on two wheels", sub: "Motorbike rider, usually somewhere warm" },
-  { icon: Brain, headline: "ADHD, and open about it", sub: "It shapes how I work and what I make" },
+  { icon: Brain, headline: "ADHD, and open about it", sub: "Hyperfixation and obsession, aimed at your product" },
   { icon: Heart, headline: "Genuine wellness obsessive", sub: "Real lived experience, not borrowed talking points" },
   { icon: Dumbbell, headline: "Always training something", sub: "Gym regular, currently learning Muay Thai" },
 ];
