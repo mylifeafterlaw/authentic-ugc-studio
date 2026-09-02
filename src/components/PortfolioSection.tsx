@@ -187,13 +187,6 @@ const categories: Category[] = [
     tiles: [
       {
         subject: "Playful App",
-        format: "Hook-led · screen recording · talking-to-camera greenscreen overlay",
-        poster: playfulArrivalPoster,
-        videoUrl: playfulArrivalVideo,
-        tags: ["Hook-led", "Screen recording", "Talking-to-camera"],
-      },
-      {
-        subject: "Playful App",
         format: "Hook-led · talking-to-camera throughout · app demo",
         poster: techAppsVideo1Poster,
         videoUrl: techAppsVideo1,
@@ -227,7 +220,13 @@ const categories: Category[] = [
         videoUrl: playfulVideo3,
         tags: ["Hook-led", "Talking-to-camera"],
       },
-
+      {
+        subject: "Playful App",
+        format: "Hook-led · screen recording · talking-to-camera greenscreen overlay",
+        poster: playfulArrivalPoster,
+        videoUrl: playfulArrivalVideo,
+        tags: ["Hook-led", "Screen recording", "Talking-to-camera"],
+      },
     ],
   },
   {
