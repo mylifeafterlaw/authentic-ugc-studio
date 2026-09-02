@@ -46,6 +46,8 @@ import humeBand2Hook3Poster from "@/assets/hume-band2-hook3-poster.jpg";
 import creatineAsmr from "@/assets/creatine-asmr.mp4";
 import creatineAsmrPoster from "@/assets/creatine-asmr-poster.jpg";
 import creatineTtc from "@/assets/creatine-ttc.mp4";
+import waterbottleTest from "@/assets/waterbottle-test.mp4";
+import waterbottleTestPoster from "@/assets/waterbottle-test-poster.jpg";
 import creatineTtcPoster from "@/assets/creatine-ttc-poster.jpg";
 import laserHairRemoval from "@/assets/laser-hair-removal.mp4";
 import laserHairRemovalPoster from "@/assets/laser-hair-removal-poster.jpg";
@@ -133,6 +135,14 @@ const categories: Category[] = [
     id: "health-supplements",
     name: "Health & Supplements",
     tiles: [
+      {
+        // Caption is provisional — Jess supplies final wording.
+        subject: "Water bottle",
+        format: "Hook-led · talking-to-camera and B-roll",
+        poster: waterbottleTestPoster,
+        videoUrl: waterbottleTest,
+        tags: ["Hook-led", "Talking-to-camera", "B-roll"],
+      },
       {
         subject: "Collagen",
         format: "Talking-to-camera with B-roll · unflavoured powder, mixed on camera",
