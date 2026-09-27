@@ -324,6 +324,29 @@ const SwipeCue = () => (
 
 type Tone = "light" | "dark" | undefined;
 
+// Hook-title thumbnails, two colourways per video: "-dark" (oxblood boxes) for
+// red sections, "-light" (ivory boxes) for cream sections. Section colour follows
+// the visible order, so filtering can flip it — hence both are shipped.
+const THUMBS = import.meta.glob<string>("@/assets/thumbs/*.jpg", { eager: true, import: "default" });
+const THUMB_ID: Record<string, string> = {
+  [laserHairRemoval]: "01", [hairProductVideo]: "02", [livingBeautifulVideo]: "03",
+  [skinUsedVideo]: "04", [skinComparisonVideo]: "05",
+  [waterbottleTest]: "06", [creatineTtc]: "07", [humeBand2Hook3]: "08",
+  [creatineAsmr]: "09", [productTripleHookVideo]: "10", [lGlutamineVideo]: "11",
+  [techAppsVideo1]: "12", [playfulArrivalVideo1]: "13", [techAppsVideo2]: "14",
+  [playfulArrivalVideo3]: "15", [playfulVideo3]: "16", [playfulArrivalVideo]: "17",
+  [condoVideo]: "18", [vietnamApartmentVideo]: "19", [vietnamApartment2Video]: "20",
+  [singaporeZooVideo]: "21",
+  [tattooVideo]: "22", [huskiesVideo]: "23", [rajadamnernVideo]: "24",
+  [cinemaVideo]: "25", [cafeWatVideo]: "26", [productUGC]: "27",
+};
+
+const posterFor = (tile: Tile, tone: Tone) => {
+  const id = tile.videoUrl && THUMB_ID[tile.videoUrl];
+  const key = id && `/src/assets/thumbs/${id}-${tone === "dark" ? "dark" : "light"}.jpg`;
+  return (key && THUMBS[key]) || tile.poster;
+};
+
 const VideoTile = ({
   tile,
   tileId,
@@ -344,6 +367,7 @@ const VideoTile = ({
   // download on page load.
   const [inView, setInView] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const poster = posterFor(tile, tone);
 
   useEffect(() => {
     const el = wrapperRef.current;
@@ -436,7 +460,7 @@ const VideoTile = ({
             <video
               ref={videoRef}
               src={tile.videoUrl}
-              poster={tile.poster}
+              poster={poster}
               controls
               playsInline
               preload="none"
@@ -446,9 +470,9 @@ const VideoTile = ({
           ) : (
             <>
               {/* Real poster still, lazy-loaded via IntersectionObserver. */}
-              {tile.poster ? (
+              {poster ? (
                 <img
-                  src={inView ? tile.poster : undefined}
+                  src={inView ? poster : undefined}
                   alt={tile.subject ?? tile.label ?? "Portfolio video"}
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover scale-[1.03]"
