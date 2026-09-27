@@ -271,7 +271,6 @@ const categories: Category[] = [
       { subject: "Husky experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: huskiesPoster, videoUrl: huskiesVideo, tags: ["Hook-led", "B-roll", "Voiceover"] },
       { subject: "Muay Thai · Bangkok", format: "Hook-led · B-roll and voiceover", poster: rajaStadiumPoster, videoUrl: rajadamnernVideo, tags: ["Hook-led", "B-roll", "Voiceover"] },
       { subject: "Cinema experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cinemaPoster, videoUrl: cinemaVideo, tags: ["Hook-led", "B-roll", "Voiceover"] },
-      { subject: "Café · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cafeWatPoster, videoUrl: cafeWatVideo, tags: ["Hook-led", "B-roll", "Voiceover"] },
       {
         subject: "Food and drink",
         format: "Talking-to-camera · natural and authentic",
@@ -279,6 +278,7 @@ const categories: Category[] = [
         videoUrl: productUGC,
         tags: ["Talking-to-camera"],
       },
+      { subject: "Café · Bangkok", format: "Hook-led · B-roll and voiceover", poster: cafeWatPoster, videoUrl: cafeWatVideo, tags: ["Hook-led", "B-roll", "Voiceover"] },
     ],
   },
 ];
