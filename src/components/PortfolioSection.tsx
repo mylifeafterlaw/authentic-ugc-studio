@@ -50,6 +50,7 @@ import waterbottleTest from "@/assets/waterbottle-test.mp4";
 import waterbottleTestPoster from "@/assets/waterbottle-test-poster.jpg";
 import creatineTtcPoster from "@/assets/creatine-ttc-poster.jpg";
 import laserHairRemoval from "@/assets/laser-hair-removal.mp4";
+import centellaAmpoule from "@/assets/centella-ampoule.mp4";
 import laserHairRemovalPoster from "@/assets/laser-hair-removal-poster.jpg";
 import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4";
 import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg";
@@ -83,6 +84,12 @@ const categories: Category[] = [
     id: "beauty-skincare",
     name: "Beauty & Skincare",
     tiles: [
+      {
+        subject: "Skincare",
+        format: "Hook-led · voiceover and B-roll",
+        videoUrl: centellaAmpoule,
+        tags: ["Hook-led", "Voiceover", "B-roll"],
+      },
       {
         subject: "Laser hair removal",
         format: "Hook-led · talking-to-camera and B-roll · clinic treatment",
@@ -329,7 +336,7 @@ type Tone = "light" | "dark" | undefined;
 // the visible order, so filtering can flip it — hence both are shipped.
 const THUMBS = import.meta.glob<string>("@/assets/thumbs/*.jpg", { eager: true, import: "default" });
 const THUMB_ID: Record<string, string> = {
-  [laserHairRemoval]: "01", [hairProductVideo]: "02", [livingBeautifulVideo]: "03",
+  [centellaAmpoule]: "28", [laserHairRemoval]: "01", [hairProductVideo]: "02", [livingBeautifulVideo]: "03",
   [skinUsedVideo]: "04", [skinComparisonVideo]: "05",
   [waterbottleTest]: "06", [creatineTtc]: "07", [humeBand2Hook3]: "08",
   [creatineAsmr]: "09", [productTripleHookVideo]: "10", [lGlutamineVideo]: "11",
