@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Bike, Brain, Heart, Dumbbell, Mic, Twitch } from "lucide-react";
 
 const traits = [
-  { icon: Twitch, headline: "Former Twitch streamer", sub: "Twitch Affiliate, comfortable live and unscripted" },
+  { icon: Twitch, headline: "Former Twitch streamer", sub: "Twitch Affiliate in under a month, live and unscripted" },
   { icon: Mic, headline: "Performer before I was a creator", sub: "Trained singer with stage experience" },
   { icon: Bike, headline: "Happiest on two wheels", sub: "Motorbike rider, usually somewhere warm" },
   { icon: Brain, headline: "ADHD, and open about it", sub: "Hyperfixation and obsession, aimed at your product" },
@@ -19,9 +19,12 @@ const AboutSection = () => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground text-center mb-10">
+        <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-foreground text-center mb-3">
           About Jess
         </h2>
+        <p className="font-body text-base text-muted-foreground text-center mb-10">
+          The real life your product gets filmed in.
+        </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-5xl mx-auto">
           {traits.map((trait, i) => (

@@ -59,8 +59,8 @@ const HeroSection = () => {
           </p>
           <p className="flex items-center gap-2.5 justify-center lg:justify-start mb-3">
             <span aria-hidden="true" className="inline-block w-6 h-[2px]" style={{ background: "#F4ECDC" }} />
-            <span className="font-body text-xs sm:text-sm font-bold uppercase tracking-[0.28em]" style={{ color: "#F4ECDC" }}>
-              Eight years in law
+            <span className="font-body text-xs sm:text-sm font-bold uppercase tracking-[0.16em] sm:tracking-[0.28em]" style={{ color: "#F4ECDC" }}>
+              Lawyer turned UGC Creator
             </span>
             {/* Trailing rule balances the centred kicker on mobile; desktop is
                 left-aligned so it keeps the single leading rule only. */}
@@ -77,10 +77,12 @@ const HeroSection = () => {
               textShadow: "0 3px 14px rgba(20,4,8,0.75), 0 1px 3px rgba(20,4,8,0.6)",
             }}
           >
-            Now I make UGC that lands{" "}
-            <span style={{ color: "#F2B8B5" }}>on brief</span> and{" "}
-            <span style={{ color: "#F2B8B5" }}>on time</span>.
+            I turn <span style={{ color: "#F2B8B5" }}>your products</span> into ads that{" "}
+            <span style={{ color: "#F2B8B5" }}>sell</span>.
           </h1>
+          <p className="font-body text-base" style={{ color: "rgba(244,236,220,0.62)" }}>
+            More hooks to test, less back-and-forth.
+          </p>
         </motion.div>
 
         {/* Rest of the copy — below the video on mobile, continues column 1 on desktop */}

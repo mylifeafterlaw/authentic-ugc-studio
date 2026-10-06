@@ -79,12 +79,12 @@ const ContactSection = () => {
           viewport={{ once: true }}
         >
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl mb-4" style={{ color: "#F4ECDC" }}>
-            Let&rsquo;s create content
+            Let&rsquo;s turn your product
             <br />
-            <span className="italic" style={{ color: "#f8ddc7" }}>that actually works</span>
+            <span className="italic" style={{ color: "#f8ddc7" }}>into ads that sell</span>
           </h2>
           <p className="font-body text-base max-w-md mx-auto" style={{ color: "rgba(244,236,220,0.62)" }}>
-            Ready to get started?
+            Send me your brief and I&rsquo;ll come back with&nbsp;ideas.
           </p>
         </motion.div>
 

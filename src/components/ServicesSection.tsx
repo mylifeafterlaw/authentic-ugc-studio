@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Camera, Film, Package, Sparkles, MapPin, Plus } from "lucide-react";
+import { Camera, Film, Package, Sparkles, Layers, Plus } from "lucide-react";
 import BrandWatermark from "@/components/BrandWatermark";
 
 const services = [
@@ -7,7 +7,7 @@ const services = [
   { icon: Film, label: "B-roll and voiceover", desc: "Lifestyle footage with narration" },
   { icon: Package, label: "Product demos and unboxings", desc: "Showing the thing in real use" },
   { icon: Sparkles, label: "Hook-led short-form", desc: "Built for TikTok and Reels" },
-  { icon: MapPin, label: "Based in Thailand", desc: "Filming across South East Asia" },
+  { icon: Layers, label: "Ad-testing bundle", desc: "2 videos, 3 hooks, 2 CTAs = 12 versions from one shoot" },
   { icon: Plus, label: "Add-ons", desc: "Extra hooks, raw footage, captions, rush turnaround" },
 ];
 
@@ -28,7 +28,7 @@ const ServicesSection = () => (
         <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl mb-3" style={{ color: "#F4ECDC" }}>
           Services
         </h2>
-        <p className="font-body text-base" style={{ color: "rgba(244,236,220,0.62)" }}>The formats I work in. Mix and match to fit your brief.</p>
+        <p className="font-body text-base" style={{ color: "rgba(244,236,220,0.62)" }}>Ad creative built for testing. Mix and match to fit your brief.</p>
       </motion.div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
@@ -55,7 +55,7 @@ const ServicesSection = () => (
       </div>
 
       <p className="font-body text-xs text-center mt-10" style={{ color: "rgba(244,236,220,0.55)" }}>
-        Ex-lawyer, so briefs, deadlines and clear comms come as standard.
+        Ex-lawyer, so briefs are followed closely and deadlines are&nbsp;met.
       </p>
     </div>
   </section>
