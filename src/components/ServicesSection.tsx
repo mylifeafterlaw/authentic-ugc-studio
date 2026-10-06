@@ -7,7 +7,7 @@ const services = [
   { icon: Film, label: "B-roll and voiceover", desc: "Lifestyle footage with narration" },
   { icon: Package, label: "Product demos and unboxings", desc: "Showing the thing in real use" },
   { icon: Sparkles, label: "Hook-led short-form", desc: "Built for TikTok and Reels" },
-  { icon: Layers, label: "Ad-testing bundle", desc: "2 videos, 3 hooks, 2 CTAs = 12 versions from one shoot" },
+  { icon: Layers, label: "Ad-testing bundle", desc: "2 videos, 3 hooks, 2 CTAs\nOne shoot, 12 versions" },
   { icon: Plus, label: "Add-ons", desc: "Extra hooks, raw footage, captions, rush turnaround" },
 ];
 
@@ -49,7 +49,7 @@ const ServicesSection = () => (
               <s.icon className="w-6 h-6" style={{ color: "#F4ECDC" }} />
             </div>
             <h3 className="font-heading text-lg mb-1" style={{ color: "#F4ECDC" }}>{s.label}</h3>
-            <p className="font-body text-sm" style={{ color: "rgba(244,236,220,0.6)" }}>{s.desc}</p>
+            <p className="font-body text-sm whitespace-pre-line" style={{ color: "rgba(244,236,220,0.6)" }}>{s.desc}</p>
           </motion.div>
         ))}
       </div>
