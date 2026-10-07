@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import { Play, ChevronDown } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
@@ -158,6 +159,14 @@ const HeroSection = () => {
               <span className="font-semibold" style={{ color: "rgba(244,236,220,0.9)" }}>Ef Barte</span> · Marketing Coordinator, Hume Health
             </figcaption>
           </figure>
+          <Link
+            to="/new-to-ugc"
+            onClick={() => trackClick("New to UGC", "hero")}
+            className="self-center lg:self-start mt-5 font-body text-sm underline underline-offset-4 decoration-1 transition-colors hover:text-[#F4ECDC]"
+            style={{ color: "rgba(244,236,220,0.75)" }}
+          >
+            New to UGC? Here&rsquo;s how it works &rarr;
+          </Link>
         </motion.div>
 
         {/* Visuals: dominant phone (video) in front, smaller still behind */}

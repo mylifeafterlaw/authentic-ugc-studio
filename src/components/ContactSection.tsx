@@ -165,7 +165,7 @@ const ContactSection = () => {
               ))}
             </div>
             <p className="font-body text-xs" style={{ color: "rgba(244,236,220,0.45)" }}>
-              @MyLifeAfterLaw, everywhere
+              Find me in the usual places
             </p>
           </div>
         </motion.div>
