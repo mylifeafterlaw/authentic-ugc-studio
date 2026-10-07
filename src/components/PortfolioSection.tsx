@@ -5,7 +5,6 @@ import BrandWatermark from "@/components/BrandWatermark";
 import condoVideo from "@/assets/condo-ugc.mp4";
 import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4";
 import productUGC from "@/assets/Product_UGC_Natural_talking.mp4";
-import skinComparisonVideo from "@/assets/Skin_Comparison_Version_B_Final.mp4";
 import singaporeZooVideo from "@/assets/singapore-zoo.mp4";
 import tattooVideo from "@/assets/tattoo-chiang-mai.mp4";
 import huskiesVideo from "@/assets/huskies.mp4";
@@ -27,7 +26,6 @@ import vietnamApartmentPoster from "@/assets/vietnam-apartment-poster.jpg";
 import vietnamApartment2Video from "@/assets/vietnam-apartment-2.mp4";
 import vietnamApartment2Poster from "@/assets/vietnam-apartment-2-poster.jpg";
 import singaporeZooPoster from "@/assets/singapore-zoo-poster.jpg";
-import skinComparisonPoster from "@/assets/skin-comparison-poster.jpg";
 import productUGCPoster from "@/assets/product-ugc-poster.jpg";
 import tattooPoster from "@/assets/tattoo-poster.jpg";
 import huskiesPoster from "@/assets/huskies-poster.jpg";
@@ -39,8 +37,6 @@ import techAppsVideo2 from "@/assets/Playful_Video_2_-_FINAL-2.mp4";
 import techAppsVideo2Poster from "@/assets/tech-apps-video-2-poster.jpg";
 import skinUsedVideo from "@/assets/skin-used-to-look-like-this.mp4";
 import skinUsedPoster from "@/assets/skin-used-to-look-like-this-poster.jpg";
-import lGlutamineVideo from "@/assets/70-second-example-l-glutamine.mp4";
-import lGlutaminePoster from "@/assets/70-second-example-l-glutamine-poster.jpg";
 import humeBand2Hook3 from "@/assets/hume-band2-hook3.mp4";
 import humeBand2Hook3Poster from "@/assets/hume-band2-hook3-poster.jpg";
 import creatineAsmr from "@/assets/creatine-asmr.mp4";
@@ -91,13 +87,6 @@ const categories: Category[] = [
         tags: ["Hook-led", "Voiceover", "B-roll"],
       },
       {
-        subject: "Laser hair removal",
-        format: "Hook-led · talking-to-camera and B-roll · clinic treatment",
-        poster: laserHairRemovalPoster,
-        videoUrl: laserHairRemoval,
-        tags: ["Hook-led", "Talking-to-camera", "B-roll"],
-      },
-      {
         subject: "Haircare",
         format: "Before and after · B-roll and voiceover · hook-led",
         poster: hairProductPoster,
@@ -119,14 +108,6 @@ const categories: Category[] = [
         poster: skinUsedPoster,
         videoUrl: skinUsedVideo,
         tags: ["Talking-to-camera", "Before and after"],
-      },
-      {
-        subject: "Skincare",
-        format:
-          "Talking-to-camera · authentic personal delivery · series-style",
-        poster: skinComparisonPoster,
-        videoUrl: skinComparisonVideo,
-        tags: ["Talking-to-camera"],
       },
       // HIDDEN until the "Aesthetic pour" source clip is supplied (productVideo5
       // import above). Final section TBC with Jess. To restore: uncomment.
@@ -177,13 +158,6 @@ const categories: Category[] = [
         poster: productTripleHookPoster,
         videoUrl: productTripleHookVideo,
         tags: ["Hook-led", "Talking-to-camera", "B-roll"],
-      },
-      {
-        subject: "Supplements",
-        format: "Talking-to-camera · natural product explanation · longer-form",
-        poster: lGlutaminePoster,
-        videoUrl: lGlutamineVideo,
-        tags: ["Talking-to-camera"],
       },
     ],
   },
@@ -274,6 +248,13 @@ const categories: Category[] = [
     id: "lifestyle-experience",
     name: "Lifestyle & Experience",
     tiles: [
+      {
+        subject: "Laser hair removal",
+        format: "Hook-led · talking-to-camera and B-roll · clinic treatment",
+        poster: laserHairRemovalPoster,
+        videoUrl: laserHairRemoval,
+        tags: ["Hook-led", "Talking-to-camera", "B-roll"],
+      },
       { subject: "Tattoo experience · Chiang Mai", format: "Hook-led · B-roll and voiceover", poster: tattooPoster, videoUrl: tattooVideo, tags: ["Hook-led", "B-roll", "Voiceover"] },
       { subject: "Husky experience · Bangkok", format: "Hook-led · B-roll and voiceover", poster: huskiesPoster, videoUrl: huskiesVideo, tags: ["Hook-led", "B-roll", "Voiceover"] },
       { subject: "Muay Thai · Bangkok", format: "Hook-led · B-roll and voiceover", poster: rajaStadiumPoster, videoUrl: rajadamnernVideo, tags: ["Hook-led", "B-roll", "Voiceover"] },
@@ -337,9 +318,9 @@ type Tone = "light" | "dark" | undefined;
 const THUMBS = import.meta.glob<string>("@/assets/thumbs/*.jpg", { eager: true, import: "default" });
 const THUMB_ID: Record<string, string> = {
   [centellaAmpoule]: "28", [laserHairRemoval]: "01", [hairProductVideo]: "02", [livingBeautifulVideo]: "03",
-  [skinUsedVideo]: "04", [skinComparisonVideo]: "05",
+  [skinUsedVideo]: "04",
   [waterbottleTest]: "06", [creatineTtc]: "07", [humeBand2Hook3]: "08",
-  [creatineAsmr]: "09", [productTripleHookVideo]: "10", [lGlutamineVideo]: "11",
+  [creatineAsmr]: "09", [productTripleHookVideo]: "10",
   [techAppsVideo1]: "12", [playfulArrivalVideo1]: "13", [techAppsVideo2]: "14",
   [playfulArrivalVideo3]: "15", [playfulVideo3]: "16", [playfulArrivalVideo]: "17",
   [condoVideo]: "18", [vietnamApartmentVideo]: "19", [vietnamApartment2Video]: "20",
