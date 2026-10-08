@@ -26,14 +26,14 @@ const usage = [
   ["Social posts (no paid promotion)", "Included"],
   ["Paid advertising", "Additional fee"],
   ["Longer use or raw footage", "Quoted separately"],
-  ["Copyright", "Stays with me"],
+  ["Copyright", "Stays with me", "(you get the usage rights above)"],
 ];
 
 const steps = [
-  ["Brief and ideas", "We agree your goals and direction."],
+  ["Brief and ideas", "No script needed. We agree your goals and direction."],
   ["Signed agreement", "Timings, usage and payment, agreed in writing."],
   ["Product delivery", "If needed, I confirm where to send it."],
-  ["Filming and draft", "Draft typically 5 to 7 working days after delivery."],
+  ["Filming and draft", "Draft typically 5 to 7 working days after the product arrives."],
   ["Feedback and edits", "Two rounds of minor edits included."],
   ["Final files", "Delivered via Google Drive once paid."],
 ];
@@ -142,7 +142,8 @@ const NewToUGC = () => {
           <p className="font-body text-base leading-relaxed max-w-3xl">
             Good content is more than filming a product: it&rsquo;s knowing what grabs attention, what to say and what
             viewers should do next. I shape the idea with you, then film and edit natural, relatable videos. As a
-            former lawyer, I bring careful attention to your brief and clear communication.
+            former lawyer, I read your brief properly so the video says what you need it to say, and we agree
+            everything in writing before I film.
           </p>
           <div className="mt-6">
             <PdfButton tone="light" />
@@ -199,10 +200,13 @@ const NewToUGC = () => {
             <div>
               <H2>Where you can use it</H2>
               <dl className="mt-4 divide-y" style={{ borderColor: "rgba(92,18,32,0.12)" }}>
-                {usage.map(([k, v]) => (
+                {usage.map(([k, v, note]) => (
                   <div key={k} className="flex items-baseline justify-between gap-4 py-2.5" style={{ borderColor: "rgba(92,18,32,0.12)" }}>
                     <dt className="font-body text-base">{k}</dt>
-                    <dd className="font-body text-sm font-semibold text-right">{v}</dd>
+                    <dd className="font-body text-sm font-semibold text-right">
+                      {v}
+                      {note && <span className="block font-normal text-xs" style={{ color: "rgba(46,20,25,0.65)" }}>{note}</span>}
+                    </dd>
                   </div>
                 ))}
               </dl>
@@ -250,7 +254,7 @@ const NewToUGC = () => {
         <BrandWatermark />
         <div className="container max-w-4xl relative z-10 py-14 sm:py-16 text-center sm:text-left">
           <h2 className="font-heading text-3xl sm:text-4xl mb-3" style={{ color: "#F4ECDC" }}>
-            Let&rsquo;s create content for your brand.
+            Let&rsquo;s turn your product into ads that sell.
           </h2>
           <p className="font-body text-base max-w-xl mx-auto sm:mx-0" style={{ color: "rgba(244,236,220,0.75)" }}>
             Send me your website or product link and any target date, and ask me about my rates. I&rsquo;ll come back
