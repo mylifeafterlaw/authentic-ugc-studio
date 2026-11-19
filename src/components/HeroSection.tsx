@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -6,30 +6,87 @@ import { Play, ChevronDown } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
 import BrandWatermark from "@/components/BrandWatermark";
 import heroImg from "@/assets/hero-portrait.jpg";
-import heroVideo from "@/assets/hume-band2-hero.mp4";
-import heroPoster from "@/assets/hero-thumbnail.jpg";
+import humePoster from "@/assets/thumbs/08-dark.jpg";
+import evolvePoster from "@/assets/thumbs/30-dark.jpg";
+import { r2 } from "@/lib/media";
 
-// Swap these with the real assets when ready.
-// videoSrc: the 30s UGC showreel. videoPoster: the poster frame shown before play.
-// sideStill: a DIFFERENT shot/crop from the video poster.
-const videoSrc = heroVideo;
-const videoPoster = heroPoster; // uploaded thumbnail image shown before play
-const sideStill = heroImg; // replace with a distinct second photo
+const sideStill = heroImg; // a different shot from the featured videos
+
+// Featured videos. The first hook of the first video loops silently on load
+// (preview = the hook only, under 1 MB); brands pick a video and a hook, and
+// "Watch with sound" plays the full version of whatever is selected.
+type Hook = { label: string; video: string; preview: string };
+type Review = { quote: string; name: string; role: string };
+const FEATURED: { name: string; poster: string; hooks: Hook[]; review: Review }[] = [
+  {
+    name: "Hume Health",
+    poster: humePoster,
+    review: {
+      quote:
+        "Jess was a pleasure to work with on our Band 2.0 campaign. She had a fast turnaround, delivered everything promptly, and was highly professional and detail-oriented throughout the process. She followed the creative brief closely, making the review process smooth and efficient. We’d be happy to work with her again.",
+      name: "Ef Barte",
+      role: "Marketing Coordinator, Hume Health",
+    },
+    hooks: [
+      { label: "A", video: r2("hume-band2-hook3.mp4"), preview: r2("hume-band2-hook3-preview.mp4") },
+      { label: "B", video: r2("hume-band2-hook1.mp4"), preview: r2("hume-band2-hook1-preview.mp4") },
+      { label: "C", video: r2("hume-band2-hook2.mp4"), preview: r2("hume-band2-hook2-preview.mp4") },
+      { label: "D", video: r2("hume-band2-hook4.mp4"), preview: r2("hume-band2-hook4-preview.mp4") },
+    ],
+  },
+  {
+    name: "Evolve",
+    poster: evolvePoster,
+    review: {
+      quote:
+        "I was impressed with how professional the experience was all the way through and really appreciate the edits. The delivery of the hooks and the CTA was done really well too and the whole thing was a great representation of what I was after so overall am very happy.",
+      name: "Sam",
+      role: "Evolve",
+    },
+    hooks: [
+      { label: "A", video: r2("evolve-hook-a.mp4"), preview: r2("evolve-hook-a-preview.mp4") },
+      { label: "B", video: r2("evolve-hook-b.mp4"), preview: r2("evolve-hook-b-preview.mp4") },
+    ],
+  },
+];
 
 
 const HeroSection = () => {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [featIdx, setFeatIdx] = useState(0);
+  const [hookIdx, setHookIdx] = useState(0);
+  // Nothing plays on load: the poster shows until a hook is hovered or tapped,
+  // then that hook loops silently.
+  const [previewing, setPreviewing] = useState(false);
+  // Respect reduced-motion: no silent preview loop, just the poster.
+  const [loopOk, setLoopOk] = useState(true);
+  useEffect(() => {
+    setLoopOk(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+  const feat = FEATURED[featIdx];
+  const hook = feat.hooks[hookIdx];
+
+  const playFull = () => requestAnimationFrame(() => videoRef.current?.play().catch(() => {}));
+  const pickFeat = (i: number) => {
+    if (i === featIdx) return;
+    trackClick(`Featured: ${FEATURED[i].name}`, "hero");
+    setFeatIdx(i);
+    setHookIdx(0);
+    setPreviewing(false);
+    if (playing) playFull();
+  };
+  const pickHook = (i: number) => {
+    setHookIdx(i);
+    if (playing) playFull();
+    else setPreviewing(true);
+  };
 
   const scrollTo = (id: string) =>
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
   const handlePlay = () => {
-    if (!videoSrc) {
-      // No video supplied yet — fall back to the portfolio section.
-      scrollTo("#portfolio");
-      return;
-    }
+    trackClick(`Watch: ${feat.name} hook ${hook.label}`, "hero");
     setPlaying(true);
     // allow the element to mount/controls to show, then play
     requestAnimationFrame(() => videoRef.current?.play().catch(() => {}));
@@ -148,16 +205,15 @@ const HeroSection = () => {
               className="absolute left-1 top-3 bottom-3 w-px"
               style={{ background: "linear-gradient(to bottom, rgba(244,236,220,0.5), transparent)" }}
             />
-            <blockquote className="font-body italic text-xs leading-relaxed" style={{ color: "rgba(244,236,220,0.85)" }}>
-              Jess was a pleasure to work with on our Band 2.0 campaign. She had a
-              fast turnaround, delivered everything promptly, and was highly
-              professional and detail-oriented throughout the process. She followed
-              the creative brief closely, making the review process smooth and
-              efficient. We&rsquo;d be happy to work with her again.
-            </blockquote>
-            <figcaption className="mt-2 font-body text-xs not-italic" style={{ color: "rgba(244,236,220,0.6)" }}>
-              <span className="font-semibold" style={{ color: "rgba(244,236,220,0.9)" }}>Ef Barte</span> · Marketing Coordinator, Hume Health
-            </figcaption>
+            {/* The review follows the featured video that's selected */}
+            <motion.div key={feat.name} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+              <blockquote className="font-body italic text-xs leading-relaxed" style={{ color: "rgba(244,236,220,0.85)" }}>
+                {feat.review.quote}
+              </blockquote>
+              <figcaption className="mt-2 font-body text-xs not-italic" style={{ color: "rgba(244,236,220,0.6)" }}>
+                <span className="font-semibold" style={{ color: "rgba(244,236,220,0.9)" }}>{feat.review.name}</span> · {feat.review.role}
+              </figcaption>
+            </motion.div>
           </figure>
           <Link
             to="/new-to-ugc"
@@ -174,7 +230,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center relative flex items-center justify-center lg:justify-center"
+          className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center relative flex flex-col items-center justify-center"
         >
           <div className="relative">
           {/* Secondary still — deliberate second photo sitting BEHIND the phone, peeking out the right side */}
@@ -207,11 +263,11 @@ const HeroSection = () => {
           {/* Frameless video — no heavy bezel; soft shadow grounds it */}
           <div className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2rem] overflow-hidden shadow-[0_42px_72px_-24px_rgba(0,0,0,0.62)] ring-1 ring-[#F4ECDC]/15 shrink-0 z-10 bg-muted">
             <div className="relative w-full h-full">
-              {playing && videoSrc ? (
+              {playing ? (
                 <video
                   ref={videoRef}
-                  src={videoSrc}
-                  poster={videoPoster}
+                  src={hook.video}
+                  poster={feat.poster}
                   controls
                   playsInline
                   className="w-full h-full object-cover"
@@ -219,27 +275,100 @@ const HeroSection = () => {
               ) : (
                 <>
                   <img
-                    src={videoPoster}
-                    alt="Jess Cousin – UGC video preview"
-                    className="w-full h-full object-cover"
+                    src={feat.poster}
+                    alt={`${feat.name} video by Jess Cousin`}
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
+                  {loopOk && previewing && (
+                    <video
+                      key={hook.preview}
+                      src={hook.preview}
+                      muted
+                      loop
+                      autoPlay
+                      playsInline
+                      aria-hidden="true"
+                      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                    />
+                  )}
                   {/* play affordance */}
                   <button
                     onClick={handlePlay}
-                    aria-label="Watch showreel"
+                    aria-label={`Watch ${feat.name}, hook ${hook.label}, with sound`}
                     className="absolute inset-0 flex flex-col items-center justify-center gap-3 group"
                   >
                     <span className="w-16 h-16 rounded-full bg-[#F4ECDC] shadow-elevated flex items-center justify-center transition-transform group-hover:scale-110">
                       <Play className="w-7 h-7 text-[#5C1220] ml-1" fill="currentColor" />
                     </span>
                     <span className="font-body text-sm font-semibold text-[#F4ECDC] bg-[#5C1220]/70 backdrop-blur-sm px-3 py-1 rounded-full">
-                      Watch
+                      Watch with sound
                     </span>
                   </button>
                 </>
               )}
+
+              {/* Hook buttons, over the top edge of the video */}
+              <div
+                className="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 rounded-full pl-2.5 pr-1 py-1"
+                style={{ background: "rgba(46,20,25,0.55)", backdropFilter: "blur(6px)" }}
+                role="group"
+                aria-label="Choose a hook"
+                onMouseLeave={() => !playing && setPreviewing(false)}
+              >
+                <span className="font-body text-[0.55rem] uppercase tracking-[0.16em] font-semibold mr-0.5" style={{ color: "rgba(244,236,220,0.8)" }}>
+                  Hooks
+                </span>
+                {feat.hooks.map((h, i) => {
+                  const on = i === hookIdx;
+                  return (
+                    <button
+                      key={h.label}
+                      type="button"
+                      aria-pressed={on}
+                      aria-label={`Hook ${h.label}`}
+                      onPointerEnter={(e) => e.pointerType === "mouse" && !playing && pickHook(i)}
+                      onClick={() => pickHook(i)}
+                      className="font-body text-[0.65rem] font-semibold rounded-full w-6 h-6 flex items-center justify-center transition-colors"
+                      style={{
+                        border: "1px solid rgba(244,236,220,0.85)",
+                        background: on ? "#F4ECDC" : "transparent",
+                        color: on ? "#5C1220" : "#F4ECDC",
+                      }}
+                    >
+                      {h.label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
+          </div>
+
+          {/* Featured picker: choose the video, then the hook */}
+          <div className="relative z-20 mt-5 flex flex-col items-center gap-2.5">
+            <div
+              className="flex items-center gap-1 p-1 rounded-full"
+              style={{ background: "rgba(244,236,220,0.1)" }}
+              role="tablist"
+              aria-label="Featured videos"
+            >
+              {FEATURED.map((f, i) => {
+                const on = i === featIdx;
+                return (
+                  <button
+                    key={f.name}
+                    type="button"
+                    role="tab"
+                    aria-selected={on}
+                    onClick={() => pickFeat(i)}
+                    className="font-body text-xs font-semibold px-3.5 py-1.5 rounded-full transition-colors"
+                    style={on ? { background: "#F4ECDC", color: "#5C1220" } : { color: "rgba(244,236,220,0.8)" }}
+                  >
+                    {f.name}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
         </motion.div>

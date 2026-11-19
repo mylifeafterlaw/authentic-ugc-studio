@@ -1,29 +1,29 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye, Play } from "lucide-react";
 import BrandWatermark from "@/components/BrandWatermark";
-import condoVideo from "@/assets/condo-ugc.mp4";
-import vietnamApartmentVideo from "@/assets/Vietnam_Apartment_3_Final.mp4";
-import productUGC from "@/assets/Product_UGC_Natural_talking.mp4";
-import singaporeZooVideo from "@/assets/singapore-zoo.mp4";
-import tattooVideo from "@/assets/tattoo-chiang-mai.mp4";
-import huskiesVideo from "@/assets/huskies.mp4";
-import rajadamnernVideo from "@/assets/rajadamnern.mp4";
-import cinemaVideo from "@/assets/cinema.mp4";
-import cafeWatVideo from "@/assets/cafe-wat-bang-nam-phueng.mp4";
+const condoVideo = r2("condo-ugc.mp4");
+const vietnamApartmentVideo = r2("Vietnam_Apartment_3_Final.mp4");
+const productUGC = r2("Product_UGC_Natural_talking.mp4");
+const singaporeZooVideo = r2("singapore-zoo.mp4");
+const tattooVideo = r2("tattoo-chiang-mai.mp4");
+const huskiesVideo = r2("huskies.mp4");
+const rajadamnernVideo = r2("rajadamnern.mp4");
+const cinemaVideo = r2("cinema.mp4");
+const cafeWatVideo = r2("cafe-wat-bang-nam-phueng.mp4");
 import rajaStadiumPoster from "@/assets/raja-stadium-poster.jpg";
-import productTripleHookVideo from "@/assets/Product_UGC_Triple_hook_voiceover_b-roll-2.mp4";
+const productTripleHookVideo = r2("Product_UGC_Triple_hook_voiceover_b-roll-2.mp4");
 import productVideo5 from "@/assets/product-video-5.mp4.asset.json";
 import productVideo5Poster from "@/assets/product-video-5-poster.jpg.asset.json";
-import hairProductVideo from "@/assets/My_hair_wasnt_just_dry_Final.mp4";
-import livingBeautifulVideo from "@/assets/Living_somewhere_beautiful_Final.mp4";
+const hairProductVideo = r2("My_hair_wasnt_just_dry_Final.mp4");
+const livingBeautifulVideo = r2("Living_somewhere_beautiful_Final.mp4");
 // Poster stills (real video frames) for fast, lazy loading
 import hairProductPoster from "@/assets/hair-product-poster.jpg";
 import livingBeautifulPoster from "@/assets/living-beautiful-poster.jpg";
 import productTripleHookPoster from "@/assets/product-triple-hook-poster.jpg";
 import condoPoster from "@/assets/condo-poster.jpg";
 import vietnamApartmentPoster from "@/assets/vietnam-apartment-poster.jpg";
-import vietnamApartment2Video from "@/assets/vietnam-apartment-2.mp4";
+const vietnamApartment2Video = r2("vietnam-apartment-2.mp4");
 import vietnamApartment2Poster from "@/assets/vietnam-apartment-2-poster.jpg";
 import singaporeZooPoster from "@/assets/singapore-zoo-poster.jpg";
 import productUGCPoster from "@/assets/product-ugc-poster.jpg";
@@ -31,32 +31,34 @@ import tattooPoster from "@/assets/tattoo-poster.jpg";
 import huskiesPoster from "@/assets/huskies-poster.jpg";
 import cinemaPoster from "@/assets/cinema-face-poster.jpg";
 import cafeWatPoster from "@/assets/cafe-wat-poster.jpg";
-import techAppsVideo1 from "@/assets/tech-apps-video-1.mp4";
+const techAppsVideo1 = r2("tech-apps-video-1.mp4");
 import techAppsVideo1Poster from "@/assets/tech-apps-video-1-poster.jpg";
-import techAppsVideo2 from "@/assets/Playful_Video_2_-_FINAL-2.mp4";
+const techAppsVideo2 = r2("Playful_Video_2_-_FINAL-2.mp4");
 import techAppsVideo2Poster from "@/assets/tech-apps-video-2-poster.jpg";
-import skinUsedVideo from "@/assets/skin-used-to-look-like-this.mp4";
+const skinUsedVideo = r2("skin-used-to-look-like-this.mp4");
 import skinUsedPoster from "@/assets/skin-used-to-look-like-this-poster.jpg";
-import humeBand2Hook3 from "@/assets/hume-band2-hook3.mp4";
+const humeBand2Hook3 = r2("hume-band2-hook3.mp4");
+const evolveHookA = r2("evolve-hook-a.mp4");
 import humeBand2Hook3Poster from "@/assets/hume-band2-hook3-poster.jpg";
-import creatineAsmr from "@/assets/creatine-asmr.mp4";
+const creatineAsmr = r2("creatine-asmr.mp4");
 import creatineAsmrPoster from "@/assets/creatine-asmr-poster.jpg";
-import creatineTtc from "@/assets/creatine-ttc.mp4";
-import waterbottleTest from "@/assets/waterbottle-test.mp4";
+const creatineTtc = r2("creatine-ttc.mp4");
+const waterbottleTest = r2("waterbottle-test.mp4");
 import waterbottleTestPoster from "@/assets/waterbottle-test-poster.jpg";
 import creatineTtcPoster from "@/assets/creatine-ttc-poster.jpg";
-import laserHairRemoval from "@/assets/laser-hair-removal.mp4";
-import centellaAmpoule from "@/assets/centella-ampoule.mp4";
-import simLocalFirstHour from "@/assets/sim-local-first-hour.mp4";
+const laserHairRemoval = r2("laser-hair-removal.mp4");
+const centellaAmpoule = r2("centella-ampoule.mp4");
+const simLocalFirstHour = r2("sim-local-first-hour.mp4");
 import laserHairRemovalPoster from "@/assets/laser-hair-removal-poster.jpg";
-import playfulArrivalVideo from "@/assets/playful-arrival-app.mp4";
+const playfulArrivalVideo = r2("playful-arrival-app.mp4");
 import playfulArrivalPoster from "@/assets/playful-arrival-app-poster.jpg";
-import playfulArrivalVideo1 from "@/assets/playful-arrival-video-1.mp4";
+const playfulArrivalVideo1 = r2("playful-arrival-video-1.mp4");
 import playfulArrivalVideo1Poster from "@/assets/playful-arrival-video-1-poster.jpg";
-import playfulArrivalVideo3 from "@/assets/playful-arrival-video-3.mp4";
+const playfulArrivalVideo3 = r2("playful-arrival-video-3.mp4");
 import playfulArrivalVideo3Poster from "@/assets/playful-arrival-video-3-poster.jpg";
-import playfulVideo3 from "@/assets/playful-video-3.mp4";
+const playfulVideo3 = r2("playful-video-3.mp4");
 import playfulVideo3Poster from "@/assets/playful-video-3-poster.jpg";
+import { r2 } from "@/lib/media";
 
 
 type Tile = {
@@ -66,6 +68,12 @@ type Tile = {
   poster?: string; // real video-frame still shown before/while the video loads
   videoUrl?: string; // CDN video URL — plays inline in a modal
   tags?: string[]; // FORMAT tags for cross-section filtering (see FORMAT_TAGS)
+  // Hook variants: same body, different openings. hooks[0].video must equal
+  // videoUrl (it picks the thumbnail). Hovering/tapping a hook loops its
+  // preview (the hook only, silent); play runs the selected full version.
+  hooks?: { label: string; video: string; preview: string }[];
+  stat?: string; // proof line under the caption, e.g. "52K organic views"
+  statNote?: string; // where the stat comes from, shown small under the badge
 };
 
 type Category = {
@@ -144,7 +152,14 @@ const categories: Category[] = [
         format: "Hook-led · talking-to-camera · ad-style CTA",
         poster: humeBand2Hook3Poster,
         videoUrl: humeBand2Hook3,
-        tags: ["Talking-to-camera", "Hook-led"],
+        tags: ["Talking-to-camera", "Hook-led", "Hook variations"],
+        // A = the live hook (matches the approved thumbnail); B-D = Hooks 1, 2, 4.
+        hooks: [
+          { label: "A", video: humeBand2Hook3, preview: r2("hume-band2-hook3-preview.mp4") },
+          { label: "B", video: r2("hume-band2-hook1.mp4"), preview: r2("hume-band2-hook1-preview.mp4") },
+          { label: "C", video: r2("hume-band2-hook2.mp4"), preview: r2("hume-band2-hook2-preview.mp4") },
+          { label: "D", video: r2("hume-band2-hook4.mp4"), preview: r2("hume-band2-hook4-preview.mp4") },
+        ],
       },
       {
         subject: "Collagen",
@@ -167,6 +182,16 @@ const categories: Category[] = [
     id: "tech-apps",
     name: "Tech & Apps",
     tiles: [
+      {
+        subject: "Evolve · Conversation Cards",
+        format: "Paid client · multi-person shoot · talking-to-camera, B-roll and app demo",
+        videoUrl: evolveHookA,
+        tags: ["Hook-led", "Talking-to-camera", "B-roll", "Hook variations"],
+        hooks: [
+          { label: "A", video: evolveHookA, preview: r2("evolve-hook-a-preview.mp4") },
+          { label: "B", video: r2("evolve-hook-b.mp4"), preview: r2("evolve-hook-b-preview.mp4") },
+        ],
+      },
       {
         subject: "Playful App",
         format: "Hook-led · talking-to-camera throughout · app demo",
@@ -219,6 +244,8 @@ const categories: Category[] = [
         subject: "eSIM · Sim Local",
         format: "Hook-led · B-roll and voiceover · app screen recording",
         videoUrl: simLocalFirstHour,
+        stat: "62.7K organic views",
+        statNote: "Instagram & Facebook",
         tags: ["Hook-led", "B-roll", "Voiceover", "Screen recording"],
       },
       {
@@ -289,6 +316,7 @@ const FORMAT_TAGS = [
   "Screen recording",
   "Before and after",
   "ASMR",
+  "Hook variations",
 ] as const;
 
 // How many tiles carry each tag (shown on the chips).
@@ -324,7 +352,7 @@ type Tone = "light" | "dark" | undefined;
 // the visible order, so filtering can flip it — hence both are shipped.
 const THUMBS = import.meta.glob<string>("@/assets/thumbs/*.jpg", { eager: true, import: "default" });
 const THUMB_ID: Record<string, string> = {
-  [simLocalFirstHour]: "29", [centellaAmpoule]: "28", [laserHairRemoval]: "01", [hairProductVideo]: "02", [livingBeautifulVideo]: "03",
+  [evolveHookA]: "30", [simLocalFirstHour]: "29", [centellaAmpoule]: "28", [laserHairRemoval]: "01", [hairProductVideo]: "02", [livingBeautifulVideo]: "03",
   [skinUsedVideo]: "04",
   [waterbottleTest]: "06", [creatineTtc]: "07", [humeBand2Hook3]: "08",
   [creatineAsmr]: "09", [productTripleHookVideo]: "10",
@@ -363,6 +391,21 @@ const VideoTile = ({
   const [inView, setInView] = useState(false);
   const [playing, setPlaying] = useState(false);
   const poster = posterFor(tile, tone);
+  const hooks = tile.hooks;
+  const [hookIdx, setHookIdx] = useState(0);
+  const [previewIdx, setPreviewIdx] = useState<number | null>(null);
+  const src = hooks ? hooks[hookIdx].video : tile.videoUrl;
+
+  // Hover (mouse) or tap (touch) a hook: select it and loop its silent preview.
+  // While the full video is playing, picking a hook switches to that version.
+  const pickHook = (i: number) => {
+    setHookIdx(i);
+    if (playing) {
+      requestAnimationFrame(() => videoRef.current?.play().catch(() => {}));
+    } else {
+      setPreviewIdx(i);
+    }
+  };
 
   useEffect(() => {
     const el = wrapperRef.current;
@@ -388,6 +431,7 @@ const VideoTile = ({
   }, [activeId, tileId, playing]);
 
   const start = () => {
+    setPreviewIdx(null);
     setPlaying(true);
     // Let the <video> mount, then start playback. Its onPlay fires → this tile
     // becomes the active one and every other playing tile pauses.
@@ -450,11 +494,11 @@ const VideoTile = ({
         style={shellStyle}
       >
         <div className="relative w-full h-full rounded-[1.9rem] bg-black overflow-hidden">
-          {tile.videoUrl && playing ? (
+          {src && playing ? (
             // Plays inline inside the phone mockup — same as the hero.
             <video
               ref={videoRef}
-              src={tile.videoUrl}
+              src={src}
               poster={poster}
               controls
               playsInline
@@ -474,6 +518,19 @@ const VideoTile = ({
                 />
               ) : (
                 <div className="absolute inset-0 gradient-soft scale-[1.03]" />
+              )}
+
+              {/* Hook preview: loops just the opening, silent */}
+              {hooks && previewIdx !== null && (
+                <video
+                  key={hooks[previewIdx].preview}
+                  src={hooks[previewIdx].preview}
+                  muted
+                  loop
+                  autoPlay
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                />
               )}
 
               {/* notch — only on the framed phone mockup */}
@@ -499,7 +556,67 @@ const VideoTile = ({
         </div>
       </div>
 
+      {hooks && (
+        <div
+          className="mt-3 flex flex-col items-center gap-1.5"
+          onMouseLeave={() => setPreviewIdx(null)}
+        >
+          <p
+            className="font-body text-[0.55rem] uppercase tracking-[0.18em] font-semibold"
+            style={{ color: capSub }}
+          >
+            {hooks.length} hooks · same body
+          </p>
+          <div className="flex items-center gap-1.5" role="group" aria-label="Choose a hook">
+            {hooks.map((h, i) => {
+              const on = i === hookIdx;
+              const fg = tone === "dark" ? "#F4ECDC" : "#5C1220";
+              return (
+                <button
+                  key={h.label}
+                  type="button"
+                  aria-pressed={on}
+                  aria-label={`Hook ${h.label}`}
+                  onPointerEnter={(e) => e.pointerType === "mouse" && pickHook(i)}
+                  onClick={() => pickHook(i)}
+                  className="font-body text-[0.7rem] font-semibold rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+                  style={{
+                    border: `1px solid ${fg}`,
+                    background: on ? fg : "transparent",
+                    color: on ? (tone === "dark" ? "#5C1220" : "#F4ECDC") : fg,
+                    opacity: on ? 1 : 0.8,
+                  }}
+                >
+                  {h.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {caption}
+
+      {tile.stat && (
+        <p className="mt-2 flex justify-center">
+          <span
+            className="inline-flex items-center gap-1.5 font-body text-[0.6rem] font-semibold uppercase tracking-[0.12em] rounded-full px-2.5 py-1"
+            style={
+              tone === "dark"
+                ? { background: "rgba(244,236,220,0.14)", color: "#F4ECDC" }
+                : { background: "rgba(92,18,32,0.09)", color: "#5C1220" }
+            }
+          >
+            <Eye className="w-3 h-3" aria-hidden="true" />
+            {tile.stat}
+          </span>
+        </p>
+      )}
+      {tile.stat && tile.statNote && (
+        <p className="mt-1 text-center font-body text-[0.55rem] tracking-[0.08em]" style={{ color: capSub }}>
+          {tile.statNote}
+        </p>
+      )}
     </div>
   );
 };
