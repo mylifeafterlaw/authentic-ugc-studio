@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-import { Play, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { Play, ChevronDown, ArrowRight } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
 import BrandWatermark from "@/components/BrandWatermark";
 import heroImg from "@/assets/hero-portrait.jpg";
@@ -66,8 +66,22 @@ const HeroSection = () => {
   const feat = FEATURED[featIdx];
   const hook = feat.hooks[hookIdx];
 
+  // Until the visitor touches anything in the hero, the featured clients
+  // (review + video cover) rotate on their own. Any click, hover preview or
+  // play stops the rotation for good.
+  const [touched, setTouched] = useState(false);
+  useEffect(() => {
+    if (touched || playing || previewing || !loopOk) return;
+    const t = setInterval(() => {
+      setFeatIdx((i) => (i + 1) % FEATURED.length);
+      setHookIdx(0);
+    }, 9000);
+    return () => clearInterval(t);
+  }, [touched, playing, previewing, loopOk]);
+
   const playFull = () => requestAnimationFrame(() => videoRef.current?.play().catch(() => {}));
   const pickFeat = (i: number) => {
+    setTouched(true);
     if (i === featIdx) return;
     trackClick(`Featured: ${FEATURED[i].name}`, "hero");
     setFeatIdx(i);
@@ -76,6 +90,7 @@ const HeroSection = () => {
     if (playing) playFull();
   };
   const pickHook = (i: number) => {
+    setTouched(true);
     setHookIdx(i);
     if (playing) playFull();
     else setPreviewing(true);
@@ -86,6 +101,7 @@ const HeroSection = () => {
 
   const handlePlay = () => {
     trackClick(`Watch: ${feat.name} hook ${hook.label}`, "hero");
+    setTouched(true);
     setPlaying(true);
     // allow the element to mount/controls to show, then play
     requestAnimationFrame(() => videoRef.current?.play().catch(() => {}));
@@ -205,7 +221,8 @@ const HeroSection = () => {
               style={{ background: "linear-gradient(to bottom, rgba(244,236,220,0.5), transparent)" }}
             />
             {/* The review follows the featured video that's selected */}
-            <motion.div key={feat.name} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+            <div className="flex items-center gap-4">
+            <motion.div key={feat.name} className="flex-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
               <blockquote className="font-body italic text-xs leading-relaxed" style={{ color: "rgba(244,236,220,0.85)" }}>
                 {feat.review.quote}
               </blockquote>
@@ -213,50 +230,19 @@ const HeroSection = () => {
                 <span className="font-semibold" style={{ color: "rgba(244,236,220,0.9)" }}>{feat.review.name}</span> · {feat.review.role}
               </figcaption>
             </motion.div>
-          </figure>
-
-          {/* Review cycler: moves through the featured clients (video + review) */}
-          <div
-            className="mt-3 flex items-center gap-2.5 self-center lg:self-start lg:ml-6"
-            role="group"
-            aria-label="Client reviews"
-          >
-            <button
-              type="button"
-              onClick={() => pickFeat((featIdx - 1 + FEATURED.length) % FEATURED.length)}
-              aria-label="Previous review"
-              className="w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-[#F4ECDC]/15"
-              style={{ border: "1px solid rgba(244,236,220,0.45)", color: "#F4ECDC" }}
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            {FEATURED.map((f, i) => (
-              <button
-                key={f.name}
-                type="button"
-                onClick={() => pickFeat(i)}
-                aria-label={`Review from ${f.name}`}
-                aria-current={i === featIdx}
-                className="h-2 rounded-full transition-all"
-                style={{
-                  width: i === featIdx ? 18 : 8,
-                  background: i === featIdx ? "#F4ECDC" : "rgba(244,236,220,0.35)",
-                }}
-              />
-            ))}
+            {/* Next client: switches the review and the video beside it */}
             <button
               type="button"
               onClick={() => pickFeat((featIdx + 1) % FEATURED.length)}
-              aria-label="Next review"
-              className="w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-[#F4ECDC]/15"
-              style={{ border: "1px solid rgba(244,236,220,0.45)", color: "#F4ECDC" }}
+              aria-label="Next client review and video"
+              className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors hover:bg-[#F4ECDC] hover:text-[#5C1220]"
+              style={{ border: "1px solid rgba(244,236,220,0.55)", color: "#F4ECDC" }}
             >
-              <ChevronRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4" />
             </button>
-            <span className="font-body text-xs ml-1" style={{ color: "rgba(244,236,220,0.6)" }}>
-              Review {featIdx + 1} of {FEATURED.length}
-            </span>
-          </div>
+            </div>
+          </figure>
+
         </motion.div>
 
         {/* Visuals: dominant phone (video) in front, smaller still behind */}
