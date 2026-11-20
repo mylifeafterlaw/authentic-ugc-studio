@@ -244,7 +244,7 @@ const categories: Category[] = [
         subject: "eSIM · Sim Local",
         format: "Hook-led · B-roll and voiceover · app screen recording",
         videoUrl: simLocalFirstHour,
-        stat: "62.7K organic views",
+        stat: "63K organic views",
         statNote: "Instagram & Facebook",
         tags: ["Hook-led", "B-roll", "Voiceover", "Screen recording"],
       },
