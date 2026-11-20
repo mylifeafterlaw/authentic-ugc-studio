@@ -183,16 +183,6 @@ const categories: Category[] = [
     name: "Tech & Apps",
     tiles: [
       {
-        subject: "Evolve · Conversation Cards",
-        format: "Paid client · multi-person shoot · talking-to-camera, B-roll and app demo",
-        videoUrl: evolveHookA,
-        tags: ["Hook-led", "Talking-to-camera", "B-roll", "Hook variations"],
-        hooks: [
-          { label: "A", video: evolveHookA, preview: r2("evolve-hook-a-preview.mp4") },
-          { label: "B", video: r2("evolve-hook-b.mp4"), preview: r2("evolve-hook-b-preview.mp4") },
-        ],
-      },
-      {
         subject: "Playful App",
         format: "Hook-led · talking-to-camera throughout · app demo",
         poster: techAppsVideo1Poster,
@@ -205,6 +195,16 @@ const categories: Category[] = [
         poster: playfulArrivalVideo1Poster,
         videoUrl: playfulArrivalVideo1,
         tags: ["Hook-led", "Talking-to-camera", "Screen recording"],
+      },
+      {
+        subject: "Evolve · Conversation Cards",
+        format: "Paid client · multi-person shoot · talking-to-camera, B-roll and app demo",
+        videoUrl: evolveHookA,
+        tags: ["Hook-led", "Talking-to-camera", "B-roll", "Hook variations"],
+        hooks: [
+          { label: "A", video: evolveHookA, preview: r2("evolve-hook-a-preview.mp4") },
+          { label: "B", video: r2("evolve-hook-b.mp4"), preview: r2("evolve-hook-b-preview.mp4") },
+        ],
       },
       {
         subject: "Playful App",

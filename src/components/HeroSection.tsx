@@ -70,14 +70,16 @@ const HeroSection = () => {
   // (review + video cover) rotate on their own. Any click, hover preview or
   // play stops the rotation for good.
   const [touched, setTouched] = useState(false);
+  // Hovering the review or the video pauses the rotation (without stopping it).
+  const [hovering, setHovering] = useState(false);
   useEffect(() => {
-    if (touched || playing || previewing || !loopOk) return;
+    if (touched || hovering || playing || previewing || !loopOk) return;
     const t = setInterval(() => {
       setFeatIdx((i) => (i + 1) % FEATURED.length);
       setHookIdx(0);
-    }, 9000);
+    }, 6000);
     return () => clearInterval(t);
-  }, [touched, playing, previewing, loopOk]);
+  }, [touched, hovering, playing, previewing, loopOk]);
 
   const playFull = () => requestAnimationFrame(() => videoRef.current?.play().catch(() => {}));
   const pickFeat = (i: number) => {
@@ -110,6 +112,9 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
+      // Any click or tap anywhere in the hero (arrow, tabs, hooks, video,
+      // buttons) stops the rotation for good.
+      onPointerDownCapture={() => setTouched(true)}
       className="relative min-h-screen overflow-hidden"
       style={{ background: "radial-gradient(125% 95% at 76% -8%, #6f1727 0%, #5C1220 50%, #470c17 100%)" }}
     >
@@ -207,7 +212,11 @@ const HeroSection = () => {
           </div>
 
           {/* Third-party proof — editorial pull-quote, above the fold */}
-          <figure className="relative max-w-md mx-auto lg:mx-0 mt-1 pl-6 text-left">
+          <figure
+            className="relative max-w-md mx-auto lg:mx-0 mt-1 pl-6 text-left"
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+          >
             <span
               aria-hidden="true"
               className="absolute left-0 -top-3 font-heading text-5xl leading-none select-none"
@@ -281,7 +290,11 @@ const HeroSection = () => {
           </div>
 
           {/* Frameless video — no heavy bezel; soft shadow grounds it */}
-          <div className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2rem] overflow-hidden shadow-[0_42px_72px_-24px_rgba(0,0,0,0.62)] ring-1 ring-[#F4ECDC]/15 shrink-0 z-10 bg-muted">
+          <div
+            className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2rem] overflow-hidden shadow-[0_42px_72px_-24px_rgba(0,0,0,0.62)] ring-1 ring-[#F4ECDC]/15 shrink-0 z-10 bg-muted"
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+          >
             <div className="relative w-full h-full">
               {playing ? (
                 <video
@@ -327,9 +340,9 @@ const HeroSection = () => {
                 </>
               )}
 
-              {/* Hook buttons, over the top edge of the video */}
+              {/* Hook buttons: under the play button; move to the top edge while the video plays */}
               <div
-                className="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 rounded-full pl-2.5 pr-1 py-1"
+                className={`absolute left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 rounded-full pl-2.5 pr-1 py-1 ${playing ? "top-2.5" : "top-[calc(50%+4.25rem)]"}`}
                 style={{ background: "rgba(46,20,25,0.55)", backdropFilter: "blur(6px)" }}
                 role="group"
                 aria-label="Choose a hook"
