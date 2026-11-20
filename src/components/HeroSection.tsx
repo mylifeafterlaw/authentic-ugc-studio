@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 
-import { Play, ChevronDown } from "lucide-react";
+import { Play, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
 import BrandWatermark from "@/components/BrandWatermark";
 import heroImg from "@/assets/hero-portrait.jpg";
@@ -215,14 +214,49 @@ const HeroSection = () => {
               </figcaption>
             </motion.div>
           </figure>
-          <Link
-            to="/new-to-ugc"
-            onClick={() => trackClick("New to UGC", "hero")}
-            className="self-center lg:self-start mt-5 font-body text-sm underline underline-offset-4 decoration-1 transition-colors hover:text-[#F4ECDC]"
-            style={{ color: "rgba(244,236,220,0.75)" }}
+
+          {/* Review cycler: moves through the featured clients (video + review) */}
+          <div
+            className="mt-3 flex items-center gap-2.5 self-center lg:self-start lg:ml-6"
+            role="group"
+            aria-label="Client reviews"
           >
-            New to UGC? Here&rsquo;s how it works &rarr;
-          </Link>
+            <button
+              type="button"
+              onClick={() => pickFeat((featIdx - 1 + FEATURED.length) % FEATURED.length)}
+              aria-label="Previous review"
+              className="w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-[#F4ECDC]/15"
+              style={{ border: "1px solid rgba(244,236,220,0.45)", color: "#F4ECDC" }}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            {FEATURED.map((f, i) => (
+              <button
+                key={f.name}
+                type="button"
+                onClick={() => pickFeat(i)}
+                aria-label={`Review from ${f.name}`}
+                aria-current={i === featIdx}
+                className="h-2 rounded-full transition-all"
+                style={{
+                  width: i === featIdx ? 18 : 8,
+                  background: i === featIdx ? "#F4ECDC" : "rgba(244,236,220,0.35)",
+                }}
+              />
+            ))}
+            <button
+              type="button"
+              onClick={() => pickFeat((featIdx + 1) % FEATURED.length)}
+              aria-label="Next review"
+              className="w-7 h-7 rounded-full flex items-center justify-center transition-colors hover:bg-[#F4ECDC]/15"
+              style={{ border: "1px solid rgba(244,236,220,0.45)", color: "#F4ECDC" }}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+            <span className="font-body text-xs ml-1" style={{ color: "rgba(244,236,220,0.6)" }}>
+              Review {featIdx + 1} of {FEATURED.length}
+            </span>
+          </div>
         </motion.div>
 
         {/* Visuals: dominant phone (video) in front, smaller still behind */}

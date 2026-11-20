@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
 import jcMark from "@/assets/jc-mark.png";
+import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "Home", href: "#hero" },
@@ -63,8 +64,15 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Desktop — right CTA */}
-        <div className="hidden md:block">
+        {/* Desktop — right: guide link + CTA */}
+        <div className="hidden md:flex items-center gap-5">
+          <Link
+            to="/new-to-ugc"
+            onClick={() => trackClick("New to UGC", "navbar")}
+            className={`hidden lg:inline font-body text-sm font-medium underline underline-offset-4 decoration-1 transition-colors ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-[#F4ECDC]/85 hover:text-[#F4ECDC]"}`}
+          >
+            New to UGC?
+          </Link>
           <button
             onClick={() => {
               trackClick("Work With Me", "navbar");
@@ -107,6 +115,16 @@ const Navbar = () => {
                 {link.label}
               </button>
             ))}
+            <Link
+              to="/new-to-ugc"
+              onClick={() => {
+                setMobileOpen(false);
+                trackClick("New to UGC", "navbar-mobile");
+              }}
+              className="block w-full text-left py-3 font-body text-foreground hover:text-[#5C1220] transition-colors"
+            >
+              New to UGC? How it works
+            </Link>
             <button
               onClick={() => {
                 trackClick("Work With Me", "navbar-mobile");
