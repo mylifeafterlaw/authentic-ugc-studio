@@ -4,12 +4,10 @@ import { motion } from "framer-motion";
 import { Play, ChevronDown, ArrowRight } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
 import BrandWatermark from "@/components/BrandWatermark";
-import heroImg from "@/assets/hero-portrait.jpg";
 import humePoster from "@/assets/thumbs/08-dark.jpg";
 import evolvePoster from "@/assets/thumbs/30-dark.jpg";
 import { r2 } from "@/lib/media";
 
-const sideStill = heroImg; // a different shot from the featured videos
 
 // Featured videos. The first hook of the first video loops silently on load
 // (preview = the hook only, under 1 MB); brands pick a video and a hook, and
@@ -64,6 +62,8 @@ const HeroSection = () => {
     setLoopOk(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
   const feat = FEATURED[featIdx];
+  const nextIdx = (featIdx + 1) % FEATURED.length;
+  const next = FEATURED[nextIdx];
   const hook = feat.hooks[hookIdx];
 
   // Until the visitor touches anything in the hero, the featured clients
@@ -262,40 +262,43 @@ const HeroSection = () => {
           className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center relative flex flex-col items-center justify-center"
         >
           <div className="relative">
-          {/* Secondary still — deliberate second photo sitting BEHIND the phone, peeking out the right side */}
-          <div className="hidden sm:block absolute right-0 top-1/2 -translate-y-[58%] translate-x-[62%] sm:translate-x-[66%] lg:translate-x-[70%] w-[220px] sm:w-[280px] lg:w-[340px] z-0">
-            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-card border-4 border-[#F4ECDC] rotate-6">
-              <img
-                src={sideStill}
-                alt="Jess Cousin – UGC creator portrait"
-                className="w-full h-full object-cover object-top"
-                width={800}
-                height={1000}
-                loading="lazy"
-              />
-            </div>
-
-            {/* Quiet handle link — centred under the visible photo slice */}
-            <div className="hidden lg:flex justify-center absolute top-full left-[55%] -translate-x-1/2 mt-8 z-20">
-              <a
-                href="https://linktr.ee/MyLifeAfterLaw"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-body text-xs sm:text-sm text-[#F4ECDC]/55 tracking-wide hover:text-[#F4ECDC] transition-colors"
-              >
-                @MyLifeAfterLaw
-              </a>
-            </div>
-
+          {/* Back card: the next featured video, tucked behind and peeking out
+              to the right. Clicking it brings it to the front. */}
+          <div className="hidden sm:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-[58%] lg:translate-x-[64%] w-[190px] lg:w-[220px] z-0">
+          <motion.button
+            key={`back-${next.name}`}
+            type="button"
+            onClick={() => pickFeat(nextIdx)}
+            aria-label={`Show the ${next.name} video`}
+            initial={{ opacity: 0, x: -40, rotate: 0 }}
+            animate={{ opacity: 1, x: 0, rotate: 6 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="group/back relative block w-full aspect-[9/19] rounded-[1.8rem] overflow-hidden shadow-[0_30px_60px_-24px_rgba(0,0,0,0.7)] ring-1 ring-[#F4ECDC]/15"
+          >
+            <img
+              src={next.poster}
+              alt=""
+              className="w-full h-full object-cover brightness-[0.62] transition-[filter] duration-300 group-hover/back:brightness-90"
+            />
+            <span className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 font-body text-xs font-semibold text-[#5C1220] bg-[#F4ECDC] px-3 py-1.5 rounded-full shadow-soft">
+              {next.name} <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </motion.button>
           </div>
 
           {/* Frameless video — no heavy bezel; soft shadow grounds it */}
           <div
-            className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2rem] overflow-hidden shadow-[0_42px_72px_-24px_rgba(0,0,0,0.62)] ring-1 ring-[#F4ECDC]/15 shrink-0 z-10 bg-muted"
+            className="relative w-[210px] sm:w-[250px] lg:w-[270px] aspect-[9/19] rounded-[2rem] overflow-hidden shadow-[0_42px_72px_-24px_rgba(0,0,0,0.62)] ring-1 ring-[#F4ECDC]/15 shrink-0 z-10 bg-[#2E1419]"
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
           >
-            <div className="relative w-full h-full">
+            <motion.div
+              key={`front-${feat.name}`}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              className="relative w-full h-full"
+            >
               {playing ? (
                 <video
                   ref={videoRef}
@@ -373,7 +376,7 @@ const HeroSection = () => {
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
           </div>
           </div>
 
@@ -406,35 +409,6 @@ const HeroSection = () => {
 
         </motion.div>
 
-        {/* Mobile-only portrait, below the text — on mobile the video takes the
-            top slot and the photo sits here, swapping their old positions. */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="order-4 lg:hidden mx-auto w-[150px] sm:w-[180px]"
-        >
-          <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-card border-4 border-[#F4ECDC]">
-            <img
-              src={sideStill}
-              alt="Jess Cousin – UGC creator portrait"
-              className="w-full h-full object-cover object-top"
-              width={800}
-              height={1000}
-              loading="lazy"
-            />
-          </div>
-          <div className="flex justify-center mt-3">
-            <a
-              href="https://linktr.ee/MyLifeAfterLaw"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-body text-xs text-[#F4ECDC]/55 tracking-wide hover:text-[#F4ECDC] transition-colors"
-            >
-              @MyLifeAfterLaw
-            </a>
-          </div>
-        </motion.div>
       </div>
 
       {/* Subtle scroll cue */}

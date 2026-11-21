@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Mail, Check, Copy } from "lucide-react";
 import { trackClick } from "@/lib/analytics";
 import BrandWatermark from "@/components/BrandWatermark";
+import headshot from "@/assets/contact-headshot.jpg";
 
 // Email-only contact: the enquiry form was removed (its backend was being
 // retired) in favour of a straight mailto CTA plus a copyable address.
@@ -104,6 +105,15 @@ const ContactSection = () => {
           transition={{ delay: 0.1 }}
           className="mt-10 flex flex-col items-center gap-5"
         >
+          <div className="flex items-center gap-4">
+          <img
+            src={headshot}
+            alt="Jess Cousin"
+            width={64}
+            height={64}
+            loading="lazy"
+            className="w-16 h-16 rounded-full object-cover ring-2 ring-[#F4ECDC]/80 shadow-[0_12px_28px_-12px_rgba(0,0,0,0.6)]"
+          />
           <a
             href={`mailto:${EMAIL}?subject=${encodeURIComponent("UGC enquiry")}`}
             onClick={() => trackClick("Email Me", "contact")}
@@ -112,6 +122,7 @@ const ContactSection = () => {
             <Mail className="w-5 h-5" />
             Email me
           </a>
+          </div>
 
           <div className="flex items-center gap-2.5">
             <span className="font-body text-base sm:text-lg select-all" style={{ color: "rgba(244,236,220,0.9)" }}>
@@ -139,13 +150,6 @@ const ContactSection = () => {
 
           {/* Socials — pulled up from the footer so the ending reads as one block */}
           <div className="mt-6 flex flex-col items-center gap-3.5">
-            <div className="flex items-center gap-3">
-              <span aria-hidden="true" className="inline-block w-12 h-px" style={{ background: "rgba(244,236,220,0.18)" }} />
-              <span className="font-body text-[0.6rem] uppercase tracking-[0.22em]" style={{ color: "rgba(244,236,220,0.45)" }}>
-                Or find me here
-              </span>
-              <span aria-hidden="true" className="inline-block w-12 h-px" style={{ background: "rgba(244,236,220,0.18)" }} />
-            </div>
             <div className="flex items-center gap-6">
               {SOCIALS.map((s) => (
                 <a
